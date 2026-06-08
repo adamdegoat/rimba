@@ -64,6 +64,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* Dust / pollen motes drifting inside the sunbeams (parent group gates day-only) */
 @keyframes motedrift{0%{opacity:0;transform:translate(0,0)}18%{opacity:.7}50%{opacity:.4;transform:translate(7px,-15px)}82%{opacity:.6}100%{opacity:0;transform:translate(-4px,-30px)}}
 .mote{transform-box:view-box;animation:motedrift 11s ease-in-out infinite}
+/* Sun pools on the clearing floor breathe with the canopy (parent gates day-only) */
+@keyframes dapplebreathe{0%,100%{opacity:.6}50%{opacity:1}}
+.dapple{animation:dapplebreathe 9s ease-in-out infinite}
+/* Heat-haze ribbons shimmer low over the clearing on hot/humid days */
+@keyframes heatwobble{0%{opacity:0;transform:translateY(0)}30%{opacity:.16}50%{transform:translateY(-3px) scaleX(1.015)}70%{opacity:.13}100%{opacity:0;transform:translateY(-7px)}}
+.heat-ribbon{transform-box:view-box;animation:heatwobble 6s ease-in-out infinite}
 /* Fireflies near the firepit (parent group's opacity gates night-only visibility) */
 @keyframes firefly{0%,100%{opacity:0;transform:translate(0,0)}25%{opacity:.95}50%{opacity:.35;transform:translate(7px,-9px)}75%{opacity:.85}}
 .firefly{transform-box:view-box;animation:firefly 4.2s ease-in-out infinite}
@@ -717,6 +723,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
     <stop offset="78%" stop-color="#000000" stop-opacity="0"/>
     <stop offset="100%" stop-color="#06120c" stop-opacity=".52"/>
   </radialGradient>
+  <!-- warm pool where a sun shaft lands on the clearing floor -->
+  <radialGradient id="dapple-g" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fff6d8" stop-opacity=".6"/>
+    <stop offset="52%" stop-color="#fde8a8" stop-opacity=".24"/>
+    <stop offset="100%" stop-color="#fde8a8" stop-opacity="0"/>
+  </radialGradient>
 </defs>
 
 <!-- SKY -->
@@ -931,6 +943,24 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 
 <!-- wet sheen over the mud during rain (engine-driven) -->
 <rect id="wet-ground" x="0" y="338" width="1000" height="206" fill="#16242c" opacity="0"/>
+
+<!-- ══ DAPPLED SUN POOLS — where the god-ray shafts land on the clearing floor (day only;
+     gated with the rays in applySky). Soft-light blend warms the bare mud. ══ -->
+<g id="ground-dapple" style="mix-blend-mode:soft-light">
+  <ellipse class="dapple" cx="330" cy="456" rx="64" ry="20" fill="url(#dapple-g)"/>
+  <ellipse class="dapple" cx="600" cy="462" rx="74" ry="22" fill="url(#dapple-g)" style="animation-delay:-2.6s"/>
+  <ellipse class="dapple" cx="716" cy="452" rx="58" ry="18" fill="url(#dapple-g)" style="animation-delay:-4.3s"/>
+  <ellipse class="dapple" cx="860" cy="446" rx="60" ry="19" fill="url(#dapple-g)" style="animation-delay:-1.4s"/>
+  <ellipse class="dapple" cx="150" cy="470" rx="50" ry="16" fill="url(#dapple-g)" style="animation-delay:-5.5s"/>
+  <ellipse class="dapple" cx="470" cy="468" rx="44" ry="14" fill="url(#dapple-g)" style="animation-delay:-3.1s"/>
+</g>
+
+<!-- ══ HEAT HAZE — faint warm shimmer low over the clearing on hot/humid days (applyWeather) ══ -->
+<g id="heat-haze" display="none" style="mix-blend-mode:screen">
+  <ellipse class="heat-ribbon" cx="300" cy="502" rx="180" ry="10" fill="#fff4da" opacity=".5"/>
+  <ellipse class="heat-ribbon" cx="660" cy="494" rx="200" ry="11" fill="#fff4da" opacity=".5" style="animation-delay:-2s"/>
+  <ellipse class="heat-ribbon" cx="500" cy="510" rx="220" ry="9" fill="#fff4da" opacity=".5" style="animation-delay:-4s"/>
+</g>
 
 <!-- ══ RIVER (replaces ocean) — winding teal water across the lower band ══ -->
 <path d="M -40 540 Q 150 512 330 528 Q 520 546 700 520 Q 860 500 1040 522 L 1040 600 L -40 600 Z" fill="url(#ocean-g)"/>
@@ -1275,7 +1305,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 </g>
 
 <!-- ══ ONEWHEEL — Chills' one-wheel electric skateboard, stood against the Cayenne ══ -->
-<g id="onewheel" transform="translate(232 500) rotate(12) scale(0.72)">
+<g id="onewheel" transform="translate(258 496) rotate(12) scale(0.72)">
   <!-- ground shadow in the mud -->
   <ellipse cx="2" cy="3" rx="17" ry="4.5" fill="#2a1d10" opacity=".5"/>
   <!-- board stood on its tail, nose up -->
@@ -2043,6 +2073,7 @@ function applySky(sky) {
   const gr=document.getElementById('god-rays'); if(gr) gr.style.display=isNight?'none':''
   const isDusk=sky==='evening'; if(gr&&isDusk) gr.style.display=''
   const dm=document.getElementById('dust-motes'); if(dm) dm.style.display=isNight?'none':''
+  const gd=document.getElementById('ground-dapple'); if(gd) gd.style.display=isNight?'none':''
   // Butterflies only flit about in daylight
   const bf=document.getElementById('butterflies'); if(bf) bf.style.display=isNight?'none':''
   document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
@@ -2064,6 +2095,14 @@ function applyWeather(weather){
   // the river swells + muddies in a storm; the mud takes a wet sheen in any rain
   const ff=document.getElementById('river-flood'); if(ff) ff.style.display=storm?'':'none'
   document.getElementById('wet-ground')?.setAttribute('opacity', storm?'0.26':rain?'0.17':'0')
+  // Heat shimmer only on a hot/humid, dry, daylit clearing
+  const hot=/hot|heat|scorch|blazing|humid|sweltering|sultry|muggy/.test(w)
+  const hh=document.getElementById('heat-haze')
+  if(hh){
+    // gate off the actual rendered sky (applySky runs first this tick and sets the night class)
+    const night = document.getElementById('world')?.classList.contains('night')
+    hh.style.display = (hot && !rain && !night) ? 'inline' : 'none'
+  }
 }
 
 function updateStatusBar() {
