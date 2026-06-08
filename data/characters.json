@@ -5,27 +5,27 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 61,
-      "openness": 69,
+      "trust": 62,
+      "openness": 70,
       "ambition": 55,
-      "loneliness": 28,
-      "resilience": 90,
+      "loneliness": 26,
+      "resilience": 91,
       "health": 100,
-      "hunger": 59,
-      "thirst": 54,
-      "energy": 63
+      "hunger": 48,
+      "thirst": 53,
+      "energy": 56
     },
     "mood": "alert",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 21,
-        "tension": 14,
+        "closeness": 23,
+        "tension": 13,
         "attraction": 0
       },
       "mutu": {
@@ -63,27 +63,27 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 49,
-      "openness": 54,
-      "ambition": 79,
-      "loneliness": 44,
-      "resilience": 26,
+      "trust": 50,
+      "openness": 55,
+      "ambition": 78,
+      "loneliness": 42,
+      "resilience": 27,
       "health": 100,
-      "hunger": 59,
-      "thirst": 54,
-      "energy": 63
+      "hunger": 48,
+      "thirst": 53,
+      "energy": 56
     },
-    "mood": "panicked",
+    "mood": "anxious",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 17,
-        "tension": 17,
+        "closeness": 19,
+        "tension": 16,
         "attraction": 0
       },
       "mutu": {
@@ -111,6 +111,11 @@
         "day": 1,
         "text": "Panicked over the cracked radiator and fouled the water. Day one.",
         "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "Chills didn't blame me. He just said I'm learning. I want to believe that.",
+        "weight": 2
       }
     ]
   },
@@ -124,16 +129,16 @@
       "trust": 60,
       "openness": 40,
       "ambition": 0,
-      "loneliness": 23,
+      "loneliness": 26,
       "resilience": 85,
       "hunger": 53,
       "thirst": 53,
-      "energy": 83,
+      "energy": 76,
       "health": 100
     },
     "mood": "calm",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "cayenne_rear",
       "x": 80,
       "y": 30
     },

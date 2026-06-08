@@ -88,5 +88,95 @@
       }
     ],
     "timestamp": "2026-06-08T11:35:01.438405"
+  },
+  {
+    "day": 1,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Knelt at the dead campfire, running his hands over the sodden wood and looking toward the river, jaw set.",
+    "thought": "Get the fire going. He'll steady down.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "alert",
+    "timestamp": "2026-06-08T12:15:56.451346"
+  },
+  {
+    "day": 1,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Stood a few meters away, dusty and sweating, watching Chills assess the dead fire and wanting to ask something but not knowing what.",
+    "thought": "I ruined the water. I ruined everything already.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-08T12:15:56.451346"
+  },
+  {
+    "day": 1,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Padded to a shaded spot near the Cayenne's rear and lay down, tail curled, watching the two men with steady green eyes.",
+    "thought": "Dry place. They'll sort it out eventually.",
+    "location": {
+      "waypoint": "cayenne_rear",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-08T12:15:56.451346"
+  },
+  {
+    "day": 1,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the dead campfire, Chills assesses what's needed while Wesley watches, guilty and uncertain.",
+    "dialogue": [
+      {
+        "speaker": "chills",
+        "line": "Water's the first thing. Then fire."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The radiator fouled everything. I panicked like an idiot."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're here. You're learning. That's all that matters now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I shouldn't have wasted clean water in the first hour."
+      },
+      {
+        "speaker": "chills",
+        "line": "River's maybe two hundred meters. We boil what we need."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How? Everything's soaked. What do I actually do?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Come. Help me get dry wood from the lean-to. We build from there."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Okay. Show me."
+      }
+    ],
+    "timestamp": "2026-06-08T12:15:56.451346"
   }
 ]

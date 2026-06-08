@@ -1,36 +1,5 @@
 {
-  "world": "tropicana",
-  "poll": {
-    "id": "2026-06-08",
-    "closes": "tonight",
-    "question": "Tell Jade what she's come to mean, or keep the magic of these firepit nights as it is?",
-    "options": [
-      {
-        "id": "confess_jade",
-        "label": "Tell her tonight",
-        "desc": "Risk vulnerability; see if she feels it too"
-      },
-      {
-        "id": "keep_unspoken",
-        "label": "Keep it unspoken",
-        "desc": "Let the warmth stay simple; protect what you have"
-      },
-      {
-        "id": "show_dont_tell",
-        "label": "Show her tomorrow",
-        "desc": "Small honest moments—let her realize it her own way"
-      }
-    ]
-  },
-  "in_play": {
-    "id": "pursue_ryan",
-    "label": "Follow her heart",
-    "desc": "Be honest with Ryan—let the spark grow",
-    "decided": "2026-06-08",
-    "votes": 2,
-    "tally": {
-      "pursue_ryan": 1,
-      "take_time": 1
-    }
-  }
+  "world": "rimba",
+  "poll": null,
+  "in_play": null
 }
