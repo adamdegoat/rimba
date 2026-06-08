@@ -2445,6 +2445,8 @@ function makeGenericCharSVG(cid, color, skin) {
   const acc = ap.accessory || 'none'
   const outfit = ap.outfit || color
   const accColor = ap.accColor || ''
+  const pants = ap.pants || '#3c4150'      // trousers (data-driven per character)
+  const boots = ap.boots || '#2c2118'      // jungle boots
   const hair = hairSVG(hairStyle, hc)
   const accFront = accessorySVG(acc, hc, outfit, accColor)
   // headwear replaces the hair-on-top look; keep front hair only when bare-headed
@@ -2459,20 +2461,34 @@ function makeGenericCharSVG(cid, color, skin) {
       </linearGradient>
     </defs>
     ${hair.back}
-    <ellipse cx="-5" cy="-1" rx="6" ry="2.2" fill="#1f2937"/>
-    <ellipse cx="5" cy="-1" rx="6" ry="2.2" fill="#1f2937"/>
-    <rect x="-6.5" y="-18" width="5.5" height="18" rx="2.5" fill="#3f3f46"/>
-    <rect x="1" y="-18" width="5.5" height="18" rx="2.5" fill="#3f3f46"/>
-    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -25 -12 -20 -11 -17 L 11 -17 C 12 -20 12.5 -25 13 -33 C 14 -42 13 -50 11 -56 Z" fill="${outfit}"/>
-    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -25 -12 -20 -11 -17 L 11 -17 C 12 -20 12.5 -25 13 -33 C 14 -42 13 -50 11 -56 Z" fill="url(#og-${cid})" opacity=".55"/>
+    <!-- jungle boots (toe + sole) -->
+    <path d="M -9 -11 L -2.4 -11 L -2.4 -3 Q -2.4 0 -5 0 L -10.5 0 Q -11.5 0 -11.3 -1.6 L -10.5 -4 Z" fill="${boots}"/>
+    <path d="M 9 -11 L 2.4 -11 L 2.4 -3 Q 2.4 0 5 0 L 10.5 0 Q 11.5 0 11.3 -1.6 L 10.5 -4 Z" fill="${boots}"/>
+    <path d="M -11.5 -1.4 L -2.2 -1.4 M 2.2 -1.4 L 11.5 -1.4" stroke="#00000055" stroke-width="1.4" stroke-linecap="round"/>
+    <path d="M -8.6 -10 L -2.6 -10 M 2.6 -10 L 8.6 -10" stroke="#ffffff1f" stroke-width="1" stroke-linecap="round"/>
+    <!-- trousers -->
+    <path d="M -7.6 -20 L -0.8 -20 L -1.8 -10.5 L -8.4 -10.5 Z" fill="${pants}"/>
+    <path d="M 7.6 -20 L 0.8 -20 L 1.8 -10.5 L 8.4 -10.5 Z" fill="${pants}"/>
+    <path d="M -7.6 -20 L 7.6 -20 L 7.2 -17 L -7.2 -17 Z" fill="#0000002e"/>
+    <path d="M -4.8 -19 L -5.6 -11.5 M 4.8 -19 L 5.6 -11.5" stroke="#ffffff14" stroke-width="1.1"/>
+    <!-- torso / shirt -->
+    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -26 -12 -22 -11 -19 L 11 -19 C 12 -22 12.5 -26 13 -33 C 14 -42 13 -50 11 -56 Z" fill="${outfit}"/>
+    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -26 -12 -22 -11 -19 L 11 -19 C 12 -22 12.5 -26 13 -33 C 14 -42 13 -50 11 -56 Z" fill="url(#og-${cid})" opacity=".5"/>
+    <ellipse cx="-5.5" cy="-43" rx="3.4" ry="11" fill="#ffffff16"/>
+    <path d="M 0 -57 L 0 -20" stroke="#00000026" stroke-width="1.1"/>
+    <!-- collar -->
     <path d="M -10 -56 C -8 -59 -3 -60 0 -59 C 3 -60 8 -59 10 -56 Z" fill="${outfit}"/>
-    <path d="M 0 -59 L -4.5 -49 M 0 -59 L 4.5 -49" stroke="#00000026" stroke-width="1.1" fill="none"/>
-    <path d="M -11 -55 C -17 -49 -18 -42 -16 -35" stroke="${skin}" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-    <path d="M 11 -55 C 17 -49 18 -42 16 -35" stroke="${skin}" stroke-width="5.5" fill="none" stroke-linecap="round"/>
-    <circle cx="-16" cy="-34" r="3.6" fill="${skin}"/>
-    <circle cx="16" cy="-34" r="3.6" fill="${skin}"/>
-    <rect x="-3.5" y="-64" width="7" height="9" rx="2" fill="${skin}"/>
-    <rect x="-3.5" y="-58" width="7" height="3" fill="${shade}"/>
+    <path d="M 0 -59 L -4.5 -49 M 0 -59 L 4.5 -49" stroke="#00000030" stroke-width="1.2" fill="none"/>
+    <!-- arms: short sleeve, skin forearm, hand -->
+    <path d="M -11 -55 C -16 -52 -18 -48 -17.5 -44" stroke="${outfit}" stroke-width="6.2" fill="none" stroke-linecap="round"/>
+    <path d="M 11 -55 C 16 -52 18 -48 17.5 -44" stroke="${outfit}" stroke-width="6.2" fill="none" stroke-linecap="round"/>
+    <path d="M -17.5 -44 C -18 -40 -17.5 -36 -16 -34" stroke="${skin}" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+    <path d="M 17.5 -44 C 18 -40 17.5 -36 16 -34" stroke="${skin}" stroke-width="4.6" fill="none" stroke-linecap="round"/>
+    <ellipse cx="-15.6" cy="-32" rx="3.1" ry="3.5" fill="${skin}"/>
+    <ellipse cx="15.6" cy="-32" rx="3.1" ry="3.5" fill="${skin}"/>
+    <!-- neck -->
+    <rect x="-3.3" y="-64" width="6.6" height="9" rx="2" fill="${skin}"/>
+    <rect x="-3.3" y="-58" width="6.6" height="3" fill="${shade}"/>
     <ellipse cx="0" cy="-72" rx="11.5" ry="11.5" fill="${skin}"/>
     <path d="M -11.5 -72 C -11 -64 -7 -61 0 -61 C 7 -61 11 -64 11.5 -72 C 9 -65 -9 -65 -11.5 -72 Z" fill="${shade}"/>
     ${hairFront}

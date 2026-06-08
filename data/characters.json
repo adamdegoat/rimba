@@ -43,7 +43,9 @@
       },
       "accessory": "cap",
       "outfit": "#4d6b3c",
-      "accColor": "#caa14a"
+      "accColor": "#caa14a",
+      "pants": "#4a5236",
+      "boots": "#3a2a18"
     },
     "interaction": {
       "with": "wesley",
@@ -100,7 +102,9 @@
         "color": "#1a1a1a"
       },
       "accessory": "sunglasses",
-      "outfit": "#27406b"
+      "outfit": "#27406b",
+      "pants": "#2c3447",
+      "boots": "#1b1e26"
     },
     "interaction": {
       "with": "chills",
