@@ -58,9 +58,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* Leaves drifting down through the scene */
 @keyframes leaffall{0%{transform:translate(0,0) rotate(0deg);opacity:0}8%{opacity:.9}90%{opacity:.85}100%{transform:translate(-46px,620px) rotate(240deg);opacity:0}}
 .leaf-fall{transform-box:view-box;animation:leaffall linear infinite}
-/* God-ray shafts pulse very gently */
-@keyframes raypulse{0%,100%{opacity:.5}50%{opacity:.68}}
-#god-rays{animation:raypulse 9s ease-in-out infinite}
+/* God-ray shafts breathe + sway very gently, as if the canopy stirs overhead */
+@keyframes raypulse{0%,100%{opacity:.48;transform:skewX(-0.7deg)}50%{opacity:.68;transform:skewX(0.9deg)}}
+#god-rays{transform-box:fill-box;transform-origin:50% 0;animation:raypulse 9s ease-in-out infinite}
+/* Dust / pollen motes drifting inside the sunbeams (parent group gates day-only) */
+@keyframes motedrift{0%{opacity:0;transform:translate(0,0)}18%{opacity:.7}50%{opacity:.4;transform:translate(7px,-15px)}82%{opacity:.6}100%{opacity:0;transform:translate(-4px,-30px)}}
+.mote{transform-box:view-box;animation:motedrift 11s ease-in-out infinite}
 /* Fireflies near the firepit (parent group's opacity gates night-only visibility) */
 @keyframes firefly{0%,100%{opacity:0;transform:translate(0,0)}25%{opacity:.95}50%{opacity:.35;transform:translate(7px,-9px)}75%{opacity:.85}}
 .firefly{transform-box:view-box;animation:firefly 4.2s ease-in-out infinite}
@@ -241,7 +244,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* ── CHARACTERS ── */
 .char{position:absolute;z-index:20;transform:translate(-50%,-100%);
   transition:left 2.8s cubic-bezier(.4,0,.2,1),top 2.8s cubic-bezier(.4,0,.2,1)}
-.char-svg{display:block;margin:0 auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.65));animation:bob 2.4s ease-in-out infinite}
+.char-svg{display:block;margin:0 auto;filter:var(--cast-shadow,drop-shadow(0 6px 14px rgba(0,0,0,.65)));animation:bob 2.4s ease-in-out infinite}
 .char-svg.sad{animation:bob-slow 3.5s ease-in-out infinite}
 .char-svg.angry{animation:bob-tense .9s ease-in-out infinite}
 @keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
@@ -454,7 +457,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* ── STRUCTURES LAYER ── */
 #structures-layer{position:absolute;inset:0;pointer-events:none;z-index:5;transform:translateY(calc(-1 * var(--world-shift,0px)))}
 .struct{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;text-align:center;line-height:1;cursor:default}
-.struct-svg{display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6));transition:transform .2s ease}
+.struct-svg{display:block;filter:var(--struct-shadow,drop-shadow(0 3px 8px rgba(0,0,0,.6)));transition:transform .2s ease}
 .struct:hover .struct-svg{transform:scale(1.12)}
 .struct-label{font-size:8px;color:rgba(255,255,255,.0);white-space:nowrap;margin-top:2px;
   font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:.3px;
@@ -802,6 +805,21 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <polygon points="772,118 808,118 760,470 672,470" fill="url(#god-ray)" opacity=".7"/>
   <polygon points="512,140 532,140 360,460 300,460" fill="url(#god-ray)" opacity=".55"/>
   <polygon points="858,124 884,124 900,440 836,440" fill="url(#god-ray)" opacity=".5"/>
+</g>
+<!-- ══ DUST / POLLEN MOTES drifting in the sun shafts (day only; gated with god-rays) ══ -->
+<g id="dust-motes" opacity=".9" style="mix-blend-mode:screen">
+  <circle class="mote" cx="600" cy="300" r="1.2" fill="#fef9c3"/>
+  <circle class="mote" cx="560" cy="360" r="0.9" fill="#fffaf0" style="animation-delay:-2.4s"/>
+  <circle class="mote" cx="640" cy="250" r="1.0" fill="#fef3c7" style="animation-delay:-5.1s"/>
+  <circle class="mote" cx="700" cy="330" r="1.3" fill="#fff8e0" style="animation-delay:-1.2s"/>
+  <circle class="mote" cx="470" cy="300" r="0.9" fill="#fef9c3" style="animation-delay:-7.3s"/>
+  <circle class="mote" cx="520" cy="390" r="1.1" fill="#fffaf0" style="animation-delay:-3.6s"/>
+  <circle class="mote" cx="740" cy="280" r="0.9" fill="#fef3c7" style="animation-delay:-8.8s"/>
+  <circle class="mote" cx="660" cy="400" r="1.2" fill="#fff8e0" style="animation-delay:-6.0s"/>
+  <circle class="mote" cx="420" cy="340" r="0.8" fill="#fef9c3" style="animation-delay:-9.5s"/>
+  <circle class="mote" cx="860" cy="300" r="1.0" fill="#fffaf0" style="animation-delay:-4.4s"/>
+  <circle class="mote" cx="820" cy="360" r="0.9" fill="#fef3c7" style="animation-delay:-10.2s"/>
+  <circle class="mote" cx="580" cy="240" r="1.0" fill="#fff8e0" style="animation-delay:-0.6s"/>
 </g>
 
 <!-- ══ OVERHEAD CANOPY CEILING + HANGING VINES (very top; god-rays read between) ══ -->
@@ -1171,10 +1189,15 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <ellipse cx="62" cy="62" rx="120" ry="19" fill="#2a1d10" opacity=".6"/>
   <ellipse cx="16" cy="62" rx="28" ry="9" fill="#3f2d18"/>
   <!-- ── chunky off-road tyres (front + rear) ── -->
-  <g>
+  <g id="cay-wheel">
     <circle cx="106" cy="50" r="21" fill="#16191c"/>
     <circle cx="106" cy="50" r="21" fill="none" stroke="#0a0c0e" stroke-width="4" stroke-dasharray="3 4.5"/>
     <circle cx="106" cy="50" r="10.5" fill="#c4cbd2"/><circle cx="106" cy="50" r="9" fill="none" stroke="#8a929b" stroke-width="1.4"/><circle cx="106" cy="50" r="3.2" fill="#6b7079"/>
+  </g>
+  <!-- shown only once the wheel is stripped: bare brake hub + the corner propped on logs -->
+  <g id="cay-wheel-gone" display="none">
+    <circle cx="106" cy="52" r="8" fill="#2a2e33"/><circle cx="106" cy="52" r="4" fill="#4a4f55"/>
+    <g stroke="#5c4327" stroke-width="5" stroke-linecap="round"><line x1="96" y1="60" x2="116" y2="60"/><line x1="98" y1="64" x2="114" y2="64"/></g>
   </g>
   <g>
     <circle cx="18" cy="52" r="21" fill="#16191c"/>
@@ -1199,32 +1222,55 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <!-- door seam + handle, hood + tail -->
   <line x1="65" y1="22" x2="65" y2="50" stroke="#7d858d" stroke-width="1.3" opacity=".7"/>
   <rect x="48" y="33" width="10" height="3" rx="1.5" fill="#7d858d"/>
+  <!-- wing mirror (strippable) -->
+  <g id="cay-mirror"><line x1="26" y1="26" x2="17" y2="25" stroke="#7d858d" stroke-width="1.6" stroke-linecap="round"/><ellipse cx="14.5" cy="25" rx="2.6" ry="3.6" fill="#2b3036"/><ellipse cx="14" cy="24.5" rx="1.6" ry="2.6" fill="#9aa3ac" opacity=".7"/></g>
   <path d="M -6 40 Q 6 30 26 30" stroke="#9aa3ac" stroke-width="1.4" fill="none" opacity=".6"/>
   <ellipse cx="-4" cy="39" rx="4.5" ry="5.5" fill="#fde68a"/>
   <rect x="130" y="34" width="6" height="6" rx="1.5" fill="#9d2424"/>
-  <!-- snorkel up the A-pillar -->
-  <path d="M 22 38 L 22 0 Q 22 -5 27 -5" stroke="#15181b" stroke-width="3.6" fill="none" stroke-linecap="round"/>
-  <rect x="17" y="-9" width="6.5" height="7" rx="1.5" fill="#15181b"/>
+  <!-- snorkel up the A-pillar (strippable) -->
+  <g id="cay-snorkel">
+    <path d="M 22 38 L 22 0 Q 22 -5 27 -5" stroke="#15181b" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+    <rect x="17" y="-9" width="6.5" height="7" rx="1.5" fill="#15181b"/>
+  </g>
   <!-- ── roof rack platform ── -->
   <rect x="22" y="-4" width="92" height="4.5" rx="1.5" fill="#33383d"/>
   <line x1="40" y1="-4" x2="40" y2="0.5" stroke="#22262a" stroke-width="1.4"/><line x1="68" y1="-4" x2="68" y2="0.5" stroke="#22262a" stroke-width="1.4"/><line x1="96" y1="-4" x2="96" y2="0.5" stroke="#22262a" stroke-width="1.4"/>
-  <!-- light bar on the rack front -->
-  <rect x="26" y="-8" width="30" height="3.4" rx="1.5" fill="#22262a"/>
-  <circle cx="32" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="40" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="48" cy="-6.3" r="1.5" fill="#fff4cf"/>
-  <!-- ── ROOFTOP TENT (open wedge on the rack) ── -->
-  <rect x="58" y="-13" width="58" height="9" rx="1.5" fill="#7a6a45"/>
-  <path d="M 58 -13 L 116 -13 L 116 -22 L 66 -31 Z" fill="url(#rtt-canvas)"/>
-  <path d="M 66 -31 L 116 -22" stroke="#7a6a45" stroke-width="1.6" fill="none" opacity=".7"/>
-  <path d="M 88 -26 L 88 -13" stroke="#8a7a52" stroke-width="1.2" opacity=".6"/>
-  <rect x="96" y="-24" width="12" height="8" rx="1" fill="#5e5436" opacity=".7"/>
-  <!-- tent ladder down the back -->
-  <g stroke="#cfd4da" stroke-width="1.3"><line x1="118" y1="-8" x2="128" y2="40"/><line x1="123" y1="-8" x2="133" y2="40"/><line x1="119" y1="2" x2="131" y2="2"/><line x1="120" y1="14" x2="132" y2="14"/><line x1="121" y1="26" x2="132" y2="26"/></g>
-  <!-- rear-mounted spare wheel -->
-  <circle cx="142" cy="40" r="11.5" fill="#16191c"/><circle cx="142" cy="40" r="5.5" fill="#c4cbd2"/><circle cx="142" cy="40" r="1.8" fill="#6b7079"/>
+  <!-- light bar on the rack front (strippable) -->
+  <g id="cay-lightbar">
+    <rect x="26" y="-8" width="30" height="3.4" rx="1.5" fill="#22262a"/>
+    <circle cx="32" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="40" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="48" cy="-6.3" r="1.5" fill="#fff4cf"/>
+  </g>
+  <!-- ── ROOFTOP TENT (open wedge on the rack) + its ladder (strippable) ── -->
+  <g id="cay-tent">
+    <rect x="58" y="-13" width="58" height="9" rx="1.5" fill="#7a6a45"/>
+    <path d="M 58 -13 L 116 -13 L 116 -22 L 66 -31 Z" fill="url(#rtt-canvas)"/>
+    <path d="M 66 -31 L 116 -22" stroke="#7a6a45" stroke-width="1.6" fill="none" opacity=".7"/>
+    <path d="M 88 -26 L 88 -13" stroke="#8a7a52" stroke-width="1.2" opacity=".6"/>
+    <rect x="96" y="-24" width="12" height="8" rx="1" fill="#5e5436" opacity=".7"/>
+    <g stroke="#cfd4da" stroke-width="1.3"><line x1="118" y1="-8" x2="128" y2="40"/><line x1="123" y1="-8" x2="133" y2="40"/><line x1="119" y1="2" x2="131" y2="2"/><line x1="120" y1="14" x2="132" y2="14"/><line x1="121" y1="26" x2="132" y2="26"/></g>
+  </g>
+  <!-- rear-mounted spare wheel (strippable) -->
+  <g id="cay-spare">
+    <circle cx="142" cy="40" r="11.5" fill="#16191c"/><circle cx="142" cy="40" r="5.5" fill="#c4cbd2"/><circle cx="142" cy="40" r="1.8" fill="#6b7079"/>
+  </g>
   <!-- mud splatter up the silver -->
   <g fill="#5c4327" opacity=".5">
     <ellipse cx="16" cy="48" rx="10" ry="5"/><ellipse cx="42" cy="50" rx="7" ry="3.5"/>
     <ellipse cx="96" cy="48" rx="9" ry="4.5"/><ellipse cx="120" cy="46" rx="6" ry="3"/>
+  </g>
+  <!-- shown only once the engine/battery is stripped: hood propped open over a dark bay -->
+  <g id="cay-hood-open" display="none">
+    <path d="M -6 40 Q 6 30 26 30 L 24 38 Q 8 40 -4 46 Z" fill="#2a2e33"/>
+    <path d="M 26 30 L 30 16 L 34 18 L 28 32 Z" fill="#8a929b"/>
+    <path d="M 26 30 L 30 16" stroke="#6b7079" stroke-width="1" opacity=".7"/>
+    <ellipse cx="8" cy="40" rx="9" ry="3.4" fill="#0c0f12"/>
+    <rect x="2" y="36" width="5" height="4" rx="1" fill="#4a4f55"/><rect x="11" y="37" width="4" height="3" rx="1" fill="#3a3f45"/>
+  </g>
+  <!-- shown only once a door is stripped: dark gap with the bare seat frame exposed -->
+  <g id="cay-door-removed" display="none">
+    <path d="M 66 24 L 104 24 L 104 50 Q 86 52 66 50 Z" fill="#13161a"/>
+    <rect x="74" y="30" width="12" height="16" rx="2" fill="#2a2e33"/><rect x="74" y="30" width="12" height="5" rx="2" fill="#3a3f45"/>
+    <path d="M 66 24 L 104 24" stroke="#5a626b" stroke-width="1.2" opacity=".7"/>
   </g>
 </g>
 
@@ -1265,6 +1311,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 <line x1="690" y1="372" x2="696" y2="360" stroke="#6b4f2a" stroke-width="3" stroke-linecap="round"/>
 <!-- lashings -->
 <line x1="688" y1="376" x2="694" y2="366" stroke="#cdd98a" stroke-width="1.4" opacity=".5"/>
+
+<!-- ══ CAMP STORES — live readouts of the survival sim (filled by renderCampStores) ══ -->
+<!-- gathered firewood (count tracks resources.wood) -->
+<g id="woodpile"></g>
+<!-- foraged/caught food on a drying line (count tracks resources.food) -->
+<g id="food-cache"></g>
+<!-- collected water vessel (fill level tracks resources.water) -->
+<g id="water-store"></g>
 
 <!-- ══ FIRE PIT (stones always shown; flames only when the fire is LIT) ══ -->
 <g transform="translate(72,0)">
@@ -1951,6 +2005,29 @@ function nextRun(sgt) {
   return { time:`${h12}${mStr}${ap}`, cd:dh>0?`${dh}h ${dm}m`:`${dm}m` }
 }
 
+// ── Directional sun-shadows, tuned SOFT for diffuse jungle light (zero engine cost) ──
+// Light filters down from the upper-right (matches the #color-wash + sun). Under canopy the
+// light is diffuse, so casts are shorter, blurrier and fainter than Tropicana's hard beach sun.
+function applySunShadow(sgt) {
+  const world = document.getElementById('world'); if (!world) return
+  const h = sgt.getHours() + sgt.getMinutes() / 60
+  const noon = 13, halfDay = 6.5
+  const isDay = h > 6.3 && h < 19.7
+  if (isDay) {
+    const alt = Math.max(0, 1 - Math.abs(h - noon) / halfDay)   // 0 at horizon → 1 at noon
+    const low = 1 - alt
+    const cdx = -(1 + low * 15), cdy = 5 + low * 2, cbl = 9 + low * 12, ca = (0.42 - low * 0.12).toFixed(2)
+    world.style.setProperty('--cast-shadow',
+      `drop-shadow(0 5px 6px rgba(0,0,0,.4)) drop-shadow(${cdx.toFixed(1)}px ${cdy.toFixed(1)}px ${cbl.toFixed(1)}px rgba(8,14,8,${ca}))`)
+    const sdx = -(1 + low * 13), sdy = 3 + low * 2, sbl = 7 + low * 10, sa = (0.44 - low * 0.1).toFixed(2)
+    world.style.setProperty('--struct-shadow',
+      `drop-shadow(${sdx.toFixed(1)}px ${sdy.toFixed(1)}px ${sbl.toFixed(1)}px rgba(8,14,8,${sa}))`)
+  } else {
+    world.style.setProperty('--cast-shadow', 'drop-shadow(0 5px 8px rgba(0,0,0,.5)) drop-shadow(0 3px 11px rgba(2,6,18,.32))')
+    world.style.setProperty('--struct-shadow', 'drop-shadow(0 3px 10px rgba(2,6,18,.48))')
+  }
+}
+
 function applySky(sky) {
   document.getElementById('sky-bg')?.setAttribute('fill',`url(#sky-${sky})`)
   const isNight=sky==='night'||sky==='dawn'
@@ -1965,6 +2042,7 @@ function applySky(sky) {
   // Sun shafts only break through in daylight; soften the haze at night.
   const gr=document.getElementById('god-rays'); if(gr) gr.style.display=isNight?'none':''
   const isDusk=sky==='evening'; if(gr&&isDusk) gr.style.display=''
+  const dm=document.getElementById('dust-motes'); if(dm) dm.style.display=isNight?'none':''
   // Butterflies only flit about in daylight
   const bf=document.getElementById('butterflies'); if(bf) bf.style.display=isNight?'none':''
   document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
@@ -2006,6 +2084,7 @@ function updateStatusBar() {
   }
   document.getElementById('status-last').textContent=lastStr
   applySky(skyFromHour(sgt.getHours()))
+  applySunShadow(sgt)
   applyWeather(S.world && S.world.weather)
   const completedToday = new Set(S.feed.filter(e=>e.day===(S.world?.day||1)&&e.type!=='birth').map(e=>e.cycle))
   ALL_STEPS.forEach(s=>{
@@ -2723,8 +2802,78 @@ function updateFireChip() {
   el.innerHTML = lit ? '🔥 FIRE LIT' : '🌑 FIRE OUT'
   // Scene flames only burn when the fire is actually lit (the stone ring always stays).
   // The night glow is handled in applySky (gated on fire.lit).
-  document.getElementById('fire-flames')?.setAttribute('display', lit ? '' : 'none')
+  const ff = document.getElementById('fire-flames')
+  if(ff){
+    ff.setAttribute('display', lit ? '' : 'none')
+    // Flames scale with the real fuel level — a dying fire visibly shrinks.
+    const fuel = (typeof fire.fuel === 'number') ? fire.fuel : 8
+    ff.style.transformBox = 'fill-box'; ff.style.transformOrigin = '50% 100%'
+    ff.style.transform = lit ? `scale(${Math.max(0.5, Math.min(1.3, 0.5 + fuel / 14)).toFixed(2)})` : ''
+  }
   document.getElementById('fire-smoke')?.setAttribute('display', lit ? '' : 'none')
+}
+
+// ── CAMP STORES: the clearing is an honest readout of the survival sim. Firewood, drying
+//    food, and the water vessel grow/shrink with the live resource numbers (zero engine cost). ──
+function renderCampStores() {
+  const R = (S.world && S.world.resources) || {}
+  // firewood stack (left of the fire) — count tracks wood
+  const wood = Math.max(0, R.wood ?? 0)
+  const nLogs = Math.round(Math.min(7, wood / 6))
+  const bx = 470, by = 476
+  const slots = [[0,0],[11,0],[22,0],[-11,0],[5.5,-7],[16.5,-7],[11,-14]]
+  const log = (x,y) => `<g transform="translate(${bx+x} ${by+y})"><circle r="5" fill="#6b4f2a"/><circle r="5" fill="none" stroke="#3f2d18" stroke-width="1.1"/><circle r="2" fill="#856544"/><path d="M0 -5 L0 5 M-3.4 -3.4 L3.4 3.4" stroke="#5c4327" stroke-width=".7" opacity=".55"/></g>`
+  let wp = nLogs > 0 ? `<ellipse cx="${bx+6}" cy="${by+4}" rx="26" ry="5" fill="#1c130a" opacity=".4"/>` : ''
+  for (let i = 0; i < nLogs; i++) wp += log(slots[i][0], slots[i][1])
+  const wpEl = document.getElementById('woodpile'); if (wpEl) wpEl.innerHTML = wp
+
+  // fish drying on a line (by the lean-to) — count tracks food
+  const food = Math.max(0, R.food ?? 0)
+  const nFish = Math.round(Math.min(4, food / 14))
+  const lx0 = 634, lx1 = 690
+  let fc = `<line x1="${lx0}" y1="418" x2="${lx0}" y2="398" stroke="#6b4f2a" stroke-width="2.4" stroke-linecap="round"/>`
+         + `<line x1="${lx1}" y1="416" x2="${lx1}" y2="398" stroke="#6b4f2a" stroke-width="2.4" stroke-linecap="round"/>`
+         + `<line x1="${lx0}" y1="400" x2="${lx1}" y2="400" stroke="#cdd98a" stroke-width="1" opacity=".7"/>`
+  for (let i = 0; i < nFish; i++) {
+    const fx = nFish === 1 ? (lx0+lx1)/2 : lx0 + 9 + i * ((lx1 - lx0 - 18) / (nFish - 1))
+    fc += `<g transform="translate(${fx.toFixed(1)} 400)"><line x1="0" y1="0" x2="0" y2="5" stroke="#9c8a6a" stroke-width=".7"/><g transform="translate(0 9)"><ellipse cx="0" cy="0" rx="5.5" ry="2.6" fill="#9aa7ad"/><ellipse cx="-1" cy="-.6" rx="3.4" ry="1.3" fill="#c2ccd1" opacity=".7"/><path d="M5 0 L9 -2.4 L8.4 0 L9 2.4 Z" fill="#7c8b92"/><circle cx="-3.2" cy="-.4" r=".7" fill="#1c1c1f"/></g></g>`
+  }
+  const fcEl = document.getElementById('food-cache'); if (fcEl) fcEl.innerHTML = fc
+
+  // collected-water vessel (right of camp) — fill level tracks water
+  const water = Math.max(0, Math.min(100, R.water ?? 0))
+  const vx = 706, vy = 450, vw = 18, vh = 28, fillH = (vh - 4) * (water / 100)
+  const ws = `<ellipse cx="${vx+vw/2}" cy="${vy+vh+2}" rx="13" ry="4" fill="#1c130a" opacity=".4"/>`
+    + `<rect x="${vx}" y="${vy}" width="${vw}" height="${vh}" rx="3" fill="#3f2d18"/>`
+    + (water > 1 ? `<rect x="${vx+2}" y="${(vy+vh-2-fillH).toFixed(1)}" width="${vw-4}" height="${fillH.toFixed(1)}" rx="2" fill="#22a3b3" opacity=".85"/>`
+                 + `<ellipse cx="${vx+vw/2}" cy="${(vy+vh-2-fillH).toFixed(1)}" rx="${(vw-4)/2}" ry="1.5" fill="#5fded6" opacity=".7"/>` : '')
+    + `<rect x="${vx}" y="${vy}" width="${vw}" height="${vh}" rx="3" fill="none" stroke="#5c4327" stroke-width="1.5"/>`
+    + `<line x1="${vx}" y1="${vy+9}" x2="${vx+vw}" y2="${vy+9}" stroke="#5c4327" stroke-width="1" opacity=".55"/>`
+    + `<line x1="${vx}" y1="${vy+19}" x2="${vx+vw}" y2="${vy+19}" stroke="#5c4327" stroke-width="1" opacity=".55"/>`
+  const wsEl = document.getElementById('water-store'); if (wsEl) wsEl.innerHTML = ws
+}
+
+// ── VEHICLE STATE: the Cayenne is a finite reserve. As the story strips it for parts,
+//    the truck visibly dismantles — and it STAYS that way. The Onewheel vanishes if it's
+//    cannibalised for its battery. Reads world.cayenne.stripped[] + world.onewheel. ──
+function renderVehicleState() {
+  const cay = (S.world && S.world.cayenne) || {}
+  const stripped = Array.isArray(cay.stripped) ? cay.stripped : []
+  const has = k => stripped.includes(k)
+  // Use explicit 'inline'/'none' (not '') — the overlay groups carry a display="none" SVG
+  // attribute, and an empty inline style would let that attribute win and keep them hidden.
+  const show = (id, on) => { const el = document.getElementById(id); if (el) el.style.display = on ? 'inline' : 'none' }
+  // parts that simply disappear when taken
+  const HIDE = { mirror:'cay-mirror', snorkel:'cay-snorkel', lightbar:'cay-lightbar', tent:'cay-tent', spare:'cay-spare', wheel:'cay-wheel' }
+  for (const k in HIDE) show(HIDE[k], !has(k))
+  // a pulled wheel reveals the bare hub propped on logs
+  show('cay-wheel-gone', has('wheel'))
+  // overlays revealed when the engine bay or a door is opened up / stripped
+  show('cay-hood-open', has('hood') || has('battery'))
+  show('cay-door-removed', has('door') || has('seat'))
+  // the Onewheel is gone once cannibalised (battery taken) or otherwise removed
+  const ow = (S.world && S.world.onewheel) || {}
+  show('onewheel', !(ow.present === false || ow.stripped === true))
 }
 
 function renderStructures() {
@@ -3294,6 +3443,8 @@ function updateWorld() {
   renderStructures()
   renderResHud()
   updateFireChip()
+  renderCampStores()
+  renderVehicleState()
 
   if(isMobile() && !mobileScrollInited) {
     mobileScrollInited = true

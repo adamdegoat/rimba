@@ -26,5 +26,11 @@
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-08:midday"
+  "last_cycle_key": "2026-06-08:midday",
+  "cayenne": {
+    "stripped": []
+  },
+  "onewheel": {
+    "present": true
+  }
 }
