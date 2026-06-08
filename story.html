@@ -665,7 +665,7 @@ function renderLog() {
     document.getElementById('full-log').innerHTML = prologueHtml + '<div style="font-size:13px;color:var(--muted);padding:1rem 0;text-align:center">No log entries yet — check back after the next cycle.</div>'
     return
   }
-  document.getElementById('full-log').innerHTML = prologueHtml + days.map(day => {
+  document.getElementById('full-log').innerHTML = days.map(day => {
     const cycles = byDay[day]
     const entries = CYCLE_ORDER.filter(c=>cycles[c]).map(cyc =>
       cycles[cyc].map(e => {
@@ -692,7 +692,7 @@ function renderLog() {
       <div class="log-day-header">Day ${day}</div>
       ${entries}
     </div>` : ''
-  }).filter(Boolean).join('')
+  }).filter(Boolean).join('') + prologueHtml   // Prologue (the START) goes at the BOTTOM, under the oldest day
 }
 
 async function init() {
