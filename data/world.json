@@ -15,15 +15,15 @@
  },
  "structures": [
   {
-   "id": "firepit",
-   "type": "firepit",
+   "id": "campfire",
+   "type": "campfire",
    "level": 1,
    "condition": 100,
    "x": 50,
    "y": 62,
    "builder": "chills",
    "day": 1,
-   "label": "Firepit",
+   "label": "Campfire",
    "baked": true
   }
  ],
