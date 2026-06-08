@@ -2163,9 +2163,10 @@ let mobileScrollInited = false
 
 // ── WAYPOINTS (SVG native coords — feet anchor point) ─────────
 const WAYPOINTS = {
-  // ── bogged Porsche Cayenne (hero prop, near camp) ──
-  cayenne_door:   {sx:356,sy:456}, cayenne_hood:  {sx:300,sy:458},
-  cayenne_rear:   {sx:418,sy:452},
+  // ── bogged Porsche Cayenne (hero prop, near camp) — grounded on the mud AROUND the car,
+  //    not on the bodywork, so the cat (and anyone) stands on the ground, never floating ──
+  cayenne_door:   {sx:352,sy:496}, cayenne_hood:  {sx:224,sy:472},
+  cayenne_rear:   {sx:482,sy:462},
   // ── campfire + clearing ──
   campfire_left:  {sx:534,sy:448}, campfire_right:{sx:596,sy:448},
   campfire_front: {sx:564,sy:462}, camp_mid:      {sx:480,sy:430},
