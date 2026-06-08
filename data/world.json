@@ -1,36 +1,39 @@
 {
   "day": 1,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-08",
-  "pulse": "Wesley broke at dusk, but Chills just kept working — no anger, just faith that tomorrow matters.",
-  "scene": "The fire died in the afternoon; Wesley tried twice and gave up, defeated. Chills was gathering heartwood to restart it while Wesley watched nearby as Mutu prowled the darkening camp edge, alert and ready.",
+  "pulse": "The fire catches. Wesley's doubt breaks. For the first time, he sees Chills is not preaching — he's actually saving them.",
+  "scene": "By full dark, the fire caught from Chills' dry heartwood and steady breath. Wesley finally sat still by the warmth, Mutu on the Cayenne hood, the night no longer a threat.",
   "resources_prev": {
-    "food": 35,
-    "water": 40,
-    "wood": 34,
+    "food": 14,
+    "water": 39,
+    "wood": 30,
     "medicine": 20
   },
   "structures": [],
   "resources": {
-    "food": 14,
-    "water": 39,
-    "wood": 30,
+    "food": 2,
+    "water": 42,
+    "wood": 38,
     "medicine": 20
   },
   "fire": {
     "lit": false,
     "fuel": 0
   },
-  "camp_climate": "steady",
+  "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-08:evening",
+  "last_cycle_key": "2026-06-08:night",
   "cayenne": {
     "stripped": []
   },
   "onewheel": {
     "present": true
+  },
+  "day_summaries": {
+    "1": "Day 1 broke Wesley and tested Chills: the Cayenne bogged, Wesley's panic fouled the water, then he failed at fire. By nightfall Chills had coaxed a flame from dry heartwood with patient hands, and Wesley's shame cracked open — he saw it wasn't preaching but simple survival, and he believed. They ate warm. The jungle night was hard, but they would live it."
   }
 }

@@ -268,5 +268,87 @@
       }
     ],
     "timestamp": "2026-06-08T18:01:27.408542"
+  },
+  {
+    "day": 1,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Kneels at the fire pit, arranging dry heartwood with steady hands and patient breath until a spark catches and blooms into flame.",
+    "thought": "This will hold. We'll warm tonight.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "focused",
+    "timestamp": "2026-06-08T23:02:16.432258"
+  },
+  {
+    "day": 1,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Huddles near the pit, shivering, watching Chills with fear and shame and desperate hope.",
+    "thought": "Let this work. Please let him be right.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-08T23:02:16.432258"
+  },
+  {
+    "day": 1,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Sits on the Cayenne hood, eyes fixed on Chills, tail curled, watching the warmth come.",
+    "thought": "Fire means safe. Fire means Chills is steady.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "watchful",
+    "timestamp": "2026-06-08T23:02:16.432258"
+  },
+  {
+    "day": 1,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the fire pit in full dark, Chills arranges dry heartwood while Wesley huddles nearby, cold and ashamed, with Mutu watching from the Cayenne hood.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I'll ruin this too. Like the water."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. This wood is dry. Watch it work."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How can you be sure?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Because I've done this a hundred times."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I've done nothing."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're learning. That's the only way."
+      }
+    ],
+    "timestamp": "2026-06-08T23:02:16.432258"
   }
 ]
