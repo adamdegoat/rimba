@@ -1357,12 +1357,6 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <ellipse cx="492" cy="434" rx="30" ry="12" fill="none" stroke="#b45309" stroke-width="3" opacity=".35"/>
   <line x1="469" y1="438" x2="514" y2="427" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
   <line x1="513" y1="438" x2="468" y2="427" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
-  <g id="fire-flames" display="none">
-    <path class="fa" d="M 483 428 Q 480 414 484 403 Q 488 393 492 384 Q 496 393 500 403 Q 504 414 501 428 Q 496 418 492 424 Q 488 418 483 428" fill="#dc2626"/>
-    <path class="fb" d="M 485 426 Q 483 413 487 403 Q 489 395 492 388 Q 495 395 497 403 Q 501 413 499 426 Q 495 417 492 422 Q 489 417 485 426" fill="#f97316"/>
-    <path class="fc" d="M 487 424 Q 486 413 488 405 Q 490 399 492 394 Q 494 399 496 405 Q 498 413 497 424 Q 494 416 492 421 Q 490 416 487 424" fill="#fbbf24"/>
-    <ellipse cx="492" cy="428" rx="9" ry="4" fill="#f97316" opacity=".25"/>
-  </g>
 </g>
 <!-- Campfire smoke (drifts up only when the fire is lit) -->
 <g id="fire-smoke" display="none" opacity=".55">
@@ -1370,8 +1364,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <ellipse class="smoke-rise s2" cx="564" cy="380" rx="7.5" ry="9" fill="#9aa09c"/>
   <ellipse class="smoke-rise s3" cx="564" cy="380" rx="5" ry="7" fill="#787e7a"/>
 </g>
-<!-- Firepit night glow (only when the fire is lit at night) -->
-<circle id="fire-glow" cx="564" cy="424" r="78" fill="url(#fire-glow-g)" opacity="0"/>
+<!-- Firepit glow is rendered ABOVE the night overlay now (see CAMPFIRE LIGHT, end of SVG) so it
+     glows warm at night instead of being dimmed by the overlay. -->
+<g id="fireflies-anchor"></g>
 <g id="fireflies" opacity="0" fill="#fde68a">
   <!-- around the fire -->
   <circle class="firefly" cx="455" cy="412" r="1.6"/>
@@ -1552,6 +1547,22 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 
 <!-- NIGHT OVERLAY -->
 <rect id="night-overlay" width="1000" height="600" fill="#020617" opacity="0"/>
+
+<!-- ══ CAMPFIRE LIGHT — rendered ABOVE the night overlay so the fire glows warm at night instead
+     of being dimmed by it; screen-blends so it reads as real, vibrant firelight. ══ -->
+<circle id="fire-glow" cx="564" cy="424" r="100" fill="url(#fire-glow-g)" opacity="0" style="mix-blend-mode:screen"/>
+<g transform="translate(72,0)">
+  <g id="fire-flames" display="none" style="mix-blend-mode:screen">
+    <!-- warm halo so the firelight bleeds out into the dark -->
+    <ellipse cx="492" cy="414" rx="34" ry="28" fill="#fb7a1e" opacity=".6" filter="url(#soft-blur)"/>
+    <ellipse cx="492" cy="418" rx="18" ry="17" fill="#fde047" opacity=".6" filter="url(#soft-blur)"/>
+    <!-- bigger, brighter flames -->
+    <path class="fa" d="M 479 430 Q 473 407 482 389 Q 488 376 492 363 Q 496 376 502 389 Q 511 407 505 430 Q 497 415 492 423 Q 487 415 479 430" fill="#f4571f"/>
+    <path class="fb" d="M 483 428 Q 478 408 485 391 Q 489 380 492 369 Q 495 380 499 391 Q 506 408 501 428 Q 496 416 492 423 Q 488 416 483 428" fill="#fb923c"/>
+    <path class="fc" d="M 486 426 Q 482 410 487 396 Q 490 387 492 378 Q 494 387 497 396 Q 502 410 498 426 Q 495 415 492 422 Q 489 415 486 426" fill="#fde047"/>
+    <ellipse cx="492" cy="429" rx="11" ry="5" fill="#fff3c4" opacity=".7"/>
+  </g>
+</g>
 </svg>
 
 <!-- ══ MARCUS ══════════════════════════════════════════════ -->
@@ -2067,7 +2078,7 @@ function applySky(sky) {
   document.getElementById('moon-halo-c')?.setAttribute('opacity',isNight?'1':'0')
   document.getElementById('night-stars')?.setAttribute('opacity',isNight?'1':'0')
   const fireLit = !!(S.world && S.world.fire && S.world.fire.lit)
-  document.getElementById('fire-glow')?.setAttribute('opacity',(isNight && fireLit)?'1':'0')
+  document.getElementById('fire-glow')?.setAttribute('opacity', fireLit ? (isNight?'1':'0.4') : '0')
   document.getElementById('fireflies')?.setAttribute('opacity',isNight?'1':'0')
   // Sun shafts only break through in daylight; soften the haze at night.
   const gr=document.getElementById('god-rays'); if(gr) gr.style.display=isNight?'none':''
