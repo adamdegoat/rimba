@@ -6,16 +6,16 @@
     "color": "#6a994e",
     "scores": {
       "trust": 62,
-      "openness": 70,
+      "openness": 71,
       "ambition": 55,
-      "loneliness": 26,
-      "resilience": 91,
+      "loneliness": 24,
+      "resilience": 92,
       "health": 100,
-      "hunger": 48,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 56
+      "energy": 49
     },
-    "mood": "alert",
+    "mood": "determined",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -24,12 +24,12 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 23,
-        "tension": 13,
+        "closeness": 25,
+        "tension": 12,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 80,
+        "closeness": 81,
         "tension": 0,
         "attraction": 0
       }
@@ -55,13 +55,18 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
         "day": 1,
         "text": "Wesley panicked and wasted water, but he's here and learning. That's enough.",
         "weight": 1
+      },
+      {
+        "day": 1,
+        "text": "Wesley admitted he couldn't start the fire and asked for help instead of quitting.",
+        "weight": 2
       }
     ]
   },
@@ -71,17 +76,17 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 50,
-      "openness": 55,
+      "trust": 51,
+      "openness": 56,
       "ambition": 78,
-      "loneliness": 42,
-      "resilience": 27,
+      "loneliness": 39,
+      "resilience": 25,
       "health": 100,
-      "hunger": 48,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 56
+      "energy": 49
     },
-    "mood": "anxious",
+    "mood": "weary",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -90,12 +95,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 19,
-        "tension": 16,
+        "closeness": 21,
+        "tension": 15,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 8,
+        "closeness": 9,
         "tension": 0,
         "attraction": 0
       }
@@ -118,7 +123,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -130,6 +135,11 @@
         "day": 1,
         "text": "Chills didn't blame me. He just said I'm learning. I want to believe that.",
         "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "Chills showed me dry heartwood without blame when I'd already quit.",
+        "weight": 2
       }
     ]
   },
@@ -140,17 +150,17 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 60,
+      "trust": 61,
       "openness": 40,
       "ambition": 0,
-      "loneliness": 26,
+      "loneliness": 29,
       "resilience": 85,
       "hunger": 53,
       "thirst": 53,
-      "energy": 76,
+      "energy": 69,
       "health": 100
     },
-    "mood": "calm",
+    "mood": "watchful",
     "location": {
       "waypoint": "cayenne_rear",
       "x": 80,
@@ -159,12 +169,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 82,
+        "closeness": 83,
         "tension": 0,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 6,
+        "closeness": 7,
         "tension": 0,
         "attraction": 0
       }
