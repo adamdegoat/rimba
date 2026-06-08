@@ -2148,6 +2148,17 @@ function getWorldWidth() {
   if(!isMobile()) return window.innerWidth
   return Math.round(stageH() * (1000/600))
 }
+// Horizontal cast-centering scroll. The scroll container varies by browser — when <body>
+// has overflow-x:auto IT becomes the scroller (and window.scrollTo is a no-op), so set the
+// scroll on window AND body AND html to cover every case.
+function scrollWorldX(x){
+  x=Math.max(0,Math.round(x))
+  try{ window.scrollTo(x, window.scrollY||0) }catch(e){}
+  document.body.scrollLeft=x; document.documentElement.scrollLeft=x
+}
+function currentWorldScrollX(){
+  return window.scrollX || document.body.scrollLeft || document.documentElement.scrollLeft || 0
+}
 let mobileScrollInited = false
 
 // ── WAYPOINTS (SVG native coords — feet anchor point) ─────────
@@ -3801,8 +3812,8 @@ if (window.visualViewport) {
     if (S && Object.keys(S.chars||{}).length) updateWorld()
     if (isMobile()) {
       const maxX = Math.max(0, getWorldWidth() - window.innerWidth)
-      const x = Math.min(maxX, Math.max(0, window.scrollX))
-      if (x !== window.scrollX) window.scrollTo(x, window.scrollY)
+      const x = Math.min(maxX, Math.max(0, currentWorldScrollX()))
+      if (x !== currentWorldScrollX()) scrollWorldX(x)
     }
   }
   const onVV = () => { if (!vvRaf) vvRaf = requestAnimationFrame(syncViewport) }
