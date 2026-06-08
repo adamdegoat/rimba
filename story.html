@@ -667,7 +667,7 @@ function renderLog() {
   }
   document.getElementById('full-log').innerHTML = days.map(day => {
     const cycles = byDay[day]
-    const entries = CYCLE_ORDER.filter(c=>cycles[c]).map(cyc =>
+    const entries = CYCLE_ORDER.filter(c=>cycles[c]).reverse().map(cyc =>   // latest cycle first within the day (filter() makes a new array, so this never mutates CYCLE_ORDER)
       cycles[cyc].map(e => {
         const cTag = fmtSGTS(e.timestamp) || CYCLE_HOUR_S[cyc]||cyc
         if(e.type === 'interaction') {
