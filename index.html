@@ -2234,7 +2234,7 @@ function toggleFeed() {
   panel.classList.toggle('feed-open')
   const isOpen = panel.classList.contains('feed-open')
   if(isOpen) {
-    setTimeout(()=>{ const f=document.getElementById('chat-feed'); if(f) f.scrollTop=0 }, 380)
+    setTimeout(()=>{ const f=document.getElementById('chat-feed'); if(f) f.scrollTop=f.scrollHeight }, 380)
   }
 }
 
@@ -2358,18 +2358,20 @@ function renderChat() {
   // Find the latest cycle label so we can highlight it
   let latestLbl=''
   entries.forEach(e=>{ latestLbl=cycleLabel(e) })
-  // Build one block per cycle (lines stay chronological WITHIN a block so each conversation
-  // reads top→bottom), then render the NEWEST block first so the latest is at the top — no
-  // scrolling to the bottom to catch up.
-  const blocks=[]; let cur=null
+  let html=''
+  let lastLabel=''
   entries.forEach(e=>{
     const lbl=cycleLabel(e)
-    if(!cur || cur.label!==lbl){ cur={label:lbl, isLatest: lbl===latestLbl, body:''}; blocks.push(cur) }
-    const lc = cur.isLatest ? ' cl-latest' : ''
+    const isLatest = lbl===latestLbl
+    const lc = isLatest ? ' cl-latest' : ''
     const msgTime = fmtSGT(e.timestamp) || CYCLE_HOUR[e.cycle] || ''
     const timeTag = msgTime ? `<span class="cl-time">D${e.day||1}·${msgTime.replace(' ','')}</span>` : ''
+    if(lbl!==lastLabel){
+      html+=`<div class="cl-ts${isLatest?' cl-ts-latest':''}">${lbl}</div>`
+      lastLabel=lbl
+    }
     if(e.type==='interaction'){
-      cur.body+=`<div class="cl interaction${lc}">${timeTag}<span class="cl-label">${e.description||''}</span></div>`
+      html+=`<div class="cl interaction${lc}">${timeTag}<span class="cl-label">${e.description||''}</span></div>`
       // absent character context
       const present=(e.characters||[]).map(c=>c.toLowerCase())
       const absent=Object.keys(S.chars).filter(c=>!present.includes(c))
@@ -2377,7 +2379,7 @@ function renderChat() {
         const ctx=entries.find(x=>x.character===cid&&x.cycle===e.cycle&&x.day===e.day)
         if(ctx&&(ctx.action||ctx.thought)){
           const col=getCharColor(cid)
-          cur.body+=`<div class="cl-absent${lc}"><span style="color:${col};opacity:.6">${cap(cid)}</span><span class="cl-absent-txt"> — ${ctx.action||ctx.thought}</span></div>`
+          html+=`<div class="cl-absent${lc}"><span style="color:${col};opacity:.6">${cap(cid)}</span><span class="cl-absent-txt"> — ${ctx.action||ctx.thought}</span></div>`
         }
       })
       const dlg=e.dialogue||[]
@@ -2385,18 +2387,13 @@ function renderChat() {
       arr.forEach(d=>{
         const spk=(d.speaker||'').toLowerCase()
         const col=getCharColor(spk)
-        cur.body+=`<div class="cl-msg${lc}"><span class="cl-spk" style="color:${col}">${cap(spk)}</span> <span class="cl-line">${d.line||''}</span></div>`
+        html+=`<div class="cl-msg${lc}"><span class="cl-spk" style="color:${col}">${cap(spk)}</span> <span class="cl-line">${d.line||''}</span></div>`
       })
     }
     // standalone character thought lines are intentionally not shown in the feed
   })
-  let html=''
-  for(let i=blocks.length-1;i>=0;i--){
-    const b=blocks[i]
-    html+=`<div class="cl-ts${b.isLatest?' cl-ts-latest':''}">${b.label}</div>`+b.body
-  }
   feed.innerHTML=html
-  feed.scrollTop=0   // newest cycle is at the top
+  feed.scrollTop=feed.scrollHeight
 }
 
 function separateChars(positions) {

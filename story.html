@@ -660,7 +660,7 @@ function renderLog() {
     </div>
   </div>`
 
-  const days = Object.keys(byDay).sort((a,b)=>a-b)
+  const days = Object.keys(byDay).sort((a,b)=>b-a)   // newest day first (prologue stays on top; no scrolling to the latest)
   if(!days.length) {
     document.getElementById('full-log').innerHTML = prologueHtml + '<div style="font-size:13px;color:var(--muted);padding:1rem 0;text-align:center">No log entries yet — check back after the next cycle.</div>'
     return
