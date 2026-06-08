@@ -91,6 +91,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 .smoke-rise{transform-box:view-box;animation:smokerise 4s ease-out infinite}
 .smoke-rise.s2{animation-duration:5.4s;animation-delay:-1.8s}
 .smoke-rise.s3{animation-duration:4.6s;animation-delay:-3.1s}
+/* Fish/insect ripples on the river surface */
+@keyframes ripple{0%{transform:scale(.2);opacity:0}20%{opacity:.6}100%{transform:scale(1.5);opacity:0}}
+.ripple{transform-box:view-box;animation:ripple 4.5s ease-out infinite}
 /* Dog (puppy) ears + tail — driven by applyDogExtras; smooth transitions + tail wag */
 .dog-ear{transform-box:view-box;transition:transform .45s ease}
 .dog-tail{transform-box:view-box;transition:transform .45s ease}
@@ -928,6 +931,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 <g>
   <ellipse cx="660" cy="528" rx="18" ry="9" fill="#3f2d18"/><ellipse cx="656" cy="525" rx="13" ry="6" fill="#5c4327"/>
   <ellipse cx="652" cy="523" rx="6" ry="3" fill="#6b4f2a" opacity=".7"/>
+</g>
+
+<!-- fish/insect ripples breaking the river surface (river life) -->
+<g stroke="#cdeaf2" fill="none" stroke-width="1.3" opacity=".55">
+  <ellipse class="ripple" cx="360" cy="556" rx="13" ry="3.6" style="transform-origin:360px 556px"/>
+  <ellipse class="ripple" cx="620" cy="540" rx="11" ry="3" style="transform-origin:620px 540px;animation-delay:-2.6s"/>
+  <ellipse class="ripple" cx="210" cy="566" rx="10" ry="3" style="transform-origin:210px 566px;animation-delay:-4s"/>
 </g>
 
 <!-- ══ SUN GLINT ON RIVER (repurposed sun-reflection id — hidden at night) ══ -->
@@ -2579,6 +2589,76 @@ const SEED_TILES = {
 <line x1="12" y1="39" x2="48" y2="39" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
 <line x1="12" y1="44" x2="48" y2="44" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
 <path d="M 6 48 Q 16 52 26 48 Q 36 52 46 48 Q 48 52 48 48" fill="none" stroke="#16a34a" stroke-width="2.5" opacity=".7"/>`,
+
+  lean_to:`<ellipse cx="30" cy="50" rx="22" ry="6" fill="#3f2d18" opacity=".5"/>
+<path d="M 14 48 L 44 28 L 48 32 L 18 50 Z" fill="#6b4f2a"/>
+<path d="M 14 48 L 44 28 L 40 27 L 12 45 Z" fill="#7a5a32"/>
+<path d="M 16 36 L 46 28 M 17 42 L 44 33" stroke="#3f2d18" stroke-width="1.4" opacity=".5"/>
+<line x1="44" y1="28" x2="46" y2="50" stroke="#5c4327" stroke-width="3" stroke-linecap="round"/>
+<line x1="14" y1="48" x2="13" y2="52" stroke="#5c4327" stroke-width="2.5" stroke-linecap="round"/>`,
+
+  bamboo_shelter:`<ellipse cx="30" cy="52" rx="22" ry="6" fill="#3f2d18" opacity=".5"/>
+<rect x="16" y="30" width="28" height="22" rx="2" fill="#7a5a32"/>
+<g stroke="#b9d36a" stroke-width="2.4"><line x1="20" y1="32" x2="20" y2="50"/><line x1="26" y1="32" x2="26" y2="50"/><line x1="34" y1="32" x2="34" y2="50"/><line x1="40" y1="32" x2="40" y2="50"/></g>
+<path d="M 12 32 L 30 18 L 48 32 Z" fill="#a3884f"/>
+<path d="M 12 32 L 30 18 L 30 32 Z" fill="#8a7142"/>
+<line x1="30" y1="18" x2="30" y2="13" stroke="#6b4f2a" stroke-width="2"/>`,
+
+  campfire:`<ellipse cx="30" cy="46" rx="16" ry="6" fill="#1c0a00"/>
+<ellipse cx="30" cy="44" rx="13" ry="5" fill="none" stroke="#6b4f2a" stroke-width="4"/>
+<line x1="20" y1="46" x2="40" y2="42" stroke="#3f2d18" stroke-width="3" stroke-linecap="round"/>
+<line x1="40" y1="46" x2="20" y2="42" stroke="#3f2d18" stroke-width="3" stroke-linecap="round"/>
+<path d="M 25 40 Q 23 30 27 22 Q 30 16 30 12 Q 31 18 34 24 Q 37 32 35 40 Q 31 33 30 37 Q 28 33 25 40" fill="#f97316"/>
+<path d="M 27 39 Q 26 30 29 24 Q 30 20 30 17 Q 31 22 33 27 Q 35 33 33 39 Q 31 34 30 36 Q 29 34 27 39" fill="#fbbf24"/>`,
+
+  snare:`<ellipse cx="30" cy="50" rx="18" ry="5" fill="#3f2d18" opacity=".4"/>
+<path d="M 44 50 Q 46 30 38 20" stroke="#6b4f2a" stroke-width="3" fill="none" stroke-linecap="round"/>
+<path d="M 38 20 Q 30 18 24 24 Q 20 30 26 34 Q 32 36 32 30" stroke="#caa14a" stroke-width="1.6" fill="none" stroke-linecap="round"/>
+<ellipse cx="27" cy="42" rx="9" ry="3" fill="none" stroke="#caa14a" stroke-width="1.4"/>
+<line x1="18" y1="50" x2="44" y2="50" stroke="#5c4327" stroke-width="2"/>`,
+
+  rain_catcher:`<ellipse cx="30" cy="52" rx="16" ry="5" fill="#3f2d18" opacity=".5"/>
+<path d="M 12 24 L 48 24 L 34 40 L 26 40 Z" fill="#2f8f4e"/>
+<path d="M 12 24 L 48 24 L 41 32 L 19 32 Z" fill="#1f6b3a" opacity=".5"/>
+<rect x="24" y="40" width="12" height="12" rx="2" fill="#6b4f2a"/>
+<ellipse cx="30" cy="40" rx="6" ry="2" fill="#22a3b3"/>
+<line x1="20" y1="14" x2="22" y2="22" stroke="#9ec3e8" stroke-width="1.4" opacity=".6"/><line x1="34" y1="12" x2="36" y2="22" stroke="#9ec3e8" stroke-width="1.4" opacity=".6"/>`,
+
+  rain_barrel:`<ellipse cx="30" cy="52" rx="16" ry="5" fill="#3f2d18" opacity=".5"/>
+<path d="M 12 24 L 48 24 L 34 38 L 26 38 Z" fill="#2f8f4e"/>
+<rect x="22" y="36" width="16" height="16" rx="2" fill="#6b4f2a"/>
+<ellipse cx="30" cy="36" rx="8" ry="2.5" fill="#22a3b3"/>
+<line x1="22" y1="44" x2="38" y2="44" stroke="#3f2d18" stroke-width="1.4" opacity=".5"/>`,
+
+  raised_platform:`<ellipse cx="30" cy="52" rx="22" ry="5" fill="#3f2d18" opacity=".5"/>
+<line x1="16" y1="50" x2="16" y2="34" stroke="#3f2d18" stroke-width="3"/><line x1="44" y1="50" x2="44" y2="34" stroke="#3f2d18" stroke-width="3"/><line x1="30" y1="51" x2="30" y2="35" stroke="#3f2d18" stroke-width="3"/>
+<rect x="12" y="30" width="36" height="6" rx="1.5" fill="#6b4f2a"/>
+<g stroke="#8a6a3a" stroke-width="1" opacity=".5"><line x1="18" y1="30" x2="18" y2="36"/><line x1="24" y1="30" x2="24" y2="36"/><line x1="36" y1="30" x2="36" y2="36"/><line x1="42" y1="30" x2="42" y2="36"/></g>
+<path d="M 16 30 L 30 22 L 44 30 Z" fill="#a3884f" opacity=".9"/>`,
+
+  watch_post:`<ellipse cx="30" cy="54" rx="14" ry="5" fill="#3f2d18" opacity=".5"/>
+<line x1="22" y1="52" x2="26" y2="22" stroke="#3f2d18" stroke-width="3"/><line x1="38" y1="52" x2="34" y2="22" stroke="#3f2d18" stroke-width="3"/>
+<line x1="24" y1="40" x2="36" y2="40" stroke="#6b4f2a" stroke-width="2"/><line x1="25" y1="32" x2="35" y2="32" stroke="#6b4f2a" stroke-width="2"/>
+<rect x="22" y="16" width="16" height="8" rx="1.5" fill="#6b4f2a"/>
+<path d="M 20 16 L 30 8 L 40 16 Z" fill="#a3884f"/>`,
+
+  smoke_rack:`<ellipse cx="30" cy="50" rx="20" ry="5" fill="#3f2d18" opacity=".5"/>
+<line x1="16" y1="50" x2="16" y2="22" stroke="#6b4f2a" stroke-width="3"/><line x1="44" y1="50" x2="44" y2="22" stroke="#6b4f2a" stroke-width="3"/>
+<line x1="14" y1="24" x2="46" y2="24" stroke="#6b4f2a" stroke-width="2.5"/>
+<g fill="#b5793f"><ellipse cx="24" cy="30" rx="4" ry="6"/><ellipse cx="36" cy="30" rx="4" ry="6"/></g>
+<path d="M 30 40 Q 28 34 30 30 Q 32 26 30 22" stroke="#94a3b8" stroke-width="2" fill="none" opacity=".4" stroke-linecap="round"/>
+<path d="M 30 48 Q 26 44 30 40" stroke="#f97316" stroke-width="2.5" fill="none" opacity=".6"/>`,
+
+  water_filter:`<ellipse cx="30" cy="52" rx="14" ry="5" fill="#3f2d18" opacity=".5"/>
+<path d="M 20 26 L 40 26 L 34 50 L 26 50 Z" fill="#6b4f2a"/>
+<path d="M 20 26 L 40 26 L 38 32 L 22 32 Z" fill="#3f2d18" opacity=".4"/>
+<rect x="24" y="33" width="12" height="4" fill="#cdd98a"/><rect x="25" y="38" width="10" height="4" fill="#86b04a"/><rect x="26" y="43" width="8" height="4" fill="#5c4327"/>
+<path d="M 30 50 Q 30 54 30 56" stroke="#22a3b3" stroke-width="2" fill="none" stroke-linecap="round"/>`,
+
+  hammock:`<ellipse cx="30" cy="52" rx="20" ry="5" fill="#3f2d18" opacity=".4"/>
+<line x1="14" y1="22" x2="14" y2="50" stroke="#6b4f2a" stroke-width="3"/><line x1="46" y1="22" x2="46" y2="50" stroke="#6b4f2a" stroke-width="3"/>
+<path d="M 14 28 Q 30 46 46 28" fill="none" stroke="#caa14a" stroke-width="4" stroke-linecap="round"/>
+<path d="M 14 26 Q 30 40 46 26" fill="none" stroke="#a3884f" stroke-width="2" opacity=".6"/>`,
 
   discovery:`<circle cx="30" cy="30" r="16" fill="rgba(168,85,247,0.12)" stroke="#a855f7" stroke-width="1.5" opacity=".7"/>
 <path d="M 30 14 L 33.5 23 L 43 23 L 35.5 28.5 L 38.5 38 L 30 32 L 21.5 38 L 24.5 28.5 L 17 23 L 26.5 23 Z" fill="#fbbf24" opacity=".88"/>`,
