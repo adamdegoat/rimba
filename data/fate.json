@@ -1,10 +1,10 @@
 {
   "day": 1,
-  "text": "Wesley contaminates their water supply in a panic over the leaking engine.",
-  "flavor": "a costly mistake",
+  "text": "Mutu refuses to sleep near Wesley's camp spot, leads Chills to higher ground instead.",
+  "flavor": "Mutu's instinct",
   "cycle": "morning",
   "happens_at": "7am",
-  "status": "activated",
-  "revealed_at": "2026-06-08T11:32:32.947130",
-  "activated_at": "2026-06-08T11:32:33.120107"
+  "status": "upcoming",
+  "revealed_at": "2026-06-09T00:00:27.668033",
+  "activated_at": null
 }
