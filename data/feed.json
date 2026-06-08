@@ -350,5 +350,87 @@
       }
     ],
     "timestamp": "2026-06-08T23:02:16.432258"
+  },
+  {
+    "day": 2,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "He tends the fire in the early light, watching the day break, then looks toward Wesley approaching the campfire.",
+    "thought": "He's steadier today. Ready for real work.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "focused",
+    "timestamp": "2026-06-09T07:03:01.046401"
+  },
+  {
+    "day": 2,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "He emerges from the Cayenne shelter, stiff and uncertain, then walks toward Chills at the fire.",
+    "thought": "I need to do something right today.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-09T07:03:01.046401"
+  },
+  {
+    "day": 2,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "The cat stretches on the Cayenne hood, ears alert, watching Chills and Wesley at the fire below.",
+    "thought": "They're moving. Something's lighter today.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "watchful",
+    "timestamp": "2026-06-09T07:03:01.046401"
+  },
+  {
+    "day": 2,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the campfire in the early morning light, Wesley approaches Chills and for the first time offers to work.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I want to help fix the Cayenne."
+      },
+      {
+        "speaker": "chills",
+        "line": "Let's go. Battery first."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I don't know engines."
+      },
+      {
+        "speaker": "chills",
+        "line": "You know how to think. Start there."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Really?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah."
+      }
+    ],
+    "timestamp": "2026-06-09T07:03:01.046401"
   }
 ]

@@ -5,15 +5,15 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 63,
+      "trust": 64,
       "openness": 72,
       "ambition": 55,
-      "loneliness": 22,
+      "loneliness": 19,
       "resilience": 93,
       "health": 100,
       "hunger": 53,
       "thirst": 53,
-      "energy": 83
+      "energy": 76
     },
     "mood": "focused",
     "location": {
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 30,
-        "tension": 10,
+        "closeness": 32,
+        "tension": 9,
         "attraction": 0
       },
       "mutu": {
@@ -72,6 +72,11 @@
         "day": 1,
         "text": "Wesley panicked and failed, but he stayed. He's still here. That matters.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "He came forward wanting to work. That's the shift. That's real.",
+        "weight": 2
       }
     ]
   },
@@ -81,15 +86,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 53,
-      "openness": 55,
-      "ambition": 78,
-      "loneliness": 36,
-      "resilience": 23,
+      "trust": 55,
+      "openness": 56,
+      "ambition": 80,
+      "loneliness": 33,
+      "resilience": 24,
       "health": 100,
       "hunger": 53,
       "thirst": 53,
-      "energy": 83
+      "energy": 76
     },
     "mood": "anxious",
     "location": {
@@ -100,8 +105,8 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 26,
-        "tension": 13,
+        "closeness": 28,
+        "tension": 12,
         "attraction": 0
       },
       "mutu": {
@@ -150,6 +155,11 @@
         "day": 1,
         "text": "The fire caught. He wasn't preaching. He was saving us.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "He didn't blame me like I feared. He just showed up ready.",
+        "weight": 2
       }
     ]
   },
@@ -163,11 +173,11 @@
       "trust": 62,
       "openness": 40,
       "ambition": 0,
-      "loneliness": 32,
+      "loneliness": 35,
       "resilience": 85,
       "hunger": 53,
       "thirst": 53,
-      "energy": 100,
+      "energy": 93,
       "health": 100
     },
     "mood": "watchful",
