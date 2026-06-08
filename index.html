@@ -55,6 +55,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* Ambient birds drift slowly across the sky */
 @keyframes birddrift{0%{transform:translate(0,0)}50%{transform:translate(46px,-9px)}100%{transform:translate(0,0)}}
 .birds-drift{transform-box:view-box;animation:birddrift 24s ease-in-out infinite}
+/* Leaves drifting down through the scene */
+@keyframes leaffall{0%{transform:translate(0,0) rotate(0deg);opacity:0}8%{opacity:.9}90%{opacity:.85}100%{transform:translate(-46px,620px) rotate(240deg);opacity:0}}
+.leaf-fall{transform-box:view-box;animation:leaffall linear infinite}
+/* God-ray shafts pulse very gently */
+@keyframes raypulse{0%,100%{opacity:.5}50%{opacity:.68}}
+#god-rays{animation:raypulse 9s ease-in-out infinite}
 /* Fireflies near the firepit (parent group's opacity gates night-only visibility) */
 @keyframes firefly{0%,100%{opacity:0;transform:translate(0,0)}25%{opacity:.95}50%{opacity:.35;transform:translate(7px,-9px)}75%{opacity:.85}}
 .firefly{transform-box:view-box;animation:firefly 4.2s ease-in-out infinite}
@@ -187,7 +193,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 #pulse{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:30;pointer-events:none;
   font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-style:italic;font-weight:500;
   color:rgba(255,255,255,.78);letter-spacing:.2px;text-align:center;max-width:340px;line-height:1.4;
-  text-shadow:0 1px 3px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.75),0 1px 10px rgba(0,0,0,.4)}
+  text-shadow:0 1px 3px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.8),0 0 16px rgba(0,0,0,.6),0 0 30px rgba(0,0,0,.45)}
 #pulse:not(:empty)::before{content:'✦ LATEST FROM RIMBA';display:block;
   font-family:'VT323',monospace;font-size:10px;font-style:normal;font-weight:400;
   letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:3px;
@@ -196,7 +202,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   width:380px;max-width:88vw;
   font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:500;
   color:rgba(255,255,255,.82);letter-spacing:.2px;text-align:center;line-height:1.5;
-  text-shadow:0 1px 3px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.8),0 1px 10px rgba(0,0,0,.45)}
+  text-shadow:0 1px 3px rgba(0,0,0,.7),0 1px 3px rgba(0,0,0,.85),0 0 16px rgba(0,0,0,.6),0 0 30px rgba(0,0,0,.45)}
 #ds-day{font-family:'Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;
   color:rgba(255,255,255,.1);letter-spacing:-1px}
 #ds-cycle{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;
@@ -618,6 +624,30 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
     <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0"/>
   </radialGradient>
   <filter id="soft-blur"><feGaussianBlur stdDeviation="2.6"/></filter>
+  <filter id="ray-blur"><feGaussianBlur stdDeviation="7"/></filter>
+  <filter id="leaf-blur"><feGaussianBlur stdDeviation="1.2"/></filter>
+  <!-- volumetric god-ray shaft (bright near canopy, fading to the floor) -->
+  <linearGradient id="god-ray" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#fde7b0" stop-opacity=".5"/>
+    <stop offset="55%" stop-color="#f3d488" stop-opacity=".18"/>
+    <stop offset="100%" stop-color="#f3d488" stop-opacity="0"/>
+  </linearGradient>
+  <!-- mid-distance aerial haze (separates background canopy from foreground) -->
+  <linearGradient id="depth-haze" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#cfe2cf" stop-opacity="0"/>
+    <stop offset="55%" stop-color="#d4e6cf" stop-opacity=".4"/>
+    <stop offset="100%" stop-color="#d4e6cf" stop-opacity="0"/>
+  </linearGradient>
+  <!-- puddle reflection (sky caught in wet mud) -->
+  <linearGradient id="puddle-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#bcd9c4" stop-opacity=".7"/>
+    <stop offset="100%" stop-color="#6e8f7e" stop-opacity=".35"/>
+  </linearGradient>
+  <radialGradient id="vignette-g" cx="50%" cy="46%" r="62%">
+    <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="78%" stop-color="#000000" stop-opacity="0"/>
+    <stop offset="100%" stop-color="#06120c" stop-opacity=".52"/>
+  </radialGradient>
 </defs>
 
 <!-- SKY -->
@@ -696,6 +726,18 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <ellipse cx="770" cy="264" rx="20" ry="11"/>
 </g>
 
+<!-- ══ AERIAL DEPTH HAZE (mist sitting where canopy meets clearing) ══ -->
+<rect x="0" y="296" width="1000" height="86" fill="url(#depth-haze)" filter="url(#ray-blur)"/>
+
+<!-- ══ GOD RAYS — sun shafts breaking through the canopy (day only) ══ -->
+<g id="god-rays" filter="url(#ray-blur)" opacity=".55" style="mix-blend-mode:screen">
+  <polygon points="690,120 742,120 612,470 506,470" fill="url(#god-ray)"/>
+  <polygon points="606,128 638,128 470,470 398,470" fill="url(#god-ray)" opacity=".8"/>
+  <polygon points="772,118 808,118 760,470 672,470" fill="url(#god-ray)" opacity=".7"/>
+  <polygon points="512,140 532,140 360,460 300,460" fill="url(#god-ray)" opacity=".55"/>
+  <polygon points="858,124 884,124 900,440 836,440" fill="url(#god-ray)" opacity=".5"/>
+</g>
+
 <!-- ══ MUDDY CAMP CLEARING (ground plane, wet-earth layered) ══ -->
 <rect x="0" y="338" width="1000" height="262" fill="url(#clearing-g)"/>
 <ellipse cx="500" cy="430" rx="560" ry="150" fill="#6b4f2a" opacity=".35"/>
@@ -706,6 +748,20 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 <path d="M 0 360 Q 260 350 520 362 Q 760 352 1000 360" stroke="#3f2d18" stroke-width="3" fill="none" opacity=".5"/>
 <!-- trampled trail from clearing toward river -->
 <path d="M 520 392 Q 470 420 410 446 Q 350 470 300 492" stroke="#2a1d10" stroke-width="20" fill="none" stroke-linecap="round" opacity=".4"/>
+<!-- deep tyre ruts trailing behind the bogged Cayenne -->
+<path d="M 360 486 Q 250 470 150 486" stroke="#241910" stroke-width="9" fill="none" stroke-linecap="round" opacity=".5"/>
+<path d="M 372 500 Q 262 486 162 502" stroke="#241910" stroke-width="9" fill="none" stroke-linecap="round" opacity=".45"/>
+<!-- reflective rain puddles in the churned mud -->
+<g>
+  <ellipse cx="208" cy="500" rx="40" ry="11" fill="#1c130a"/>
+  <ellipse cx="208" cy="499" rx="35" ry="8" fill="url(#puddle-g)"/>
+  <ellipse cx="198" cy="497" rx="13" ry="2.2" fill="#eaf1da" opacity=".55"/>
+</g>
+<g>
+  <ellipse cx="726" cy="486" rx="30" ry="9" fill="#1c130a"/>
+  <ellipse cx="726" cy="485" rx="25" ry="6.5" fill="url(#puddle-g)"/>
+  <ellipse cx="719" cy="483" rx="9" ry="1.8" fill="#eaf1da" opacity=".5"/>
+</g>
 
 <!-- ══ RIVER (replaces ocean) — winding teal water across the lower band ══ -->
 <path d="M -40 540 Q 150 512 330 528 Q 520 546 700 520 Q 860 500 1040 522 L 1040 600 L -40 600 Z" fill="url(#ocean-g)"/>
@@ -985,6 +1041,27 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <path d="M -20 600 Q 30 540 90 560 Q 50 590 30 600 Z"/>
   <path d="M 1020 600 Q 970 540 910 560 Q 950 590 970 600 Z"/>
 </g>
+
+<!-- ══ LUSH FOREGROUND LEAVES (monstera silhouettes framing the corners) ══ -->
+<g fill="#0b1f12" opacity=".62">
+  <path d="M -30 600 Q -10 510 70 486 Q 64 512 96 520 Q 60 540 86 556 Q 44 560 56 584 Q 18 580 24 600 Z"/>
+  <path d="M -30 600 Q 12 556 40 506" stroke="#13301d" stroke-width="2.5" fill="none" opacity=".6"/>
+</g>
+<g fill="#0b1f12" opacity=".6">
+  <path d="M 1030 600 Q 1010 506 924 484 Q 932 512 898 520 Q 936 540 908 556 Q 952 560 940 584 Q 980 580 974 600 Z"/>
+  <path d="M 1030 600 Q 986 554 956 504" stroke="#13301d" stroke-width="2.5" fill="none" opacity=".6"/>
+</g>
+
+<!-- ══ FALLING LEAVES (slow drift down through the scene) ══ -->
+<g fill="#86b04a">
+  <path class="leaf-fall" style="animation-duration:13s;animation-delay:-2s" d="M 250 -16 Q 258 -8 250 4 Q 242 -8 250 -16 Z" transform-origin="250px -6px"/>
+  <path class="leaf-fall" style="animation-duration:17s;animation-delay:-7s;fill:#cdd98a" d="M 470 -18 Q 479 -9 470 2 Q 461 -9 470 -18 Z" transform-origin="470px -8px" fill="#cdd98a"/>
+  <path class="leaf-fall" style="animation-duration:15s;animation-delay:-11s;fill:#b9a04a" d="M 690 -16 Q 698 -8 690 4 Q 682 -8 690 -16 Z" transform-origin="690px -6px" fill="#b9a04a"/>
+  <path class="leaf-fall" style="animation-duration:19s;animation-delay:-4s" d="M 840 -18 Q 849 -9 840 2 Q 831 -9 840 -18 Z" transform-origin="840px -8px"/>
+</g>
+
+<!-- ══ CINEMATIC VIGNETTE (subtle edge darkening) ══ -->
+<rect width="1000" height="600" fill="url(#vignette-g)" pointer-events="none"/>
 
 <!-- NIGHT OVERLAY -->
 <rect id="night-overlay" width="1000" height="600" fill="#020617" opacity="0"/>
@@ -1482,6 +1559,9 @@ function applySky(sky) {
   const fireLit = !!(S.world && S.world.fire && S.world.fire.lit)
   document.getElementById('fire-glow')?.setAttribute('opacity',(isNight && fireLit)?'1':'0')
   document.getElementById('fireflies')?.setAttribute('opacity',isNight?'1':'0')
+  // Sun shafts only break through in daylight; soften the haze at night.
+  const gr=document.getElementById('god-rays'); if(gr) gr.style.display=isNight?'none':''
+  const isDusk=sky==='evening'; if(gr&&isDusk) gr.style.display=''
   document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
   drawStars(isNight)
   document.getElementById('world').className=isNight?'night':sky
@@ -2981,13 +3061,13 @@ const VOTE_URL='https://wuorljdhcucldqqeqlvy.supabase.co';
 const VOTE_KEY='sb_publishable_fUl9AURQ3Mp0OblCKoFkWQ_8qLW-UiA';
 const VOTE_WORLD='rimba';
 let _vote=null;
-function voterId(){let v=localStorage.getItem('trop_voter');if(!v){v='v'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('trop_voter',v);}return v;}
+function voterId(){let v=localStorage.getItem('rimba_voter');if(!v){v='v'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('rimba_voter',v);}return v;}
 async function loadVote(){ try{_vote=await fetch('data/vote.json?t='+Date.now()).then(r=>r.json());}catch{_vote=null;} renderVote(); }
 async function renderVote(){
   const body=document.getElementById('vp-body'); if(!body) return;
   if(!_vote||!_vote.poll){ body.innerHTML='<div style="color:rgba(255,255,255,.5);font-size:12px">No vote open right now — check back soon.</div>'; return; }
   const poll=_vote.poll, opts=poll.options||[];
-  const myPick=localStorage.getItem('trop_voted_'+poll.id);
+  const myPick=localStorage.getItem('rimba_voted_'+poll.id);
   let tally={};
   try{ const rows=await fetch(VOTE_URL+'/rest/v1/rpc/tally',{method:'POST',headers:{apikey:VOTE_KEY,Authorization:'Bearer '+VOTE_KEY,'Content-Type':'application/json'},body:JSON.stringify({w:VOTE_WORLD,p:poll.id})}).then(r=>r.json()); rows.forEach(r=>tally[r.choice]=r.n); }catch{}
   const total=Object.values(tally).reduce((a,b)=>a+(+b||0),0);
@@ -3008,9 +3088,9 @@ async function renderVote(){
   body.innerHTML=html;
 }
 async function castVote(choice){
-  const poll=_vote&&_vote.poll; if(!poll||localStorage.getItem('trop_voted_'+poll.id)) return;
+  const poll=_vote&&_vote.poll; if(!poll||localStorage.getItem('rimba_voted_'+poll.id)) return;
   try{ const res=await fetch(VOTE_URL+'/rest/v1/votes',{method:'POST',headers:{apikey:VOTE_KEY,Authorization:'Bearer '+VOTE_KEY,'Content-Type':'application/json'},body:JSON.stringify({world:VOTE_WORLD,poll_id:poll.id,choice,voter:voterId()})});
-    if(res.ok||res.status===409) localStorage.setItem('trop_voted_'+poll.id,choice); }catch{}
+    if(res.ok||res.status===409) localStorage.setItem('rimba_voted_'+poll.id,choice); }catch{}
   renderVote();
 }
 function toggleVote(){

@@ -1,5 +1,20 @@
 {
   "world": "rimba",
-  "poll": null,
-  "in_play": null
+  "poll": {
+    "id": "2026-06-08",
+    "closes": "tonight",
+    "question": "Wesley's drowning in guilt over the wasted water. Does Chills reassure him—or put him to work?",
+    "options": [
+      {
+        "id": "anchor_together",
+        "label": "Reassure him",
+        "desc": "Their bond's stronger than day-one panic"
+      },
+      {
+        "id": "work_redemption",
+        "label": "Put him to work",
+        "desc": "Let salvaging the Cayenne become his redemption"
+      }
+    ]
+  }
 }

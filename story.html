@@ -467,7 +467,7 @@ function toggleDaySummary(day, chipEl) {
   const bubble = document.getElementById('day-summary-bubble')
   if (!bubble) return
   // Mark hint as seen
-  localStorage.setItem('tropicana_chipHintSeen','1')
+  localStorage.setItem('rimba_chipHintSeen','1')
   document.getElementById('day-hint')?.classList.add('hint-faded')
   document.querySelectorAll('.day-chip').forEach(c=>c.classList.remove('chip-active'))
   if (_activeSummaryDay === day) {
@@ -717,7 +717,7 @@ async function init() {
     document.getElementById('loading').classList.add('hidden')
     document.getElementById('app').classList.remove('hidden')
     // Day hint — fade once user has tapped a chip
-    if(localStorage.getItem('tropicana_chipHintSeen')) {
+    if(localStorage.getItem('rimba_chipHintSeen')) {
       document.getElementById('day-hint')?.classList.add('hint-faded')
     }
     // Close summary bubble when clicking outside chips area
