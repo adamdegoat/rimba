@@ -1,0 +1,45 @@
+/* ============================================================================
+   THE NEVER ENDING STORY PROJECT — shared house-style tokens
+   ----------------------------------------------------------------------------
+   This file is the canonical aesthetic spec every world inherits. It is what
+   keeps Tropicana, a snow world, a stranded ship, etc. feeling like ONE
+   universe. Copy this file into every new world's repo.
+
+   CONSTANT (never change per world): typography + craft tokens below.
+   PER-WORLD (override in each world): the --w-* palette block at the bottom.
+   The "one universe" feeling comes from shared CRAFT, not a shared climate —
+   so swap the palette freely, but keep the fonts and craft identical.
+   ============================================================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Plus+Jakarta+Sans:wght@500;600;700;800&family=VT323&display=swap');
+
+:root{
+  /* ── Typography — CONSTANT across all worlds ───────────────────────────── */
+  --nes-font-display:'Cinzel',serif;            /* world / title signature      */
+  --nes-font-body:'Plus Jakarta Sans',sans-serif;
+  --nes-font-mono:'VT323',monospace;            /* stats / labels accent        */
+
+  /* ── Craft tokens — CONSTANT (the premium feel) ────────────────────────── */
+  --nes-blur:10px;                              /* glassmorphism blur amount    */
+  --nes-glass:rgba(20,20,20,.55);               /* frosted panel fill           */
+  --nes-glass-border:rgba(255,255,255,.12);     /* hairline panel border        */
+  --nes-vignette:rgba(2,6,23,.5);               /* scene edge darkening         */
+
+  /* ── Palette — PER-WORLD (override these in each new world) ─────────────── */
+  /* Rimba / World 03 — deep Malaysian rainforest. Dappled canopy gold over wet
+     emerald + earth; night falls to a near-black jungle green with firefly/ember
+     warmth and a teal river. Same craft as Tropicana, re-skinned for the jungle. */
+  --w-gold:#e3b24c;        /* canopy sunlight — primary warm accent           */
+  --w-gold-soft:#cdd98a;   /* pale leaf-gold                                   */
+  --w-cream:#eaf1da;       /* misty pale green-white (headlines on dark)       */
+  --w-sand:#7d6b4a;        /* wet earth / mud tan                             */
+  --w-amber:#6b4f2a;       /* damp wood brown                                 */
+  --w-amber-deep:#3f2d18;  /* deep bark                                       */
+  --w-brown:#2a1d10;       /* darkest soil                                    */
+  --w-ink:#0d140d;         /* near-black green-black ink                      */
+  --w-night:#0f2417;       /* deep jungle night                              */
+  --w-night-deep:#06120c;  /* canopy-black                                    */
+  --w-green:#1f6b3a;       /* jungle green                                    */
+  --w-accent-blue:#22a3b3; /* river teal                                      */
+  --w-accent-pink:#e58b4a; /* firefly / ember warmth                         */
+}

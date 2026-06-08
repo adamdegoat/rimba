@@ -1,0 +1,92 @@
+[
+  {
+    "day": 1,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Emerges from the lean-to into humid morning heat and walks toward the Cayenne when he hears Wesley's distressed voice.",
+    "thought": "Panic costs water. Now we adapt.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "alert",
+    "timestamp": "2026-06-08T11:35:01.438405"
+  },
+  {
+    "day": 1,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Crouches by the Cayenne's cracked radiator, seeing the pooled coolant and engine oil, and realizes the water jug sits in the contamination.",
+    "thought": "Just wasted our water on day one.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "panicked",
+    "timestamp": "2026-06-08T11:35:01.438405"
+  },
+  {
+    "day": 1,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Sits on the Cayenne's roof, tail curled, watching the two humans move below with cool feline assessment.",
+    "thought": "They worry over water. I hunt.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-08T11:35:01.438405"
+  },
+  {
+    "day": 1,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the Cayenne's hood, Wesley explains the cracked radiator and fouled water as Chills arrives to assess the damage.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "The radiator's cracked. Oil everywhere. I knocked the water in—"
+      },
+      {
+        "speaker": "chills",
+        "line": "Into the pooled oil?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yeah. I was checking the crankshaft, I—I wasn't thinking—"
+      },
+      {
+        "speaker": "chills",
+        "line": "Okay. We gather from the river. Fresh water. You come."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I fouled our water on day one. This is bad."
+      },
+      {
+        "speaker": "chills",
+        "line": "Which is why we filter and boil. This teaches us both."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Not what I wanted to learn."
+      },
+      {
+        "speaker": "chills",
+        "line": "Come on. Let's move."
+      }
+    ],
+    "timestamp": "2026-06-08T11:35:01.438405"
+  }
+]

@@ -1,0 +1,3030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+<title>Rimba — a never-ending story</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<meta name="description" content="Rimba is a never-ending story — two Singaporeans and a cat stranded deep in the Malaysian jungle after their 4x4 breaks down, surviving four times a day. No script, no crew, no rescue. The characters change and surprise you on their own.">
+<meta name="theme-color" content="#0a1410">
+<!-- Social share preview -->
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Never Ending Story Project">
+<meta property="og:title" content="Rimba — a never-ending story">
+<meta property="og:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving four times a day. No script, no crew, no rescue.">
+<meta property="og:url" content="https://adamdegoat.github.io/rimba/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rimba — a never-ending story">
+<meta name="twitter:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving four times a day.">
+
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=VT323&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="theme.css"><!-- shared Never Ending Story house-style tokens -->
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--above-hud:62px;--stage-bottom:96px}
+html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans',sans-serif;background:#020617}
+/* World renders ABOVE the fixed bottom bars (HUD + collapsed feed drawer) so the
+   beach + ocean band are never hidden behind them. --stage-bottom is measured live. */
+#world{position:relative;width:100vw;height:calc(100vh - var(--stage-bottom));overflow:hidden}
+#world-svg{position:absolute;inset:0;width:100%;height:100%;z-index:0;transform:translateY(calc(-1 * var(--world-shift,0px)))}
+#stars{position:absolute;inset:0;width:100%;height:34%;pointer-events:none;z-index:2;opacity:0;transition:opacity 3s}
+#world.night #stars,#world.dawn #stars{opacity:1}
+
+/* Cloud animations */
+@keyframes cloud-a{from{transform:translateX(0)}to{transform:translateX(1300px)}}
+.cl1{animation:cloud-a 90s linear infinite}
+.cl2{animation:cloud-a 115s linear infinite;animation-delay:-40s}
+.cl3{animation:cloud-a 72s linear infinite;animation-delay:-22s}
+
+/* Fire animations */
+@keyframes flk{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(1.22) scaleX(.9)}}
+.fa{animation:flk .75s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.fb{animation:flk .55s ease-in-out infinite reverse;transform-box:fill-box;transform-origin:50% 100%}
+.fc{animation:flk .42s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+
+/* Wave animations */
+@keyframes wv{from{transform:translateX(0)}to{transform:translateX(500px)}}
+.wa{animation:wv 13s linear infinite}
+.wb{animation:wv 19s linear infinite reverse}
+/* Gentle palm sway — pivots at each palm's crown (origin set inline, in viewBox units) */
+@keyframes palmsway{0%,100%{transform:rotate(-1.4deg)}50%{transform:rotate(1.4deg)}}
+.palm-sway{transform-box:view-box;animation:palmsway 5.5s ease-in-out infinite}
+/* Ambient birds drift slowly across the sky */
+@keyframes birddrift{0%{transform:translate(0,0)}50%{transform:translate(46px,-9px)}100%{transform:translate(0,0)}}
+.birds-drift{transform-box:view-box;animation:birddrift 24s ease-in-out infinite}
+/* Fireflies near the firepit (parent group's opacity gates night-only visibility) */
+@keyframes firefly{0%,100%{opacity:0;transform:translate(0,0)}25%{opacity:.95}50%{opacity:.35;transform:translate(7px,-9px)}75%{opacity:.85}}
+.firefly{transform-box:view-box;animation:firefly 4.2s ease-in-out infinite}
+/* Dog (puppy) ears + tail — driven by applyDogExtras; smooth transitions + tail wag */
+.dog-ear{transform-box:view-box;transition:transform .45s ease}
+.dog-tail{transform-box:view-box;transition:transform .45s ease}
+@keyframes tailwag{0%,100%{transform:rotate(-20deg)}50%{transform:rotate(20deg)}}
+.dog-tail.wag{animation:tailwag .45s ease-in-out infinite}
+.dog-tail.slow{animation:tailwag 1.5s ease-in-out infinite}
+
+/* SVG transitions */
+#sky-bg,#sun-group,#moon-group,#night-stars,#night-overlay,#sun-reflection{transition:opacity 2.5s ease}
+
+/* ── ATMOSPHERE OVERLAYS (pure CSS, no JS/engine) ── */
+/* Vignette: darken the corners to draw the eye to the centre of the island */
+#vignette{position:absolute;inset:0;z-index:6;pointer-events:none;
+  background:radial-gradient(120% 95% at 50% 42%,transparent 58%,rgba(2,6,23,.16) 84%,rgba(2,6,23,.42) 100%)}
+/* Time-of-day colour wash: a soft tint that shifts with the cycle for cohesion */
+#color-wash{position:absolute;inset:0;z-index:7;pointer-events:none;opacity:0;
+  mix-blend-mode:soft-light;transition:background 2.5s ease,opacity 2.5s ease}
+#world.evening #color-wash{background:#fb923c;opacity:.5}
+#world.morning #color-wash{background:#fdba74;opacity:.4}
+#world.dawn    #color-wash{background:#f9a8d4;opacity:.45}
+#world.night   #color-wash{background:#1e1b4b;opacity:.35}
+#world.midday  #color-wash,#world.afternoon #color-wash{opacity:0}
+
+/* ── DAY STAMP ── */
+/* ── DAY HISTORY ── */
+/* ── AUDIENCE VOTE PILL + PANEL ("sway, don't script") ── */
+#vote-pill{position:fixed;top:22px;right:108px;z-index:35;display:flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:20px;cursor:pointer;white-space:nowrap;
+  background:linear-gradient(135deg,rgba(251,191,36,.24),rgba(244,114,182,.2));
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(251,191,36,.5);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:800;letter-spacing:.4px;color:#fde68a;
+  box-shadow:0 2px 14px rgba(0,0,0,.4);animation:votePulse 2.6s ease-in-out infinite;
+  transition:transform .15s,border-color .2s}
+#vote-pill:hover{transform:translateY(-1px);border-color:rgba(251,191,36,.85)}
+#vote-pill.active{animation:none;background:linear-gradient(135deg,rgba(251,191,36,.42),rgba(244,114,182,.34));border-color:rgba(251,191,36,.9)}
+@keyframes votePulse{0%,100%{box-shadow:0 2px 14px rgba(0,0,0,.4),0 0 0 0 rgba(251,191,36,.45)}
+  50%{box-shadow:0 2px 14px rgba(0,0,0,.4),0 0 0 5px rgba(251,191,36,0)}}
+#vote-pill .vp-dot{width:6px;height:6px;border-radius:50%;background:#fde68a;box-shadow:0 0 7px #fde68a}
+/* dropdown panel — anchored under the pill (like the Days panel), warm gold "sway the island" palette */
+#vote-panel{position:fixed;top:60px;right:108px;z-index:41;width:300px;max-width:calc(100vw - 24px);
+  background:linear-gradient(180deg,rgba(26,16,34,.6),rgba(12,9,22,.66));
+  backdrop-filter:blur(20px) saturate(1.2);-webkit-backdrop-filter:blur(20px) saturate(1.2);
+  border:1px solid rgba(251,191,36,.34);border-radius:16px;
+  box-shadow:0 20px 54px rgba(0,0,0,.6),0 0 26px rgba(251,191,36,.08);
+  max-height:0;overflow:hidden;opacity:0;pointer-events:none;
+  transition:max-height .34s cubic-bezier(.4,0,.2,1),opacity .22s ease}
+#vote-panel::before{content:'';position:absolute;left:0;right:0;top:0;height:2px;z-index:3;
+  background:linear-gradient(90deg,transparent,rgba(251,191,36,.7),rgba(244,114,182,.5),transparent)}
+#vote-panel.open{max-height:80vh;opacity:1;pointer-events:auto;overflow-y:auto}
+.vp-inner{padding:15px 16px 15px}
+.vp-eyebrow{font-family:'VT323',monospace;font-size:11px;letter-spacing:2.5px;text-transform:uppercase;color:rgba(251,191,36,.62);margin-bottom:3px}
+.vp-head{font-family:'Plus Jakarta Sans',sans-serif;font-weight:800;font-size:16px;letter-spacing:.01em;line-height:1.1;
+  background:linear-gradient(180deg,#fff8ea 0%,#fde68a 58%,#f59e0b 100%);-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent}
+.vp-tag{font-size:10.5px;color:rgba(255,255,255,.5);font-style:italic;margin:3px 0 13px;line-height:1.45}
+.vp-q{font-size:12px;font-weight:700;color:rgba(255,255,255,.92);margin-bottom:9px;letter-spacing:.01em}
+.vp-opt{position:relative;display:block;width:100%;text-align:left;margin-bottom:8px;padding:10px 12px;border-radius:12px;
+  border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.035);cursor:pointer;overflow:hidden;color:#fff;
+  transition:border-color .15s,background .15s,transform .12s}
+.vp-opt:hover{border-color:rgba(251,191,36,.55);transform:translateY(-1px)}
+.vp-opt:disabled{cursor:default;transform:none}
+.vp-opt.picked{border-color:rgba(251,191,36,.9);background:rgba(251,191,36,.09)}
+.vp-bar{position:absolute;left:0;top:0;bottom:0;width:0;z-index:0;transition:width .55s cubic-bezier(.4,0,.2,1);
+  background:linear-gradient(90deg,rgba(251,191,36,.22),rgba(244,114,182,.14))}
+.vp-opt-label{position:relative;z-index:1;font-weight:800;font-size:12.5px;color:#fff7e6}
+.vp-opt-desc{position:relative;z-index:1;font-size:10.5px;color:rgba(255,255,255,.55);margin-top:2px;line-height:1.35}
+.vp-opt-pct{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;font-weight:800;color:#fde68a;z-index:2}
+.vp-voted{font-size:10.5px;color:rgba(110,231,160,.92);margin-top:4px;letter-spacing:.2px;font-weight:600}
+.vp-hint{font-size:10.5px;color:rgba(255,255,255,.42);margin-top:4px}
+.vp-inplay{margin-top:13px;padding:11px 12px;border-radius:11px;background:rgba(251,191,36,.07);border:1px solid rgba(251,191,36,.18);
+  font-size:11px;color:rgba(255,255,255,.8);line-height:1.5}
+.vp-ip-eyebrow{font-family:'VT323',monospace;font-size:10px;letter-spacing:2px;text-transform:uppercase;color:rgba(251,191,36,.6);display:block;margin-bottom:3px}
+.vp-inplay b{color:#fde68a;font-weight:800}
+#day-hist-btn{
+  position:fixed;top:22px;right:18px;z-index:35;
+  display:flex;align-items:center;gap:6px;
+  padding:7px 13px;border-radius:20px;
+  background:rgba(255,255,255,.09);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border:1px solid rgba(255,255,255,.2);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.72);letter-spacing:.3px;
+  cursor:pointer;white-space:nowrap;
+  transition:background .2s,border-color .2s,color .2s,box-shadow .2s;
+  box-shadow:0 2px 12px rgba(0,0,0,.35);
+}
+#day-hist-btn:hover{background:rgba(255,255,255,.15);border-color:rgba(255,255,255,.38);color:#fff;box-shadow:0 2px 18px rgba(0,0,0,.45)}
+#day-hist-btn.active{background:rgba(255,255,255,.13);border-color:rgba(255,255,255,.35);color:#fff}
+#day-history-panel{
+  position:fixed;top:66px;right:18px;left:auto;z-index:40;width:244px;
+  background:rgba(4,8,22,.92);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border:1px solid rgba(255,255,255,.08);border-radius:14px;
+  max-height:0;overflow:hidden;opacity:0;pointer-events:none;
+  transition:max-height .32s cubic-bezier(.4,0,.2,1),opacity .2s ease;
+}
+#day-history-panel.open{max-height:400px;opacity:1;pointer-events:auto}
+.dhp-head{
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:9px;font-weight:800;
+  letter-spacing:2px;text-transform:uppercase;color:rgba(255,255,255,.25);
+  padding:11px 14px 9px;border-bottom:1px solid rgba(255,255,255,.05);
+  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
+}
+.dhp-back{
+  background:none;border:none;font-family:'Plus Jakarta Sans',sans-serif;
+  font-size:9px;font-weight:700;color:rgba(255,255,255,.25);
+  cursor:pointer;letter-spacing:.5px;padding:0;transition:color .15s;
+}
+.dhp-back:hover{color:rgba(255,255,255,.6)}
+.dhp-scroll{overflow-y:auto;max-height:350px;scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.06) transparent}
+.dhp-chips{padding:8px 10px 10px;display:flex;flex-direction:column;gap:5px}
+.dhp-chip{
+  display:flex;align-items:center;gap:7px;padding:7px 10px;border-radius:9px;
+  border:1px solid rgba(255,255,255,.07);background:rgba(255,255,255,.03);
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.5);cursor:pointer;
+  transition:background .15s,border-color .15s;
+}
+.dhp-chip:hover{background:rgba(255,255,255,.07);border-color:rgba(255,255,255,.14);color:rgba(255,255,255,.8)}
+.dhp-chip.cur{border-color:rgba(34,197,94,.3);color:rgba(255,255,255,.75)}
+.dhp-dot{width:5px;height:5px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:cdot 2s ease-in-out infinite}
+.dhp-chip-meta{font-size:10px;color:rgba(255,255,255,.28);font-weight:500;margin-left:auto;white-space:nowrap}
+.dhp-drama{font-size:13px;color:rgba(255,255,255,.7);line-height:1.57;font-style:italic;
+  padding:12px 14px 14px}
+.dhp-ongoing{font-size:12.5px;color:rgba(255,255,255,.5);line-height:1.55;font-style:italic;
+  padding:12px 14px 14px}
+
+#day-stamp{position:fixed;top:58px;left:16px;z-index:30;pointer-events:none;line-height:1.15}
+#pulse{position:fixed;top:14px;left:50%;transform:translateX(-50%);z-index:30;pointer-events:none;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:12px;font-style:italic;font-weight:500;
+  color:rgba(255,255,255,.78);letter-spacing:.2px;text-align:center;max-width:340px;line-height:1.4;
+  text-shadow:0 1px 3px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.75),0 1px 10px rgba(0,0,0,.4)}
+#pulse:not(:empty)::before{content:'✦ LATEST FROM RIMBA';display:block;
+  font-family:'VT323',monospace;font-size:10px;font-style:normal;font-weight:400;
+  letter-spacing:2px;color:rgba(255,255,255,.5);text-transform:uppercase;margin-bottom:3px;
+  text-shadow:0 1px 3px rgba(0,0,0,.6)}
+#scene-line{position:fixed;left:50%;transform:translateX(-50%);z-index:30;pointer-events:none;
+  width:380px;max-width:88vw;
+  font-family:'Plus Jakarta Sans',sans-serif;font-size:11.5px;font-weight:500;
+  color:rgba(255,255,255,.82);letter-spacing:.2px;text-align:center;line-height:1.5;
+  text-shadow:0 1px 3px rgba(0,0,0,.6),0 1px 3px rgba(0,0,0,.8),0 1px 10px rgba(0,0,0,.45)}
+#ds-day{font-family:'Plus Jakarta Sans',sans-serif;font-size:38px;font-weight:800;
+  color:rgba(255,255,255,.1);letter-spacing:-1px}
+#ds-cycle{font-family:'Plus Jakarta Sans',sans-serif;font-size:11px;font-weight:700;
+  color:rgba(255,255,255,.07);letter-spacing:3.5px;text-transform:uppercase}
+
+/* ── CHARACTERS ── */
+.char{position:absolute;z-index:20;transform:translate(-50%,-100%);
+  transition:left 2.8s cubic-bezier(.4,0,.2,1),top 2.8s cubic-bezier(.4,0,.2,1)}
+.char-svg{display:block;margin:0 auto;filter:drop-shadow(0 6px 14px rgba(0,0,0,.65));animation:bob 2.4s ease-in-out infinite}
+.char-svg.sad{animation:bob-slow 3.5s ease-in-out infinite}
+.char-svg.angry{animation:bob-tense .9s ease-in-out infinite}
+@keyframes bob{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+@keyframes bob-slow{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+@keyframes bob-tense{0%,100%{transform:translateY(0) rotate(-.5deg)}50%{transform:translateY(-3px) rotate(.5deg)}}
+/* ── INTERACTION OVERLAYS ── */
+.interact-overlay{position:absolute;z-index:19;transform:translate(-50%,-50%);pointer-events:none;transition:opacity .4s}
+.char.sitting{margin-top:10px}
+.nametag{font-size:7.5px;font-weight:800;letter-spacing:.4px;text-transform:uppercase;
+  margin:4px auto 0;padding:2px 6px;border-radius:20px;width:fit-content;white-space:nowrap;
+  background:rgba(0,0,0,.45);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.nametag:empty{display:none}  /* unnamed stray: hide tag until it's named */
+#char-marcus .nametag{color:#93c5fd;border:1px solid rgba(147,197,253,.2)}
+#char-ryan .nametag{color:#fde68a;border:1px solid rgba(253,230,138,.2)}
+#char-jade .nametag{color:#fbcfe8;border:1px solid rgba(249,168,212,.2)}
+#char-judy .nametag{color:#99f6e4;border:1px solid rgba(153,246,228,.2)}
+
+/* ── SPEECH BUBBLES ── */
+.bubble{position:absolute;bottom:70px;left:50%;transform:translateX(-50%);
+  background:rgba(10,18,32,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  color:#f1f5f9;padding:3px 6px;border-radius:7px;
+  font-size:6.5px;font-weight:600;max-width:80px;min-width:48px;text-align:center;
+  line-height:1.4;pointer-events:none;white-space:normal;z-index:25;
+  border:1px solid rgba(255,255,255,.06);border-top-width:2px}
+#char-marcus .bubble{border-top-color:rgba(147,197,253,.6);border-left:2px solid rgba(147,197,253,.25)}
+#char-ryan .bubble{border-top-color:rgba(253,230,138,.6);border-left:2px solid rgba(253,230,138,.25)}
+#char-jade .bubble{border-top-color:rgba(249,168,212,.6);border-left:2px solid rgba(249,168,212,.25)}
+#char-judy .bubble{border-top-color:rgba(45,212,191,.6);border-left:2px solid rgba(45,212,191,.25)}
+#char-marcus:hover{filter:drop-shadow(0 0 14px rgba(192,132,252,.55))}
+#char-ryan:hover{filter:drop-shadow(0 0 14px rgba(251,146,60,.55))}
+#char-jade:hover{filter:drop-shadow(0 0 14px rgba(244,114,182,.55))}
+#char-judy:hover{filter:drop-shadow(0 0 14px rgba(45,212,191,.55))}
+.bubble::after{display:none}
+.bubble-name{font-size:6px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:2px}
+#char-marcus .bubble-name{color:#93c5fd}
+#char-ryan .bubble-name{color:#fde68a}
+#char-jade .bubble-name{color:#f9a8d4}
+#char-judy .bubble-name{color:#99f6e4}
+.bubble-text{font-size:6.5px}
+.bubble-text.dog-emote{font-size:15px;line-height:1}
+
+/* ── BOTTOM FEED DRAWER ── */
+#chat-panel{
+  position:fixed;left:0;right:0;bottom:52px;
+  height:44px;overflow:hidden;
+  background:rgba(10,14,24,.9);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);
+  z-index:50;display:flex;flex-direction:column;
+  border-top:1px solid rgba(255,255,255,.1);
+  transition:height .38s cubic-bezier(.4,0,.2,1),
+             box-shadow .38s ease;
+}
+#chat-panel.feed-open{
+  height:52vh;
+  box-shadow:0 -12px 40px rgba(0,0,0,.55);
+  border-top-color:rgba(255,46,120,.35);
+}
+/* Drag pill */
+#feed-pill{
+  width:36px;height:4px;border-radius:4px;
+  background:rgba(255,255,255,.18);
+  margin:6px auto 0;flex-shrink:0;
+  transition:background .2s
+}
+#chat-panel:hover #feed-pill,
+#chat-panel.feed-open #feed-pill{background:rgba(255,46,120,.5)}
+#chat-header{
+  position:relative;
+  padding:5px 14px 5px;font-family:'VT323',monospace;font-size:16px;color:#ff2d78;
+  letter-spacing:2.5px;display:flex;align-items:center;justify-content:center;gap:7px;
+  cursor:pointer;flex-shrink:0;user-select:none;
+  border-bottom:1px solid rgba(255,255,255,.0);
+  transition:border-color .38s
+}
+#chat-panel.feed-open #chat-header{border-bottom-color:rgba(255,255,255,.07)}
+#chat-dot{width:6px;height:6px;border-radius:50%;background:#ff2d78;animation:cdot 2s ease-in-out infinite;flex-shrink:0}
+@keyframes cdot{0%,100%{opacity:1}50%{opacity:.2}}
+/* Absolutely center the ISLAND FEED label (on all widths) so the chevron's
+   margin-left:auto can't push it left under the Island Oracle widget. */
+#feed-label{display:inline-flex;align-items:center;gap:7px;position:absolute;left:50%;transform:translateX(-50%);pointer-events:none}
+#chat-chevron{
+  margin-left:auto;font-size:11px;color:rgba(255,255,255,.35);
+  transition:transform .35s cubic-bezier(.4,0,.2,1),color .2s
+}
+#chat-panel.feed-open #chat-chevron{transform:rotate(180deg);color:rgba(255,46,120,.7)}
+#chat-feed{flex:1;overflow-y:auto;padding:8px 12px 4px;display:flex;flex-direction:column;gap:5px;
+  scrollbar-width:thin;scrollbar-color:rgba(255,255,255,.1) transparent}
+#chat-feed::-webkit-scrollbar{width:3px}
+#chat-feed::-webkit-scrollbar-thumb{background:rgba(255,255,255,.1);border-radius:3px}
+.cl{font-family:'VT323',monospace;font-size:15px;line-height:1.3;word-break:break-word}
+.cl.marcus{color:#c084fc}
+.cl.ryan{color:#fb923c}
+.cl.jade{color:#f472b6}
+.cl.interaction{color:#fbbf24}
+.cl-label{font-size:11px;letter-spacing:.8px;opacity:.78;text-transform:uppercase}
+.cl-dialogue{color:#e2e8f0;font-size:13px;opacity:.9}
+.cl-ts{font-family:'VT323',monospace;font-size:12px;color:rgba(255,255,255,.45);letter-spacing:1.2px;text-align:center;padding:4px 0 2px;text-transform:uppercase;background:rgba(255,255,255,.03);border-radius:4px;margin:2px 0}
+.cl-msg{font-family:'VT323',monospace;font-size:14px;line-height:1.3;padding:1px 4px;word-break:break-word}
+.cl-spk{font-size:12px;font-weight:700;letter-spacing:.5px;text-transform:uppercase}
+.cl-line{color:#e2e8f0;opacity:.9}
+.cl-absent{font-family:'VT323',monospace;font-size:12px;padding:2px 4px;opacity:.55;font-style:italic;border-left:2px solid rgba(255,255,255,.08);margin:3px 0 4px;padding-left:7px}
+.cl-absent-txt{color:#94a3b8}
+.cl-time{font-family:'VT323',monospace;font-size:11px;color:rgba(255,255,255,.55);letter-spacing:.6px;float:right;margin-left:6px;white-space:nowrap}
+.cl-latest{background:rgba(255,45,120,.06);border-left:2px solid rgba(255,45,120,.32);padding-left:5px;margin-left:-2px;border-radius:0 4px 4px 0}
+.cl-ts-latest{background:rgba(255,45,120,.11)!important;color:rgba(255,160,200,.85)!important;border:1px solid rgba(255,45,120,.22);border-radius:5px;padding-left:8px;padding-right:8px}
+
+/* ── HUD ── */
+#hud{position:fixed;bottom:0;left:0;right:0;z-index:100;
+  background:rgba(2,6,23,.93);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  border-top:1px solid rgba(255,255,255,.07);padding:0 1rem;
+  display:flex;align-items:center;gap:.6rem;height:52px}
+.hud-day{font-weight:800;color:rgba(255,255,255,.9);font-size:13px;flex-shrink:0}
+.hud-sep{color:rgba(255,255,255,.2);font-size:11px}
+#cycle-label{font-size:11px;color:rgba(255,255,255,.45);flex-shrink:0}
+
+/* Status strip */
+#status-strip{display:flex;align-items:center;gap:.3rem;font-size:10px;flex-shrink:0}
+.stp{display:inline-flex;align-items:center;padding:.15rem .5rem;border-radius:7px;
+  border:1px solid rgba(255,255,255,.08);color:rgba(255,255,255,.22);
+  font-weight:700;letter-spacing:.3px;text-transform:uppercase;transition:all .4s}
+.stp.running{color:#fbbf24;border-color:rgba(251,191,36,.5);background:rgba(251,191,36,.1);animation:spulse 1s ease-in-out infinite}
+.stp.done{color:#4ade80;border-color:rgba(74,222,128,.4);background:rgba(74,222,128,.07)}
+.stp.current{color:rgba(255,255,255,.75);border-color:rgba(255,255,255,.28);background:rgba(255,255,255,.09)}
+@keyframes spulse{0%,100%{opacity:1}50%{opacity:.5}}
+.stp-arr{color:rgba(255,255,255,.12);font-size:9px}
+
+/* Tiny status info */
+#status-info{font-size:9px;color:rgba(255,255,255,.6);white-space:nowrap;flex-shrink:0;line-height:1.3;letter-spacing:.2px}
+#status-info span{color:rgba(255,255,255,.85)}
+#status-msg{font-size:9px;color:rgba(255,255,255,.3);font-style:italic;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:120px}
+
+/* Buttons */
+.hud-actions{display:flex;align-items:center;gap:.45rem;margin-left:auto;flex-shrink:0}
+#story-btn{display:inline-flex;align-items:center;gap:.2rem;padding:.28rem .7rem;
+  border-radius:18px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.5);font-size:11px;font-weight:700;letter-spacing:.3px;
+  text-transform:uppercase;text-decoration:none;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
+#story-btn:hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85);background:rgba(255,255,255,.09)}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  html,body{overflow-x:auto;overflow-y:hidden}
+  /* Reserve the bottom bars here too: height drives width (10/6 aspect) for the
+     horizontal-scroll layout, so the beach/ocean clears the bottom UI on mobile. */
+  #world{width:calc((100dvh - var(--stage-bottom)) * 10 / 6);height:calc(100dvh - var(--stage-bottom))}
+  /* HUD: 3-row layout — cycle strip + timing visible on mobile */
+  #status-msg{display:none}
+  #hud{padding:5px .75rem 4px;height:auto;flex-wrap:wrap;align-content:flex-start;gap:3px .3rem}
+  .hud-actions{order:1}
+  #status-strip{display:flex;flex-basis:100%;order:10;gap:.2rem}
+  #status-info{display:block;flex-basis:100%;order:11}
+  .stp{font-size:8px;padding:.1rem .3rem}
+  .stp-arr{font-size:8px}
+  /* Push chat panel above the now-taller HUD. */
+  #chat-panel{bottom:var(--above-hud)}
+  #story-btn{padding:.28rem .55rem;font-size:10px}
+  .bubble{max-width:82px;padding:3px 6px}
+  .bubble-text{font-size:7.5px}
+  #pulse{top:78px;font-size:11px;max-width:78vw;color:rgba(255,255,255,.85)}
+  #scene-line{font-size:10.5px;width:78vw;color:rgba(255,255,255,.85)}
+  /* no hover on touch — show structure names faintly so they're not invisible */
+  .struct-label{color:rgba(255,255,255,.6)}
+  #day-hist-btn{top:14px;right:12px;padding:5px 10px;font-size:10px}
+  #vote-pill{top:14px;right:88px;padding:5px 11px;font-size:10px}
+  #vote-panel{top:48px;left:12px;right:12px;width:auto;max-width:none}
+  #day-stamp{left:13px;top:50px}
+  #day-history-panel{top:52px;right:12px;width:220px}
+  /* res-hud now anchors bottom-right via the base rule on all sizes */
+  .stat-card{display:none}
+  .stat-card.tap-open{display:block;opacity:1;transform:translateY(0)}
+  .stat-card.right,.stat-card.left{left:50%;transform:translateX(-50%);right:auto}
+  .stat-card.tap-open.right,.stat-card.tap-open.left{transform:translateX(-50%)}
+  .stat-card.tap-open.below{transform:translateX(-50%)}
+  /* Feed drawer taller on mobile */
+  #chat-panel.feed-open{height:62vh}
+}
+
+/* ── HOVER STAT CARD ── */
+.stat-card{
+  position:absolute;bottom:110%;pointer-events:none;z-index:80;
+  width:200px;background:rgba(0,0,0,.92);border-radius:12px;
+  padding:11px 13px;opacity:0;transform:translateY(6px);
+  transition:opacity .18s ease,transform .18s ease;
+  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
+  font-family:'VT323',monospace;line-height:1.4;white-space:nowrap
+}
+.char:hover .stat-card{opacity:1;transform:translateY(0)}
+.stat-card.right{left:90%;transform:translateY(6px)}
+.stat-card.left{right:90%;transform:translateY(6px)}
+.char:hover .stat-card.right{transform:translateY(0)}
+.char:hover .stat-card.left{transform:translateY(0)}
+/* below variant — card drops down when character is near top of screen */
+.stat-card.below{bottom:auto;top:105%;transform:translateY(-6px)}
+.char:hover .stat-card.below{transform:translateY(0)}
+.stat-card.below.right{transform:translateY(-6px)}
+.stat-card.below.left{transform:translateY(-6px)}
+.char:hover .stat-card.below.right,.char:hover .stat-card.below.left{transform:translateY(0)}
+.sc-name{font-size:17px;font-weight:700;letter-spacing:1px;text-transform:uppercase;margin-bottom:2px}
+.sc-mood{font-size:13px;color:rgba(255,255,255,.45);letter-spacing:.5px;margin-bottom:8px;text-transform:uppercase}
+.sc-cond{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.4px;padding:2px 7px;border-radius:7px;margin-bottom:8px}
+.sc-cond-injured{background:rgba(248,113,113,.16);color:#fca5a5;border:1px solid rgba(248,113,113,.35)}
+.sc-cond-sick{background:rgba(192,132,252,.16);color:#d8b4fe;border:1px solid rgba(192,132,252,.35)}
+.sc-section{font-size:11px;color:rgba(255,255,255,.3);letter-spacing:2px;text-transform:uppercase;margin-bottom:4px;border-bottom:1px solid rgba(255,255,255,.06);padding-bottom:2px}
+.sc-row{display:flex;align-items:center;gap:6px;margin-bottom:3px}
+.sc-label{font-size:12px;color:rgba(255,255,255,.4);width:68px;text-transform:uppercase;letter-spacing:.3px;flex-shrink:0}
+.sc-bar{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.sc-fill{height:100%;border-radius:3px}
+.sc-val{font-size:12px;color:rgba(255,255,255,.5);width:22px;text-align:right;flex-shrink:0}
+.sc-bond{font-size:13px;margin-bottom:2px}
+
+/* ── STRUCTURES LAYER ── */
+#structures-layer{position:absolute;inset:0;pointer-events:none;z-index:5;transform:translateY(calc(-1 * var(--world-shift,0px)))}
+.struct{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;text-align:center;line-height:1;cursor:default}
+.struct-svg{display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.6));transition:transform .2s ease}
+.struct:hover .struct-svg{transform:scale(1.12)}
+.struct-label{font-size:8px;color:rgba(255,255,255,.0);white-space:nowrap;margin-top:2px;
+  font-family:'Plus Jakarta Sans',sans-serif;font-weight:700;letter-spacing:.3px;
+  text-shadow:0 1px 4px rgba(0,0,0,1);display:block;transition:color .18s ease;
+  background:rgba(0,0,0,.45);padding:1px 5px;border-radius:4px;backdrop-filter:blur(3px)}
+.struct:hover .struct-label{color:rgba(255,255,255,.75)}
+.struct-cond{width:30px;height:3px;border-radius:2px;background:rgba(0,0,0,.45);margin:1px auto 0;overflow:hidden}
+.struct-cond-fill{height:100%;border-radius:2px}
+.struct.discovery .struct-svg{filter:drop-shadow(0 0 6px rgba(251,191,36,.6)) drop-shadow(0 3px 8px rgba(0,0,0,.5))}
+
+/* ── RESOURCES HUD ── */
+#res-hud{position:fixed;bottom:calc(var(--stage-bottom) + 8px);right:12px;z-index:30;pointer-events:auto;display:flex;flex-direction:column;gap:3px;align-items:flex-end}
+#fire-chip{position:fixed;bottom:calc(var(--stage-bottom) + 118px);right:12px;z-index:30;pointer-events:none;display:none;align-items:center;gap:4px;
+  background:rgba(0,0,0,.38);border:1px solid rgba(255,255,255,.12);border-radius:9px;padding:3px 7px;font-family:'Plus Jakarta Sans',sans-serif;font-size:8px;font-weight:700;letter-spacing:.4px}
+#fire-chip.lit{color:#fbbf24;border-color:rgba(251,191,36,.35)}
+#fire-chip.out{color:#93a3b8}
+.res-pill{display:flex;align-items:center;gap:3px;background:rgba(0,0,0,.35);
+  backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
+  border-radius:14px;padding:3px 7px 3px 6px;border:1px solid rgba(255,255,255,.06);
+  cursor:pointer;user-select:none;min-height:18px;
+  transition:background .15s,border-color .15s}
+.res-pill:hover,.res-pill.rp-active{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+.res-pill-icon{font-size:9px}
+.res-pill-val{font-size:8px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;min-width:13px;text-align:right}
+/* Resource detail card */
+#res-card{
+  width:min(220px,calc(100vw - 36px));
+  background:rgba(4,8,22,.92);border:1px solid rgba(255,255,255,.1);border-radius:12px;
+  overflow:hidden;max-height:0;opacity:0;pointer-events:none;
+  transition:max-height .32s cubic-bezier(.4,0,.2,1),opacity .22s ease;
+  backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);
+  box-shadow:0 8px 28px rgba(0,0,0,.6)}
+#res-card.open{max-height:240px;opacity:1;pointer-events:auto}
+.rc-inner{padding:13px 14px}
+.rc-header{display:flex;align-items:center;gap:7px;margin-bottom:8px}
+.rc-icon{font-size:18px}
+.rc-name{flex:1;font-size:10px;font-weight:800;letter-spacing:1.2px;text-transform:uppercase;color:rgba(255,255,255,.75)}
+.rc-val{font-size:16px;font-weight:800;font-family:'Plus Jakarta Sans',sans-serif}
+.rc-trend{font-size:14px;font-weight:700;margin-left:1px}
+.rc-bar-wrap{height:3px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden;margin-bottom:10px}
+.rc-bar-fill{height:100%;border-radius:3px}
+.rc-status{font-size:11px;color:rgba(255,255,255,.62);line-height:1.55;margin-bottom:7px}
+.rc-mention{font-size:10px;color:rgba(255,255,255,.36);line-height:1.5;font-style:italic;
+  border-top:1px solid rgba(255,255,255,.06);padding-top:7px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
+.rc-who{display:block;margin-top:3px;font-style:normal;font-size:9px;
+  letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.22)}
+
+
+/* (Island Oracle widget styles removed — the Oracle runs in the engine but is no longer shown on screen.) */
+</style>
+</head>
+<body>
+<div id="world" class="afternoon">
+<canvas id="stars"></canvas>
+
+<!-- ══ BACK TO WORLD (self-contained, top-left) ════════════ -->
+<a id="back-to-world" href="https://adamdegoat.github.io/neverendingworld/" title="Back to World">
+  <span class="btw-globe">🌐</span><span class="btw-text">Back to World</span>
+</a>
+<style id="back-to-world-style">
+  #back-to-world{
+    position:fixed; top:12px; left:12px; z-index:99999;
+    display:flex; align-items:center; gap:0;
+    height:38px; max-width:38px; padding:0;
+    border-radius:19px; overflow:hidden;
+    background:rgba(12,18,32,.62); backdrop-filter:blur(7px); -webkit-backdrop-filter:blur(7px);
+    border:1px solid rgba(255,255,255,.18); box-shadow:0 4px 16px rgba(0,0,0,.32);
+    color:#eef3ff; text-decoration:none; font:600 13px/1 system-ui,-apple-system,sans-serif;
+    letter-spacing:.01em; white-space:nowrap;
+    transition:max-width .34s cubic-bezier(.2,.7,.2,1), background .25s, border-color .25s;
+    cursor:pointer;
+  }
+  #back-to-world .btw-globe{
+    flex:0 0 38px; width:38px; height:38px;
+    display:flex; align-items:center; justify-content:center; font-size:17px;
+  }
+  #back-to-world .btw-text{ opacity:0; padding-right:16px; transition:opacity .2s .08s; }
+  #back-to-world:hover, #back-to-world:focus-visible{
+    max-width:220px; background:rgba(20,28,46,.82); border-color:rgba(255,255,255,.34);
+  }
+  #back-to-world:hover .btw-text, #back-to-world:focus-visible .btw-text{ opacity:1; }
+  @media(max-width:680px){ #back-to-world{ top:9px; left:9px; height:34px; max-width:34px; border-radius:17px; }
+    #back-to-world .btw-globe{ flex-basis:34px; width:34px; height:34px; font-size:15px; } }
+</style>
+
+<!-- ══ DAY STAMP ══════════════════════════════════════════ -->
+<div id="day-stamp">
+  <div id="ds-day">Day 1</div>
+  <div id="ds-cycle">—</div>
+</div>
+<button id="day-hist-btn" onclick="toggleDayHistory()">📅 Days</button>
+<div id="day-history-panel" onclick="event.stopPropagation()"><div id="dhp-inner"></div></div>
+<div id="vote-pill" onclick="toggleVote()"><span class="vp-dot"></span> Vote</div>
+<div id="vote-panel" onclick="event.stopPropagation()">
+  <div class="vp-inner">
+    <div class="vp-eyebrow">✦ Cast your voice</div>
+    <div class="vp-head">Sway the jungle</div>
+    <div class="vp-tag">You nudge how they lean — you never script them.</div>
+    <div id="vp-body">Loading the vote…</div>
+  </div>
+</div>
+<div id="pulse"></div>
+<div id="scene-line"></div>
+<div id="structures-layer"></div>
+<div id="vignette"></div>
+<div id="color-wash"></div>
+<div id="fire-chip"></div>
+<div id="res-hud"></div>
+
+<!-- ══ WORLD SVG ══════════════════════════════════════════ -->
+<svg id="world-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMin slice" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <!-- Sky gradients retuned hazier / canopy-misted for the rainforest -->
+  <linearGradient id="sky-morning" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#b8732a"/><stop offset="22%" stop-color="#e3b24c"/>
+    <stop offset="48%" stop-color="#d9e3a8"/><stop offset="72%" stop-color="#9ec79a"/>
+    <stop offset="100%" stop-color="#bcd9a6"/>
+  </linearGradient>
+  <linearGradient id="sky-midday" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3f7a86"/><stop offset="35%" stop-color="#7db1a6"/>
+    <stop offset="70%" stop-color="#bdd9b0"/><stop offset="100%" stop-color="#d8e8c4"/>
+  </linearGradient>
+  <linearGradient id="sky-afternoon" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#4a8a7e"/><stop offset="40%" stop-color="#8fbf9c"/>
+    <stop offset="75%" stop-color="#cdd98a"/><stop offset="100%" stop-color="#e6edc2"/>
+  </linearGradient>
+  <linearGradient id="sky-evening" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#4c2a4d"/><stop offset="24%" stop-color="#9d4e3a"/>
+    <stop offset="50%" stop-color="#d97742"/><stop offset="72%" stop-color="#e3b24c"/>
+    <stop offset="100%" stop-color="#cdd98a"/>
+  </linearGradient>
+  <linearGradient id="sky-night" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#06120c"/><stop offset="45%" stop-color="#0a1d12"/>
+    <stop offset="80%" stop-color="#0f2417"/><stop offset="100%" stop-color="#13301d"/>
+  </linearGradient>
+  <linearGradient id="sky-dawn" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0f2417"/><stop offset="30%" stop-color="#274234"/>
+    <stop offset="55%" stop-color="#5e5a4a"/><stop offset="76%" stop-color="#b07a44"/>
+    <stop offset="100%" stop-color="#e3b24c"/>
+  </linearGradient>
+  <!-- river gradient (repurposed from the old ocean-g id) -->
+  <linearGradient id="ocean-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#22a3b3"/><stop offset="55%" stop-color="#0e7490"/>
+    <stop offset="100%" stop-color="#0b5563"/>
+  </linearGradient>
+  <!-- canopy / hill depth gradients -->
+  <linearGradient id="canopy-far" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#3f7a52"/><stop offset="100%" stop-color="#2f8f4e"/>
+  </linearGradient>
+  <linearGradient id="canopy-mid" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1f6b3a"/><stop offset="100%" stop-color="#14532d"/>
+  </linearGradient>
+  <linearGradient id="canopy-near" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#14532d"/><stop offset="100%" stop-color="#0f2417"/>
+  </linearGradient>
+  <radialGradient id="clearing-g" cx="50%" cy="38%" r="72%">
+    <stop offset="0%" stop-color="#6b4f2a"/><stop offset="55%" stop-color="#5c4327"/>
+    <stop offset="100%" stop-color="#3f2d18"/>
+  </radialGradient>
+  <linearGradient id="mud-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#6b4f2a"/><stop offset="100%" stop-color="#2a1d10"/>
+  </linearGradient>
+  <linearGradient id="cayenne-body" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#eef1f4"/><stop offset="48%" stop-color="#c4cbd2"/>
+    <stop offset="100%" stop-color="#9aa3ac"/>
+  </linearGradient>
+  <linearGradient id="rtt-canvas" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#cdbb8e"/><stop offset="100%" stop-color="#9c8a5f"/>
+  </linearGradient>
+  <linearGradient id="mist-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#dfeee2" stop-opacity=".55"/>
+    <stop offset="100%" stop-color="#dfeee2" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="canopy-light" cx="50%" cy="0%" r="80%">
+    <stop offset="0%" stop-color="#e3b24c" stop-opacity=".34"/>
+    <stop offset="45%" stop-color="#cdd98a" stop-opacity=".12"/>
+    <stop offset="100%" stop-color="#cdd98a" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="glow"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+  <radialGradient id="sun-halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fde68a" stop-opacity=".55"/>
+    <stop offset="35%" stop-color="#fcd34d" stop-opacity=".28"/>
+    <stop offset="100%" stop-color="#fcd34d" stop-opacity="0"/>
+  </radialGradient>
+  <linearGradient id="sun-glint" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#fde68a" stop-opacity=".55"/>
+    <stop offset="100%" stop-color="#fde68a" stop-opacity="0"/>
+  </linearGradient>
+  <radialGradient id="fire-glow-g" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#fb923c" stop-opacity=".5"/>
+    <stop offset="45%" stop-color="#f97316" stop-opacity=".16"/>
+    <stop offset="100%" stop-color="#f97316" stop-opacity="0"/>
+  </radialGradient>
+  <radialGradient id="moon-halo" cx="50%" cy="50%" r="50%">
+    <stop offset="0%" stop-color="#e2e8f0" stop-opacity=".35"/>
+    <stop offset="100%" stop-color="#cbd5e1" stop-opacity="0"/>
+  </radialGradient>
+  <filter id="soft-blur"><feGaussianBlur stdDeviation="2.6"/></filter>
+</defs>
+
+<!-- SKY -->
+<rect id="sky-bg" width="1000" height="315" fill="url(#sky-afternoon)"/>
+
+<!-- SUN -->
+<g id="sun-group">
+  <circle cx="810" cy="88" r="155" fill="url(#sun-halo)"/>
+  <circle cx="810" cy="88" r="70" fill="#fbbf24" opacity=".1"/>
+  <circle cx="810" cy="88" r="48" fill="#fcd34d" opacity=".18"/>
+  <circle cx="810" cy="88" r="32" fill="#fde68a"/>
+  <circle cx="810" cy="88" r="26" fill="#fef3c7"/>
+</g>
+<!-- MOON -->
+<circle id="moon-halo-c" cx="810" cy="88" r="90" fill="url(#moon-halo)" opacity="0"/>
+<g id="moon-group" opacity="0" filter="url(#glow)">
+  <circle cx="810" cy="88" r="30" fill="#e2e8f0"/>
+  <circle cx="824" cy="80" r="24" fill="#0f172a"/>
+</g>
+<!-- STARS -->
+<g id="night-stars" opacity="0">
+  <circle cx="55" cy="28" r="1.4" fill="white" opacity=".9"/><circle cx="138" cy="48" r="1.1" fill="white" opacity=".7"/>
+  <circle cx="218" cy="18" r="1.6" fill="white" opacity=".85"/><circle cx="305" cy="55" r="1.2" fill="white" opacity=".9"/>
+  <circle cx="388" cy="22" r="1.5" fill="white" opacity=".65"/><circle cx="452" cy="46" r="1.1" fill="white" opacity=".8"/>
+  <circle cx="528" cy="14" r="1.3" fill="white" opacity=".75"/><circle cx="612" cy="38" r="1.4" fill="white" opacity=".8"/>
+  <circle cx="685" cy="60" r="1.2" fill="white" opacity=".7"/><circle cx="748" cy="20" r="1.5" fill="white" opacity=".9"/>
+  <circle cx="862" cy="44" r="1.2" fill="white" opacity=".75"/><circle cx="948" cy="26" r="1.6" fill="white" opacity=".85"/>
+  <circle cx="105" cy="75" r="1" fill="white" opacity=".6"/><circle cx="272" cy="82" r="1.2" fill="white" opacity=".7"/>
+  <circle cx="465" cy="78" r="1" fill="white" opacity=".65"/><circle cx="655" cy="85" r="1.3" fill="white" opacity=".6"/>
+  <circle cx="828" cy="70" r="1.1" fill="white" opacity=".75"/><circle cx="178" cy="96" r="1" fill="white" opacity=".5"/>
+  <circle cx="362" cy="94" r="1.2" fill="white" opacity=".6"/><circle cx="562" cy="100" r="1" fill="white" opacity=".55"/>
+</g>
+
+<!-- CLOUDS -->
+<g class="cl1" opacity=".88">
+  <ellipse cx="-180" cy="75" rx="68" ry="26" fill="white"/>
+  <ellipse cx="-140" cy="64" rx="50" ry="22" fill="white"/>
+  <ellipse cx="-215" cy="80" rx="42" ry="19" fill="white"/>
+</g>
+<g class="cl2" opacity=".72">
+  <ellipse cx="-480" cy="50" rx="55" ry="20" fill="white"/>
+  <ellipse cx="-445" cy="41" rx="40" ry="17" fill="white"/>
+  <ellipse cx="-510" cy="54" rx="35" ry="15" fill="white"/>
+</g>
+<g class="cl3" opacity=".6">
+  <ellipse cx="-720" cy="108" rx="62" ry="23" fill="white"/>
+  <ellipse cx="-682" cy="97" rx="46" ry="19" fill="white"/>
+  <ellipse cx="-752" cy="112" rx="38" ry="17" fill="white"/>
+</g>
+
+<!-- ══ CANOPY-DAPPLED SUNLIGHT (top shafts) ══ -->
+<rect x="0" y="0" width="1000" height="340" fill="url(#canopy-light)" opacity=".9"/>
+
+<!-- ══ RECEDING RAINFOREST CANOPY / HILLS (back→front, hazy→dark) ══ -->
+<!-- far ridge (lightest, hazy) -->
+<path d="M 0 268 Q 110 232 230 256 Q 360 226 500 250 Q 650 224 800 250 Q 910 232 1000 248 L 1000 320 L 0 320 Z" fill="url(#canopy-far)" opacity=".55"/>
+<!-- mid ridge -->
+<path d="M 0 290 Q 150 256 300 282 Q 470 256 640 282 Q 810 258 1000 280 L 1000 330 L 0 330 Z" fill="url(#canopy-mid)" opacity=".8"/>
+<!-- canopy crown blobs along the mid ridge for texture -->
+<g fill="url(#canopy-mid)" opacity=".85">
+  <ellipse cx="70" cy="280" rx="58" ry="34"/><ellipse cx="190" cy="272" rx="64" ry="38"/>
+  <ellipse cx="330" cy="282" rx="60" ry="36"/><ellipse cx="470" cy="270" rx="66" ry="40"/>
+  <ellipse cx="610" cy="280" rx="62" ry="36"/><ellipse cx="760" cy="272" rx="68" ry="40"/>
+  <ellipse cx="910" cy="280" rx="60" ry="36"/>
+</g>
+<!-- near canopy band (darkest) framing the top of the clearing -->
+<path d="M 0 312 Q 130 290 280 308 Q 460 286 640 308 Q 820 290 1000 308 L 1000 348 L 0 348 Z" fill="url(#canopy-near)"/>
+<g fill="url(#canopy-near)">
+  <ellipse cx="50" cy="306" rx="52" ry="30"/><ellipse cx="160" cy="300" rx="56" ry="32"/>
+  <ellipse cx="280" cy="308" rx="50" ry="30"/><ellipse cx="760" cy="302" rx="58" ry="34"/>
+  <ellipse cx="900" cy="308" rx="54" ry="32"/><ellipse cx="980" cy="300" rx="50" ry="30"/>
+</g>
+<!-- canopy highlight dapples -->
+<g fill="#86b04a" opacity=".4">
+  <ellipse cx="200" cy="266" rx="20" ry="11"/><ellipse cx="480" cy="262" rx="22" ry="12"/>
+  <ellipse cx="770" cy="264" rx="20" ry="11"/>
+</g>
+
+<!-- ══ MUDDY CAMP CLEARING (ground plane, wet-earth layered) ══ -->
+<rect x="0" y="338" width="1000" height="262" fill="url(#clearing-g)"/>
+<ellipse cx="500" cy="430" rx="560" ry="150" fill="#6b4f2a" opacity=".35"/>
+<!-- wet sheen / scuffed earth patches -->
+<ellipse cx="220" cy="430" rx="120" ry="26" fill="#3f2d18" opacity=".45"/>
+<ellipse cx="560" cy="470" rx="180" ry="32" fill="#3f2d18" opacity=".4"/>
+<ellipse cx="820" cy="440" rx="120" ry="24" fill="#3f2d18" opacity=".42"/>
+<path d="M 0 360 Q 260 350 520 362 Q 760 352 1000 360" stroke="#3f2d18" stroke-width="3" fill="none" opacity=".5"/>
+<!-- trampled trail from clearing toward river -->
+<path d="M 520 392 Q 470 420 410 446 Q 350 470 300 492" stroke="#2a1d10" stroke-width="20" fill="none" stroke-linecap="round" opacity=".4"/>
+
+<!-- ══ RIVER (replaces ocean) — winding teal water across the lower band ══ -->
+<path d="M -40 540 Q 150 512 330 528 Q 520 546 700 520 Q 860 500 1040 522 L 1040 600 L -40 600 Z" fill="url(#ocean-g)"/>
+<!-- far/near bank mud lips -->
+<path d="M -40 540 Q 150 512 330 528 Q 520 546 700 520 Q 860 500 1040 522" fill="none" stroke="#3f2d18" stroke-width="7" opacity=".55"/>
+<path d="M -40 552 Q 160 526 340 540 Q 530 558 710 532 Q 870 514 1040 534" fill="none" stroke="#5c4327" stroke-width="4" opacity=".4"/>
+<!-- current shimmer lines (animated like old waves) -->
+<path class="wa" d="M -200 560 Q -75 552 50 560 Q 175 568 300 560 Q 425 552 550 560 Q 675 568 800 558 Q 925 550 1050 558" fill="none" stroke="#22a3b3" stroke-width="2" opacity=".4"/>
+<path class="wb" d="M -200 576 Q -75 569 50 576 Q 175 583 300 576 Q 425 569 550 576 Q 675 583 800 568 Q 925 560 1050 568" fill="none" stroke="#cdd98a" stroke-width="1.6" opacity=".25"/>
+<!-- wet rocks in the river -->
+<g>
+  <ellipse cx="430" cy="546" rx="22" ry="11" fill="#3f2d18"/><ellipse cx="426" cy="542" rx="16" ry="7" fill="#5c4327"/>
+  <ellipse cx="422" cy="540" rx="8" ry="3.5" fill="#6b4f2a" opacity=".7"/>
+  <ellipse cx="452" cy="558" rx="9" ry="4" fill="#22a3b3" opacity=".35"/>
+</g>
+<g>
+  <ellipse cx="660" cy="528" rx="18" ry="9" fill="#3f2d18"/><ellipse cx="656" cy="525" rx="13" ry="6" fill="#5c4327"/>
+  <ellipse cx="652" cy="523" rx="6" ry="3" fill="#6b4f2a" opacity=".7"/>
+</g>
+
+<!-- ══ SUN GLINT ON RIVER (repurposed sun-reflection id — hidden at night) ══ -->
+<g id="sun-reflection" opacity=".85">
+  <polygon points="772,512 800,512 836,600 736,600" fill="url(#sun-glint)" opacity=".6"/>
+  <ellipse cx="786" cy="524" rx="13" ry="2" fill="#fef3c7" opacity=".5"/>
+  <ellipse cx="786" cy="542" rx="19" ry="2.6" fill="#e3b24c" opacity=".38"/>
+  <ellipse cx="786" cy="562" rx="26" ry="3" fill="#cdd98a" opacity=".26"/>
+  <ellipse cx="786" cy="582" rx="32" ry="3.4" fill="#e3b24c" opacity=".18"/>
+</g>
+
+<!-- ══ LOW FERNS / UNDERGROWTH around clearing ══ -->
+<g stroke-linecap="round" fill="none">
+  <g stroke="#1f6b3a" stroke-width="3">
+    <path d="M 70 372 Q 56 350 44 336"/><path d="M 70 372 Q 64 346 60 330"/>
+    <path d="M 70 372 Q 80 350 92 338"/><path d="M 70 372 Q 90 356 104 348"/>
+  </g>
+  <g stroke="#2f8f4e" stroke-width="2.6">
+    <path d="M 928 384 Q 942 360 956 346"/><path d="M 928 384 Q 932 358 936 342"/>
+    <path d="M 928 384 Q 916 360 904 348"/><path d="M 928 384 Q 906 366 892 358"/>
+  </g>
+  <g stroke="#1f6b3a" stroke-width="2.4">
+    <path d="M 360 500 Q 346 478 334 466"/><path d="M 360 500 Q 356 474 354 460"/>
+    <path d="M 360 500 Q 374 478 388 468"/>
+  </g>
+</g>
+
+<!-- ══ BIG JUNGLE TREES (buttress roots) + SWAYING FRONDS (reuse palm-sway) ══ -->
+<!-- Fig tree, NW with buttress roots -->
+<path d="M 168 398 L 150 360 Q 156 320 162 286" stroke="#5c4327" stroke-width="22" fill="none" stroke-linecap="round"/>
+<path d="M 168 398 L 150 360 Q 156 320 162 286" stroke="#6b4f2a" stroke-width="8" fill="none" stroke-linecap="round" opacity=".4"/>
+<!-- buttress roots flaring into the ground -->
+<path d="M 152 398 Q 158 380 156 362 L 168 366 Q 168 384 168 398 Z" fill="#3f2d18"/>
+<path d="M 186 398 Q 176 380 168 366 L 156 362 Q 168 380 172 398 Z" fill="#5c4327"/>
+<path d="M 134 398 Q 146 382 152 366 L 158 372 Q 150 386 150 398 Z" fill="#3f2d18" opacity=".85"/>
+<g class="palm-sway" style="transform-origin:162px 286px">
+  <ellipse cx="162" cy="270" rx="62" ry="40" fill="#14532d"/>
+  <ellipse cx="130" cy="258" rx="40" ry="28" fill="#1f6b3a"/>
+  <ellipse cx="196" cy="262" rx="44" ry="30" fill="#1f6b3a"/>
+  <ellipse cx="162" cy="246" rx="42" ry="28" fill="#2f8f4e"/>
+  <ellipse cx="150" cy="240" rx="20" ry="14" fill="#86b04a" opacity=".6"/>
+</g>
+
+<!-- Tree-fern, left-of-camp (broad swaying fronds) -->
+<path d="M 296 402 Q 292 372 290 344" stroke="#6b4f2a" stroke-width="9" fill="none" stroke-linecap="round"/>
+<g class="palm-sway" style="transform-origin:290px 344px;animation-delay:-2.1s">
+  <path d="M 290 344 Q 252 330 226 322" stroke="#1f6b3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 290 344 Q 268 322 258 302" stroke="#2f8f4e" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 290 344 Q 290 318 290 300" stroke="#1f6b3a" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 290 344 Q 312 322 322 302" stroke="#2f8f4e" stroke-width="5" fill="none" stroke-linecap="round"/>
+  <path d="M 290 344 Q 328 330 354 322" stroke="#1f6b3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <!-- leaflets feathering -->
+  <g stroke="#86b04a" stroke-width="1.6" opacity=".7">
+    <path d="M 252 330 l -6 -7 M 240 326 l -6 -7 M 268 322 l -5 -8 M 312 322 l 6 -7 M 326 326 l 6 -7"/>
+  </g>
+  <circle cx="290" cy="346" r="6" fill="#5c4327"/>
+</g>
+
+<!-- Broad-leaf banana/foreground tree, east of camp -->
+<path d="M 712 466 Q 706 432 702 398 Q 700 376 698 356" stroke="#6b4f2a" stroke-width="12" fill="none" stroke-linecap="round"/>
+<path d="M 712 466 Q 706 432 702 398 Q 700 376 698 356" stroke="#86b04a" stroke-width="3" fill="none" stroke-linecap="round" opacity=".3"/>
+<g class="palm-sway" style="transform-origin:698px 356px;animation-delay:-3.6s">
+  <path d="M 698 356 Q 654 350 626 360 Q 650 346 698 350 Z" fill="#1f6b3a"/>
+  <path d="M 698 356 Q 666 326 648 304 Q 682 332 700 354 Z" fill="#2f8f4e"/>
+  <path d="M 698 356 Q 700 322 706 300 Q 706 332 704 356 Z" fill="#1f6b3a"/>
+  <path d="M 698 356 Q 734 330 756 312 Q 722 344 702 358 Z" fill="#2f8f4e"/>
+  <path d="M 698 356 Q 744 352 772 364 Q 746 348 700 354 Z" fill="#14532d"/>
+  <!-- leaf midribs -->
+  <g stroke="#0f2417" stroke-width="1.4" opacity=".5" fill="none">
+    <path d="M 698 356 Q 666 338 640 322"/><path d="M 698 356 Q 720 336 742 320"/>
+  </g>
+</g>
+<circle cx="690" cy="460" r="8" fill="#5c4327"/>
+
+<!-- Bamboo stand, far right -->
+<g stroke-linecap="round">
+  <line x1="852" y1="408" x2="848" y2="300" stroke="#86b04a" stroke-width="7"/>
+  <line x1="852" y1="408" x2="848" y2="300" stroke="#b9d36a" stroke-width="2.4" opacity=".5"/>
+  <line x1="872" y1="412" x2="876" y2="288" stroke="#86b04a" stroke-width="6"/>
+  <line x1="872" y1="412" x2="876" y2="288" stroke="#cdd98a" stroke-width="2" opacity=".45"/>
+  <line x1="838" y1="406" x2="832" y2="318" stroke="#86b04a" stroke-width="5.5"/>
+  <line x1="890" y1="410" x2="896" y2="312" stroke="#86b04a" stroke-width="5"/>
+  <!-- node rings -->
+  <g stroke="#5c7a2a" stroke-width="1.4" opacity=".6">
+    <line x1="844" y1="346" x2="856" y2="346"/><line x1="846" y1="382" x2="856" y2="382"/>
+    <line x1="872" y1="340" x2="882" y2="340"/><line x1="870" y1="376" x2="880" y2="376"/>
+  </g>
+  <!-- bamboo leaves -->
+  <g stroke="#1f6b3a" stroke-width="3" fill="none">
+    <path d="M 848 300 Q 824 290 808 286"/><path d="M 876 288 Q 900 280 916 278"/>
+    <path d="M 848 300 Q 866 284 878 274"/>
+  </g>
+</g>
+
+<!-- ══ SILVER PORSCHE CAYENNE — overland 4x4 (hero prop), parked in the mud ══ -->
+<g transform="translate(268 396) scale(1.3) rotate(-3)">
+  <!-- ground shadow + one wheel a little stuck in mud -->
+  <ellipse cx="62" cy="62" rx="120" ry="19" fill="#2a1d10" opacity=".6"/>
+  <ellipse cx="16" cy="62" rx="28" ry="9" fill="#3f2d18"/>
+  <!-- ── chunky off-road tyres (front + rear) ── -->
+  <g>
+    <circle cx="106" cy="50" r="21" fill="#16191c"/>
+    <circle cx="106" cy="50" r="21" fill="none" stroke="#0a0c0e" stroke-width="4" stroke-dasharray="3 4.5"/>
+    <circle cx="106" cy="50" r="10.5" fill="#c4cbd2"/><circle cx="106" cy="50" r="9" fill="none" stroke="#8a929b" stroke-width="1.4"/><circle cx="106" cy="50" r="3.2" fill="#6b7079"/>
+  </g>
+  <g>
+    <circle cx="18" cy="52" r="21" fill="#16191c"/>
+    <circle cx="18" cy="52" r="21" fill="none" stroke="#0a0c0e" stroke-width="4" stroke-dasharray="3 4.5"/>
+    <circle cx="18" cy="52" r="10.5" fill="#c4cbd2"/><circle cx="18" cy="52" r="9" fill="none" stroke="#8a929b" stroke-width="1.4"/><circle cx="18" cy="52" r="3.2" fill="#6b7079"/>
+  </g>
+  <!-- bull bar / front bumper -->
+  <path d="M -10 36 Q -16 36 -16 43 L -16 49 Q -14 51 -9 51" stroke="#3a3f45" stroke-width="3.5" fill="none" stroke-linecap="round"/>
+  <circle cx="-12" cy="40" r="2.4" fill="#e3b24c"/><circle cx="-12" cy="46" r="2.4" fill="#e3b24c"/>
+  <!-- lower body / sill + plastic fender flares -->
+  <path d="M -6 54 Q 2 40 26 38 L 116 38 Q 132 40 134 52 L 134 56 Q 102 60 64 60 Q 24 60 -6 56 Z" fill="#5a626b"/>
+  <path d="M 0 56 Q 8 36 30 36 L 40 36 Q 30 56 0 56 Z M 90 56 Q 116 56 124 36 L 134 40 Q 132 58 90 58 Z" fill="#1c2024" opacity=".8"/>
+  <!-- main silver body -->
+  <path d="M -6 40 Q -6 24 16 22 L 118 22 Q 134 24 136 40 L 136 48 Q 134 52 126 52 L 4 52 Q -6 50 -6 40 Z" fill="url(#cayenne-body)"/>
+  <!-- cabin / greenhouse (boxy SUV roofline) -->
+  <path d="M 18 22 L 22 3 Q 24 -1 30 -1 L 104 -1 Q 110 -1 112 3 L 116 22 Z" fill="#b9c0c7"/>
+  <!-- windows -->
+  <path d="M 27 19 L 31 4 L 62 4 L 62 19 Z" fill="#13241c" opacity=".85"/>
+  <path d="M 68 4 L 104 4 L 108 19 L 68 19 Z" fill="#13241c" opacity=".85"/>
+  <line x1="65" y1="3" x2="65" y2="19" stroke="#7d858d" stroke-width="2"/>
+  <path d="M 33 16 Q 40 6 52 5" stroke="#cdd98a" stroke-width="1.4" fill="none" opacity=".4"/>
+  <!-- door seam + handle, hood + tail -->
+  <line x1="65" y1="22" x2="65" y2="50" stroke="#7d858d" stroke-width="1.3" opacity=".7"/>
+  <rect x="48" y="33" width="10" height="3" rx="1.5" fill="#7d858d"/>
+  <path d="M -6 40 Q 6 30 26 30" stroke="#9aa3ac" stroke-width="1.4" fill="none" opacity=".6"/>
+  <ellipse cx="-4" cy="39" rx="4.5" ry="5.5" fill="#fde68a"/>
+  <rect x="130" y="34" width="6" height="6" rx="1.5" fill="#9d2424"/>
+  <!-- snorkel up the A-pillar -->
+  <path d="M 22 38 L 22 0 Q 22 -5 27 -5" stroke="#15181b" stroke-width="3.6" fill="none" stroke-linecap="round"/>
+  <rect x="17" y="-9" width="6.5" height="7" rx="1.5" fill="#15181b"/>
+  <!-- ── roof rack platform ── -->
+  <rect x="22" y="-4" width="92" height="4.5" rx="1.5" fill="#33383d"/>
+  <line x1="40" y1="-4" x2="40" y2="0.5" stroke="#22262a" stroke-width="1.4"/><line x1="68" y1="-4" x2="68" y2="0.5" stroke="#22262a" stroke-width="1.4"/><line x1="96" y1="-4" x2="96" y2="0.5" stroke="#22262a" stroke-width="1.4"/>
+  <!-- light bar on the rack front -->
+  <rect x="26" y="-8" width="30" height="3.4" rx="1.5" fill="#22262a"/>
+  <circle cx="32" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="40" cy="-6.3" r="1.5" fill="#fff4cf"/><circle cx="48" cy="-6.3" r="1.5" fill="#fff4cf"/>
+  <!-- ── ROOFTOP TENT (open wedge on the rack) ── -->
+  <rect x="58" y="-13" width="58" height="9" rx="1.5" fill="#7a6a45"/>
+  <path d="M 58 -13 L 116 -13 L 116 -22 L 66 -31 Z" fill="url(#rtt-canvas)"/>
+  <path d="M 66 -31 L 116 -22" stroke="#7a6a45" stroke-width="1.6" fill="none" opacity=".7"/>
+  <path d="M 88 -26 L 88 -13" stroke="#8a7a52" stroke-width="1.2" opacity=".6"/>
+  <rect x="96" y="-24" width="12" height="8" rx="1" fill="#5e5436" opacity=".7"/>
+  <!-- tent ladder down the back -->
+  <g stroke="#cfd4da" stroke-width="1.3"><line x1="118" y1="-8" x2="128" y2="40"/><line x1="123" y1="-8" x2="133" y2="40"/><line x1="119" y1="2" x2="131" y2="2"/><line x1="120" y1="14" x2="132" y2="14"/><line x1="121" y1="26" x2="132" y2="26"/></g>
+  <!-- rear-mounted spare wheel -->
+  <circle cx="142" cy="40" r="11.5" fill="#16191c"/><circle cx="142" cy="40" r="5.5" fill="#c4cbd2"/><circle cx="142" cy="40" r="1.8" fill="#6b7079"/>
+  <!-- mud splatter up the silver -->
+  <g fill="#5c4327" opacity=".5">
+    <ellipse cx="16" cy="48" rx="10" ry="5"/><ellipse cx="42" cy="50" rx="7" ry="3.5"/>
+    <ellipse cx="96" cy="48" rx="9" ry="4.5"/><ellipse cx="120" cy="46" rx="6" ry="3"/>
+  </g>
+</g>
+
+<!-- ══ LEAN-TO SHELTER (tarp + poles) near camp ══ -->
+<path d="M 612 396 L 690 372 L 700 410 L 624 426 Z" fill="#3f2d18"/>
+<path d="M 612 396 L 690 372 L 700 410 L 624 426 Z" fill="#2a1d10" opacity=".35"/>
+<path d="M 612 396 L 690 372 L 666 388 L 624 414 Z" fill="#5c4327" opacity=".5"/>
+<line x1="612" y1="396" x2="606" y2="430" stroke="#6b4f2a" stroke-width="4" stroke-linecap="round"/>
+<line x1="624" y1="426" x2="620" y2="438" stroke="#6b4f2a" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="690" y1="372" x2="696" y2="360" stroke="#6b4f2a" stroke-width="3" stroke-linecap="round"/>
+<!-- lashings -->
+<line x1="688" y1="376" x2="694" y2="366" stroke="#cdd98a" stroke-width="1.4" opacity=".5"/>
+
+<!-- ══ FIRE PIT (kept) ══ -->
+<ellipse cx="492" cy="438" rx="34" ry="14" fill="#1c0a00"/>
+<ellipse cx="492" cy="434" rx="30" ry="12" fill="none" stroke="#92400e" stroke-width="9"/>
+<ellipse cx="492" cy="434" rx="30" ry="12" fill="none" stroke="#b45309" stroke-width="3" opacity=".35"/>
+<line x1="469" y1="438" x2="514" y2="427" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+<line x1="513" y1="438" x2="468" y2="427" stroke="#78350f" stroke-width="6" stroke-linecap="round"/>
+<path class="fa" d="M 483 428 Q 480 414 484 403 Q 488 393 492 384 Q 496 393 500 403 Q 504 414 501 428 Q 496 418 492 424 Q 488 418 483 428" fill="#dc2626"/>
+<path class="fb" d="M 485 426 Q 483 413 487 403 Q 489 395 492 388 Q 495 395 497 403 Q 501 413 499 426 Q 495 417 492 422 Q 489 417 485 426" fill="#f97316"/>
+<path class="fc" d="M 487 424 Q 486 413 488 405 Q 490 399 492 394 Q 494 399 496 405 Q 498 413 497 424 Q 494 416 492 421 Q 490 416 487 424" fill="#fbbf24"/>
+<ellipse cx="492" cy="428" rx="9" ry="4" fill="#f97316" opacity=".25"/>
+<!-- Firepit night glow + fireflies (shown only at night) -->
+<circle id="fire-glow" cx="492" cy="424" r="78" fill="url(#fire-glow-g)" opacity="0"/>
+<g id="fireflies" opacity="0" fill="#fde68a">
+  <!-- around the fire -->
+  <circle class="firefly" cx="455" cy="412" r="1.6"/>
+  <circle class="firefly" cx="524" cy="404" r="1.4" style="animation-delay:-1.3s"/>
+  <circle class="firefly" cx="470" cy="392" r="1.5" style="animation-delay:-2.6s"/>
+  <circle class="firefly" cx="512" cy="432" r="1.3" style="animation-delay:-0.7s"/>
+  <circle class="firefly" cx="488" cy="380" r="1.5" style="animation-delay:-3.4s"/>
+  <circle class="firefly" cx="440" cy="438" r="1.4" style="animation-delay:-1.9s"/>
+  <!-- scattered through the jungle -->
+  <circle class="firefly" cx="180" cy="396" r="1.5" style="animation-delay:-2.1s"/>
+  <circle class="firefly" cx="240" cy="430" r="1.3" style="animation-delay:-0.4s"/>
+  <circle class="firefly" cx="120" cy="450" r="1.4" style="animation-delay:-3.0s"/>
+  <circle class="firefly" cx="640" cy="400" r="1.5" style="animation-delay:-1.1s"/>
+  <circle class="firefly" cx="720" cy="430" r="1.3" style="animation-delay:-2.8s"/>
+  <circle class="firefly" cx="820" cy="392" r="1.5" style="animation-delay:-0.9s"/>
+  <circle class="firefly" cx="900" cy="426" r="1.4" style="animation-delay:-3.6s"/>
+  <circle class="firefly" cx="340" cy="470" r="1.3" style="animation-delay:-1.6s"/>
+  <circle class="firefly" cx="600" cy="466" r="1.4" style="animation-delay:-2.3s"/>
+</g>
+
+<!-- ══ DRIFTING MIST LAYERS (slow, semi-transparent) ══ -->
+<g class="cl1" opacity=".5">
+  <ellipse cx="-180" cy="360" rx="150" ry="26" fill="url(#mist-g)"/>
+  <ellipse cx="-60" cy="372" rx="110" ry="20" fill="url(#mist-g)"/>
+</g>
+<g class="cl3" opacity=".42">
+  <ellipse cx="-620" cy="408" rx="180" ry="30" fill="url(#mist-g)"/>
+  <ellipse cx="-440" cy="420" rx="130" ry="22" fill="url(#mist-g)"/>
+</g>
+<g class="cl2" opacity=".34">
+  <ellipse cx="-340" cy="330" rx="160" ry="22" fill="url(#mist-g)"/>
+</g>
+
+<!-- ══ SCATTERED JUNGLE ROCKS (mossy, wet) ══ -->
+<g>
+  <ellipse cx="600" cy="430" rx="20" ry="10" fill="#3f2d18"/><ellipse cx="594" cy="426" rx="14" ry="7" fill="#5c4327"/>
+  <ellipse cx="590" cy="423" rx="8" ry="4" fill="#2f8f4e" opacity=".4"/>
+</g>
+<g>
+  <ellipse cx="140" cy="466" rx="22" ry="10" fill="#3f2d18"/><ellipse cx="134" cy="462" rx="15" ry="7" fill="#5c4327"/>
+  <ellipse cx="130" cy="459" rx="9" ry="4" fill="#2f8f4e" opacity=".4"/>
+</g>
+
+<!-- ══ MOSS / LEAF-LITTER patches on the clearing ══ -->
+<ellipse cx="330" cy="478" rx="40" ry="9" fill="#1f6b3a" opacity=".25"/>
+<ellipse cx="700" cy="490" rx="46" ry="10" fill="#1f6b3a" opacity=".22"/>
+<ellipse cx="500" cy="500" rx="60" ry="11" fill="#14532d" opacity=".2"/>
+
+<!-- ══ AMBIENT BIRDS (high over the canopy) ══ -->
+<g class="birds-drift" opacity=".55" fill="#0f2417" stroke="#0f2417" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+  <path d="M 176 130 Q 185 121 194 130 Q 203 121 212 130"/>
+  <path d="M 300 148 Q 309 139 318 148 Q 327 139 336 148"/>
+  <path d="M 452 136 Q 461 127 470 136 Q 479 127 488 136"/>
+  <path d="M 612 152 Q 621 143 630 152 Q 639 143 648 152"/>
+</g>
+
+<!-- ══ FOREGROUND FRAMING FRONDS (soft-focus jungle depth) ══ -->
+<g opacity=".55" filter="url(#soft-blur)" stroke="#0f2417" stroke-linecap="round" fill="none">
+  <!-- top-left big leaf -->
+  <path d="M -10 -8 Q 70 40 150 100" stroke-width="11"/>
+  <path d="M -10 -8 Q 44 64 84 140" stroke-width="9"/>
+  <path d="M -10 -8 Q 100 20 176 44" stroke-width="8"/>
+  <!-- bottom-left fern overhang -->
+  <path d="M -12 612 Q 60 560 110 520" stroke-width="9"/>
+  <path d="M -12 612 Q 36 552 60 500" stroke-width="7"/>
+  <!-- top-right -->
+  <path d="M 1010 -8 Q 930 40 850 100" stroke-width="11"/>
+  <path d="M 1010 -8 Q 956 64 916 140" stroke-width="9"/>
+  <path d="M 1010 -8 Q 900 20 824 44" stroke-width="8"/>
+  <!-- bottom-right fern overhang -->
+  <path d="M 1012 612 Q 940 560 890 520" stroke-width="9"/>
+  <path d="M 1012 612 Q 964 552 940 500" stroke-width="7"/>
+</g>
+<!-- foreground broad leaf silhouettes (lower corners) -->
+<g fill="#0f2417" opacity=".5" filter="url(#soft-blur)">
+  <path d="M -20 600 Q 30 540 90 560 Q 50 590 30 600 Z"/>
+  <path d="M 1020 600 Q 970 540 910 560 Q 950 590 970 600 Z"/>
+</g>
+
+<!-- NIGHT OVERLAY -->
+<rect id="night-overlay" width="1000" height="600" fill="#020617" opacity="0"/>
+</svg>
+
+<!-- ══ MARCUS ══════════════════════════════════════════════ -->
+<div class="char" id="char-marcus">
+  <div class="bubble" id="bubble-marcus">
+    <div class="bubble-name">Marcus</div>
+    <span class="bubble-text" id="thought-marcus">…</span>
+  </div>
+  <svg class="char-svg" id="svg-marcus" width="19" height="45" viewBox="-20 -92 40 96">
+    <ellipse cx="-7" cy="-2" rx="8.5" ry="3.5" fill="#111827"/>
+    <ellipse cx="7" cy="-2" rx="8.5" ry="3.5" fill="#111827"/>
+    <rect x="-12" y="-28" width="10.5" height="27" rx="3" fill="#1e2d40"/>
+    <rect x="1.5" y="-28" width="10.5" height="27" rx="3" fill="#1e2d40"/>
+    <rect x="-13" y="-57" width="26" height="31" rx="4" fill="#1e3a5f"/>
+    <polygon points="-7,-57 0,-48 0,-57" fill="#162d4a"/>
+    <polygon points="7,-57 0,-48 0,-57" fill="#162d4a"/>
+    <path d="M -13 -53 C -22 -43 -21 -32 -20 -27" stroke="#1e3a5f" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M 13 -53 C 22 -43 21 -32 20 -27" stroke="#1e3a5f" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <circle cx="-20" cy="-26" r="5.5" fill="#c8a47a"/>
+    <circle cx="20" cy="-26" r="5.5" fill="#c8a47a"/>
+    <rect x="-4.5" y="-64" width="9" height="9" rx="2.5" fill="#c8a47a"/>
+    <ellipse cx="0" cy="-72" rx="13.5" ry="13" fill="#c8a47a"/>
+    <path d="M -13.5 -72 C -13.5 -88 -5 -86 0 -86 C 5 -86 13.5 -88 13.5 -72" fill="#221408"/>
+    <rect x="-13.5" y="-79" width="27" height="7" fill="#221408"/>
+    <path id="brow-l-marcus" d="M -9 -77.5 L -3 -76" stroke="#221408" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-marcus" d="M 3 -76 L 9 -77.5" stroke="#221408" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+    <g id="eyes-normal-marcus">
+      <ellipse cx="-5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/>
+      <circle cx="-5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/><circle cx="5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/>
+    </g>
+    <g id="eyes-wide-marcus" display="none">
+      <ellipse cx="-5.5" cy="-72.5" rx="3.8" ry="3.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3.8" ry="3.5" fill="white"/>
+      <circle cx="-5.5" cy="-72" r="2.2" fill="#1a1a1a"/><circle cx="5.5" cy="-72" r="2.2" fill="#1a1a1a"/>
+      <circle cx="-4.4" cy="-73.5" r=".75" fill="white"/><circle cx="6.6" cy="-73.5" r=".75" fill="white"/>
+    </g>
+    <g id="eyes-narrow-marcus" display="none">
+      <path d="M -8.5 -72.5 Q -5.5 -70.5 -2.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 2.5 -72.5 Q 5.5 -70.5 8.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-marcus" display="none">
+      <path d="M -8.5 -72.5 Q -5.5 -69.5 -2.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#c8a47a" stroke-linecap="round"/>
+      <path d="M 2.5 -72.5 Q 5.5 -69.5 8.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#c8a47a" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-marcus" display="none">
+      <ellipse cx="-5.5" cy="-71.5" rx="3" ry="1.8" fill="white"/><ellipse cx="5.5" cy="-71.5" rx="3" ry="1.8" fill="white"/>
+      <circle cx="-5.5" cy="-71.5" r="1.4" fill="#1a1a1a"/><circle cx="5.5" cy="-71.5" r="1.4" fill="#1a1a1a"/>
+      <path d="M -8.5 -71.5 Q -5.5 -74.5 -2.5 -71.5" fill="#c8a47a"/>
+      <path d="M 2.5 -71.5 Q 5.5 -74.5 8.5 -71.5" fill="#c8a47a"/>
+    </g>
+    <g id="eyes-heart-marcus" display="none">
+      <path d="M -7.5 -73.5 Q -7.5 -76.5 -5.5 -75 Q -3.5 -76.5 -3.5 -73.5 Q -3.5 -71 -5.5 -69.5 Q -7.5 -71 -7.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 3.5 -73.5 Q 3.5 -76.5 5.5 -75 Q 7.5 -76.5 7.5 -73.5 Q 7.5 -71 5.5 -69.5 Q 3.5 -71 3.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-marcus" display="none">
+      <ellipse cx="-5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/>
+      <circle cx="-5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/><circle cx="5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/>
+      <ellipse cx="-5.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="5.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-marcus" display="none">
+      <ellipse cx="-9.5" cy="-67.5" rx="5.5" ry="2.8" fill="#fda4af" opacity=".5"/>
+      <ellipse cx="9.5" cy="-67.5" rx="5.5" ry="2.8" fill="#fda4af" opacity=".5"/>
+    </g>
+    <path id="mouth-marcus" d="M -4 -64.5 L 4 -64.5" stroke="#9a6e4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="nametag">Marcus</div>
+  <div class="stat-card right" id="sc-marcus"></div>
+</div>
+
+<!-- ══ RYAN ═══════════════════════════════════════════════ -->
+<div class="char" id="char-ryan">
+  <div class="bubble" id="bubble-ryan">
+    <div class="bubble-name">Ryan</div>
+    <span class="bubble-text" id="thought-ryan">…</span>
+  </div>
+  <svg class="char-svg" id="svg-ryan" width="19" height="45" viewBox="-20 -92 40 96">
+    <ellipse cx="-7" cy="-2" rx="8.5" ry="3.5" fill="#5c3d1e"/>
+    <ellipse cx="7" cy="-2" rx="8.5" ry="3.5" fill="#5c3d1e"/>
+    <rect x="-12" y="-28" width="10.5" height="27" rx="3" fill="#a08038"/>
+    <rect x="1.5" y="-28" width="10.5" height="27" rx="3" fill="#a08038"/>
+    <rect x="-13" y="-57" width="26" height="31" rx="4" fill="#d97706"/>
+    <path d="M -13 -53 C -22 -43 -21 -32 -20 -27" stroke="#d97706" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M 13 -53 C 22 -43 21 -32 20 -27" stroke="#d97706" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <circle cx="-20" cy="-26" r="5.5" fill="#c8a47a"/>
+    <circle cx="20" cy="-26" r="5.5" fill="#c8a47a"/>
+    <rect x="-4.5" y="-64" width="9" height="9" rx="2.5" fill="#c8a47a"/>
+    <ellipse cx="0" cy="-72" rx="13.5" ry="13" fill="#c8a47a"/>
+    <path d="M -13.5 -72 C -13.5 -87 -5 -86 0 -86 C 5 -86 13.5 -87 13.5 -72" fill="#5c3418"/>
+    <rect x="-13.5" y="-79" width="27" height="7" fill="#5c3418"/>
+    <path d="M -4 -85 C -1 -91 1 -91 4 -85" fill="#5c3418"/>
+    <path id="brow-l-ryan" d="M -9 -76 Q -6 -78 -2 -77.5" stroke="#5c3418" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-ryan" d="M 2 -77.5 Q 6 -78 9 -76" stroke="#5c3418" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <g id="eyes-normal-ryan">
+      <ellipse cx="-5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/>
+      <circle cx="-5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/><circle cx="5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/>
+    </g>
+    <g id="eyes-wide-ryan" display="none">
+      <ellipse cx="-5.5" cy="-72.5" rx="3.8" ry="3.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3.8" ry="3.5" fill="white"/>
+      <circle cx="-5.5" cy="-72" r="2.2" fill="#1a1a1a"/><circle cx="5.5" cy="-72" r="2.2" fill="#1a1a1a"/>
+      <circle cx="-4.4" cy="-73.5" r=".75" fill="white"/><circle cx="6.6" cy="-73.5" r=".75" fill="white"/>
+    </g>
+    <g id="eyes-narrow-ryan" display="none">
+      <path d="M -8.5 -72.5 Q -5.5 -70.5 -2.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 2.5 -72.5 Q 5.5 -70.5 8.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-ryan" display="none">
+      <path d="M -8.5 -72.5 Q -5.5 -69.5 -2.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#c8a47a" stroke-linecap="round"/>
+      <path d="M 2.5 -72.5 Q 5.5 -69.5 8.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#c8a47a" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-ryan" display="none">
+      <ellipse cx="-5.5" cy="-71.5" rx="3" ry="1.8" fill="white"/><ellipse cx="5.5" cy="-71.5" rx="3" ry="1.8" fill="white"/>
+      <circle cx="-5.5" cy="-71.5" r="1.4" fill="#1a1a1a"/><circle cx="5.5" cy="-71.5" r="1.4" fill="#1a1a1a"/>
+      <path d="M -8.5 -71.5 Q -5.5 -74.5 -2.5 -71.5" fill="#c8a47a"/>
+      <path d="M 2.5 -71.5 Q 5.5 -74.5 8.5 -71.5" fill="#c8a47a"/>
+    </g>
+    <g id="eyes-heart-ryan" display="none">
+      <path d="M -7.5 -73.5 Q -7.5 -76.5 -5.5 -75 Q -3.5 -76.5 -3.5 -73.5 Q -3.5 -71 -5.5 -69.5 Q -7.5 -71 -7.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 3.5 -73.5 Q 3.5 -76.5 5.5 -75 Q 7.5 -76.5 7.5 -73.5 Q 7.5 -71 5.5 -69.5 Q 3.5 -71 3.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-ryan" display="none">
+      <ellipse cx="-5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/><ellipse cx="5.5" cy="-72.5" rx="3" ry="2.5" fill="white"/>
+      <circle cx="-5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/><circle cx="5.5" cy="-72.5" r="1.7" fill="#1a1a1a"/>
+      <ellipse cx="-5.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="5.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-ryan" display="none">
+      <ellipse cx="-9.5" cy="-67.5" rx="5.5" ry="2.8" fill="#fda4af" opacity=".5"/>
+      <ellipse cx="9.5" cy="-67.5" rx="5.5" ry="2.8" fill="#fda4af" opacity=".5"/>
+    </g>
+    <path id="mouth-ryan" d="M -4.5 -64.5 Q 0 -61 4.5 -64.5" stroke="#9a6e4a" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="nametag">Ryan</div>
+  <div class="stat-card right" id="sc-ryan"></div>
+</div>
+
+<!-- ══ JADE ════════════════════════════════════════════════ -->
+<div class="char" id="char-jade">
+  <div class="bubble" id="bubble-jade">
+    <div class="bubble-name">Jade</div>
+    <span class="bubble-text" id="thought-jade">…</span>
+  </div>
+  <svg class="char-svg" id="svg-jade" width="19" height="45" viewBox="-20 -92 40 96">
+    <!-- Back hair curls (behind body) -->
+    <path d="M -11 -74 C -18 -64 -20 -54 -18 -43 C -16 -33 -20 -25 -18 -14 C -16 -5 -19 1 -17 6" stroke="#1a0804" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <path d="M 11 -74 C 18 -64 20 -54 18 -43 C 16 -33 20 -25 18 -14 C 16 -5 19 1 17 6" stroke="#1a0804" stroke-width="9" fill="none" stroke-linecap="round"/>
+    <!-- Heeled shoes -->
+    <ellipse cx="-5" cy="-1" rx="5.5" ry="2" fill="#8b1a4e"/>
+    <rect x="-8" y="-4" width="2" height="4" rx="1" fill="#6b0e3a"/>
+    <ellipse cx="5" cy="-1" rx="5.5" ry="2" fill="#8b1a4e"/>
+    <rect x="6" y="-4" width="2" height="4" rx="1" fill="#6b0e3a"/>
+    <!-- Legs (below dress hem) -->
+    <rect x="-6.5" y="-17" width="5.5" height="17" rx="2.5" fill="#f5dcc8"/>
+    <rect x="1" y="-17" width="5.5" height="17" rx="2.5" fill="#f5dcc8"/>
+    <!-- Bodycon dress — hourglass silhouette -->
+    <path d="M -10 -56 C -12 -50 -13 -44 -12 -37 C -11 -30 -12 -24 -10 -17 L 10 -17 C 12 -24 11 -30 12 -37 C 13 -44 12 -50 10 -56 Z" fill="#e8356e"/>
+    <!-- Sweetheart neckline -->
+    <path d="M -10 -56 C -8 -59 -3 -60 0 -59 C 3 -60 8 -59 10 -56 Z" fill="#e8356e"/>
+    <!-- Dress sheen highlight -->
+    <path d="M -7 -55 C -8 -47 -9 -38 -8 -30" stroke="white" stroke-width="1.2" fill="none" stroke-linecap="round" opacity=".18"/>
+    <!-- Bare arms -->
+    <path d="M -10 -55 C -16 -48 -17 -40 -16 -32" stroke="#f5dcc8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 10 -55 C 16 -48 17 -40 16 -32" stroke="#f5dcc8" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="-16" cy="-31" r="3.8" fill="#f5dcc8"/>
+    <circle cx="16" cy="-31" r="3.8" fill="#f5dcc8"/>
+    <!-- Neck -->
+    <rect x="-3.5" y="-64" width="7" height="9" rx="2" fill="#f5dcc8"/>
+    <!-- Head — fair skin -->
+    <ellipse cx="0" cy="-72" rx="11.5" ry="11.5" fill="#f5dcc8"/>
+    <!-- Hair cap -->
+    <path d="M -11.5 -72 C -13 -88 -5 -87 0 -88 C 5 -87 13 -88 11.5 -72" fill="#1a0804"/>
+    <rect x="-11.5" y="-80" width="23" height="8" fill="#1a0804"/>
+    <!-- Volume bumps on sides -->
+    <ellipse cx="-14" cy="-81" rx="5" ry="6.5" fill="#1a0804"/>
+    <ellipse cx="14" cy="-81" rx="5" ry="6.5" fill="#1a0804"/>
+    <!-- Front curl strands over shoulders -->
+    <path d="M -11 -76 C -15 -67 -17 -58 -15 -48 C -13 -39 -16 -33 -14 -23" stroke="#1a0804" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
+    <path d="M 11 -76 C 15 -67 17 -58 15 -48 C 13 -39 16 -33 14 -23" stroke="#1a0804" stroke-width="5" fill="none" stroke-linecap="round" opacity=".85"/>
+    <!-- Face elements — all IDs preserved -->
+    <path id="brow-l-jade" d="M -8 -76 Q -5 -78 -1 -77.5" stroke="#1a0804" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-jade" d="M 1 -77.5 Q 5 -78 8 -76" stroke="#1a0804" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+    <g id="eyes-normal-jade">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/>
+    </g>
+    <g id="eyes-wide-jade" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/>
+      <circle cx="-4.5" cy="-72" r="2.3" fill="#1a1a1a"/><circle cx="4.5" cy="-72" r="2.3" fill="#1a1a1a"/>
+      <circle cx="-3.4" cy="-73.6" r=".8" fill="white"/><circle cx="5.6" cy="-73.6" r=".8" fill="white"/>
+    </g>
+    <g id="eyes-narrow-jade" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -70.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -70.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-jade" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -69.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#f5dcc8" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -69.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="#f5dcc8" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-jade" display="none">
+      <ellipse cx="-4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/><ellipse cx="4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/>
+      <circle cx="-4.5" cy="-71.5" r="1.5" fill="#1a1a1a"/><circle cx="4.5" cy="-71.5" r="1.5" fill="#1a1a1a"/>
+      <path d="M -7.7 -71.5 Q -4.5 -74.8 -1.3 -71.5" fill="#f5dcc8"/>
+      <path d="M 1.3 -71.5 Q 4.5 -74.8 7.7 -71.5" fill="#f5dcc8"/>
+    </g>
+    <g id="eyes-heart-jade" display="none">
+      <path d="M -6.5 -73.5 Q -6.5 -76.5 -4.5 -75 Q -2.5 -76.5 -2.5 -73.5 Q -2.5 -71 -4.5 -69.5 Q -6.5 -71 -6.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 2.5 -73.5 Q 2.5 -76.5 4.5 -75 Q 6.5 -76.5 6.5 -73.5 Q 6.5 -71 4.5 -69.5 Q 2.5 -71 2.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-jade" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/>
+      <ellipse cx="-4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-jade" display="none">
+      <ellipse cx="-8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+      <ellipse cx="8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+    </g>
+    <!-- Lips with rose tint -->
+    <path id="mouth-jade" d="M -3.5 -64.5 Q 0 -61.5 3.5 -64.5" stroke="#c0356e" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="nametag">Jade</div>
+  <div class="stat-card left" id="sc-jade"></div>
+</div>
+
+<!-- ══ JUDY ════════════════════════════════════════════════ -->
+<div class="char" id="char-judy">
+  <div class="bubble" id="bubble-judy">
+    <div class="bubble-name">Judy</div>
+    <span class="bubble-text" id="thought-judy">…</span>
+  </div>
+  <svg class="char-svg" id="svg-judy" width="19" height="45" viewBox="-20 -92 40 96">
+    <!-- Back wet hair — straight, plastered down -->
+    <path d="M -10 -74 C -14 -63 -15 -51 -14 -38 C -13 -24 -14 -12 -13 -1" stroke="#0d0d0d" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <path d="M 10 -74 C 14 -63 15 -51 14 -38 C 13 -24 14 -12 13 -1" stroke="#0d0d0d" stroke-width="10" fill="none" stroke-linecap="round"/>
+    <!-- Flat shoes -->
+    <ellipse cx="-5" cy="-1" rx="6" ry="2" fill="#1f2937"/>
+    <ellipse cx="5" cy="-1" rx="6" ry="2" fill="#1f2937"/>
+    <!-- Legs — dark pants -->
+    <rect x="-6.5" y="-17" width="5.5" height="17" rx="2.5" fill="#374151"/>
+    <rect x="1" y="-17" width="5.5" height="17" rx="2.5" fill="#374151"/>
+    <!-- Maternity top — pregnant belly silhouette -->
+    <path d="M -10 -56 C -13 -50 -17 -44 -17 -37 C -17 -30 -12 -24 -10 -17 L 10 -17 C 12 -24 17 -30 17 -37 C 17 -44 13 -50 10 -56 Z" fill="#2dd4bf"/>
+    <!-- Neckline -->
+    <path d="M -10 -56 C -8 -59 -3 -60 0 -59 C 3 -60 8 -59 10 -56 Z" fill="#2dd4bf"/>
+    <!-- Belly highlight — makes the bump read as round -->
+    <ellipse cx="0" cy="-36" rx="10.5" ry="8.5" fill="white" opacity=".08"/>
+    <circle cx="0" cy="-35" r="1.4" fill="rgba(0,0,0,.18)"/>
+    <!-- Wet fabric wrinkle -->
+    <path d="M -6 -55 C -7 -47 -8 -40 -7 -33" stroke="rgba(0,0,0,.12)" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+    <!-- Arms — both hands toward belly -->
+    <path d="M -10 -55 C -17 -48 -18 -41 -16 -35" stroke="#e0c090" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <path d="M 10 -55 C 17 -48 18 -41 16 -35" stroke="#e0c090" stroke-width="6" fill="none" stroke-linecap="round"/>
+    <circle cx="-16" cy="-34" r="3.8" fill="#e0c090"/>
+    <circle cx="16" cy="-34" r="3.8" fill="#e0c090"/>
+    <!-- Neck -->
+    <rect x="-3.5" y="-64" width="7" height="9" rx="2" fill="#e0c090"/>
+    <!-- Head -->
+    <ellipse cx="0" cy="-72" rx="11.5" ry="11.5" fill="#e0c090"/>
+    <!-- Hair cap — flat and wet -->
+    <path d="M -11.5 -72 C -12 -87 -5 -86 0 -87 C 5 -86 12 -87 11.5 -72" fill="#0d0d0d"/>
+    <rect x="-11.5" y="-80" width="23" height="8" fill="#0d0d0d"/>
+    <!-- Wet hair clinging to sides -->
+    <path d="M -10 -75 C -13 -66 -13 -56 -12 -47 C -11 -37 -12 -28 -11 -20" stroke="#0d0d0d" stroke-width="4" fill="none" stroke-linecap="round" opacity=".88"/>
+    <path d="M 10 -75 C 13 -66 13 -56 12 -47 C 11 -37 12 -28 11 -20" stroke="#0d0d0d" stroke-width="4" fill="none" stroke-linecap="round" opacity=".88"/>
+    <!-- Stray strand across face -->
+    <path d="M -7 -77 Q -9 -71 -8 -65" stroke="#0d0d0d" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".65"/>
+    <!-- Eyebrows — furrowed with worry -->
+    <path id="brow-l-judy" d="M -8 -78 Q -5 -80.5 -1 -79" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-judy" d="M 1 -79 Q 5 -80.5 8 -78" stroke="#0d0d0d" stroke-width="1.5" stroke-linecap="round" fill="none"/>
+    <!-- Eyes — 7 states -->
+    <g id="eyes-normal-judy">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#0d0d0d"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#0d0d0d"/>
+    </g>
+    <g id="eyes-wide-judy" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/>
+      <circle cx="-4.5" cy="-72" r="2.3" fill="#0d0d0d"/><circle cx="4.5" cy="-72" r="2.3" fill="#0d0d0d"/>
+      <circle cx="-3.4" cy="-73.6" r=".8" fill="white"/><circle cx="5.6" cy="-73.6" r=".8" fill="white"/>
+    </g>
+    <g id="eyes-narrow-judy" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -70.5 -1.5 -72.5" stroke="#0d0d0d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -70.5 7.5 -72.5" stroke="#0d0d0d" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-judy" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -69.5 -1.5 -72.5" stroke="#0d0d0d" stroke-width="2.5" fill="#e0c090" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -69.5 7.5 -72.5" stroke="#0d0d0d" stroke-width="2.5" fill="#e0c090" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-judy" display="none">
+      <ellipse cx="-4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/><ellipse cx="4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/>
+      <circle cx="-4.5" cy="-71.5" r="1.5" fill="#0d0d0d"/><circle cx="4.5" cy="-71.5" r="1.5" fill="#0d0d0d"/>
+      <path d="M -7.7 -71.5 Q -4.5 -74.8 -1.3 -71.5" fill="#e0c090"/>
+      <path d="M 1.3 -71.5 Q 4.5 -74.8 7.7 -71.5" fill="#e0c090"/>
+    </g>
+    <g id="eyes-heart-judy" display="none">
+      <path d="M -6.5 -73.5 Q -6.5 -76.5 -4.5 -75 Q -2.5 -76.5 -2.5 -73.5 Q -2.5 -71 -4.5 -69.5 Q -6.5 -71 -6.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 2.5 -73.5 Q 2.5 -76.5 4.5 -75 Q 6.5 -76.5 6.5 -73.5 Q 6.5 -71 4.5 -69.5 Q 2.5 -71 2.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-judy" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#0d0d0d"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#0d0d0d"/>
+      <ellipse cx="-4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-judy" display="none">
+      <ellipse cx="-8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+      <ellipse cx="8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+    </g>
+    <!-- Mouth — slightly open, exhausted -->
+    <path id="mouth-judy" d="M -3 -64.5 Q 0 -62 3 -64.5" stroke="#c06060" stroke-width="1.8" stroke-linecap="round" fill="none"/>
+  </svg>
+  <div class="nametag">Judy</div>
+  <div class="stat-card left" id="sc-judy"></div>
+</div>
+
+<!-- ══ ORACLE WIDGET ═══════════════════════════════════════ -->
+<!-- Island Oracle widget removed from the UI on purpose — the Oracle still runs every
+     midnight in the engine and its fate still shapes the story; we just no longer reveal
+     the upcoming/active fate on screen, to keep the suspense for readers. -->
+
+
+<!-- ══ CHAT PANEL ══════════════════════════════════════════ -->
+<div id="chat-panel">
+  <div id="feed-pill"></div>
+  <div id="chat-header" onclick="toggleFeed()">
+    <span id="feed-label"><span id="chat-dot"></span>🌿 JUNGLE FEED</span>
+    <span id="chat-chevron">▲</span>
+  </div>
+  <div id="chat-feed"></div>
+</div>
+
+<!-- ══ HUD ════════════════════════════════════════════════ -->
+<div id="hud">
+  <span class="hud-day" id="day-label">Day 1</span>
+  <span class="hud-sep">·</span>
+  <span id="cycle-label">—</span>
+  <span class="hud-sep">·</span>
+
+  <div id="status-strip">
+    <div class="stp" id="stp-morning">🌅 7am</div>
+    <span class="stp-arr">›</span>
+    <div class="stp" id="stp-midday">☀️ 12:30pm</div>
+    <span class="stp-arr">›</span>
+    <div class="stp" id="stp-evening">🌆 6pm</div>
+    <span class="stp-arr">›</span>
+    <div class="stp" id="stp-night">🌙 11pm</div>
+  </div>
+
+  <div id="status-info">
+    Last&nbsp;<span id="status-last">—</span>&nbsp;·&nbsp;Next&nbsp;<span id="status-next">—</span>&nbsp;(<span id="status-countdown">—</span>)
+  </div>
+  <span id="status-msg"></span>
+
+  <div class="hud-actions">
+    <a id="story-btn" href="story.html">📖 Story</a>
+  </div>
+</div>
+
+</div><!-- #world -->
+
+<script>
+// ── FACE DATA ─────────────────────────────────────────────
+const EYE_STATES = ['normal','wide','narrow','happy','bedroom','heart','teary']
+
+const FACES = {
+  happy:       { bl:'M -9 -79 Q -6 -81 -3 -79',      br:'M 3 -79 Q 6 -81 9 -79',      eyes:'happy',   blush:false,
+                 mouth:{marcus:'M -5 -64.5 Q 0 -59.5 5 -64.5',ryan:'M -5 -64.5 Q 0 -59 5 -64.5',jade:'M -4 -64.5 Q 0 -59.5 4 -64.5'}},
+  calm:        { bl:'M -9 -77.5 Q -6 -79.5 -3 -77.5', br:'M 3 -77.5 Q 6 -79.5 9 -77.5', eyes:'normal', blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -62 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -61.5 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -62 3.5 -64.5'}},
+  neutral:     { bl:'M -9 -77.5 L -3 -76',            br:'M 3 -76 L 9 -77.5',           eyes:'normal', blush:false,
+                 mouth:{marcus:'M -4 -64.5 L 4 -64.5',ryan:'M -4.5 -64.5 L 4.5 -64.5',jade:'M -3.5 -64.5 L 3.5 -64.5'}},
+  hopeful:     { bl:'M -9 -78.5 Q -6 -80 -3 -78',    br:'M 3 -78 Q 6 -80 9 -78.5',    eyes:'normal', blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -61.5 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -61.5 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -61.5 3.5 -64.5'}},
+  guarded:     { bl:'M -9 -77.5 Q -6 -78 -3 -77',    br:'M 3 -77 Q 6 -78 9 -77.5',    eyes:'narrow', blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -65.5 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -65.5 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -65.2 3.5 -64.5'}},
+  sad:         { bl:'M -9 -76 Q -6 -79 -3 -76',      br:'M 3 -76 Q 6 -79 9 -76',       eyes:'narrow', blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -67.5 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -67.5 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -67 3.5 -64.5'}},
+  heartbroken: { bl:'M -9 -76 Q -6 -79 -3 -76',      br:'M 3 -76 Q 6 -79 9 -76',       eyes:'teary',  blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q -1 -66.5 0 -65 Q 1 -66.5 4 -64.5',ryan:'M -4.5 -64.5 Q -1 -66.5 0 -65 Q 1 -66.5 4.5 -64.5',jade:'M -3.5 -64.5 Q -1 -66 0 -65 Q 1 -66 3.5 -64.5'}},
+  angry:       { bl:'M -9 -76 L -3 -79',              br:'M 3 -79 L 9 -76',              eyes:'narrow', blush:false,
+                 mouth:{marcus:'M -4 -63.5 Q 0 -65.5 4 -63.5',ryan:'M -4.5 -63.5 Q 0 -65.5 4.5 -63.5',jade:'M -3.5 -63.5 Q 0 -65 3.5 -63.5'}},
+  shocked:     { bl:'M -9 -80 Q -6 -82.5 -3 -80',    br:'M 3 -80 Q 6 -82.5 9 -80',     eyes:'wide',   blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -62 4 -64.5 Q 0 -67 -4 -64.5',ryan:'M -4 -64.5 Q 0 -62 4 -64.5 Q 0 -67 -4 -64.5',jade:'M -3.5 -64.5 Q 0 -62 3.5 -64.5 Q 0 -66.5 -3.5 -64.5'}},
+  flirtatious: { bl:'M -9 -77.5 L -3 -77',            br:'M 3 -80 Q 6 -82 9 -79',       eyes:'bedroom',blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 1 -62 4 -64',ryan:'M -4.5 -64.5 Q 1 -62 4 -63.5',jade:'M -3.5 -64.5 Q 1 -62 3.5 -63.5'}},
+  smitten:     { bl:'M -9 -79 Q -6 -81 -3 -79',      br:'M 3 -79 Q 6 -81 9 -79',       eyes:'heart',  blush:false,
+                 mouth:{marcus:'M -5 -64.5 Q 0 -59.5 5 -64.5',ryan:'M -5 -64.5 Q 0 -59 5 -64.5',jade:'M -4 -64.5 Q 0 -59.5 4 -64.5'}},
+  jealous:     { bl:'M -9 -76 L -3 -78.5',            br:'M 3 -77.5 L 9 -78',           eyes:'narrow', blush:false,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -65.8 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -65.8 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -65.5 3.5 -64.5'}},
+  embarrassed: { bl:'M -9 -78 Q -6 -79.5 -3 -77.5',  br:'M 3 -77.5 Q 6 -79.5 9 -78',  eyes:'normal', blush:true,
+                 mouth:{marcus:'M -3 -64.5 Q 0 -62.5 3 -64.5',ryan:'M -3.5 -64.5 Q 0 -62 3.5 -64.5',jade:'M -3 -64.5 Q 0 -62.5 3 -64.5'}},
+  lustful:     { bl:'M -9 -77 Q -6 -78 -3 -77',      br:'M 3 -77 Q 6 -78 9 -77',       eyes:'bedroom',blush:true,
+                 mouth:{marcus:'M -4 -64.5 Q 0 -62 4 -64.5',ryan:'M -4.5 -64.5 Q 0 -62 4.5 -64.5',jade:'M -3.5 -64.5 Q 0 -62 3.5 -64.5'}},
+}
+
+const MOOD_MAP = {
+  happy:'happy',cheerful:'happy',joyful:'happy',elated:'happy',excited:'happy',giddy:'happy',
+  calm:'calm',content:'calm',peaceful:'calm',serene:'calm',free:'calm',relaxed:'calm',warm:'calm',
+  neutral:'neutral',okay:'neutral',fine:'neutral',
+  hopeful:'hopeful',optimistic:'hopeful',curious:'hopeful',
+  guarded:'guarded',distant:'guarded',cold:'guarded',restless:'guarded',pensive:'guarded',
+  thoughtful:'neutral',reflective:'neutral',
+  sad:'sad',lonely:'sad',melancholy:'sad',down:'sad',gloomy:'sad',
+  heartbroken:'heartbroken',devastated:'heartbroken',grieving:'heartbroken',hurt:'heartbroken',
+  angry:'angry',frustrated:'angry',irritated:'angry',furious:'angry',annoyed:'angry',
+  shocked:'shocked',surprised:'shocked',stunned:'shocked',shaken:'shocked',overwhelmed:'shocked',terrified:'shocked',
+  flirtatious:'flirtatious',playful:'flirtatious',teasing:'flirtatious',coy:'flirtatious',mischievous:'flirtatious',
+  smitten:'smitten',lovestruck:'smitten',infatuated:'smitten',adoring:'smitten',tender:'smitten',
+  jealous:'jealous',envious:'jealous',possessive:'jealous',insecure:'jealous',
+  embarrassed:'embarrassed',flustered:'embarrassed',shy:'embarrassed',bashful:'embarrassed',sheepish:'embarrassed',
+  lustful:'lustful',seductive:'lustful',longing:'lustful',yearning:'lustful',
+  // ── extra vocabulary the narrator actually produces ──
+  grateful:'happy',thankful:'happy',eager:'happy',energetic:'happy',lively:'happy',delighted:'happy',
+  proud:'happy',relieved:'happy',upbeat:'happy',gleeful:'happy',
+  quiet:'calm',reserved:'calm',mellow:'calm',soothed:'calm',gentle:'calm',tranquil:'calm',
+  inspired:'hopeful',encouraged:'hopeful',expectant:'hopeful',
+  wary:'guarded',watchful:'guarded',alert:'guarded',vigilant:'guarded',cautious:'guarded',
+  determined:'guarded',focused:'guarded',resolute:'guarded',intent:'guarded',suspicious:'guarded',
+  defensive:'guarded',tense:'guarded',uneasy:'guarded',apprehensive:'guarded',nervous:'guarded',
+  concerned:'sad',worried:'sad',anxious:'sad',troubled:'sad',withdrawn:'sad',disheartened:'sad',
+  somber:'sad',wistful:'sad',forlorn:'sad',dejected:'sad',
+  scared:'shocked',afraid:'shocked',frightened:'shocked',alarmed:'shocked',startled:'shocked',panicked:'shocked',
+}
+
+// Fallback: map ANY unknown mood word to the closest expression by keyword stems,
+// so the AI's open-ended mood vocabulary always produces a real face (not blank neutral).
+const MOOD_KEYWORDS = [
+  [['terr','scare','afraid','fright','panic','horrif','alarm','startl'],'shocked'],
+  [['shock','stun','surpris','astonish'],'shocked'],
+  [['heartbr','devastat','griev','crush','anguish','despair','sorrow'],'heartbroken'],
+  [['angr','furious','rage','irrita','frustrat','annoy','resent','bitter','indignant','agitat'],'angry'],
+  [['jealous','envious','possess','insecur'],'jealous'],
+  [['lust','desire','yearn','crav'],'lustful'],
+  [['smitten','adore','infatuat','enamor','tender','lovestruck'],'smitten'],
+  [['flirt','tease','playful','coy','mischiev','flirta'],'flirtatious'],
+  [['embarrass','flus','bashful','sheepish','self-consc'],'embarrassed'],
+  [['worri','concern','anxious','nervous','troubl','uneas','apprehens','distress','dread'],'sad'],
+  [['sad','lonel','melanch','gloom','withdraw','somber','forlorn','wistful','deject','down','blue','heavy','exhaust','weary','tired','drain','spent','fatigu','numb','defeat','hopeless','vulnerable'],'sad'],
+  [['happy','joy','glad','cheer','eager','excit','elat','giddy','deligh','glee','energ','lively','upbeat','grate','thank','proud','reliev','content','warm'],'happy'],
+  [['calm','peace','seren','relax','quiet','mellow','tranquil','soothe','gentle','reserv','soft'],'calm'],
+  [['hope','optimis','curious','inspir','encourag','expect','wishful'],'hopeful'],
+  [['guard','wary','watch','caut','distant','cold','suspic','defensiv','vigil','tense','alert','determin','focus','resolv','intent','restless','closed','steel','firm','stoic','protect','steadfast','brace','grim','serious','reluctant'],'guarded'],
+  [['smug','smirk','cocky','sly','confiden','proud'],'flirtatious'],
+  [['shy','timid'],'embarrassed'],
+  [['thought','reflect','pensiv','contempl','wonder'],'neutral'],
+]
+function moodKeywordFace(mk){
+  for(const [stems,face] of MOOD_KEYWORDS){ if(stems.some(s=>mk.includes(s))) return face }
+  return null
+}
+
+// ── SGT TIME ─────────────────────────────────────────────
+const RUN_HOURS = [7,12,18,23]
+const CYCLE_NAMES = {7:'morning',12:'midday',18:'evening',23:'night'}
+
+function getSGT() {
+  const now = new Date()
+  return new Date(now.getTime() + now.getTimezoneOffset()*60000 + 8*3600000)
+}
+
+function skyFromHour(h) {
+  if(h>=23||h<7)  return 'night'
+  if(h<12) return 'morning'
+  if(h<18) return 'midday'
+  return 'evening'
+}
+
+function fmtTime(sgt) {
+  const h=sgt.getHours(), m=String(sgt.getMinutes()).padStart(2,'0')
+  const ap=h>=12?'pm':'am', dh=h%12||12
+  return `${dh}:${m}${ap}`
+}
+
+const RUN_MINUTES = [{h:7,m:0},{h:12,m:30},{h:18,m:0},{h:23,m:0}]
+function nextRun(sgt) {
+  const total=sgt.getHours()*60+sgt.getMinutes()
+  let nr=RUN_MINUTES.find(r=>r.h*60+r.m>total)
+  if(!nr) nr={h:RUN_MINUTES[0].h+24,m:RUN_MINUTES[0].m}
+  const diff=nr.h*60+nr.m-total, dh=Math.floor(diff/60), dm=diff%60
+  const h24=nr.h%24, ap=h24>=12?'pm':'am', h12=h24%12||12
+  const mStr=nr.m>0?`:${String(nr.m).padStart(2,'0')}`:':00'
+  return { time:`${h12}${mStr}${ap}`, cd:dh>0?`${dh}h ${dm}m`:`${dm}m` }
+}
+
+function applySky(sky) {
+  document.getElementById('sky-bg')?.setAttribute('fill',`url(#sky-${sky})`)
+  const isNight=sky==='night'||sky==='dawn'
+  document.getElementById('sun-group')?.setAttribute('opacity',isNight?'0':'1')
+  document.getElementById('sun-reflection')?.setAttribute('opacity',isNight?'0':'.85')
+  document.getElementById('moon-group')?.setAttribute('opacity',isNight?'1':'0')
+  document.getElementById('moon-halo-c')?.setAttribute('opacity',isNight?'1':'0')
+  document.getElementById('night-stars')?.setAttribute('opacity',isNight?'1':'0')
+  document.getElementById('fire-glow')?.setAttribute('opacity',isNight?'1':'0')
+  document.getElementById('fireflies')?.setAttribute('opacity',isNight?'1':'0')
+  document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
+  drawStars(isNight)
+  document.getElementById('world').className=isNight?'night':sky
+}
+
+function updateStatusBar() {
+  const sgt=getSGT()
+  const {time,cd}=nextRun(sgt)
+  document.getElementById('status-next').textContent=time
+  document.getElementById('status-countdown').textContent=cd
+
+  let lastStr='—'
+  if(S.feed&&S.feed.length>0) {
+    const lastRun=[...S.feed].reverse().find(e=>e.type!=='birth')
+    const ts=lastRun?.timestamp
+    if(ts) {
+      const d=new Date(ts)
+      const sgtD=new Date(d.getTime()+d.getTimezoneOffset()*60000+8*3600000)
+      lastStr=fmtTime(sgtD)
+    }
+  }
+  document.getElementById('status-last').textContent=lastStr
+  applySky(skyFromHour(sgt.getHours()))
+  const completedToday = new Set(S.feed.filter(e=>e.day===(S.world?.day||1)&&e.type!=='birth').map(e=>e.cycle))
+  ALL_STEPS.forEach(s=>{
+    const el=document.getElementById('stp-'+s); if(!el) return
+    el.classList.remove('current','done')
+    if(completedToday.has(s)) el.classList.add('done')
+  })
+  if(S.world?.cycle && !completedToday.has(S.world.cycle))
+    document.getElementById('stp-'+S.world.cycle)?.classList.add('current')
+  if(typeof setHudVar==='function') setHudVar()  // HUD content just changed → re-measure clearance
+}
+
+// ── FACE/CHAR ─────────────────────────────────────────────
+const isMobile = () => window.innerWidth <= 768
+// Height of the world stage = viewport minus the reserved bottom bars. ALL world/character
+// layout uses this (not window.innerHeight) so everything fits above the bottom UI.
+function stageH() {
+  const w = document.getElementById('world')
+  return (w && w.clientHeight) || window.innerHeight
+}
+function getWorldWidth() {
+  if(!isMobile()) return window.innerWidth
+  return Math.round(stageH() * (1000/600))
+}
+let mobileScrollInited = false
+
+// ── WAYPOINTS (SVG native coords — feet anchor point) ─────────
+const WAYPOINTS = {
+  // ── bogged Porsche Cayenne (hero prop, near camp) ──
+  cayenne_door:   {sx:356,sy:456}, cayenne_hood:  {sx:300,sy:458},
+  cayenne_rear:   {sx:418,sy:452},
+  // ── campfire + clearing ──
+  campfire_left:  {sx:462,sy:448}, campfire_right:{sx:524,sy:448},
+  campfire_front: {sx:492,sy:462}, camp_mid:      {sx:492,sy:418},
+  // ── lean-to shelter ──
+  shelter_mouth:  {sx:642,sy:420}, shelter_side:  {sx:678,sy:412},
+  // ── river ──
+  river_bank:     {sx:300,sy:500}, river_rocks:   {sx:430,sy:530},
+  river_bend:     {sx:660,sy:512}, shallows:      {sx:520,sy:512},
+  log_crossing:   {sx:560,sy:508},
+  // ── jungle / forest features ──
+  forest_edge:    {sx:244,sy:400}, fern_hollow:   {sx:92,sy:420},
+  fig_tree:       {sx:162,sy:402}, bamboo_stand:  {sx:862,sy:412},
+  ridge_lookout:  {sx:206,sy:308}, mud_flat:      {sx:820,sy:460},
+  trail_head:     {sx:340,sy:476},
+}
+
+// Waypoints that count as "physically together" for interaction rendering
+const WP_ADJACENT = {
+  campfire_left:['campfire_right','campfire_front','camp_mid'],
+  campfire_right:['campfire_left','campfire_front','camp_mid'],
+  campfire_front:['campfire_left','campfire_right','camp_mid'],
+  camp_mid:['campfire_left','campfire_right','campfire_front'],
+  cayenne_door:['cayenne_hood','cayenne_rear'], cayenne_hood:['cayenne_door','cayenne_rear'],
+  cayenne_rear:['cayenne_door','cayenne_hood'],
+  shelter_mouth:['shelter_side'],               shelter_side:['shelter_mouth'],
+  river_bank:['river_rocks','shallows'],         river_rocks:['river_bank','log_crossing'],
+  shallows:['river_bank','log_crossing','river_bend'], log_crossing:['shallows','river_rocks','river_bend'],
+  river_bend:['shallows','log_crossing'],
+}
+
+// Vertical placement of the sliced world art. The art is wider-than-tall (10:6), so on
+// wide screens it overflows vertically and must be cropped. We push it UP to reveal the
+// beach/ocean at the bottom, but CAP the top crop at MOUNTAIN_SAFE (just above the NE
+// cliff peak at viewBox y≈160) so the mountain is never sliced off. Any leftover overflow
+// then trims a little ocean instead. Returns the screen-px offset of viewBox y=0.
+const MOUNTAIN_SAFE = 150
+function worldYOffset(vh, scale) {
+  const cropVB = Math.max(0, 600 - vh/scale)      // total vertical overflow, in viewBox units
+  return -Math.min(cropVB, MOUNTAIN_SAFE) * scale  // shift up, but never past the mountain peak
+}
+function svgToViewport(sx, sy) {
+  // On mobile the #world element is wider than the viewport (getWorldWidth, ~1190px) and
+  // scrolls horizontally; the SVG scene fills that full width. So the char's left% MUST be
+  // computed against the WORLD width it's positioned in — not window.innerWidth — or the
+  // coords desync from the scene art and separation inflates (characters fly off-screen).
+  const vw = isMobile() ? getWorldWidth() : window.innerWidth
+  const vh = stageH()
+  const scale=Math.max(vw/1000, vh/600)
+  const offX=(vw-1000*scale)/2, offY=worldYOffset(vh, scale)
+  return {left:((offX+sx*scale)/vw*100)+'%', top:((offY+sy*scale)/vh*100)+'%'}
+}
+
+function toPos(x, y, waypoint) {
+  if (waypoint && WAYPOINTS[waypoint]) {
+    const {sx,sy}=WAYPOINTS[waypoint]
+    return svgToViewport(sx, sy)
+  }
+  const safeMaxPct = 90
+  const leftPct = 5 + (x / 100) * (safeMaxPct - 5)
+  return {left: leftPct+'%', top:(48+(y/100)*32)+'%'}
+}
+
+function toggleFeed() {
+  const panel = document.getElementById('chat-panel')
+  panel.classList.toggle('feed-open')
+  const isOpen = panel.classList.contains('feed-open')
+  if(isOpen) {
+    setTimeout(()=>{ const f=document.getElementById('chat-feed'); if(f) f.scrollTop=f.scrollHeight }, 380)
+  }
+}
+
+// Tap character to show stat card
+function initTapStats() {
+  Object.keys(S.chars).forEach(cid => {
+    const el = document.getElementById('char-'+cid)
+    if(!el) return
+    el.addEventListener('click', () => {
+      const sc = document.getElementById('sc-'+cid)
+      if(!sc) return
+      const wasOpen = sc.classList.contains('tap-open')
+      document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('tap-open'))
+      if(!wasOpen) sc.classList.add('tap-open')
+    })
+  })
+  document.getElementById('world')?.addEventListener('click', e => {
+    if(!e.target.closest('.char')) {
+      document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('tap-open'))
+    }
+    if(!e.target.closest('#res-hud')) {
+      const card = document.getElementById('res-card')
+      if(card) card.classList.remove('open')
+      document.querySelectorAll('.res-pill').forEach(p=>p.classList.remove('rp-active'))
+      _activeRes = null
+    }
+    if(_dhpOpen && !e.target.closest('#day-history-panel') && !e.target.closest('#day-hist-btn')) {
+      _dhpOpen = false
+      document.getElementById('day-history-panel')?.classList.remove('open')
+      document.getElementById('day-hist-btn')?.classList.remove('active')
+    }
+  })
+}
+
+function applyFace(cid) {
+  const c=S.chars[cid]; if(!c) return
+  const mk=(c.mood||'neutral').toLowerCase()
+  const fk=MOOD_MAP[mk]||moodKeywordFace(mk)||'neutral'
+  const f=FACES[fk]||FACES.neutral
+
+  const bl=document.getElementById('brow-l-'+cid)
+  const br=document.getElementById('brow-r-'+cid)
+  if(bl) bl.setAttribute('d',f.bl)
+  if(br) br.setAttribute('d',f.br)
+
+  // mouth shapes are keyed by character; Judy + any generic/new character fall back to a
+  // shared shape (same face geometry) so their mouth still emotes instead of breaking.
+  document.getElementById('mouth-'+cid)?.setAttribute('d', f.mouth[cid] || f.mouth.jade)
+
+  EYE_STATES.forEach(s=>{
+    document.getElementById(`eyes-${s}-${cid}`)?.setAttribute('display',s===f.eyes?'':'none')
+  })
+  document.getElementById('blush-'+cid)?.setAttribute('display',f.blush?'':'none')
+
+  const svg=document.getElementById('svg-'+cid)
+  if(svg){
+    svg.classList.remove('sad','angry')
+    if(['sad','lonely','heartbroken','melancholy'].includes(mk)) svg.classList.add('sad')
+    if(['angry','frustrated','furious'].includes(mk)) svg.classList.add('angry')
+  }
+
+  // Animals: translate the expression into body language (ears + tail)
+  if((c.species||'human')!=='human') applyAnimalExtras(cid, fk)
+}
+
+// An animal can't talk — it only FEELS. Map its mood to an emotion emoji shown in its bubble.
+const ANIMAL_EMOTION = {
+  cautious:'😼', wary:'😼', nervous:'😟', uneasy:'😟', anxious:'😰', scared:'🙀', afraid:'🙀', frightened:'🙀',
+  happy:'😺', content:'😌', calm:'😌', peaceful:'😌', relaxed:'😌', safe:'😌',
+  playful:'😸', excited:'😸', eager:'😸', joyful:'😸',
+  sad:'😿', lonely:'🥺', hopeful:'🥹',
+  trusting:'😻', loving:'😻', grateful:'😻', affectionate:'😻',
+  tired:'😴', sleepy:'😴', hungry:'🐟', curious:'👀', alert:'👀'
+}
+function animalEmotion(c){
+  const m=(c.mood||'').toLowerCase()
+  for(const k in ANIMAL_EMOTION){ if(m.includes(k)) return ANIMAL_EMOTION[k] }
+  return '🐾'
+}
+function updateBubble(cid) {
+  const el=document.getElementById('thought-'+cid)
+  if(!el) return
+  const c=S.chars[cid]||{}
+  if((c.species||'human')!=='human'){   // emotion-only — never words
+    el.textContent=animalEmotion(c)
+    el.classList.add('dog-emote')
+    return
+  }
+  el.classList.remove('dog-emote')
+  const latest=[...S.feed].reverse().find(e=>e.character===cid&&(e.thought||e.action))
+  let t=latest?(latest.thought||latest.action||'…'):'…'
+  const words=t.split(' ')
+  if(words.length>9) t=words.slice(0,9).join(' ')+'…'
+  el.textContent=t
+}
+
+const CYCLE_HOUR = {morning:'7am',midday:'12:30pm',evening:'6pm',night:'11pm'}
+const CHAR_COLOR = {chills:'#6a994e',wesley:'#6ba3e0',mutu:'#d98a4a'}
+function getCharColor(cid){return CHAR_COLOR[cid]||S.chars[cid]?.color||'#e2e8f0'}
+
+function fmtSGT(ts) {
+  if(!ts) return ''
+  const t = ts.split('T')[1]
+  if(!t) return ''
+  const [hStr, mStr] = t.split(':')
+  let h = parseInt(hStr), m = parseInt(mStr)
+  const ap = h >= 12 ? 'PM' : 'AM'
+  h = h % 12 || 12
+  return `${h}:${String(m).padStart(2,'0')} ${ap}`
+}
+
+function cycleLabel(e) {
+  const time = fmtSGT(e.timestamp)
+  return `Day ${e.day||1} · ${time || CYCLE_HOUR[e.cycle]||e.cycle||''}`
+}
+
+function renderChat() {
+  const feed=document.getElementById('chat-feed')
+  if(!feed||!S.feed) return
+  const entries=S.feed.slice(-45)
+  // Find the latest cycle label so we can highlight it
+  let latestLbl=''
+  entries.forEach(e=>{ latestLbl=cycleLabel(e) })
+  let html=''
+  let lastLabel=''
+  entries.forEach(e=>{
+    const lbl=cycleLabel(e)
+    const isLatest = lbl===latestLbl
+    const lc = isLatest ? ' cl-latest' : ''
+    const msgTime = fmtSGT(e.timestamp) || CYCLE_HOUR[e.cycle] || ''
+    const timeTag = msgTime ? `<span class="cl-time">D${e.day||1}·${msgTime.replace(' ','')}</span>` : ''
+    if(lbl!==lastLabel){
+      html+=`<div class="cl-ts${isLatest?' cl-ts-latest':''}">${lbl}</div>`
+      lastLabel=lbl
+    }
+    if(e.type==='interaction'){
+      html+=`<div class="cl interaction${lc}">${timeTag}<span class="cl-label">${e.description||''}</span></div>`
+      // absent character context
+      const present=(e.characters||[]).map(c=>c.toLowerCase())
+      const absent=Object.keys(S.chars).filter(c=>!present.includes(c))
+      absent.forEach(cid=>{
+        const ctx=entries.find(x=>x.character===cid&&x.cycle===e.cycle&&x.day===e.day)
+        if(ctx&&(ctx.action||ctx.thought)){
+          const col=getCharColor(cid)
+          html+=`<div class="cl-absent${lc}"><span style="color:${col};opacity:.6">${cap(cid)}</span><span class="cl-absent-txt"> — ${ctx.action||ctx.thought}</span></div>`
+        }
+      })
+      const dlg=e.dialogue||[]
+      const arr=Array.isArray(dlg)?dlg:[{speaker:(e.characters||['?'])[0],line:dlg}]
+      arr.forEach(d=>{
+        const spk=(d.speaker||'').toLowerCase()
+        const col=getCharColor(spk)
+        html+=`<div class="cl-msg${lc}"><span class="cl-spk" style="color:${col}">${cap(spk)}</span> <span class="cl-line">${d.line||''}</span></div>`
+      })
+    }
+    // standalone character thought lines are intentionally not shown in the feed
+  })
+  feed.innerHTML=html
+  feed.scrollTop=feed.scrollHeight
+}
+
+function separateChars(positions) {
+  const MIN = 65
+  const SEAT = 28   // interacting couples stay intimate, but never perfectly stacked — seat them side-by-side
+  // Pairs with an active interaction are kept close (SEAT gap) instead of pushed fully apart (MIN).
+  // Without this they'd stack exactly when the narrator puts both at the same waypoint.
+  const interacting = new Set()
+  Object.keys(S.chars).forEach(cid=>{
+    const iw = S.chars[cid]?.interaction?.with
+    if (iw) interacting.add([cid,iw].sort().join('_'))
+  })
+  for(let iter=0; iter<25; iter++) {
+    for(let i=0; i<positions.length; i++) {
+      for(let j=i+1; j<positions.length; j++) {
+        if (Math.abs(positions[j].py - positions[i].py) > 45) continue   // different rows/levels — never shove vertically
+        const isPair = interacting.has([positions[i].id,positions[j].id].sort().join('_'))
+        const minDist = isPair ? SEAT : MIN
+        const dx=positions[j].px - positions[i].px
+        const adist=Math.abs(dx)
+        if(adist < minDist) {
+          // separate HORIZONTALLY only — never vertically — so each figure keeps its waypoint's
+          // grounded height and its feet can't drift off the ground when several cluster.
+          const push=(minDist-adist)/2
+          const dir=adist>0.5?(dx>0?1:-1):(isPair?1:(Math.cos(i*2.4)>=0?1:-1))
+          positions[i].px -= dir*push
+          positions[j].px += dir*push
+        }
+      }
+    }
+  }
+  // clamp to safe zone — x across island, y to ground band only
+  const W=getWorldWidth(), H=stageH()
+  positions.forEach(p=>{
+    p.px=Math.max(W*0.05, Math.min(W*0.90, p.px))
+    p.py=Math.max(H*0.40, Math.min(H*0.90, p.py))
+  })
+  return positions
+}
+
+function nudgeBubbles(positions) {
+  const GAP = 8           // min clear space between any two bubbles
+  const BODY_HALF = 10    // half-width of a character body
+  // Measure each bubble's REAL rendered size from the DOM (never guess a constant —
+  // the rendered width varies with text length and breakpoint, so a fixed value
+  // misses near-miss overlaps). Fall back only if the element isn't laid out yet.
+  const dim = {}
+  positions.forEach(p=>{
+    const el = document.getElementById('bubble-'+p.id)
+    dim[p.id] = { w: (el && el.offsetWidth) || 90, h: (el && el.offsetHeight) || 50 }
+  })
+  const offsets = {}
+  positions.forEach(p=>{ offsets[p.id] = 0 })
+  // Pass 1: bubble-vs-bubble horizontal separation, using each pair's true widths
+  for(let i=0; i<positions.length; i++) {
+    for(let j=i+1; j<positions.length; j++) {
+      const a = positions[i], b = positions[j]
+      const absDx = Math.abs(b.px - a.px)
+      const dy = Math.abs(b.py - a.py)
+      const needed = (dim[a.id].w + dim[b.id].w) / 2 + GAP
+      if(absDx < needed && dy < 80) {
+        const shift = (needed - absDx) / 2
+        const leftFirst = a.px <= b.px
+        offsets[a.id] += leftFirst ? -shift : shift
+        offsets[b.id] += leftFirst ? shift : -shift
+      }
+    }
+  }
+  // Pass 2: single pass — push each bubble clear of every other character's body
+  for(let i=0; i<positions.length; i++) {
+    for(let j=0; j<positions.length; j++) {
+      if(i===j) continue
+      const clear = dim[positions[i].id].w / 2 + BODY_HALF + 2  // bubble half + body half + gap
+      const bx = positions[i].px + offsets[positions[i].id]
+      const dist = bx - positions[j].px
+      if(Math.abs(dist) < clear) {
+        offsets[positions[i].id] += dist >= 0 ? (clear - dist) : -(clear + dist)
+      }
+    }
+  }
+  positions.forEach(p=>{
+    const b = document.getElementById('bubble-'+p.id)
+    if(b) b.style.marginLeft = offsets[p.id] + 'px'
+  })
+  // Vertical stagger: 2D collision avoidance using each bubble's real measured size.
+  // Horizontal overlap is a true rectangle test on measured widths, so two bubbles
+  // can never visually overlap regardless of where characters move next cycle.
+  // CRITICAL: each bubble's CSS bottom is relative to its OWN character's feet (py),
+  // so two characters at different py have different screen baselines. We must run the
+  // collision test in absolute SCREEN space — otherwise a stack offset can be cancelled
+  // out by the characters' py difference and the bubbles land at the same height.
+  const H = stageH()
+  const sorted = [...positions].sort((a,b) => (a.px+offsets[a.id]) - (b.px+offsets[b.id]))
+  const placed = []
+  sorted.forEach(p => {
+    const bx = p.px + offsets[p.id]
+    const el = document.getElementById('bubble-'+p.id)
+    const w = dim[p.id].w
+    const ph = dim[p.id].h + GAP
+    const ground = H - p.py          // char feet, measured from stage bottom (screen space)
+    let bot = ground + 70, clear = false  // bubble baseline in screen space
+    while(!clear) {
+      clear = true
+      for(const q of placed) {
+        const xOverlap = Math.abs(bx - q.bx) < (w + q.w) / 2 + GAP
+        // horizontal overlap + vertical overlap (rectangle test, screen space)
+        if(xOverlap && !(bot >= q.bot + q.h || bot + ph <= q.bot)) {
+          bot = q.bot + q.h   // jump directly above q
+          clear = false; break
+        }
+      }
+    }
+    placed.push({bx, bot, h: ph, w})
+    el.style.bottom = (bot - ground) + 'px'  // convert screen baseline back to per-character CSS bottom
+  })
+}
+
+// ── INTERACTION RENDERING ────────────────────────────────────
+function renderInteractions(positions) {
+  document.querySelectorAll('.interact-overlay').forEach(e=>e.remove())
+  const world = document.getElementById('world')
+  const processed = new Set()
+
+  Object.keys(S.chars).forEach(cid=>{
+    const c = S.chars[cid]
+    const el = document.getElementById('char-'+cid)
+    if (!el) return
+
+    // Reset state classes and inline transforms
+    el.classList.remove('sitting')
+    el.querySelector('.char-svg')?.style.removeProperty('transform')
+
+    const intr = c.interaction
+    if (!intr?.with || !intr?.state) return
+    const other = intr.with, state = intr.state
+    if (!S.chars[other]) return
+
+    const myPos  = positions.find(p=>p.id===cid)
+    const othPos = positions.find(p=>p.id===other)
+    if (!myPos || !othPos) return
+
+    const iAmLeft = myPos.px <= othPos.px
+
+    if (state === 'back_to_back') {
+      const svg = el.querySelector('.char-svg')
+      if (svg && iAmLeft) svg.style.transform = 'scaleX(-1)'
+    }
+    if (state === 'sitting_together') el.classList.add('sitting')
+    if (state === 'comforting') {
+      const svg = el.querySelector('.char-svg')
+      if (svg) svg.style.transform = iAmLeft ? 'rotate(7deg)' : 'rotate(-7deg)'
+    }
+
+    const pairKey = [cid,other].sort().join('_')
+    if (processed.has(pairKey)) return
+    processed.add(pairKey)
+
+    // Use the SAME world dimensions the character px/py were computed against in
+    // updateWorld (mobile world is wider than the viewport, H is the stage height),
+    // otherwise the hand/log overlay drifts off the couple on mobile.
+    const W=isMobile()?getWorldWidth():window.innerWidth, H=stageH()
+    const midX=(myPos.px+othPos.px)/2
+    const midY=(myPos.py+othPos.py)/2 - 34
+
+    let inner = ''
+    if (state === 'holding_hands') {
+      inner = `<svg width="22" height="20" viewBox="0 0 20 18" xmlns="http://www.w3.org/2000/svg">
+        <path d="M10 16Q2 11 2 6Q2 2.5 5.5 2.5Q7.5 2.5 10 5.5Q12.5 2.5 14.5 2.5Q18 2.5 18 6Q18 11 10 16Z" fill="rgba(249,168,212,.92)"/>
+      </svg>`
+    } else if (state === 'sitting_together') {
+      inner = `<svg width="30" height="10" viewBox="0 0 30 10" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="2" width="28" height="6" rx="3" fill="rgba(146,64,14,.55)"/>
+        <ellipse cx="15" cy="8" rx="13" ry="3" fill="rgba(120,53,15,.35)"/>
+      </svg>`
+    }
+    if (inner) {
+      const div = document.createElement('div')
+      div.className = 'interact-overlay'
+      div.style.left = (midX/W*100)+'%'
+      div.style.top  = (midY/H*100)+'%'
+      div.innerHTML  = inner
+      world.appendChild(div)
+    }
+  })
+}
+
+// ── SVG TILE LIBRARY ──────────────────────────────────────
+const SEED_TILES = {
+  garden:`<ellipse cx="30" cy="44" rx="22" ry="8" fill="#78350f" opacity=".7"/>
+<rect x="8" y="37" width="44" height="9" rx="3" fill="#92400e"/>
+<line x1="22" y1="37" x2="22" y2="46" stroke="#78350f" stroke-width="1.5" opacity=".4"/>
+<line x1="38" y1="37" x2="38" y2="46" stroke="#78350f" stroke-width="1.5" opacity=".4"/>
+<line x1="15" y1="37" x2="15" y2="26" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
+<line x1="15" y1="30" x2="11" y2="25" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="15" y1="30" x2="19" y2="25" stroke="#16a34a" stroke-width="1.5" stroke-linecap="round"/>
+<line x1="30" y1="37" x2="30" y2="24" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
+<ellipse cx="30" cy="22" rx="6" ry="4" fill="#16a34a"/>
+<line x1="45" y1="37" x2="45" y2="26" stroke="#15803d" stroke-width="2" stroke-linecap="round"/>
+<circle cx="45" cy="24" r="4" fill="#f9a8d4"/>`,
+
+  fish_trap:`<ellipse cx="30" cy="48" rx="20" ry="6" fill="#0284c7" opacity=".28"/>
+<path d="M 18 44 L 22 18 L 38 18 L 42 44 Z" fill="#92400e" opacity=".8"/>
+<line x1="19" y1="38" x2="41" y2="38" stroke="#78350f" stroke-width="1.2" opacity=".5"/>
+<line x1="20" y1="30" x2="40" y2="30" stroke="#78350f" stroke-width="1.2" opacity=".5"/>
+<line x1="21" y1="24" x2="39" y2="24" stroke="#78350f" stroke-width="1.2" opacity=".5"/>
+<path d="M 18 44 L 22 18 L 38 18 L 42 44 Z" fill="none" stroke="#78350f" stroke-width="1.5"/>
+<ellipse cx="30" cy="18" rx="8" ry="3" fill="#1c0a00"/>
+<line x1="30" y1="15" x2="30" y2="8" stroke="#a16207" stroke-width="2.5" stroke-linecap="round"/>`,
+
+  signal_fire:`<ellipse cx="30" cy="48" rx="16" ry="7" fill="#78716c"/>
+<line x1="22" y1="48" x2="26" y2="28" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+<line x1="38" y1="48" x2="34" y2="28" stroke="#78350f" stroke-width="4" stroke-linecap="round"/>
+<line x1="22" y1="40" x2="38" y2="40" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+<path d="M 26 30 Q 24 22 26 16 Q 28 10 30 6 Q 32 10 34 16 Q 36 22 34 30 Q 31 22 30 26 Q 29 22 26 30" fill="#dc2626"/>
+<path d="M 27 29 Q 26 22 28 17 Q 29 13 30 10 Q 31 13 32 17 Q 34 22 33 29 Q 31 22 30 26 Q 29 22 27 29" fill="#f97316"/>
+<path d="M 29 27 Q 29 21 29.5 17 Q 30 14 30 11 Q 30 14 30.5 17 Q 31 21 31 27 Q 30.5 22 30 25 Q 29.5 22 29 27" fill="#fbbf24"/>
+<path d="M 30 6 Q 28 -2 29 -8" stroke="#94a3b8" stroke-width="2.5" fill="none" stroke-linecap="round" opacity=".45"/>`,
+
+  watchtower:`<line x1="16" y1="52" x2="20" y2="24" stroke="#78350f" stroke-width="3.5" stroke-linecap="round"/>
+<line x1="44" y1="52" x2="40" y2="24" stroke="#78350f" stroke-width="3.5" stroke-linecap="round"/>
+<rect x="14" y="22" width="32" height="5" rx="1.5" fill="#a16207"/>
+<line x1="14" y1="22" x2="46" y2="22" stroke="#92400e" stroke-width="2"/>
+<line x1="14" y1="16" x2="46" y2="16" stroke="#78350f" stroke-width="1.5"/>
+<line x1="14" y1="16" x2="14" y2="22" stroke="#78350f" stroke-width="1.5"/>
+<line x1="46" y1="16" x2="46" y2="22" stroke="#78350f" stroke-width="1.5"/>
+<line x1="22" y1="16" x2="22" y2="22" stroke="#78350f" stroke-width="1.2" opacity=".6"/>
+<line x1="30" y1="16" x2="30" y2="22" stroke="#78350f" stroke-width="1.2" opacity=".6"/>
+<line x1="38" y1="16" x2="38" y2="22" stroke="#78350f" stroke-width="1.2" opacity=".6"/>
+<line x1="26" y1="27" x2="26" y2="52" stroke="#92400e" stroke-width="2"/>
+<line x1="34" y1="27" x2="34" y2="52" stroke="#92400e" stroke-width="2"/>
+<line x1="26" y1="34" x2="34" y2="34" stroke="#92400e" stroke-width="1.5"/>
+<line x1="26" y1="41" x2="34" y2="41" stroke="#92400e" stroke-width="1.5"/>
+<line x1="26" y1="48" x2="34" y2="48" stroke="#92400e" stroke-width="1.5"/>`,
+
+  storage:`<rect x="36" y="18" width="20" height="14" rx="2" fill="#fef3c7" opacity=".85"/>
+<rect x="36" y="18" width="20" height="14" rx="2" fill="none" stroke="#a16207" stroke-width="1.5"/>
+<line x1="36" y1="24" x2="56" y2="24" stroke="#ca8a04" stroke-width="1" opacity=".4"/>
+<rect x="8" y="28" width="42" height="24" rx="2" fill="#fef3c7"/>
+<rect x="8" y="28" width="42" height="24" rx="2" fill="none" stroke="#a16207" stroke-width="2"/>
+<line x1="8" y1="37" x2="50" y2="37" stroke="#ca8a04" stroke-width="1.2" opacity=".4"/>
+<line x1="8" y1="44" x2="50" y2="44" stroke="#ca8a04" stroke-width="1.2" opacity=".4"/>
+<line x1="23" y1="28" x2="23" y2="52" stroke="#ca8a04" stroke-width="1.2" opacity=".35"/>
+<line x1="37" y1="28" x2="37" y2="52" stroke="#ca8a04" stroke-width="1.2" opacity=".35"/>
+<rect x="8" y="24" width="42" height="6" rx="2" fill="#a16207"/>
+<rect x="26" y="38" width="6" height="5" rx="1" fill="#ca8a04"/>
+<path d="M 28 38 Q 28 35 29 35 Q 30 35 30 38" fill="none" stroke="#ca8a04" stroke-width="1.5"/>`,
+
+  raft:`<ellipse cx="30" cy="50" rx="24" ry="6" fill="#0369a1" opacity=".2"/>
+<rect x="8" y="36" width="44" height="8" rx="2" fill="#a16207"/>
+<line x1="8" y1="40" x2="52" y2="40" stroke="#78350f" stroke-width="1.5" opacity=".35"/>
+<rect x="10" y="34" width="40" height="8" rx="2" fill="#92400e"/>
+<line x1="10" y1="38" x2="50" y2="38" stroke="#78350f" stroke-width="1.2" opacity=".3"/>
+<line x1="20" y1="34" x2="20" y2="44" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
+<line x1="30" y1="34" x2="30" y2="44" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
+<line x1="40" y1="34" x2="40" y2="44" stroke="#ca8a04" stroke-width="2" stroke-linecap="round"/>
+<line x1="30" y1="34" x2="30" y2="10" stroke="#78350f" stroke-width="3" stroke-linecap="round"/>
+<path d="M 30 12 L 30 32 L 48 26 Z" fill="#fef3c7" opacity=".82"/>`,
+
+  drying_rack:`<line x1="10" y1="50" x2="28" y2="18" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+<line x1="50" y1="50" x2="32" y2="18" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+<line x1="14" y1="37" x2="46" y2="37" stroke="#92400e" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="10" y1="50" x2="10" y2="56" stroke="#78350f" stroke-width="2"/>
+<line x1="50" y1="50" x2="50" y2="56" stroke="#78350f" stroke-width="2"/>
+<line x1="20" y1="37" x2="20" y2="37" stroke="#ca8a04" stroke-width="1"/>
+<line x1="20" y1="37" x2="20" y2="38" stroke="#ca8a04" stroke-width="1"/>
+<ellipse cx="20" cy="43" rx="2.5" ry="4.5" fill="#fef3c7" opacity=".8"/>
+<line x1="27" y1="37" x2="27" y2="38" stroke="#ca8a04" stroke-width="1"/>
+<ellipse cx="27" cy="44" rx="2.5" ry="4.5" fill="#fbbf24" opacity=".7"/>
+<line x1="34" y1="37" x2="34" y2="38" stroke="#ca8a04" stroke-width="1"/>
+<ellipse cx="34" cy="43" rx="2.5" ry="4.5" fill="#fef3c7" opacity=".8"/>
+<line x1="41" y1="37" x2="41" y2="38" stroke="#ca8a04" stroke-width="1"/>
+<ellipse cx="41" cy="44" rx="2.5" ry="4.5" fill="#fbbf24" opacity=".7"/>`,
+
+  bamboo_fence:`<line x1="5" y1="46" x2="55" y2="46" stroke="#78350f" stroke-width="2" opacity=".35"/>
+<rect x="5" y="20" width="5" height="28" rx="2" fill="#a16207"/>
+<rect x="14" y="18" width="5" height="30" rx="2" fill="#92400e"/>
+<rect x="23" y="20" width="5" height="28" rx="2" fill="#a16207"/>
+<rect x="32" y="18" width="5" height="30" rx="2" fill="#92400e"/>
+<rect x="41" y="20" width="5" height="28" rx="2" fill="#a16207"/>
+<rect x="50" y="18" width="5" height="30" rx="2" fill="#92400e"/>
+<line x1="4" y1="26" x2="56" y2="26" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+<line x1="4" y1="36" x2="56" y2="36" stroke="#78350f" stroke-width="2" stroke-linecap="round"/>
+<line x1="7" y1="25" x2="11" y2="25" stroke="#78350f" stroke-width="1.5"/>
+<line x1="25" y1="25" x2="29" y2="25" stroke="#78350f" stroke-width="1.5"/>
+<line x1="43" y1="25" x2="47" y2="25" stroke="#78350f" stroke-width="1.5"/>`,
+
+  well:`<ellipse cx="30" cy="46" rx="18" ry="8" fill="#78716c"/>
+<rect x="12" y="30" width="36" height="18" rx="1" fill="#78716c"/>
+<rect x="12" y="30" width="36" height="18" fill="none" stroke="#57534e" stroke-width="2"/>
+<line x1="12" y1="37" x2="48" y2="37" stroke="#57534e" stroke-width="1" opacity=".4"/>
+<line x1="12" y1="43" x2="48" y2="43" stroke="#57534e" stroke-width="1" opacity=".4"/>
+<ellipse cx="30" cy="38" rx="14" ry="5" fill="#0369a1" opacity=".4"/>
+<line x1="16" y1="30" x2="16" y2="12" stroke="#a16207" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="44" y1="30" x2="44" y2="12" stroke="#a16207" stroke-width="2.5" stroke-linecap="round"/>
+<line x1="14" y1="12" x2="46" y2="12" stroke="#92400e" stroke-width="3" stroke-linecap="round"/>
+<circle cx="44" cy="12" r="5" fill="none" stroke="#92400e" stroke-width="2"/>
+<line x1="30" y1="12" x2="30" y2="25" stroke="#ca8a04" stroke-width="1.5"/>
+<rect x="25" y="24" width="10" height="9" rx="2" fill="#92400e"/>
+<rect x="24" y="23" width="12" height="3" rx="1" fill="#a16207"/>`,
+
+  cave:`<path d="M 4 52 L 10 28 L 20 17 L 30 14 L 40 17 L 50 28 L 56 52 Z" fill="#78716c"/>
+<path d="M 14 52 L 14 34 Q 14 20 30 20 Q 46 20 46 34 L 46 52 Z" fill="#0f172a"/>
+<path d="M 18 52 L 18 34 Q 18 24 30 24 Q 42 24 42 34 L 42 52 Z" fill="#1e293b"/>
+<line x1="8" y1="44" x2="14" y2="36" stroke="#57534e" stroke-width="1.5" opacity=".4"/>
+<line x1="52" y1="44" x2="46" y2="36" stroke="#57534e" stroke-width="1.5" opacity=".4"/>
+<ellipse cx="10" cy="28" rx="5" ry="3" fill="#16a34a" opacity=".5"/>
+<ellipse cx="50" cy="28" rx="5" ry="3" fill="#16a34a" opacity=".5"/>
+<circle cx="25" cy="36" r="1.5" fill="#fbbf24" opacity=".5"/>
+<circle cx="35" cy="36" r="1.5" fill="#fbbf24" opacity=".5"/>`,
+
+  waterfall:`<path d="M 5 52 L 5 20 L 18 12 L 30 10 L 42 12 L 55 20 L 55 52 Z" fill="#78716c"/>
+<rect x="22" y="10" width="16" height="42" rx="4" fill="#38bdf8" opacity=".32"/>
+<rect x="25" y="10" width="10" height="40" rx="3" fill="#7dd3fc" opacity=".28"/>
+<ellipse cx="30" cy="52" rx="18" ry="6" fill="#0284c7" opacity=".28"/>
+<ellipse cx="30" cy="50" rx="10" ry="3" fill="white" opacity=".32"/>
+<line x1="27" y1="10" x2="24" y2="50" stroke="white" stroke-width="1" opacity=".22"/>
+<line x1="30" y1="10" x2="30" y2="48" stroke="white" stroke-width="1.5" opacity=".28"/>
+<line x1="33" y1="10" x2="36" y2="50" stroke="white" stroke-width="1" opacity=".22"/>
+<ellipse cx="8" cy="22" rx="6" ry="3" fill="#16a34a" opacity=".55"/>
+<ellipse cx="52" cy="22" rx="6" ry="3" fill="#16a34a" opacity=".55"/>`,
+
+  wreckage:`<ellipse cx="30" cy="54" rx="26" ry="7" fill="#fef3c7" opacity=".45"/>
+<path d="M 6 52 L 10 34 L 54 34 L 58 52 Z" fill="#78716c" opacity=".7"/>
+<path d="M 6 52 L 10 34 L 54 34 L 58 52 Z" fill="none" stroke="#57534e" stroke-width="2"/>
+<line x1="8" y1="44" x2="56" y2="44" stroke="#57534e" stroke-width="1.5" opacity=".4"/>
+<line x1="30" y1="34" x2="28" y2="14" stroke="#44403c" stroke-width="4" stroke-linecap="round"/>
+<line x1="28" y1="14" x2="18" y2="22" stroke="#44403c" stroke-width="2.5" stroke-linecap="round"/>
+<path d="M 28 16 L 20 28 L 30 26 Z" fill="#fef3c7" opacity=".5"/>
+<rect x="42" y="30" width="8" height="4" rx="1" fill="#92400e" opacity=".7"/>
+<ellipse cx="12" cy="48" rx="4" ry="2" fill="#15803d" opacity=".45"/>`,
+
+  spring:`<circle cx="30" cy="36" r="18" fill="#78716c"/>
+<circle cx="30" cy="36" r="14" fill="#0369a1" opacity=".5"/>
+<circle cx="30" cy="36" r="10" fill="#38bdf8" opacity=".3"/>
+<circle cx="30" cy="36" r="14" fill="none" stroke="#38bdf8" stroke-width="1" opacity=".3"/>
+<circle cx="30" cy="36" r="9" fill="none" stroke="#7dd3fc" stroke-width="1" opacity=".25"/>
+<line x1="25" y1="31" x2="27" y2="28" stroke="white" stroke-width="1.5" opacity=".6"/>
+<line x1="35" y1="30" x2="33" y2="27" stroke="white" stroke-width="1.5" opacity=".6"/>
+<line x1="30" y1="28" x2="30" y2="25" stroke="white" stroke-width="1.5" opacity=".6"/>
+<ellipse cx="14" cy="32" rx="6" ry="3" fill="#15803d" opacity=".55"/>
+<ellipse cx="46" cy="32" rx="6" ry="3" fill="#15803d" opacity=".55"/>
+<ellipse cx="30" cy="20" rx="8" ry="3" fill="#16a34a" opacity=".45"/>`,
+
+  shelter:`<line x1="14" y1="50" x2="14" y2="24" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+<line x1="46" y1="50" x2="46" y2="24" stroke="#a16207" stroke-width="3" stroke-linecap="round"/>
+<line x1="12" y1="24" x2="48" y2="24" stroke="#92400e" stroke-width="2.5"/>
+<path d="M 12 24 L 48 24 L 48 48 L 6 48 Z" fill="#92400e" opacity=".52"/>
+<path d="M 12 24 L 6 48 L 14 48 L 14 24 Z" fill="#a16207" opacity=".7"/>
+<line x1="12" y1="29" x2="48" y2="29" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
+<line x1="12" y1="34" x2="48" y2="34" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
+<line x1="12" y1="39" x2="48" y2="39" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
+<line x1="12" y1="44" x2="48" y2="44" stroke="#78350f" stroke-width="1.5" opacity=".38"/>
+<path d="M 6 48 Q 16 52 26 48 Q 36 52 46 48 Q 48 52 48 48" fill="none" stroke="#16a34a" stroke-width="2.5" opacity=".7"/>`,
+
+  discovery:`<circle cx="30" cy="30" r="16" fill="rgba(168,85,247,0.12)" stroke="#a855f7" stroke-width="1.5" opacity=".7"/>
+<path d="M 30 14 L 33.5 23 L 43 23 L 35.5 28.5 L 38.5 38 L 30 32 L 21.5 38 L 24.5 28.5 L 17 23 L 26.5 23 Z" fill="#fbbf24" opacity=".88"/>`,
+
+  default:`<circle cx="30" cy="30" r="12" fill="rgba(251,191,36,0.15)" stroke="#fbbf24" stroke-width="2" opacity=".7"/>
+<circle cx="30" cy="30" r="5" fill="#fbbf24" opacity=".8"/>`
+}
+
+let _dynamicTiles = {}
+
+async function loadDynamicTiles() {
+  try {
+    const r = await fetch('data/svg_library.json?v=' + Date.now())
+    if(r.ok) {
+      const lib = await r.json()
+      _dynamicTiles = lib.tiles || {}
+    }
+  } catch {}
+}
+
+function getTile(type) {
+  if(_dynamicTiles[type]) return _dynamicTiles[type]
+  if(SEED_TILES[type])    return SEED_TILES[type]
+  return SEED_TILES['default']
+}
+
+function updateFireChip() {
+  const el = document.getElementById('fire-chip'); if(!el) return
+  const fire = S.world?.fire
+  if(!fire){ el.style.display='none'; return }
+  const lit = !!fire.lit
+  el.style.display = 'flex'
+  el.className = lit ? 'lit' : 'out'
+  el.innerHTML = lit ? '🔥 FIRE LIT' : '🌑 FIRE OUT'
+}
+
+function renderStructures() {
+  const layer = document.getElementById('structures-layer')
+  if(!layer) return
+  const structs = [
+    ...(S.world.structures||[]).filter(s => !s.baked),
+    ...(S.world.discoveries||[]).map(d=>({...d, _isDisc:true}))
+  ]
+  layer.innerHTML = structs.map(s => {
+    const tileKey = s._isDisc ? 'discovery' : s.type
+    const tile    = getTile(tileKey)
+    const label   = s.label || s.name || ''
+    const cond = (!s._isDisc && typeof s.condition==='number') ? s.condition : null
+    const condBar = (cond!==null && cond < 95)
+      ? `<div class="struct-cond"><div class="struct-cond-fill" style="width:${Math.max(0,cond)}%;background:${cond>=60?'#4ade80':cond>=30?'#fbbf24':'#f87171'}"></div></div>`
+      : ''
+    return `<div class="struct${s._isDisc?' discovery':''}" style="left:${s.x}%;top:${s.y}%${cond!==null&&cond<40?';opacity:.7':''}">
+      <svg class="struct-svg" viewBox="0 0 60 60" width="44" height="44" xmlns="http://www.w3.org/2000/svg">${tile}</svg>
+      ${condBar}
+      <span class="struct-label">${label}</span>
+    </div>`
+  }).join('')
+}
+
+let _activeRes = null
+
+function buildResCardContent(k) {
+  const res  = S.world?.resources      || {}
+  const prev = S.world?.resources_prev || {}
+  const val  = typeof res[k]==='number' ? res[k] : 0
+  const prevVal = typeof prev[k]==='number' ? prev[k] : val
+
+  const STATUS = {
+    food:     ['Critically low — someone needs to hunt urgently.',   'Getting scarce. Finding food should be a priority.',  'Enough to keep everyone fed for now.'],
+    water:    ['Dangerously low. Dehydration is a real risk.',       'Running short. Fresh water needs to be found soon.',  'Enough fresh water for now.'],
+    wood:     ['Almost none left. No building until more is found.', 'Low supply. One build would nearly exhaust it.',      'Enough wood to build something if needed.'],
+    medicine: ['Critically low. One illness could be very serious.', 'Very little left. Use it carefully.',                'Enough to handle minor injuries for now.'],
+  }
+  const tier = val<=20 ? 0 : val<=40 ? 1 : 2
+  const statusLine = (STATUS[k]||['','Low.','Sufficient.'])[tier]
+
+  const diff = val - prevVal
+  const trend = diff>0 ? '↑' : diff<0 ? '↓' : '→'
+  const trendCol = diff>0 ? '#4ade80' : diff<0 ? '#f87171' : 'rgba(255,255,255,.28)'
+
+  const KEYS = {
+    food:['food','eat','hunt','fish','fruit','hungry','starv','meal'],
+    water:['water','drink','thirst','well','spring','rain','dehydr'],
+    wood:['wood','timber','build','chop','tree','log','plank'],
+    medicine:['medicine','heal','herb','sick','injur','hurt','wound'],
+  }
+  const kws = KEYS[k]||[]
+  const mention = [...(S.feed||[])].reverse().find(e=>{
+    const t=((e.thought||'')+(e.action||'')+(e.description||'')).toLowerCase()
+    return kws.some(w=>t.includes(w))
+  })
+  const mentionHtml = mention
+    ? `<div class="rc-mention">"${(mention.thought||mention.action||mention.description||'').slice(0,80)}"<span class="rc-who">${(mention.character||'someone')[0].toUpperCase()+(mention.character||'someone').slice(1)} · Day ${mention.day} ${mention.cycle||''}</span></div>`
+    : ''
+
+  const ICONS = {food:'🍖',water:'💧',wood:'🪵',medicine:'🌿'}
+  const NAMES = {food:'Food',water:'Water',wood:'Wood',medicine:'Medicine'}
+  const col = val<=20?'#ef4444':val<=40?'#f59e0b':'#4ade80'
+
+  return `<div class="rc-inner">
+    <div class="rc-header">
+      <span class="rc-icon">${ICONS[k]}</span>
+      <span class="rc-name">${NAMES[k]}</span>
+      <span class="rc-val" style="color:${col}">${val}</span>
+      <span class="rc-trend" style="color:${trendCol}">${trend}</span>
+    </div>
+    <div class="rc-bar-wrap"><div class="rc-bar-fill" style="width:${val}%;background:${col}"></div></div>
+    <div class="rc-status">${statusLine}</div>
+    ${mentionHtml}
+  </div>`
+}
+
+function toggleResCard(k) {
+  const card = document.getElementById('res-card')
+  if (!card) return
+  document.querySelectorAll('.res-pill').forEach(p=>p.classList.remove('rp-active'))
+  if (_activeRes === k) {
+    card.classList.remove('open')
+    _activeRes = null
+    return
+  }
+  _activeRes = k
+  document.querySelector(`.res-pill[data-key="${k}"]`)?.classList.add('rp-active')
+  card.innerHTML = buildResCardContent(k)
+  card.classList.add('open')
+}
+
+function renderResHud() {
+  const hud = document.getElementById('res-hud')
+  if(!hud) return
+  const res = S.world.resources || {}
+  const items = [
+    {k:'food', icon:'🍖'},
+    {k:'water', icon:'💧'},
+    {k:'wood', icon:'🪵'},
+    {k:'medicine', icon:'🌿'}
+  ]
+  hud.innerHTML = items.map(({k, icon}) => {
+    const v = res[k] ?? '—'
+    const col = typeof v==='number' ? (v<=20?'#ef4444':v<=40?'#f59e0b':'rgba(255,255,255,.55)') : 'rgba(255,255,255,.3)'
+    return `<div class="res-pill" data-key="${k}" onclick="toggleResCard('${k}')"><span class="res-pill-icon">${icon}</span><span class="res-pill-val" style="color:${col}">${v}</span></div>`
+  }).join('') + `<div id="res-card"></div>`
+  // Re-open active card if it was open before re-render
+  if (_activeRes) {
+    const card = document.getElementById('res-card')
+    if (card) { card.innerHTML = buildResCardContent(_activeRes); card.classList.add('open') }
+    document.querySelector(`.res-pill[data-key="${_activeRes}"]`)?.classList.add('rp-active')
+  }
+}
+
+// Generic human model — now carries the FULL expressive face rig (brows, 7 eye-states,
+// blush, mouth) with -${cid} ids matching the main characters' geometry, so applyFace
+// drives real expressions on any dynamically-added character (born child, etc.).
+// ── PERSON MODEL ────────────────────────────────────────────
+// Reads S.chars[cid].appearance { skin, hair{style,color}, accessory, outfit }
+// and renders a distinct little person. Falls back to sensible defaults so it
+// never throws when appearance is missing. The face rig (brows, eyes-*, blush,
+// mouth ids + geometry) is preserved verbatim so applyFace/FACES keep working,
+// and the feet ellipses (cy=-1) are untouched so characters stay grounded.
+
+// Hair shapes — drawn behind the head (back) and/or in front (front fringe),
+// sitting on the head ellipse (cx 0, cy -72, r 11.5; crown ~ -83).
+function hairSVG(style, hc){
+  const back = (d)=>`<path d="${d}" fill="${hc}"/>`
+  switch(style){
+    case 'bald':
+      return {back:'', front:''}
+    case 'buzz': // thin close cap hugging the crown
+      return {back:'', front:`<path d="M -11 -73.5 C -11.5 -84 -5 -84.5 0 -84.5 C 5 -84.5 11.5 -84 11 -73.5 C 8 -80 -8 -80 -11 -73.5 Z" fill="${hc}"/>`}
+    case 'short': // neat rounded cap with a side part
+      return {back:'', front:`<path d="M -11.3 -72 C -12 -86 -4 -86 0 -86.5 C 5 -86.5 12 -85.5 11.3 -72 C 9 -78 6 -79 2 -79 C 2 -82 -1 -82.5 -4 -81 C -7 -79.5 -9 -78 -11.3 -72 Z" fill="${hc}"/>`}
+    case 'bangs': // rounded cap + a clear scalloped fringe coming down over the forehead + length at the sides
+      return {
+        back: back('M -12 -80 C -14 -68 -13.5 -58 -12.5 -50 C -10.5 -52 -10 -64 -10 -73 Z M 12 -80 C 14 -68 13.5 -58 12.5 -50 C 10.5 -52 10 -64 10 -73 Z'),
+        front:`<path d="M -12 -74 C -13 -87 -4 -88 0 -88 C 4 -88 13 -87 12 -74 C 11 -71 9.5 -71 8.5 -73 C 7.5 -70.5 5.5 -70.5 4.5 -73 C 3.5 -70.5 1.5 -70.5 0.5 -73 C -0.5 -70.5 -2.5 -70.5 -3.5 -73 C -4.5 -70.5 -6.5 -70.5 -7.5 -73 C -8.5 -71 -11 -71 -12 -74 Z" fill="${hc}"/>`}
+    case 'long': // straight hair falling past the shoulders, behind the body
+      return {
+        back: back('M -12.5 -77 C -16 -64 -16 -44 -14 -30 C -11 -33 -10.5 -50 -10 -60 C -9 -52 -9 -40 -9 -33 L 9 -33 C 9 -40 9 -52 10 -60 C 10.5 -50 11 -33 14 -30 C 16 -44 16 -64 12.5 -77 C 11 -86 -11 -86 -12.5 -77 Z'),
+        front:`<path d="M -11.5 -72 C -12.5 -86 -4 -87 0 -87 C 5 -87 12.5 -86 11.5 -72 C 11.5 -76 9 -78 8 -75 C 8 -80 -8 -80 -8 -75 C -9 -78 -11.5 -76 -11.5 -72 Z" fill="${hc}"/>`}
+    case 'wavy': // long with wavy ends, behind the body
+      return {
+        back: back('M -12.5 -76 C -17 -62 -15 -46 -16 -34 C -13 -36 -12 -44 -11 -50 C -11 -42 -12 -36 -10 -33 C -9 -35 -9 -42 -9 -33 L 9 -33 C 9 -42 9 -35 10 -33 C 12 -36 11 -42 11 -50 C 12 -44 13 -36 16 -34 C 15 -46 17 -62 12.5 -76 C 11 -86 -11 -86 -12.5 -76 Z'),
+        front:`<path d="M -11.5 -72 C -12.5 -86 -4 -87 0 -87 C 5 -87 12.5 -86 11.5 -72 C 11 -76 9 -77 7 -76 C 8 -80 -8 -80 -7 -76 C -9 -77 -11 -76 -11.5 -72 Z" fill="${hc}"/>`}
+    case 'bun': // top knot + smooth sides pulled back
+      return {
+        back: back('M -11.5 -75 C -12 -84 -5 -85 0 -85 C 5 -85 12 -84 11.5 -75 C 11.5 -68 11 -64 10.5 -60 C 9 -64 9 -70 8.5 -74 C 8 -80 -8 -80 -8.5 -74 C -9 -70 -9 -64 -10.5 -60 C -11 -64 -11.5 -68 -11.5 -75 Z'),
+        front:`<ellipse cx="0" cy="-86" rx="5" ry="4.2" fill="${hc}"/><path d="M -11.5 -75 C -11 -83 -4 -84.5 0 -84.5 C 4 -84.5 11 -83 11.5 -75 C 8 -80 -8 -80 -11.5 -75 Z" fill="${hc}"/>`}
+    default: // 'long'-ish neutral fallback
+      return {back:'', front:`<path d="M -11.3 -72 C -12 -86 -4 -86 0 -86.5 C 5 -86.5 12 -85.5 11.3 -72 C 9 -78 -9 -78 -11.3 -72 Z" fill="${hc}"/>`}
+  }
+}
+
+// Accessories — front layer (over hair/face where appropriate).
+// `outfit` lets the hood/cap match the character's top.
+function accessorySVG(acc, hc, outfit, accColor){
+  const COL_HOOD = accColor || outfit || '#374151'
+  const COL_CAP  = accColor || outfit || '#1f2937'
+  switch(acc){
+    case 'sunglasses':
+      return `<g>
+        <rect x="-9.5" y="-74.5" width="7.5" height="5" rx="2" fill="#15171c"/>
+        <rect x="2" y="-74.5" width="7.5" height="5" rx="2" fill="#15171c"/>
+        <rect x="-2" y="-73.5" width="4" height="1.4" fill="#15171c"/>
+        <path d="M -9.5 -73.5 L -3.5 -73.5" stroke="#4b5563" stroke-width=".7" opacity=".8"/>
+        <path d="M 2.5 -73.5 L 8.5 -73.5" stroke="#4b5563" stroke-width=".7" opacity=".8"/>
+      </g>`
+    case 'hood': // raised hoodie hood: drapes down to the shoulders and frames the face
+      return `<g>
+        <path d="M -16 -55 C -18 -74 -10 -90 0 -90 C 10 -90 18 -74 16 -55 C 13 -58 11 -60 9 -61 C 11 -67 9 -73 4 -74.5 C 2 -78 -2 -78 -4 -74.5 C -9 -73 -11 -67 -9 -61 C -11 -60 -13 -58 -16 -55 Z" fill="${COL_HOOD}"/>
+        <path d="M -14 -58 C -15 -74 -8.5 -86 0 -86 C 8.5 -86 15 -74 14 -58" fill="none" stroke="#00000026" stroke-width="1"/>
+      </g>`
+    case 'cap': // baseball cap: rounded crown hugging the head + forward brim
+      return `<g>
+        <path d="M -11.8 -75 C -12.5 -90 12.5 -90 11.8 -75 C 8 -78 -8 -78 -11.8 -75 Z" fill="${COL_CAP}"/>
+        <path d="M -11.8 -75.5 L -18 -73.5 C -16.5 -70.5 -8.5 -71.5 -2.5 -74.5 Z" fill="${COL_CAP}"/>
+        <path d="M -10 -78 C -6 -86 6 -86 10 -78" fill="none" stroke="#00000022" stroke-width="1"/>
+      </g>`
+    case 'beanie': // knitted cap pulled low over the crown + fold band
+      return `<g>
+        <path d="M -12.2 -73.5 C -12.5 -90 12.5 -90 12.2 -73.5 Z" fill="${COL_CAP}"/>
+        <rect x="-12.2" y="-75.5" width="24.4" height="4" rx="2" fill="${COL_CAP}" stroke="#00000026" stroke-width=".7"/>
+      </g>`
+    case 'headphones': // band over the crown + ear cups
+      return `<g>
+        <path d="M -12 -72 C -13 -86 13 -86 12 -72" fill="none" stroke="#1f2430" stroke-width="2.4"/>
+        <rect x="-14" y="-75" width="4.5" height="7" rx="2" fill="#1f2430"/>
+        <rect x="9.5" y="-75" width="4.5" height="7" rx="2" fill="#1f2430"/>
+      </g>`
+    case 'earrings': // tiny studs at the jaw line
+      return `<g>
+        <circle cx="-10.5" cy="-65" r="1.3" fill="#fcd34d"/>
+        <circle cx="10.5" cy="-65" r="1.3" fill="#fcd34d"/>
+      </g>`
+    case 'none': default:
+      return ''
+  }
+}
+
+function makeGenericCharSVG(cid, color, skin) {
+  color = color || '#a78bfa'
+  const ap = (S.chars && S.chars[cid] && S.chars[cid].appearance) || {}
+  skin = ap.skin || skin || '#e3b68e'
+  const hc = (ap.hair && ap.hair.color) || '#2b2118'
+  const hairStyle = (ap.hair && ap.hair.style) || 'short'
+  const acc = ap.accessory || 'none'
+  const outfit = ap.outfit || color
+  const accColor = ap.accColor || ''
+  const hair = hairSVG(hairStyle, hc)
+  const accFront = accessorySVG(acc, hc, outfit, accColor)
+  // headwear replaces the hair-on-top look; keep front hair only when bare-headed
+  const hairFront = (acc === 'hood' || acc === 'cap' || acc === 'beanie') ? '' : hair.front
+  // soft skin shade (a touch darker) for cheek/jaw AO
+  const shade = '#00000016'
+  return `<svg class="char-svg" id="svg-${cid}" width="19" height="45" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <linearGradient id="og-${cid}" x1="0" y1="0" x2="0" y2="1">
+        <stop offset="0" stop-color="${outfit}"/>
+        <stop offset="1" stop-color="#00000028"/>
+      </linearGradient>
+    </defs>
+    ${hair.back}
+    <ellipse cx="-5" cy="-1" rx="6" ry="2.2" fill="#1f2937"/>
+    <ellipse cx="5" cy="-1" rx="6" ry="2.2" fill="#1f2937"/>
+    <rect x="-6.5" y="-18" width="5.5" height="18" rx="2.5" fill="#3f3f46"/>
+    <rect x="1" y="-18" width="5.5" height="18" rx="2.5" fill="#3f3f46"/>
+    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -25 -12 -20 -11 -17 L 11 -17 C 12 -20 12.5 -25 13 -33 C 14 -42 13 -50 11 -56 Z" fill="${outfit}"/>
+    <path d="M -11 -56 C -13 -50 -14 -42 -13 -33 C -12.5 -25 -12 -20 -11 -17 L 11 -17 C 12 -20 12.5 -25 13 -33 C 14 -42 13 -50 11 -56 Z" fill="url(#og-${cid})" opacity=".55"/>
+    <path d="M -10 -56 C -8 -59 -3 -60 0 -59 C 3 -60 8 -59 10 -56 Z" fill="${outfit}"/>
+    <path d="M 0 -59 L -4.5 -49 M 0 -59 L 4.5 -49" stroke="#00000026" stroke-width="1.1" fill="none"/>
+    <path d="M -11 -55 C -17 -49 -18 -42 -16 -35" stroke="${skin}" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+    <path d="M 11 -55 C 17 -49 18 -42 16 -35" stroke="${skin}" stroke-width="5.5" fill="none" stroke-linecap="round"/>
+    <circle cx="-16" cy="-34" r="3.6" fill="${skin}"/>
+    <circle cx="16" cy="-34" r="3.6" fill="${skin}"/>
+    <rect x="-3.5" y="-64" width="7" height="9" rx="2" fill="${skin}"/>
+    <rect x="-3.5" y="-58" width="7" height="3" fill="${shade}"/>
+    <ellipse cx="0" cy="-72" rx="11.5" ry="11.5" fill="${skin}"/>
+    <path d="M -11.5 -72 C -11 -64 -7 -61 0 -61 C 7 -61 11 -64 11.5 -72 C 9 -65 -9 -65 -11.5 -72 Z" fill="${shade}"/>
+    ${hairFront}
+    <path id="brow-l-${cid}" d="M -9 -77.5 L -3 -76" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-${cid}" d="M 3 -76 L 9 -77.5" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <g id="eyes-normal-${cid}">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/>
+    </g>
+    <g id="eyes-wide-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.9" ry="3.6" fill="white"/>
+      <circle cx="-4.5" cy="-72" r="2.3" fill="#1a1a1a"/><circle cx="4.5" cy="-72" r="2.3" fill="#1a1a1a"/>
+      <circle cx="-3.4" cy="-73.6" r=".8" fill="white"/><circle cx="5.6" cy="-73.6" r=".8" fill="white"/>
+    </g>
+    <g id="eyes-narrow-${cid}" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -70.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -70.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-${cid}" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -69.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="${skin}" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -69.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="${skin}" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/><ellipse cx="4.5" cy="-71.5" rx="3.2" ry="1.9" fill="white"/>
+      <circle cx="-4.5" cy="-71.5" r="1.5" fill="#1a1a1a"/><circle cx="4.5" cy="-71.5" r="1.5" fill="#1a1a1a"/>
+      <path d="M -7.7 -71.5 Q -4.5 -74.8 -1.3 -71.5" fill="${skin}"/>
+      <path d="M 1.3 -71.5 Q 4.5 -74.8 7.7 -71.5" fill="${skin}"/>
+    </g>
+    <g id="eyes-heart-${cid}" display="none">
+      <path d="M -6.5 -73.5 Q -6.5 -76.5 -4.5 -75 Q -2.5 -76.5 -2.5 -73.5 Q -2.5 -71 -4.5 -69.5 Q -6.5 -71 -6.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 2.5 -73.5 Q 2.5 -76.5 4.5 -75 Q 6.5 -76.5 6.5 -73.5 Q 6.5 -71 4.5 -69.5 Q 2.5 -71 2.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="2.8" fill="white"/>
+      <circle cx="-4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/><circle cx="4.5" cy="-72.5" r="1.9" fill="#1a1a1a"/>
+      <ellipse cx="-4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="4.5" cy="-69" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-${cid}" display="none">
+      <ellipse cx="-8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+      <ellipse cx="8.5" cy="-67.5" rx="5" ry="2.8" fill="#fda4af" opacity=".5"/>
+    </g>
+    <path id="mouth-${cid}" d="M -4 -64.5 Q 0 -62 4 -64.5" stroke="#a85a4a" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    ${accFront}
+  </svg>`
+}
+
+// ── ANIMAL MODEL (Mutu — a ginger tabby cat) ─────────────────
+// A sitting cat whose face uses the SAME rig geometry (eyes ~-72.5, mouth -64.5,
+// brows) so applyFace drives eyes/brows/mouth/blush unchanged. Cat-specific parts
+// (pointed ears + long tail) are animated by applyAnimalExtras from the mood. Coat
+// colours are data-driven from appearance{coat,belly,stripe,eye}.
+function makeAnimalSVG(cid){
+  const ap = (S.chars && S.chars[cid] && S.chars[cid].appearance) || {}
+  const coat=ap.coat||'#d98a4a', belly=ap.belly||'#f2c89a', stripe=ap.stripe||'#a8612a',
+        eye=ap.eye||'#5fa86b', nose='#b9696b'
+  return `<svg class="char-svg dog-svg" id="svg-${cid}" width="28" height="44" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
+    <g id="tail-${cid}" class="dog-tail" style="transform-box:view-box;transform-origin:11px -8px">
+      <path d="M 10 -8 Q 22 -10 24 -24 Q 25 -34 19 -39" stroke="${coat}" stroke-width="6.5" fill="none" stroke-linecap="round"/>
+      <path d="M 22 -16 Q 24.5 -22 23 -30 M 17 -10 Q 21 -12 23 -18" stroke="${stripe}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
+    </g>
+    <path d="M -12 -4 C -15 -22 -11 -44 0 -44 C 11 -44 15 -22 12 -4 C 11 -1 7 -1 0 -1 C -7 -1 -11 -1 -12 -4 Z" fill="${coat}"/>
+    <ellipse cx="0" cy="-19" rx="7" ry="14" fill="${belly}" opacity=".55"/>
+    <path d="M -11 -32 Q 0 -35 11 -32 M -11 -24 Q 0 -27 11 -24 M -10 -16 Q 0 -19 10 -16" stroke="${stripe}" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".55"/>
+    <rect x="-6" y="-22" width="5" height="21" rx="2.5" fill="${coat}"/>
+    <rect x="1" y="-22" width="5" height="21" rx="2.5" fill="${coat}"/>
+    <ellipse cx="-3.5" cy="-1" rx="4.6" ry="2.6" fill="${belly}"/>
+    <ellipse cx="3.5" cy="-1" rx="4.6" ry="2.6" fill="${belly}"/>
+    <g id="ear-l-${cid}" class="dog-ear" style="transform-box:view-box;transform-origin:-8px -79px">
+      <path d="M -12 -79 L -2 -78 L -9 -91 Z" fill="${coat}"/>
+      <path d="M -10 -80 L -4.5 -79 L -8.5 -87 Z" fill="${nose}" opacity=".55"/>
+    </g>
+    <g id="ear-r-${cid}" class="dog-ear" style="transform-box:view-box;transform-origin:8px -79px">
+      <path d="M 12 -79 L 2 -78 L 9 -91 Z" fill="${coat}"/>
+      <path d="M 10 -80 L 4.5 -79 L 8.5 -87 Z" fill="${nose}" opacity=".55"/>
+    </g>
+    <ellipse cx="0" cy="-70" rx="13" ry="11.5" fill="${coat}"/>
+    <path d="M -4 -80 L -3 -74 M 0 -81 L 0 -75 M 4 -80 L 3 -74" stroke="${stripe}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".75"/>
+    <path d="M -13 -72 L -9 -71 M -13 -69 L -9.5 -68.5 M 13 -72 L 9 -71 M 13 -69 L 9.5 -68.5" stroke="${stripe}" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/>
+    <ellipse cx="0" cy="-62.5" rx="8" ry="6" fill="${belly}"/>
+    <path d="M -3 -64 L -15 -66 M -3 -62.2 L -14 -60.5 M 3 -64 L 15 -66 M 3 -62.2 L 14 -60.5" stroke="#ffffffb0" stroke-width=".8" fill="none" stroke-linecap="round"/>
+    <path d="M -2.4 -67 L 2.4 -67 L 0 -64.4 Z" fill="${nose}"/>
+    <path id="brow-l-${cid}" d="M -9 -77.5 L -3 -76" stroke="${stripe}" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <path id="brow-r-${cid}" d="M 3 -76 L 9 -77.5" stroke="${stripe}" stroke-width="1.6" stroke-linecap="round" fill="none"/>
+    <g id="eyes-normal-${cid}">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="3" fill="${eye}"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="3" fill="${eye}"/>
+      <ellipse cx="-4.5" cy="-72.5" rx="1.1" ry="2.6" fill="#101010"/><ellipse cx="4.5" cy="-72.5" rx="1.1" ry="2.6" fill="#101010"/>
+      <circle cx="-3.6" cy="-73.8" r=".7" fill="#ffffffcc"/><circle cx="5.4" cy="-73.8" r=".7" fill="#ffffffcc"/>
+    </g>
+    <g id="eyes-wide-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.8" ry="3.6" fill="${eye}"/><ellipse cx="4.5" cy="-72.5" rx="3.8" ry="3.6" fill="${eye}"/>
+      <ellipse cx="-4.5" cy="-72" rx="1.4" ry="3" fill="#101010"/><ellipse cx="4.5" cy="-72" rx="1.4" ry="3" fill="#101010"/>
+      <circle cx="-3.3" cy="-73.6" r=".8" fill="white"/><circle cx="5.7" cy="-73.6" r=".8" fill="white"/>
+    </g>
+    <g id="eyes-narrow-${cid}" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -70.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -70.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-happy-${cid}" display="none">
+      <path d="M -7.5 -72.5 Q -4.5 -69.5 -1.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="${coat}" stroke-linecap="round"/>
+      <path d="M 1.5 -72.5 Q 4.5 -69.5 7.5 -72.5" stroke="#1a1a1a" stroke-width="2.5" fill="${coat}" stroke-linecap="round"/>
+    </g>
+    <g id="eyes-bedroom-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-71.5" rx="3" ry="1.8" fill="${eye}"/><ellipse cx="4.5" cy="-71.5" rx="3" ry="1.8" fill="${eye}"/>
+      <ellipse cx="-4.5" cy="-71.5" rx="1" ry="1.6" fill="#101010"/><ellipse cx="4.5" cy="-71.5" rx="1" ry="1.6" fill="#101010"/>
+    </g>
+    <g id="eyes-heart-${cid}" display="none">
+      <path d="M -6.5 -73.5 Q -6.5 -76.5 -4.5 -75 Q -2.5 -76.5 -2.5 -73.5 Q -2.5 -71 -4.5 -69.5 Q -6.5 -71 -6.5 -73.5Z" fill="#f472b6"/>
+      <path d="M 2.5 -73.5 Q 2.5 -76.5 4.5 -75 Q 6.5 -76.5 6.5 -73.5 Q 6.5 -71 4.5 -69.5 Q 2.5 -71 2.5 -73.5Z" fill="#f472b6"/>
+    </g>
+    <g id="eyes-teary-${cid}" display="none">
+      <ellipse cx="-4.5" cy="-72.5" rx="3.2" ry="3" fill="${eye}"/><ellipse cx="4.5" cy="-72.5" rx="3.2" ry="3" fill="${eye}"/>
+      <ellipse cx="-4.5" cy="-72.5" rx="1.1" ry="2.6" fill="#101010"/><ellipse cx="4.5" cy="-72.5" rx="1.1" ry="2.6" fill="#101010"/>
+      <ellipse cx="-4.5" cy="-68.5" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+      <ellipse cx="4.5" cy="-68.5" rx="1.2" ry="1.9" fill="#93c5fd" opacity=".88"/>
+    </g>
+    <g id="blush-${cid}" display="none">
+      <ellipse cx="-9" cy="-63" rx="4" ry="2.4" fill="#fda4af" opacity=".45"/>
+      <ellipse cx="9" cy="-63" rx="4" ry="2.4" fill="#fda4af" opacity=".45"/>
+    </g>
+    <path id="mouth-${cid}" d="M -3 -63.5 Q 0 -61.5 3 -63.5" stroke="${nose}" stroke-width="1.4" stroke-linecap="round" fill="none"/>
+  </svg>`
+}
+// Map each expression bucket -> cat body language (ear rotation, tail behaviour)
+const ANIMAL_POSE = {
+  happy:      {l:-14,r:14, tail:'wag'},
+  smitten:    {l:-14,r:14, tail:'wag'},
+  flirtatious:{l:-10,r:10, tail:'wag'},
+  hopeful:    {l:-12,r:12, tail:'slow'},
+  calm:       {l:-4, r:4,  tail:'slow'},
+  neutral:    {l:0,  r:0,  tail:'slow'},
+  guarded:    {l:14, r:-14,tail:'none'},
+  jealous:    {l:14, r:-14,tail:'none'},
+  embarrassed:{l:8,  r:-8, tail:'low'},
+  sad:        {l:20, r:-20,tail:'tuck'},
+  heartbroken:{l:24, r:-24,tail:'tuck'},
+  angry:      {l:28, r:-28,tail:'none'},
+  shocked:    {l:32, r:-32,tail:'tuck'},
+  lustful:    {l:-8, r:8,  tail:'slow'},
+}
+function applyAnimalExtras(cid, fk){
+  const p = ANIMAL_POSE[fk] || ANIMAL_POSE.neutral
+  const el = document.getElementById('ear-l-'+cid); const er = document.getElementById('ear-r-'+cid)
+  if(el) el.style.transform = `rotate(${p.l}deg)`
+  if(er) er.style.transform = `rotate(${p.r}deg)`
+  const tail = document.getElementById('tail-'+cid)
+  if(tail){
+    tail.classList.remove('wag','slow')
+    tail.style.transform = ''
+    if(p.tail==='wag') tail.classList.add('wag')
+    else if(p.tail==='slow') tail.classList.add('slow')
+    else if(p.tail==='tuck') tail.style.transform = 'rotate(48deg)'
+    else if(p.tail==='low') tail.style.transform = 'rotate(24deg)'
+  }
+}
+
+function ensureCharDom(cid) {
+  const c = S.chars[cid] || {}
+  const color = c.color || '#a78bfa'
+  const isDog = (c.species||'human') !== 'human'
+  // Signature of everything that affects the drawn art. If the avatar already exists
+  // but its look changed — or `appearance` only arrived AFTER the first build (a
+  // load-order / CDN race meant the first render had no appearance) — rebuild just
+  // the SVG art in place. Without this, the art is frozen at first creation and a
+  // later data update (e.g. Judy's beanie) never shows. updateWorld re-applies
+  // face/pose immediately after, so the rebuilt avatar picks those back up.
+  const sig = JSON.stringify(c.appearance || {}) + '|' + (isDog ? 'dog' : 'human')
+  const existing = document.getElementById('char-'+cid)
+  if(existing){
+    if(existing.dataset.appSig === sig) return
+    const art = existing.querySelector('svg.char-svg')
+    const fresh = isDog ? makeAnimalSVG(cid) : makeGenericCharSVG(cid, color)
+    if(art) art.outerHTML = fresh
+    existing.dataset.appSig = sig
+    return
+  }
+  const firstName = c.name ? c.name.split(' ')[0].toUpperCase() : ''
+  const div = document.createElement('div')
+  div.className = 'char'
+  div.id = 'char-' + cid
+  div.dataset.appSig = sig
+  div.innerHTML =
+    (isDog ? makeAnimalSVG(cid) : makeGenericCharSVG(cid, color)) +
+    `<div class="nametag" id="nametag-${cid}" style="color:${color};border:1px solid ${color}33">${firstName}</div>` +
+    `<div class="bubble" id="bubble-${cid}" style="border-top:2px solid ${color}80">` +
+      (firstName ? `<div class="bubble-name" id="bubblename-${cid}" style="color:${color}">${firstName}</div>` : `<div class="bubble-name" id="bubblename-${cid}" style="color:${color}"></div>`) +
+      `<div class="bubble-text" id="thought-${cid}"></div>` +
+    `</div>`
+  document.getElementById('world').appendChild(div)
+  div.addEventListener('click', ()=>{
+    if(!isMobile()) return
+    document.querySelectorAll('.stat-card').forEach(c=>c.classList.remove('tap-open'))
+  })
+}
+
+function updateWorld() {
+  const w=S.world
+  document.getElementById('day-label').textContent='Day '+(w.day||1)
+  document.getElementById('cycle-label').textContent=cap(w.cycle||'')
+  document.getElementById('ds-day').textContent='Day '+(w.day||1)
+  document.getElementById('ds-cycle').textContent=cap(w.cycle||'')
+  if(w.pulse) document.getElementById('pulse').textContent=w.pulse
+  positionSceneLine()
+
+  const CHARS=Object.keys(S.chars)
+  CHARS.forEach(cid=>ensureCharDom(cid))
+  setHudVar()  // refresh --stage-bottom BEFORE laying out, so positions use the correct stage height
+  // Keep the background SVG + structures shifted in lock-step with the character math.
+  // The SVG element is sized to the FULL scaled art height (not just the stage) so its own
+  // viewport never clips the ocean; --world-shift then slides it up under #world's clip.
+  const _scale=Math.max(window.innerWidth/1000, stageH()/600)
+  const _svg=document.getElementById('world-svg')
+  if(_svg) _svg.style.height=(600*_scale)+'px'
+  document.documentElement.style.setProperty('--world-shift', (-worldYOffset(stageH(), _scale))+'px')
+  const W=isMobile()?getWorldWidth():window.innerWidth, H=stageH()
+  // compute raw pixel positions
+  const positions=CHARS.map(cid=>{
+    const c=S.chars[cid]||{}
+    const {left,top}=toPos(c.location?.x||50,c.location?.y||50,c.location?.waypoint)
+    const px=parseFloat(left)/100*W
+    const py=parseFloat(top)/100*H
+    return {id:cid, px, py}
+  })
+  separateChars(positions)
+
+  positions.forEach(p=>{
+    const el=document.getElementById('char-'+p.id); if(!el) return
+    el.style.left=(p.px/W*100)+'%'
+    el.style.top=(p.py/H*100)+'%'
+    applyFace(p.id)
+    updateBubble(p.id)
+    // keep nametag/bubble label in sync (so an unnamed stray's tag appears once it's named)
+    const nm = S.chars[p.id]?.name ? S.chars[p.id].name.split(' ')[0].toUpperCase() : ''
+    const ntag = document.getElementById('nametag-'+p.id); if(ntag && ntag.textContent!==nm) ntag.textContent = nm
+    const blab = document.getElementById('bubblename-'+p.id); if(blab && blab.textContent!==nm) blab.textContent = nm
+  })
+
+  nudgeBubbles(positions)
+  renderInteractions(positions)
+  renderChat()
+  updateStatusBar()
+  updateStatCards()
+  renderStructures()
+  renderResHud()
+  updateFireChip()
+
+  if(isMobile() && !mobileScrollInited) {
+    mobileScrollInited = true
+    requestAnimationFrame(() => {
+      // Center the horizontal scroll on the CAST (their average position), not the world's
+      // geometric midpoint — so wherever the camp sits in the scene, the characters land in
+      // view. Falls back to the geometric center if no characters are positioned yet.
+      const W = getWorldWidth(), vw = window.innerWidth
+      const maxX = Math.max(0, W - vw)
+      const cs = Object.keys(S.chars||{}).map(cid=>{
+        const el=document.getElementById('char-'+cid)
+        return el ? el.offsetLeft + el.offsetWidth/2 : null
+      }).filter(v=>v!=null)
+      const focus = cs.length ? cs.reduce((a,b)=>a+b,0)/cs.length : W*0.5
+      const target = Math.round(Math.min(maxX, Math.max(0, focus - vw/2)))
+      // Scroll whichever element actually owns the horizontal overflow (window on real
+      // mobile; document.body when html isn't the scroller) so centering is browser-proof.
+      window.scrollTo(target, 0)
+      const se = document.scrollingElement || document.documentElement
+      if(se) se.scrollLeft = target
+      document.body.scrollLeft = target
+    })
+  }
+}
+
+// ── STARS CANVAS ─────────────────────────────────────────
+function drawStars(active) {
+  const c=document.getElementById('stars')
+  if(!active){c.style.opacity='0';return}
+  c.width=getWorldWidth();c.height=window.innerHeight*.34
+  const ctx=c.getContext('2d');ctx.clearRect(0,0,c.width,c.height)
+  for(let i=0;i<200;i++){
+    const x=(Math.sin(i*137.5)*.5+.5)*c.width
+    const y=(Math.sin(i*97.3)*.5+.5)*c.height
+    const r=Math.sin(i*43.1)*.4+1.1
+    const a=Math.sin(i*61.7)*.35+.75
+    ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2)
+    ctx.fillStyle=`rgba(255,255,255,${a})`;ctx.fill()
+  }
+}
+
+
+const ALL_STEPS=['morning','midday','evening','night']
+
+function cap(s){return s?s[0].toUpperCase()+s.slice(1):''}
+
+let S={chars:{},feed:[],world:{}}
+
+async function reloadData(){
+  const t=Date.now()
+  try {
+    const [c,f,w]=await Promise.all([
+      fetch('data/characters.json?t='+t).then(r=>r.json()),
+      fetch('data/feed.json?t='+t).then(r=>r.json()),
+      fetch('data/world.json?t='+t).then(r=>r.json()),
+    ])
+    // Only re-render when a NEW cycle has actually been written — avoids needless
+    // re-layout (and feed-scroll yanks) every poll when nothing changed.
+    const changed = !S.world || w.last_cycle_key !== S.world.last_cycle_key
+      || (f && S.feed && f.length !== S.feed.length)
+    S.chars=c;S.feed=f;S.world=w
+    if(changed) updateWorld()
+    // Even when no new cycle, pick up any changed character looks (cheap: ensureCharDom
+    // no-ops when the appearance signature is unchanged). Heals a first-render that
+    // happened before appearance data was available.
+    else Object.keys(S.chars).forEach(ensureCharDom)
+  } catch(e){ /* transient fetch error — keep showing current state, try again next poll */ }
+}
+// Pick up new cycles automatically (data changes ~5x/day; poll is cheap and no-op when unchanged)
+setInterval(reloadData, 120000)
+
+// Auto-update when a NEW build of this page is deployed. GitHub Pages caches the HTML
+// (max-age=600) so code/art changes (e.g. character looks) can otherwise sit behind a
+// stale tab until a manual hard-refresh. This records the served Last-Modified of the
+// page on load and reloads once if a newer build appears — no manual refresh needed.
+let _buildStamp = null
+async function checkForNewBuild(){
+  try{
+    const r = await fetch(location.pathname + '?_b=' + Date.now(), {method:'HEAD', cache:'no-store'})
+    const stamp = r.headers.get('last-modified') || r.headers.get('etag')
+    if(!stamp) return
+    if(_buildStamp && stamp !== _buildStamp){ location.reload() }
+    _buildStamp = _buildStamp || stamp
+  }catch(e){ /* offline / transient — try again next tick */ }
+}
+checkForNewBuild()
+setInterval(checkForNewBuild, 120000)
+
+async function init(){
+  await loadDynamicTiles()
+  try{
+    const t=Date.now()
+    const [c,f,w]=await Promise.all([
+      fetch('data/characters.json?t='+t).then(r=>r.json()),
+      fetch('data/feed.json?t='+t).then(r=>r.json()),
+      fetch('data/world.json?t='+t).then(r=>r.json()),
+    ])
+    S.chars=c;S.feed=f;S.world=w;updateWorld()
+  }catch(e){
+    document.getElementById('day-label').textContent='Error'
+    console.error(e)
+  }
+  return true
+}
+
+// ── STAT CARDS ───────────────────────────────────────────
+const SC_COLORS = {marcus:'#93c5fd',ryan:'#fde68a',jade:'#f9a8d4',judy:'#99f6e4'}
+const SC_FILL   = {marcus:'#60a5fa',ryan:'#fbbf24',jade:'#f472b6',judy:'#2dd4bf'}
+const SCORE_LABELS = ['trust','openness','loneliness','resilience','ambition']
+const SURVIVAL_LABELS = ['hunger','thirst','energy','health']
+// survival bars are colour-coded by level: green (ok) / amber (low) / red (critical)
+function survColor(v){ return v>=60?'#4ade80' : v>=30?'#fbbf24' : '#f87171' }
+function getScColor(cid){return SC_COLORS[cid]||(S.chars[cid]?.color||'#94a3b8')}
+function getScFill(cid){return SC_FILL[cid]||S.chars[cid]?.color||'#94a3b8'}
+
+function buildStatCard(cid) {
+  const el = document.getElementById('sc-'+cid)
+  if(!el || !S.chars[cid]) return
+  const c = S.chars[cid]
+  const col = getScColor(cid)
+  const fill = getScFill(cid)
+
+  const scoreRows = SCORE_LABELS.map(k => {
+    const v = c.scores?.[k] ?? 0
+    return `<div class="sc-row">
+      <span class="sc-label">${k}</span>
+      <div class="sc-bar"><div class="sc-fill" style="width:${v}%;background:${fill}88"></div></div>
+      <span class="sc-val">${v}</span>
+    </div>`
+  }).join('')
+
+  const survRows = SURVIVAL_LABELS.map(k => {
+    const v = c.scores?.[k] ?? (k==='health' ? 100 : 0)
+    const sc = survColor(v)
+    return `<div class="sc-row">
+      <span class="sc-label">${k}</span>
+      <div class="sc-bar"><div class="sc-fill" style="width:${v}%;background:${sc}"></div></div>
+      <span class="sc-val" style="color:${sc}">${v}</span>
+    </div>`
+  }).join('')
+
+  const others = Object.keys(S.chars).filter(k=>k!==cid)
+  const bondRows = others.map(oid => {
+    const rel = c.relationships?.[oid] || {}
+    const cl = rel.closeness ?? 0
+    const at = rel.attraction ?? 0
+    const heart = at >= 30 ? ' ❤' : at >= 10 ? ' ·' : ''
+    const oName = S.chars[oid]?.name?.split(' ')[0] || cap(oid)
+    const oCol = getScColor(oid)
+    return `<div class="sc-bond" style="color:rgba(255,255,255,.6)">
+      <span style="color:${oCol}">${oName}</span>
+      <span style="color:rgba(255,255,255,.3)"> — closeness </span>
+      <span style="color:${fill}">${cl}</span>${heart ? `<span style="color:#f43f5e;font-size:11px">${heart}</span>` : ''}
+    </div>`
+  }).join('')
+
+  el.style.borderColor = col+'44'
+  el.style.border = `1px solid ${col}33`
+  const condBadge = (c.condition && c.condition!=='healthy')
+    ? `<div class="sc-cond sc-cond-${c.condition}">${c.condition==='injured'?'🤕 INJURED':'🤒 SICK'}</div>` : ''
+  el.innerHTML = `
+    <div class="sc-name" style="color:${col}">${c.name||cap(cid)}</div>
+    <div class="sc-mood">${c.mood||'—'}</div>
+    ${condBadge}
+    <div class="sc-section">Stats</div>
+    ${scoreRows}
+    <div class="sc-section" style="margin-top:7px">Survival</div>
+    ${survRows}
+    <div class="sc-section" style="margin-top:7px">Bonds</div>
+    ${bondRows}
+  `
+
+  // auto-flip horizontal + vertical based on character screen position
+  const charEl = document.getElementById('char-'+cid)
+  if(charEl) {
+    const xPct = parseFloat(charEl.style.left||'50')
+    const yPct = parseFloat(charEl.style.top||'50')
+    el.classList.toggle('left', xPct > 55)
+    el.classList.toggle('right', xPct <= 55)
+    el.classList.toggle('below', yPct < 40)
+  }
+}
+
+function updateStatCards() {
+  Object.keys(S.chars).forEach(buildStatCard)
+}
+
+// ── DAY HISTORY ───────────────────────────────────────────
+let _dhpOpen = false
+
+function toggleDayHistory() {
+  _dhpOpen = !_dhpOpen
+  const panel = document.getElementById('day-history-panel')
+  const btn = document.getElementById('day-hist-btn')
+  if(!panel) return
+  if(_dhpOpen) { showDayHistoryChips(); panel.classList.add('open') }
+  else panel.classList.remove('open')
+  if(btn) btn.classList.toggle('active', _dhpOpen)
+}
+
+function showDayHistoryChips() {
+  const inner = document.getElementById('dhp-inner')
+  if(!inner || !S.world) return
+  const w = S.world
+  const WX = {clear:'☀️',rain:'🌧️',storm:'⛈️',overcast:'☁️',foggy:'🌫️'}
+  const CYNAME = {morning:'Morning',midday:'Midday',evening:'Evening',night:'Night'}
+  const allDays = [...new Set((S.feed||[]).map(e=>e.day))].sort((a,b)=>b-a)
+  if(!allDays.includes(w.day)) allDays.unshift(w.day)
+  inner.innerHTML = `
+    <div class="dhp-head">Jungle History</div>
+    <div class="dhp-scroll"><div class="dhp-chips">
+      ${allDays.map(d => {
+        const isCur = d === w.day
+        const meta = isCur ? `${CYNAME[w.cycle]||''} ${WX[w.weather]||''}`.trim() : ''
+        return `<div class="dhp-chip${isCur?' cur':''}" onclick="showDayHistorySummary(${d})">
+          ${isCur?'<span class="dhp-dot"></span>':''}<span>Day ${d}</span>
+          ${meta?`<span class="dhp-chip-meta">${meta}</span>`:''}
+        </div>`
+      }).join('')}
+    </div></div>`
+}
+
+function showDayHistorySummary(day) {
+  const inner = document.getElementById('dhp-inner')
+  if(!inner) return
+  // Prefer the whole-day recap (written at the night cycle). If the day is still in
+  // progress, say so. Older days from before this feature fall back to the last event.
+  const summ = S.world?.day_summaries?.[day]
+  const isCurrent = day === (S.world?.day)
+  let bodyHtml
+  if (summ) {
+    bodyHtml = `<div class="dhp-drama">${summ}</div>`
+  } else if (isCurrent) {
+    bodyHtml = `<div class="dhp-ongoing">Day ${day} is still unfolding — the full recap arrives at day's end.</div>`
+  } else {
+    const entries = (S.feed||[]).filter(e=>e.day===day)
+    const interactions = entries.filter(e=>e.type==='interaction')
+    const lastIntr = interactions[interactions.length-1]
+    const dramaLine = lastIntr?.description
+      || [...entries].reverse().find(e=>e.thought)?.thought || '—'
+    bodyHtml = `<div class="dhp-drama">"${dramaLine}"</div>`
+  }
+  inner.innerHTML = `
+    <div class="dhp-head">
+      <span>Day ${day}</span>
+      <button class="dhp-back" onclick="showDayHistoryChips()">← all days</button>
+    </div>
+    <div class="dhp-scroll">
+      ${bodyHtml}
+    </div>`
+}
+
+// ── ORACLE ────────────────────────────────────────────────
+// (Island Oracle UI functions removed — the Oracle still runs in the engine and shapes
+//  the story; we just no longer reveal the upcoming/active fate on screen.)
+
+// Scene line: the "overnight → now" recap that sits directly under the LATEST headline.
+// Position is MEASURED from the headline's real rendered bottom (never hardcoded) so it
+// stays glued under it on every screen size and however many lines the headline wraps to.
+function positionSceneLine(){
+  const pulse = document.getElementById('pulse')
+  const pr = pulse?.getBoundingClientRect()
+  let blockBottom = (pr && pr.bottom) ? pr.bottom : 32
+  const el = document.getElementById('scene-line')
+  if(el){
+    const txt = (S && S.world && S.world.scene) || ''
+    el.textContent = txt
+    if(!txt){ el.style.display='none' }
+    else {
+      el.style.display=''
+      // sit just below the headline; fall back to a sane top if it isn't laid out yet
+      el.style.top = (blockBottom + 6) + 'px'
+    }
+  }
+  // (resource pills now live bottom-right via CSS — no headline-tucking needed)
+}
+
+function setHudVar(){
+  const hud = document.getElementById('hud')
+  const h = hud?.getBoundingClientRect().height
+  if(h) document.documentElement.style.setProperty('--above-hud', (Math.ceil(h)+12)+'px')
+  // --stage-bottom: the full-width bottom chrome (HUD + COLLAPSED feed drawer) the world
+  // must sit above so the beach/ocean stays visible. Always reserve the drawer's COLLAPSED
+  // footprint — even when it's expanded — so opening/closing the drawer never resizes the
+  // world (its CSS `bottom` offset is unchanged when open; only its height grows).
+  const DRAWER_COLLAPSED = 44
+  let top = window.innerHeight
+  if(hud) top = Math.min(top, hud.getBoundingClientRect().top)
+  const chat = document.getElementById('chat-panel')
+  if(chat){
+    const chatTop = chat.classList.contains('feed-open')
+      ? window.innerHeight - (parseFloat(getComputedStyle(chat).bottom)||0) - DRAWER_COLLAPSED
+      : chat.getBoundingClientRect().top
+    top = Math.min(top, chatTop)
+  }
+  const sb = Math.max(0, Math.round(window.innerHeight - top))
+  if(sb) document.documentElement.style.setProperty('--stage-bottom', sb+'px')
+}
+window.addEventListener('resize', ()=>{ setHudVar(); if(S && Object.keys(S.chars||{}).length) updateWorld() })
+
+// ── ZOOM-AWARE RE-SYNC (mobile pinch-zoom) ──────────────────────────────────
+// Mobile browsers (esp. iOS Safari) let users pinch-zoom even though our viewport asks them
+// not to. The fixed UI + horizontal map-scroll were built assuming no zoom, so after a zoom
+// in/out things could be left "stuck" (stale layout, scroll jammed past the world edge).
+// When a zoom settles (scale returns toward 1) — or on any visual-viewport change — we
+// re-measure + re-lay-out (same path as a resize) and clamp the map-scroll back into bounds,
+// so nothing stays stuck once the gesture ends. (Additive: only runs on visualViewport
+// events, so the normal no-zoom layout is untouched.)
+if (window.visualViewport) {
+  const vv = window.visualViewport
+  let vvRaf = null
+  const syncViewport = () => {
+    vvRaf = null
+    setHudVar()
+    if (S && Object.keys(S.chars||{}).length) updateWorld()
+    if (isMobile()) {
+      const maxX = Math.max(0, getWorldWidth() - window.innerWidth)
+      const x = Math.min(maxX, Math.max(0, window.scrollX))
+      if (x !== window.scrollX) window.scrollTo(x, window.scrollY)
+    }
+  }
+  const onVV = () => { if (!vvRaf) vvRaf = requestAnimationFrame(syncViewport) }
+  vv.addEventListener('resize', onVV)
+  vv.addEventListener('scroll', onVV)
+}
+// Keep --above-hud and --stage-bottom in sync with the HUD's REAL height at all times.
+// On mobile the HUD wraps to extra rows (and grows as status text / fonts change), so a
+// one-time measure goes stale: the Oracle button (z-index 52) ends up under the HUD
+// (z-index 100) and the world stage height drifts. A ResizeObserver re-measures on every
+// HUD size change, then re-lays-out the world so characters track the new stage height.
+const _hudEl = document.getElementById('hud')
+if(_hudEl && window.ResizeObserver){
+  new ResizeObserver(()=>{ setHudVar(); if(S && Object.keys(S.chars||{}).length) updateWorld() }).observe(_hudEl)
+}
+
+setInterval(updateStatusBar,60000)
+init().then(()=>{ initTapStats(); setHudVar() })
+
+// ── AUDIENCE VOTING ("sway, don't script") ──────────────────────────────────
+const VOTE_URL='https://wuorljdhcucldqqeqlvy.supabase.co';
+const VOTE_KEY='sb_publishable_fUl9AURQ3Mp0OblCKoFkWQ_8qLW-UiA';
+const VOTE_WORLD='rimba';
+let _vote=null;
+function voterId(){let v=localStorage.getItem('trop_voter');if(!v){v='v'+Math.random().toString(36).slice(2)+Date.now().toString(36);localStorage.setItem('trop_voter',v);}return v;}
+async function loadVote(){ try{_vote=await fetch('data/vote.json?t='+Date.now()).then(r=>r.json());}catch{_vote=null;} renderVote(); }
+async function renderVote(){
+  const body=document.getElementById('vp-body'); if(!body) return;
+  if(!_vote||!_vote.poll){ body.innerHTML='<div style="color:rgba(255,255,255,.5);font-size:12px">No vote open right now — check back soon.</div>'; return; }
+  const poll=_vote.poll, opts=poll.options||[];
+  const myPick=localStorage.getItem('trop_voted_'+poll.id);
+  let tally={};
+  try{ const rows=await fetch(VOTE_URL+'/rest/v1/rpc/tally',{method:'POST',headers:{apikey:VOTE_KEY,Authorization:'Bearer '+VOTE_KEY,'Content-Type':'application/json'},body:JSON.stringify({w:VOTE_WORLD,p:poll.id})}).then(r=>r.json()); rows.forEach(r=>tally[r.choice]=r.n); }catch{}
+  const total=Object.values(tally).reduce((a,b)=>a+(+b||0),0);
+  let html=`<div class="vp-q">${poll.question||'Which way should the camp lean?'}</div>`;
+  opts.forEach(o=>{
+    const n=+tally[o.id]||0, pct=total?Math.round(n/total*100):0, picked=myPick===o.id;
+    html+=`<button class="vp-opt${picked?' picked':''}" ${myPick?'disabled':''} onclick="castVote('${o.id}')">
+      <div class="vp-bar" style="width:${myPick?pct:0}%"></div>
+      <div class="vp-opt-label">${o.label}</div><div class="vp-opt-desc">${o.desc||''}</div>
+      ${myPick?`<div class="vp-opt-pct">${pct}%</div>`:''}</button>`;
+  });
+  html+= myPick
+    ? `<div class="vp-voted">✓ You leaned toward ${(opts.find(o=>o.id===myPick)||{}).label||myPick} · ${total} ${total===1?'voice':'voices'} so far</div>`
+    : `<div class="vp-hint">Tap to cast your one vote — it closes tonight.</div>`;
+  const ip=_vote.in_play;
+  if(ip) html+=`<div class="vp-inplay">In play now · <b>${ip.label}</b> — ${ip.desc}.${ip.votes?` Chosen by ${ip.votes} ${ip.votes===1?'watcher':'watchers'}.`:''} The camp leans this way today.</div>`;
+  else html+=`<div class="vp-inplay">No lean is in play yet — <b>tonight's vote sets tomorrow's mood.</b></div>`;
+  body.innerHTML=html;
+}
+async function castVote(choice){
+  const poll=_vote&&_vote.poll; if(!poll||localStorage.getItem('trop_voted_'+poll.id)) return;
+  try{ const res=await fetch(VOTE_URL+'/rest/v1/votes',{method:'POST',headers:{apikey:VOTE_KEY,Authorization:'Bearer '+VOTE_KEY,'Content-Type':'application/json'},body:JSON.stringify({world:VOTE_WORLD,poll_id:poll.id,choice,voter:voterId()})});
+    if(res.ok||res.status===409) localStorage.setItem('trop_voted_'+poll.id,choice); }catch{}
+  renderVote();
+}
+function toggleVote(){
+  const panel=document.getElementById('vote-panel'), pill=document.getElementById('vote-pill');
+  const willOpen=!panel.classList.contains('open');
+  // one corner-panel at a time: close the Days dropdown if it's open
+  if(willOpen && typeof _dhpOpen!=='undefined' && _dhpOpen){
+    _dhpOpen=false; document.getElementById('day-history-panel')?.classList.remove('open');
+    document.getElementById('day-hist-btn')?.classList.remove('active');
+  }
+  panel.classList.toggle('open', willOpen);
+  pill.classList.toggle('active', willOpen);
+  if(willOpen) loadVote();
+}
+// tap anywhere outside the dropdown (or the pill) closes it
+document.addEventListener('click', e=>{
+  const panel=document.getElementById('vote-panel');
+  if(panel && panel.classList.contains('open') && !e.target.closest('#vote-panel') && !e.target.closest('#vote-pill')){
+    panel.classList.remove('open'); document.getElementById('vote-pill')?.classList.remove('active');
+  }
+});
+loadVote();
+</script>
+</body>
+</html>

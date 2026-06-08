@@ -1,0 +1,30 @@
+{
+  "day": 1,
+  "cycle": "morning",
+  "weather": "humid, clear",
+  "pending_events": [],
+  "started": "2026-06-08",
+  "last_run_date": "2026-06-08",
+  "pulse": "Wesley's panic has wasted their water on the first morning; Chills stays calm, but the easy day is over.",
+  "scene": "Wesley discovered the cracked radiator and knocked the water jug into pooled engine oil. Chills arrives at the Cayenne while Wesley stands in shock and Mutu watches from the hood.",
+  "resources_prev": {
+    "food": 50,
+    "water": 50,
+    "wood": 30,
+    "medicine": 20
+  },
+  "structures": [],
+  "resources": {
+    "food": 42,
+    "water": 37,
+    "wood": 33,
+    "medicine": 20
+  },
+  "fire": {
+    "lit": false,
+    "fuel": 0
+  },
+  "camp_climate": "steady",
+  "discoveries": [],
+  "last_cycle_key": "2026-06-08:morning"
+}

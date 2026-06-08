@@ -1,0 +1,742 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Rimba — the story so far</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
+<meta name="description" content="The story so far on Rimba — a never-ending jungle survival drama. Day-by-day recaps, the full Jungle Log, and every character's relationships, told four times a day with no script.">
+<meta name="theme-color" content="#0a1410">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Never Ending Story Project">
+<meta property="og:title" content="Rimba — the story so far">
+<meta property="og:description" content="Day-by-day recaps and the full Jungle Log of a never-ending jungle survival drama. No script, no crew, no rescue.">
+<meta property="og:url" content="https://adamdegoat.github.io/rimba/story.html">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Rimba — the story so far">
+<meta name="twitter:description" content="Day-by-day recaps and the full Jungle Log of a never-ending jungle survival drama.">
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#070d18;--card:rgba(255,255,255,.04);--border:rgba(255,255,255,.07);
+  --text:#e2e8f0;--muted:#cbd5e1;--muted2:#94a3b8;
+  --marcus:#60a5fa;--ryan:#fbbf24;--jade:#f472b6;--judy:#2dd4bf;--radius:14px}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Plus Jakarta Sans',sans-serif;background:transparent;color:var(--text);font-size:14px;
+  -webkit-font-smoothing:antialiased;min-height:100vh;overflow:hidden}
+
+/* World background + overlay */
+#world-bg{position:fixed;inset:0;z-index:0;overflow:hidden}
+#world-bg svg{width:100%;height:100%;object-fit:cover}
+#dark-overlay{position:fixed;inset:0;z-index:1;background:rgba(2,6,23,.58);pointer-events:none}
+#story-scroll{position:fixed;inset:0;z-index:2;overflow-y:auto}
+
+/* Cloud/wave animations (mirrored from world page) */
+@keyframes cloud-a{from{transform:translateX(0)}to{transform:translateX(1300px)}}
+.cl1{animation:cloud-a 90s linear infinite}
+.cl2{animation:cloud-a 115s linear infinite;animation-delay:-40s}
+.cl3{animation:cloud-a 72s linear infinite;animation-delay:-22s}
+@keyframes flk{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(1.22) scaleX(.9)}}
+.fa{animation:flk .75s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+.fb{animation:flk .55s ease-in-out infinite reverse;transform-box:fill-box;transform-origin:50% 100%}
+.fc{animation:flk .42s ease-in-out infinite;transform-box:fill-box;transform-origin:50% 100%}
+@keyframes wv{from{transform:translateX(0)}to{transform:translateX(500px)}}
+.wa{animation:wv 13s linear infinite}.wb{animation:wv 19s linear infinite reverse}
+.hidden{display:none!important}
+h1,h2,h3{font-family:'Playfair Display',serif}
+@keyframes fadeUp{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.7;transform:scale(1.15)}}
+@keyframes shimmer{0%{background-position:200% center}100%{background-position:-200% center}}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* LOADING */
+#loading{min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem}
+.spinner{width:36px;height:36px;border:3px solid rgba(255,255,255,.1);border-top-color:#60a5fa;border-radius:50%;animation:spin .8s linear infinite}
+#loading p{color:var(--muted);font-size:13px}
+
+/* BACK BAR */
+.back-bar{position:sticky;top:0;z-index:50;background:rgba(7,13,24,.92);backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);border-bottom:1px solid var(--border);
+  padding:.65rem 1.25rem;display:flex;align-items:center;gap:.75rem;
+  /* bubble anchors to this */}
+.back-btn{display:inline-flex;align-items:center;gap:.35rem;padding:.28rem .75rem;
+  border-radius:14px;border:1px solid rgba(255,255,255,.1);background:rgba(255,255,255,.05);
+  color:rgba(255,255,255,.6);font-size:11px;font-weight:700;text-decoration:none;
+  font-family:'Plus Jakarta Sans',sans-serif;letter-spacing:.3px;text-transform:uppercase;transition:all .2s}
+.back-btn:hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.9)}
+.back-bar-title{font-family:'Playfair Display',serif;font-style:italic;font-size:16px;
+  background:linear-gradient(135deg,#fff 0%,#f472b6 40%,#fbbf24 70%,#60a5fa 100%);
+  background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;animation:shimmer 6s linear infinite}
+.day-dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;animation:pulse 2s infinite}
+
+/* DAY CHIPS */
+#day-chips{display:flex;align-items:center;gap:.35rem;margin-left:auto;
+  overflow-x:auto;flex-wrap:nowrap;scrollbar-width:none;padding-bottom:1px}
+#day-chips::-webkit-scrollbar{display:none}
+.day-chip{display:inline-flex;align-items:center;gap:.35rem;flex-shrink:0;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:14px;padding:.25rem .7rem;min-height:28px;
+  font-size:11px;font-weight:700;letter-spacing:.4px;white-space:nowrap;
+  cursor:pointer;user-select:none;font-family:'Plus Jakarta Sans',sans-serif;
+  transition:background .15s,border-color .15s}
+.day-chip:hover{background:rgba(255,255,255,.09);border-color:rgba(255,255,255,.18)}
+@keyframes chipGlow{0%,100%{box-shadow:0 0 0 0 rgba(34,197,94,0)}50%{box-shadow:0 0 0 5px rgba(34,197,94,.18)}}
+.day-chip.current{border-color:rgba(34,197,94,.35);animation:chipGlow 2.5s ease-in-out infinite}
+.day-chip.chip-active{background:rgba(255,255,255,.1)!important;border-color:rgba(255,46,120,.45)!important}
+.day-chip-meta{font-size:10px;color:rgba(255,255,255,.38);font-weight:500;letter-spacing:0}
+
+/* DAY SUMMARY BUBBLE */
+#day-summary-bubble{
+  position:absolute;top:calc(100% + 8px);right:0;z-index:200;
+  width:min(310px,calc(100vw - 24px));
+  background:rgba(4,8,22,.95);border:1px solid rgba(255,255,255,.11);border-radius:14px;
+  overflow:hidden;max-height:0;opacity:0;pointer-events:none;
+  transition:max-height .34s cubic-bezier(.4,0,.2,1),opacity .22s ease;
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  box-shadow:0 14px 40px rgba(0,0,0,.7)}
+#day-summary-bubble.open{max-height:420px;opacity:1;pointer-events:auto}
+.dsb-header{font-size:10px;font-weight:800;letter-spacing:1.8px;text-transform:uppercase;
+  color:rgba(255,255,255,.28);padding:13px 15px 0}
+.dsb-drama{font-size:13px;color:rgba(255,255,255,.82);line-height:1.58;font-style:italic;
+  padding:10px 15px 12px}
+.dsb-ongoing{font-size:12.5px;color:rgba(255,255,255,.55);line-height:1.55;font-style:italic;
+  padding:10px 15px 12px}
+.dsb-bullets{padding:10px 15px 6px;display:flex;flex-direction:column;gap:6px}
+.dsb-bullet{font-size:12px;color:rgba(255,255,255,.58);line-height:1.5;
+  padding-left:10px;position:relative}
+.dsb-bullet::before{content:'·';position:absolute;left:0;color:rgba(255,255,255,.2)}
+.dsb-rel{padding:8px 15px 8px;border-top:1px solid rgba(255,255,255,.05);
+  display:flex;flex-direction:column;gap:5px}
+.dsb-rel-item{font-size:11px;display:flex;align-items:baseline;justify-content:space-between;gap:.5rem}
+.dsb-rel-vals{font-size:10px;color:rgba(255,255,255,.28);flex-shrink:0}
+.dsb-cycles{padding:7px 15px 13px;display:flex;gap:.35rem;flex-wrap:wrap}
+.dsb-cycle-tag{font-size:10px;font-weight:700;text-transform:capitalize;letter-spacing:.3px;
+  color:rgba(255,255,255,.3);background:rgba(255,255,255,.05);
+  border-radius:7px;padding:2px 8px;font-family:'Plus Jakarta Sans',sans-serif}
+.dsb-empty{font-size:13px;color:var(--muted);padding:16px 15px;text-align:center}
+
+/* HERO INTRO */
+.hero-intro{padding:2.5rem 1.5rem 1.25rem;max-width:860px;margin:0 auto}
+.hero-tagline{font-family:'Playfair Display',serif;font-style:italic;
+  font-size:clamp(1.45rem,4vw,2.1rem);font-weight:700;
+  background:linear-gradient(135deg,#fff 0%,#f472b6 45%,#fbbf24 80%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;
+  line-height:1.2;margin-bottom:.9rem}
+.hero-body{color:rgba(226,232,240,.6);font-size:13.5px;line-height:1.75;
+  max-width:520px;margin-bottom:1.25rem}
+.hero-stats{display:flex;gap:.6rem;flex-wrap:wrap}
+.hero-stat-chip{display:inline-flex;align-items:center;gap:.35rem;padding:.35rem .85rem;
+  background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;font-size:12px;font-weight:600;letter-spacing:.2px;
+  color:rgba(255,255,255,.65)}
+.hero-stat-chip strong{color:#fff;font-weight:700}
+
+/* DAY HINT */
+#day-hint{
+  padding:.35rem 1.25rem;text-align:right;
+  font-size:11px;color:rgba(34,197,94,.6);letter-spacing:.5px;
+  background:rgba(34,197,94,.05);border-bottom:1px solid rgba(34,197,94,.1);
+  transition:opacity .5s ease,max-height .5s ease,padding .5s ease;
+  overflow:hidden;max-height:36px
+}
+#day-hint.hint-faded{opacity:0;max-height:0;padding-top:0;padding-bottom:0}
+
+/* SECTIONS */
+.section{padding:2rem 1.5rem;max-width:860px;margin:0 auto}
+.section-title{font-size:1.4rem;font-weight:700;font-style:italic;margin-bottom:1.25rem;
+  background:linear-gradient(135deg,#fff 0%,#f472b6 55%,#fbbf24 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.divider{height:1px;background:linear-gradient(90deg,transparent,rgba(255,255,255,.06),transparent);margin:0 1.5rem}
+.reveal{opacity:0;transform:translateY(16px);transition:opacity .5s,transform .5s}
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* CYCLE TABS */
+.cycle-tab{display:inline-flex;background:rgba(255,255,255,.04);border:1px solid var(--border);
+  border-radius:8px;overflow:hidden;margin-bottom:1rem}
+.cycle-btn{padding:.4rem .85rem;font-size:12px;font-weight:600;color:var(--muted);cursor:pointer;
+  font-family:'Plus Jakarta Sans',sans-serif;transition:all .15s;border:none;background:none;color:inherit}
+.cycle-btn.active{background:rgba(255,255,255,.08);color:#fff}
+.cycle-btn[data-cycle="morning"].active{color:#93c5fd;box-shadow:inset 0 -2px 0 #93c5fd}
+.cycle-btn[data-cycle="midday"].active{color:#fde68a;box-shadow:inset 0 -2px 0 #fde68a}
+.cycle-btn[data-cycle="evening"].active{color:#fb923c;box-shadow:inset 0 -2px 0 #fb923c}
+.cycle-btn[data-cycle="night"].active{color:#c084fc;box-shadow:inset 0 -2px 0 #c084fc}
+
+/* FEED */
+.today-grid{display:flex;flex-direction:column;gap:.65rem}
+.feed-card{background:var(--card);border-radius:12px;border:1px solid var(--border);
+  padding:1rem 1.2rem;display:flex;gap:.85rem;align-items:flex-start;animation:fadeUp .3s ease both}
+.feed-card.interaction{border-left:3px solid rgba(251,191,36,.35);border-style:solid;opacity:.92}
+.feed-avatar{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:12px;font-family:'Plus Jakarta Sans',sans-serif;flex-shrink:0}
+.feed-body{flex:1;min-width:0}
+.feed-name{font-size:12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:2px}
+.feed-action{font-size:12px;color:var(--muted);margin-bottom:.35rem;font-style:italic}
+.feed-thought{font-size:13px;color:var(--text);line-height:1.55}
+.feed-dialogue{font-size:13px;color:var(--text);line-height:1.55;font-style:italic}
+.feed-dialogue-line{font-size:13px;color:var(--text);line-height:1.6;margin-top:3px}
+
+/* CHARACTER CARDS */
+.profiles-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+@media(max-width:860px){.profiles-grid{grid-template-columns:repeat(2,1fr)}}
+.char-card{background:rgba(11,18,32,.92);border-radius:var(--radius);border:1px solid var(--border);
+  padding:1.25rem;transition:all .25s;position:relative;overflow:hidden}
+.char-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px}
+.char-card.marcus::before{background:linear-gradient(90deg,transparent,var(--marcus),transparent)}
+.char-card.ryan::before{background:linear-gradient(90deg,transparent,var(--ryan),transparent)}
+.char-card.jade::before{background:linear-gradient(90deg,transparent,var(--jade),transparent)}
+.char-card.judy::before{background:linear-gradient(90deg,transparent,var(--judy),transparent)}
+.char-card:hover{transform:translateY(-3px);border-color:rgba(255,255,255,.12)}
+.char-avatar{width:48px;height:48px;border-radius:50%;display:flex;align-items:center;justify-content:center;
+  font-weight:800;font-size:16px;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:.85rem}
+.char-name{font-size:15px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:2px}
+.char-archetype{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.8px;color:var(--muted);margin-bottom:.85rem}
+.char-bio{font-size:12px;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.char-mood{display:inline-flex;align-items:center;gap:.35rem;font-size:11px;font-weight:700;
+  text-transform:uppercase;letter-spacing:.5px;padding:3px 9px;border-radius:10px;
+  background:rgba(255,255,255,.06);margin-bottom:1rem;font-family:'Plus Jakarta Sans',sans-serif}
+.score-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:.45rem}
+.score-label{font-size:11px;color:var(--muted);width:75px;text-transform:capitalize}
+.score-track{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden;margin:0 .6rem}
+.score-fill{height:100%;border-radius:4px;transition:width .8s cubic-bezier(.4,0,.2,1)}
+.score-val{font-size:11px;font-weight:700;width:22px;text-align:right;font-family:'Plus Jakarta Sans',sans-serif}
+.shelter-tag{display:inline-flex;align-items:center;gap:.3rem;font-size:11px;color:var(--muted);
+  background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:6px;padding:2px 8px;margin-top:.75rem}
+
+/* RELATIONSHIP */
+.rel-wrap{display:flex;flex-direction:column;align-items:center;gap:1.5rem}
+#rel-svg{width:100%;max-width:380px}
+.rel-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem;width:100%}
+.rel-card{background:var(--card);border-radius:10px;border:1px solid var(--border);padding:.85rem;text-align:center}
+.rel-pair{font-size:12px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;margin-bottom:.5rem}
+.rel-bar-row{display:flex;align-items:center;gap:.4rem;margin-bottom:.25rem}
+.rel-bar-label{font-size:10px;color:var(--muted);width:52px;text-align:right;text-transform:capitalize}
+.rel-bar-track{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
+.rel-bar-fill{height:100%;border-radius:3px;transition:width .8s}
+@media(max-width:480px){.rel-stats{grid-template-columns:1fr}}
+
+/* ABSENT CONTEXT */
+.absent-ctx{font-size:12px;color:var(--muted);font-style:italic;margin:4px 0 8px;
+  padding:5px 10px;border-left:2px solid rgba(255,255,255,.08);opacity:.75;line-height:1.5}
+.absent-ctx strong{font-style:normal;font-weight:600}
+
+/* WORLD STATE */
+.ws-block-title{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  color:var(--muted2);margin-bottom:.65rem;font-family:'Plus Jakarta Sans',sans-serif}
+.res-row{display:flex;align-items:center;gap:.6rem;margin-bottom:.5rem}
+.res-icon{font-size:13px;width:20px;text-align:center;flex-shrink:0}
+.res-label{font-size:12px;color:var(--muted);width:60px;text-transform:capitalize;flex-shrink:0}
+.res-track{flex:1;height:4px;background:rgba(255,255,255,.08);border-radius:4px;overflow:hidden}
+.res-fill{height:100%;border-radius:4px;transition:width .8s}
+.res-val{font-size:11px;font-weight:700;width:28px;text-align:right;flex-shrink:0}
+.struct-item{display:flex;align-items:flex-start;gap:.6rem;padding:.45rem 0;border-bottom:1px solid rgba(255,255,255,.04)}
+.struct-item:last-child{border-bottom:none}
+.struct-item-icon{font-size:13px;flex-shrink:0;width:20px;text-align:center;margin-top:1px}
+.struct-item-body{flex:1}
+.struct-item-name{font-size:12px;font-weight:600}
+.struct-item-meta{font-size:11px;color:var(--muted);margin-top:1px}
+.survival-divider{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:1.5px;
+  color:var(--muted2);margin:.75rem 0 .45rem;border-top:1px solid rgba(255,255,255,.05);padding-top:.65rem}
+
+/* LOG */
+.log-day{margin-bottom:1.5rem}
+.log-day-header{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:1px;
+  color:var(--muted2);margin-bottom:.65rem;padding-bottom:.4rem;border-bottom:1px solid var(--border);
+  font-family:'Plus Jakarta Sans',sans-serif}
+.log-entry{font-size:13px;padding:.55rem 0;border-bottom:1px solid rgba(255,255,255,.04);
+  display:flex;gap:.6rem;align-items:flex-start;line-height:1.5}
+.log-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0;margin-top:.35rem}
+.log-cycle-tag{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;
+  color:var(--muted2);flex-shrink:0;width:52px;margin-top:1px;font-family:'Plus Jakarta Sans',sans-serif}
+
+/* FOOTER */
+footer{text-align:center;padding:3rem 1.5rem;color:var(--muted2);font-size:12px;
+  border-top:1px solid var(--border);margin-top:1rem}
+footer span{color:var(--muted);font-weight:600}
+
+/* ── MOBILE ── */
+@media(max-width:768px){
+  body{overflow-y:auto}
+  #story-scroll{position:relative;inset:auto;overflow-y:visible}
+  #world-bg{display:none}
+  #dark-overlay{display:none}
+  body{background:linear-gradient(160deg,#0a1628 0%,#070d18 45%,#06100e 100%)}
+  .section{padding:1.25rem 1rem}
+  .back-bar{padding:.5rem 1rem}
+  .back-bar-title{font-size:14px}
+  .day-chip{font-size:10px;padding:.2rem .6rem;min-height:30px}
+  .day-chip-meta{display:none}
+  #day-summary-bubble{right:0;left:auto}
+  .cycle-tab{display:flex;flex-wrap:wrap;gap:2px}
+  .cycle-btn{padding:.3rem .55rem;font-size:11px}
+  .profiles-grid{grid-template-columns:repeat(2,1fr)}
+  .rel-stats{grid-template-columns:1fr}
+  .feed-card{flex-direction:column;gap:.5rem}
+  .feed-avatar{width:28px;height:28px;font-size:10px}
+  .section-title{font-size:1.1rem}
+  .log-cycle-tag{width:36px;font-size:9px}
+}
+</style>
+</head>
+<body>
+
+<!-- Island world as fixed background -->
+<div id="world-bg">
+<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="sky-morning" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#c2410c"/><stop offset="20%" stop-color="#ea580c"/><stop offset="42%" stop-color="#fbbf24"/><stop offset="65%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#bae6fd"/></linearGradient>
+  <linearGradient id="sky-midday" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0369a1"/><stop offset="35%" stop-color="#0ea5e9"/><stop offset="70%" stop-color="#38bdf8"/><stop offset="100%" stop-color="#bae6fd"/></linearGradient>
+  <linearGradient id="sky-afternoon" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1d4ed8"/><stop offset="40%" stop-color="#0ea5e9"/><stop offset="75%" stop-color="#7dd3fc"/><stop offset="100%" stop-color="#dbeafe"/></linearGradient>
+  <linearGradient id="sky-evening" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#6d28d9"/><stop offset="22%" stop-color="#be185d"/><stop offset="48%" stop-color="#dc2626"/><stop offset="68%" stop-color="#ea580c"/><stop offset="85%" stop-color="#fbbf24"/><stop offset="100%" stop-color="#fde68a"/></linearGradient>
+  <linearGradient id="sky-night" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#020617"/><stop offset="40%" stop-color="#0f172a"/><stop offset="80%" stop-color="#1e1b4b"/><stop offset="100%" stop-color="#1e1b4b"/></linearGradient>
+  <linearGradient id="sky-dawn" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#1e1b4b"/><stop offset="28%" stop-color="#4c1d95"/><stop offset="52%" stop-color="#7c3aed"/><stop offset="72%" stop-color="#be185d"/><stop offset="88%" stop-color="#f97316"/><stop offset="100%" stop-color="#fbbf24"/></linearGradient>
+  <linearGradient id="ocean-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0%" stop-color="#0e7490"/><stop offset="55%" stop-color="#0b5563"/><stop offset="100%" stop-color="#073b45"/></linearGradient>
+</defs>
+<rect id="sky-bg" width="1000" height="315" fill="url(#sky-afternoon)"/>
+<g id="sun-group"><circle cx="810" cy="88" r="70" fill="#fbbf24" opacity=".1"/><circle cx="810" cy="88" r="48" fill="#fcd34d" opacity=".18"/><circle cx="810" cy="88" r="28" fill="#fef3c7"/></g>
+<g id="moon-group" opacity="0"><circle cx="810" cy="88" r="28" fill="#e2e8f0"/><circle cx="823" cy="80" r="22" fill="#0f172a"/></g>
+<g class="cl1" opacity=".7"><ellipse cx="-180" cy="75" rx="68" ry="26" fill="white"/><ellipse cx="-140" cy="64" rx="50" ry="22" fill="white"/><ellipse cx="-215" cy="80" rx="42" ry="19" fill="white"/></g>
+<g class="cl2" opacity=".55"><ellipse cx="-480" cy="50" rx="55" ry="20" fill="white"/><ellipse cx="-445" cy="41" rx="40" ry="17" fill="white"/></g>
+<!-- layered rainforest canopy hills (back hazier -> front darker) -->
+<path d="M 0 285 Q 120 248 250 272 Q 390 245 520 265 Q 660 242 790 265 Q 900 248 1000 262 L 1000 315 L 0 315 Z" fill="#2f8f4e" opacity=".6"/>
+<path d="M 0 298 Q 180 272 360 290 Q 530 270 700 286 Q 850 270 1000 282 L 1000 315 L 0 315 Z" fill="#1f6b3a" opacity=".7"/>
+<rect x="0" y="310" width="1000" height="200" fill="#3f2d18"/>
+<path d="M 0 322 Q 250 314 500 324 Q 750 314 1000 320 L 1000 360 L 0 360 Z" fill="#5c4327" opacity=".7"/>
+<!-- jungle trees -->
+<rect x="30" y="298" width="13" height="56" rx="3" fill="#3f2d18"/><ellipse cx="37" cy="298" rx="32" ry="24" fill="#14532d"/><ellipse cx="37" cy="284" rx="26" ry="19" fill="#1f6b3a"/><ellipse cx="37" cy="272" rx="17" ry="14" fill="#2f8f4e"/>
+<rect x="88" y="290" width="12" height="50" rx="3" fill="#3f2d18"/><ellipse cx="94" cy="290" rx="30" ry="22" fill="#14532d"/><ellipse cx="94" cy="277" rx="24" ry="18" fill="#1f6b3a"/><ellipse cx="94" cy="265" rx="16" ry="13" fill="#2f8f4e"/>
+<rect x="148" y="295" width="13" height="58" rx="3" fill="#3f2d18"/><ellipse cx="155" cy="295" rx="34" ry="25" fill="#14532d"/><ellipse cx="155" cy="280" rx="27" ry="20" fill="#1f6b3a"/><ellipse cx="155" cy="267" rx="18" ry="15" fill="#2f8f4e"/>
+<!-- jungle ridge + emergent buttress tree (right) -->
+<path d="M 822 318 L 812 262 L 840 210 L 878 184 L 922 192 L 956 232 L 974 276 L 990 308 L 1000 318 L 1000 360 L 822 360 Z" fill="#14532d" opacity=".85"/>
+<rect x="890" y="250" width="16" height="80" rx="4" fill="#3f2d18"/><ellipse cx="898" cy="240" rx="48" ry="34" fill="#1f6b3a"/><ellipse cx="898" cy="222" rx="36" ry="26" fill="#2f8f4e"/><ellipse cx="898" cy="208" rx="22" ry="17" fill="#86b04a" opacity=".7"/>
+<!-- bamboo stand -->
+<rect x="470" y="276" width="5" height="70" rx="2" fill="#86b04a"/><rect x="482" y="270" width="5" height="76" rx="2" fill="#b9d36a"/><rect x="494" y="280" width="5" height="66" rx="2" fill="#86b04a"/><rect x="506" y="272" width="5" height="74" rx="2" fill="#a3c75a"/>
+<path d="M 470 300 h5 M 482 296 h5 M 494 304 h5 M 506 298 h5" stroke="#3f2d18" stroke-width="1.5" opacity=".5"/>
+<!-- lean-to shelter -->
+<path d="M 540 366 L 612 366 L 600 318 Z" fill="#5c4327"/><path d="M 540 366 L 600 318 L 596 324 L 548 366 Z" fill="#6b4f2a"/>
+<path d="M 548 330 L 592 322 M 552 342 L 596 334 M 556 354 L 600 346" stroke="#3f2d18" stroke-width="2" opacity=".5"/>
+<!-- tree-fern + broad-leaf (left) -->
+<path d="M 194 398 Q 188 362 184 320 Q 182 296 180 276" stroke="#3f2d18" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M 180 276 Q 142 268 118 280 M 180 276 Q 158 256 150 236 M 180 276 Q 184 252 184 234 M 180 276 Q 206 258 224 266 M 180 276 Q 200 296 214 308" stroke="#1f6b3a" stroke-width="6" fill="none" stroke-linecap="round"/>
+<path d="M 268 398 Q 276 362 280 322 Q 282 298 290 276" stroke="#3f2d18" stroke-width="11" fill="none" stroke-linecap="round"/>
+<path d="M 290 276 Q 326 266 350 278 M 290 276 Q 308 256 316 238 M 290 276 Q 284 254 282 236 M 290 276 Q 262 260 246 268" stroke="#2f8f4e" stroke-width="6" fill="none" stroke-linecap="round"/>
+<!-- low ferns / undergrowth -->
+<path d="M 350 360 Q 344 344 332 336 M 350 360 Q 350 342 350 332 M 350 360 Q 356 344 368 336" stroke="#2f8f4e" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+<path d="M 690 362 Q 684 346 672 338 M 690 362 Q 690 344 690 334 M 690 362 Q 696 346 708 338" stroke="#1f6b3a" stroke-width="3.5" fill="none" stroke-linecap="round" opacity=".8"/>
+<!-- camp fire -->
+<ellipse cx="492" cy="438" rx="34" ry="14" fill="#1c0a00"/>
+<ellipse cx="492" cy="434" rx="30" ry="12" fill="none" stroke="#3f2d18" stroke-width="9"/>
+<path class="fa" d="M 483 428 Q 480 414 484 403 Q 488 393 492 384 Q 496 393 500 403 Q 504 414 501 428 Q 496 418 492 424 Q 488 418 483 428" fill="#dc2626"/>
+<path class="fb" d="M 485 426 Q 483 413 487 403 Q 489 395 492 388 Q 495 395 497 403 Q 501 413 499 426 Q 495 417 492 422 Q 489 417 485 426" fill="#f97316"/>
+<path class="fc" d="M 487 424 Q 486 413 488 405 Q 490 399 492 394 Q 494 399 496 405 Q 498 413 497 424 Q 494 416 492 421 Q 490 416 487 424" fill="#fbbf24"/>
+<!-- muddy bank + river -->
+<path d="M 0 492 Q 200 480 400 488 Q 600 478 800 486 Q 900 483 1000 490 L 1000 525 L 0 525 Z" fill="#6b4f2a"/>
+<rect x="0" y="518" width="1000" height="82" fill="url(#ocean-g)"/>
+<path class="wa" d="M -500 534 Q -375 524 -250 534 Q -125 544 0 534 Q 125 524 250 534 Q 375 544 500 534 Q 625 524 750 534 Q 875 544 1000 534 Q 1125 524 1250 534 Q 1375 544 1500 534 L 1500 600 L -500 600 Z" fill="#22a3b3" opacity=".4"/>
+<path class="wb" d="M -300 546 Q -175 537 -50 546 Q 75 555 200 546 Q 325 537 450 546 Q 575 555 700 546 Q 825 537 950 546 L 1450 600 L -300 600 Z" fill="#0b5563" opacity=".5"/>
+<rect id="night-overlay" width="1000" height="600" fill="#020617" opacity="0"/>
+</svg>
+</div>
+<div id="dark-overlay"></div>
+
+<div id="story-scroll">
+<div id="loading"><div class="spinner"></div><p>Loading the story…</p></div>
+
+<div id="app" class="hidden">
+
+  <!-- Back bar -->
+  <div class="back-bar">
+    <a class="back-btn" href="index.html">← World</a>
+    <span class="back-bar-title">Rimba</span>
+    <span id="day-label" style="display:none">Day 1</span>
+    <span id="cycle-label" style="display:none">—</span>
+    <span id="weather-label" style="display:none">☀️</span>
+    <div id="day-chips"></div>
+    <div id="day-summary-bubble"></div>
+  </div>
+
+  <!-- Day hint -->
+  <div id="day-hint">✦ Tap a day chip to see what happened</div>
+
+  <!-- Hero Intro -->
+  <div class="hero-intro reveal">
+    <div class="hero-tagline" id="hero-tagline">Two men. One cat. No way out.</div>
+    <div class="hero-body" id="hero-body">Rimba is a never-ending story — two Singaporeans and a cat stranded deep in the Malaysian jungle after their 4x4 breaks down, with no script, no crew, and no rescue. The story unfolds four times a day. The characters change, harden, and surprise you as time goes on — no one controls them. Each night the jungle takes its turn — a storm, an injury, a discovery — that can shift the whole storyline. This entire world runs at zero cost.</div>
+    <div class="hero-stats">
+      <div class="hero-stat-chip">Day <strong id="hsc-day">—</strong></div>
+      <div class="hero-stat-chip">Updated <strong>4×</strong> a day</div>
+      <div class="hero-stat-chip">Zero human input</div>
+    </div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Island Log -->
+  <div class="section reveal">
+    <div class="section-title">Jungle Log</div>
+    <div id="full-log"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Character Profiles -->
+  <div class="section reveal">
+    <div class="section-title">The Survivors</div>
+    <div class="profiles-grid" id="profiles-grid"></div>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- World State -->
+  <div class="section reveal">
+    <div class="section-title">World State</div>
+    <div class="ws-block-title">Resources</div>
+    <div id="resources-grid"></div>
+    <div class="ws-block-title" style="margin-top:1.25rem">Structures</div>
+    <div id="structures-list"></div>
+    <div class="ws-block-title" style="margin-top:1.25rem">Discoveries</div>
+    <div id="discoveries-list"></div>
+  </div>
+
+  <footer>
+    <p>Rimba · Updated by pressing <span>▶ Run</span> on the world page</p>
+    <p style="margin-top:.4rem">Built with <span>Claude Haiku</span> · Running since Day 1</p>
+  </footer>
+
+</div><!-- #app -->
+</div><!-- #story-scroll -->
+
+<script>
+let CHARS = {marcus:'#60a5fa',ryan:'#fbbf24',jade:'#f472b6'}
+let CHAR_NAMES = {marcus:'Marcus',ryan:'Ryan',jade:'Jade'}
+function syncCharMaps(){
+  Object.entries(S.chars).forEach(([k,v])=>{
+    if(!CHARS[k]) CHARS[k] = v.color||'#a78bfa'
+    if(!CHAR_NAMES[k]) CHAR_NAMES[k] = v.name||cap(k)
+  })
+}
+const CYCLE_ORDER = ['morning','midday','evening','night']
+const WX = {clear:'☀️',rain:'🌧️',storm:'⛈️',overcast:'☁️',foggy:'🌫️'}
+const MOOD_EMOJI = {happy:'😊',cheerful:'😊',free:'😌',calm:'😌',content:'🙂',peaceful:'😌',neutral:'😐',
+  guarded:'😶',distant:'😶',sad:'😔',lonely:'😔',angry:'😤',frustrated:'😤',restless:'😕',hopeful:'🙂',warm:'🙂'}
+let S = {chars:{},feed:[],world:{}}
+function cap(s){return s?s[0].toUpperCase()+s.slice(1):''}
+
+// ── DAY CHIPS + SUMMARY BUBBLE ────────────────────────────
+let _activeSummaryDay = null
+
+function buildDaySummary(day) {
+  // Show ONLY the whole-day recap (written at the night cycle). If the day is still
+  // running, say so. Older days from before this feature fall back to the last event.
+  const summ = S.world?.day_summaries?.[day]
+  if (summ) return `<div class="dsb-drama">${summ}</div>`
+  if (day === (S.world?.day)) return `<div class="dsb-ongoing">Day ${day} is still unfolding — the full recap arrives at day's end.</div>`
+  const entries = S.feed.filter(e => e.day === day)
+  if (!entries.length) return '<div class="dsb-empty">No story data for this day yet.</div>'
+  const interactions = entries.filter(e => e.type === 'interaction')
+  const lastIntr = interactions[interactions.length - 1]
+  const dramaLine = lastIntr?.description
+    || [...entries].reverse().find(e => e.thought)?.thought
+    || '—'
+  return `<div class="dsb-drama">"${dramaLine}"</div>`
+}
+
+function renderDayChips() {
+  const container = document.getElementById('day-chips')
+  if (!container) return
+  const w = S.world
+  const currentDay = w.day
+  const allDays = [...new Set(S.feed.map(e=>e.day))].sort((a,b)=>a-b)
+  if (!allDays.includes(currentDay)) allDays.push(currentDay)
+  container.innerHTML = allDays.map(d => {
+    const cur = d === currentDay
+    return `<div class="day-chip${cur?' current':''}" onclick="toggleDaySummary(${d},this)">
+      ${cur?'<span class="day-dot"></span>':''}<span>Day ${d}</span>
+      ${cur?`<span class="day-chip-meta">${cap(w.cycle||'')} ${WX[w.weather]||'☀️'}</span>`:''}
+    </div>`
+  }).join('')
+  // Once the chips overflow, the default scroll sits on Day 1 — jump to the newest day.
+  requestAnimationFrame(() => { container.scrollLeft = container.scrollWidth })
+}
+
+function toggleDaySummary(day, chipEl) {
+  const bubble = document.getElementById('day-summary-bubble')
+  if (!bubble) return
+  // Mark hint as seen
+  localStorage.setItem('tropicana_chipHintSeen','1')
+  document.getElementById('day-hint')?.classList.add('hint-faded')
+  document.querySelectorAll('.day-chip').forEach(c=>c.classList.remove('chip-active'))
+  if (_activeSummaryDay === day) {
+    bubble.classList.remove('open')
+    _activeSummaryDay = null
+    return
+  }
+  _activeSummaryDay = day
+  chipEl.classList.add('chip-active')
+  bubble.innerHTML = `<div class="dsb-header">Day ${day} — What happened</div>${buildDaySummary(day)}`
+  bubble.classList.add('open')
+}
+
+function render() {
+  const w = S.world
+  document.getElementById('day-label').textContent = 'Day ' + w.day
+  document.getElementById('cycle-label').textContent = cap(w.cycle||'')
+  document.getElementById('weather-label').textContent = WX[w.weather]||'☀️'
+  const hscDay = document.getElementById('hsc-day')
+  if(hscDay) hscDay.textContent = w.day
+  const NUM_WORDS = ['','One','Two','Three','Four','Five','Six','Seven','Eight','Nine','Ten']
+  const allC = Object.values(S.chars)
+  const humans = allC.filter(c=>(!c.species||c.species==='human')).length
+  const animals = allC.filter(c=>c.species&&c.species!=='human').length
+  const tagline = document.getElementById('hero-tagline')
+  const animalBit = animals===1 ? 'One cat. ' : animals>1 ? `${NUM_WORDS[animals]||animals} animals. ` : ''
+  if(tagline) tagline.textContent = `${NUM_WORDS[humans]||humans} ${humans===1?'man':'men'}. ${animalBit}No way out.`
+  const hbody = document.getElementById('hero-body')
+  if(hbody) hbody.innerHTML = `Rimba is a never-ending story — ${NUM_WORDS[humans]||humans} ${humans===1?'Singaporean':'Singaporeans'}${animals?` and ${animals===1?'a cat':NUM_WORDS[animals].toLowerCase()+' animals'}`:''} stranded deep in the Malaysian jungle after their 4x4 breaks down, with no script, no crew, and no rescue. The story unfolds four times a day. The characters change, harden, and surprise you as time goes on — no one controls them. Each night, <strong style="color:#e3b24c">the jungle takes its turn</strong> — a storm, an injury, a discovery — that can shift the entire storyline. This entire world runs at zero cost. ✦ <em>Scroll down for the Jungle Log (every cycle, logged), The Survivors (character profiles &amp; relationships), and World State (survival resources &amp; structures).</em>`
+  renderDayChips()
+  renderProfiles()
+  renderWorldState()
+  renderLog()
+}
+
+const STRUCT_EMOJI = {tent:'⛺',house:'🏠',hammock:'🌴',firepit:'🔥',garden:'🌱',
+  watchtower:'🗼',storage:'📦',raft:'🛶',signal_fire:'🔥',fish_trap:'🎣',
+  cave:'🪨',waterfall:'💧',wreckage:'⚓',spring:'💧',discovery:'✨'}
+
+function renderWorldState() {
+  const w = S.world
+  const res = w.resources || {}
+  const structs = w.structures || []
+  const disc = w.discoveries || []
+
+  const resItems = [{k:'food',icon:'🍖',col:'#22c55e'},{k:'water',icon:'💧',col:'#38bdf8'},
+                    {k:'wood',icon:'🪵',col:'#a78bfa'},{k:'medicine',icon:'🌿',col:'#f472b6'}]
+  document.getElementById('resources-grid').innerHTML = resItems.map(r => {
+    const v = res[r.k] ?? 0
+    const vc = v<=20?'#ef4444':v<=40?'#f59e0b':'rgba(255,255,255,.55)'
+    return `<div class="res-row">
+      <span class="res-icon">${r.icon}</span>
+      <span class="res-label">${r.k}</span>
+      <div class="res-track"><div class="res-fill" style="width:${v}%;background:${r.col}"></div></div>
+      <span class="res-val" style="color:${vc}">${v}</span>
+    </div>`
+  }).join('')
+
+  document.getElementById('structures-list').innerHTML = structs.length ? structs.map(s => {
+    const icon = STRUCT_EMOJI[s.type]||'📍'
+    const builder = s.builder ? (S.chars[s.builder]?.name?.split(' ')[0]||cap(s.builder)) : ''
+    const bc = CHARS[s.builder]||'#94a3b8'
+    return `<div class="struct-item">
+      <span class="struct-item-icon">${icon}</span>
+      <div class="struct-item-body">
+        <div class="struct-item-name">${s.label}</div>
+        ${builder?`<div class="struct-item-meta">Built by <span style="color:${bc}">${builder}</span> · Day ${s.day}</div>`:''}
+      </div>
+    </div>`
+  }).join('') : `<div style="color:var(--muted);font-size:13px;padding:.5rem 0">Nothing built yet.</div>`
+
+  document.getElementById('discoveries-list').innerHTML = disc.length ? disc.map(d => {
+    const finder = d.discovered_by ? (S.chars[d.discovered_by]?.name?.split(' ')[0]||cap(d.discovered_by)) : ''
+    const fc = CHARS[d.discovered_by]||'#94a3b8'
+    return `<div class="struct-item">
+      <span class="struct-item-icon">✨</span>
+      <div class="struct-item-body">
+        <div class="struct-item-name">${d.name}</div>
+        <div class="struct-item-meta">${d.description}${finder?` — found by <span style="color:${fc}">${finder}</span>`:''} · Day ${d.day}</div>
+      </div>
+    </div>`
+  }).join('') : `<div style="color:var(--muted);font-size:13px;padding:.5rem 0">Nothing discovered yet.</div>`
+}
+
+function renderProfiles() {
+  // "The Islanders" = named people only. Pets (e.g. the stray dog, species!=human) and
+  // any not-yet-named/dormant character are excluded so they can't render a blank card.
+  document.getElementById('profiles-grid').innerHTML = Object.entries(S.chars)
+    .filter(([cid,c]) => ((c.species&&c.species!=='human')) || ((!c.species || c.species==='human') && c.name && c.name.trim()))
+    .map(([cid,c]) => {
+    if(c.species&&c.species!=='human') return dogProfileCard(cid,c)   // pets get their own card, not trait bars
+    const color = c.color || CHARS[cid]
+    const initials = (c.name||'').split(' ').map(w=>w[0]).join('')
+    const moodEmoji = MOOD_EMOJI[(c.mood||'').toLowerCase()] || '😐'
+    const shelter = {tent:'⛺',house:'🏠',hammock:'🌴',beach:'🏖️',forest:'🌲'}
+    return `<div class="char-card ${cid}" style="box-shadow:0 0 30px ${color}12">
+      <div class="char-avatar" style="background:${color}18;border:2px solid ${color}40;color:${color}">${initials}</div>
+      <div class="char-name" style="color:${color}">${c.name}</div>
+      <div class="char-archetype">The ${cap(c.archetype)}</div>
+      <div class="char-bio">${c.bio}</div>
+      <div class="char-mood" style="color:${color}">${moodEmoji} ${cap(c.mood||'')}</div>
+      ${Object.entries(c.scores||{}).filter(([k])=>!['hunger','thirst','energy'].includes(k)).map(([k,v])=>`
+        <div class="score-row">
+          <span class="score-label">${k}</span>
+          <div class="score-track"><div class="score-fill" style="width:${v}%;background:linear-gradient(90deg,${color}88,${color})"></div></div>
+          <span class="score-val" style="color:${color}">${v}</span>
+        </div>`).join('')}
+      ${['hunger','thirst','energy'].some(k=>c.scores?.[k]!=null)?`
+        <div class="survival-divider">Survival</div>
+        ${['hunger','thirst','energy'].filter(k=>c.scores?.[k]!=null).map(k=>{
+          const v=c.scores[k]; const sc=v<=20?'#ef4444':v<=40?'#f59e0b':color
+          return `<div class="score-row">
+            <span class="score-label">${k}</span>
+            <div class="score-track"><div class="score-fill" style="width:${v}%;background:${sc}"></div></div>
+            <span class="score-val" style="color:${sc}">${v}</span>
+          </div>`}).join('')}`:''}
+      <div class="shelter-tag">${shelter[c.shelter]||'📍'} ${cap(c.shelter)}</div>
+    </div>`
+  }).join('')
+}
+
+// An animal isn't a "survivor" with traits — it gets its own card that says what it is.
+function dogProfileCard(cid, c){
+  const color = c.color || '#d98a4a'
+  const named = c.name && c.name.trim()
+  const displayName = named ? c.name : 'Unnamed'
+  const moodEmoji = MOOD_EMOJI[(c.mood||'').toLowerCase()] || '🐾'
+  const bio = c.bio || "Chills' ginger tabby, road-hardened from years of overlanding — independent, devoted, and a sly little hunter."
+  const tag = named ? '🐱 The camp cat' : '🐾 Not yet named'
+  const shelter = {tent:'⛺',house:'🏠',hammock:'🌴',beach:'🏖️',forest:'🌲',cayenne:'🚙',lean_to:'🛖'}
+  return `<div class="char-card dog-card" style="box-shadow:0 0 30px ${color}12">
+    <div class="char-avatar" style="background:${color}18;border:2px solid ${color}40;font-size:24px">🐾</div>
+    <div class="char-name" style="color:${color}">${displayName}</div>
+    <div class="char-archetype">The ${cap(c.archetype||'stray pup')}</div>
+    <div class="char-bio">${bio}</div>
+    <div class="char-mood" style="color:${color}">${moodEmoji} ${cap(c.mood||'')}</div>
+    <div class="dog-status" style="font-size:11px;color:var(--muted2);margin-top:.5rem;letter-spacing:.3px">${tag}</div>
+    ${['hunger','thirst','energy'].some(k=>c.scores?.[k]!=null)?`
+      <div class="survival-divider">Survival</div>
+      ${['hunger','thirst','energy'].filter(k=>c.scores?.[k]!=null).map(k=>{
+        const v=c.scores[k]; const sc=v<=20?'#ef4444':v<=40?'#f59e0b':color
+        return `<div class="score-row"><span class="score-label">${k}</span><div class="score-track"><div class="score-fill" style="width:${v}%;background:${sc}"></div></div><span class="score-val" style="color:${sc}">${v}</span></div>`}).join('')}`:''}
+    <div class="shelter-tag">${shelter[c.shelter]||'📍'} ${cap(c.shelter||'outdoors')}</div>
+  </div>`
+}
+
+const CYCLE_HOUR_S = {morning:'7am',midday:'12:30pm',evening:'6pm',night:'11pm'}
+
+function fmtSGTS(ts) {
+  if(!ts) return ''
+  const t = ts.split('T')[1]
+  if(!t) return ''
+  const [hStr, mStr] = t.split(':')
+  let h = parseInt(hStr), m = parseInt(mStr)
+  const ap = h >= 12 ? 'PM' : 'AM'
+  h = h % 12 || 12
+  return `${h}:${String(m).padStart(2,'0')} ${ap}`
+}
+
+// (removed dead code: cycleLabelS, renderDialogue, absentCtxHtml, getCloseness/Tension/Attr, renderRelStats — none were called)
+
+function renderLog() {
+  const byDay = {}
+  S.feed.forEach(e => {
+    // Key Moments: only interactions and births
+    if(e.type !== 'interaction' && e.type !== 'birth') return
+    if(!byDay[e.day]) byDay[e.day] = {}
+    if(!byDay[e.day][e.cycle]) byDay[e.day][e.cycle] = []
+    byDay[e.day][e.cycle].push(e)
+  })
+
+  // Prologue — founding cast: named PEOPLE who were here from the start (no late joined_day,
+  // not a pet). Derived dynamically so the dots AND the sentence stay correct on any cast.
+  const pChars = Object.keys(S.chars).filter(c => {
+    const ch = S.chars[c]
+    return (!ch.species || ch.species==='human') && ch.name && ch.name.trim() && (!ch.joined_day || ch.joined_day <= 1)
+  })
+  const pDots = pChars.map(cid => `<div class="log-dot" style="background:${CHARS[cid]||'#475569'}"></div>`).join('')
+  const NUMW = ['','One','Two','Three','Four','Five','Six','Seven','Eight']
+  const pNames = pChars.map(cid => (S.chars[cid].name||'').split(' ')[0])
+  const nameList = pNames.length>1 ? pNames.slice(0,-1).join(', ')+' and '+pNames.slice(-1) : (pNames[0]||'')
+  const pn = pChars.length
+  const prologueText = `Stranded deep in the Malaysian jungle — their 4x4 bogged and broken, no signal, no way out. ${nameList} — no plan, no rescue, no easy day ahead. The story begins here.`
+  const prologueHtml = `<div class="log-day">
+    <div class="log-day-header" style="font-size:10px;letter-spacing:1.5px;color:var(--muted2)">PROLOGUE</div>
+    <div class="log-entry">
+      <div class="log-cycle-tag">Day 1</div>
+      <div style="display:flex;gap:3px;flex-shrink:0;align-items:center;margin-top:.3rem">${pDots}</div>
+      <div style="flex:1;color:var(--text)">${prologueText}</div>
+    </div>
+  </div>`
+
+  const days = Object.keys(byDay).sort((a,b)=>a-b)
+  if(!days.length) {
+    document.getElementById('full-log').innerHTML = prologueHtml + '<div style="font-size:13px;color:var(--muted);padding:1rem 0;text-align:center">No log entries yet — check back after the next cycle.</div>'
+    return
+  }
+  document.getElementById('full-log').innerHTML = prologueHtml + days.map(day => {
+    const cycles = byDay[day]
+    const entries = CYCLE_ORDER.filter(c=>cycles[c]).map(cyc =>
+      cycles[cyc].map(e => {
+        const cTag = fmtSGTS(e.timestamp) || CYCLE_HOUR_S[cyc]||cyc
+        if(e.type === 'interaction') {
+          const dots = (e.characters||[]).map(cid=>`<div class="log-dot" style="background:${CHARS[cid]||'#475569'}"></div>`).join('')
+          return `<div class="log-entry">
+            <div class="log-cycle-tag">${cTag}</div>
+            <div style="display:flex;gap:3px;flex-shrink:0;align-items:center;margin-top:.3rem">${dots}</div>
+            <div style="flex:1;color:var(--text)">${e.description||''}</div>
+          </div>`
+        }
+        if(e.type === 'birth') {
+          return `<div class="log-entry">
+            <div class="log-cycle-tag">${cTag}</div>
+            <div class="log-dot" style="background:#22c55e"></div>
+            <div style="flex:1;color:#86efac">${e.description||'New arrival'}</div>
+          </div>`
+        }
+        return ''
+      }).join('')
+    ).join('')
+    return entries ? `<div class="log-day">
+      <div class="log-day-header">Day ${day}</div>
+      ${entries}
+    </div>` : ''
+  }).filter(Boolean).join('')
+}
+
+async function init() {
+  try {
+    const [c,f,w] = await Promise.all([
+      fetch('data/characters.json').then(r=>r.json()),
+      fetch('data/feed.json').then(r=>r.json()),
+      fetch('data/world.json').then(r=>r.json())
+    ])
+    S.chars=c; S.feed=f; S.world=w
+    syncCharMaps()
+    render()
+    // Sync sky to real SGT time
+    const sgt=new Date(Date.now()+new Date().getTimezoneOffset()*60000+8*3600000)
+    const h=sgt.getHours()
+    const sky=h>=23||h<7?'night':h<12?'morning':h<18?'midday':'evening'
+    document.getElementById('sky-bg')?.setAttribute('fill',`url(#sky-${sky})`)
+    const isNight=sky==='night'||sky==='dawn'
+    document.getElementById('sun-group')?.setAttribute('opacity',isNight?'0':'1')
+    document.getElementById('moon-group')?.setAttribute('opacity',isNight?'1':'0')
+    document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.28':'0')
+    document.getElementById('loading').classList.add('hidden')
+    document.getElementById('app').classList.remove('hidden')
+    // Day hint — fade once user has tapped a chip
+    if(localStorage.getItem('tropicana_chipHintSeen')) {
+      document.getElementById('day-hint')?.classList.add('hint-faded')
+    }
+    // Close summary bubble when clicking outside chips area
+    document.addEventListener('click', ev => {
+      if (!ev.target.closest('#day-chips') && !ev.target.closest('#day-summary-bubble')) {
+        document.getElementById('day-summary-bubble')?.classList.remove('open')
+        document.querySelectorAll('.day-chip').forEach(c=>c.classList.remove('chip-active'))
+        _activeSummaryDay = null
+      }
+    })
+    const obs = new IntersectionObserver(entries => entries.forEach(e => {
+      if(e.isIntersecting) e.target.classList.add('visible')
+    }), {threshold:.1})
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+  } catch(e) {
+    document.getElementById('loading').innerHTML = '<p style="color:#ef4444">Could not load story data.</p>'
+  }
+}
+init()
+</script>
+</body>
+</html>
