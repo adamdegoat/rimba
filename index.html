@@ -64,6 +64,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* Fireflies near the firepit (parent group's opacity gates night-only visibility) */
 @keyframes firefly{0%,100%{opacity:0;transform:translate(0,0)}25%{opacity:.95}50%{opacity:.35;transform:translate(7px,-9px)}75%{opacity:.85}}
 .firefly{transform-box:view-box;animation:firefly 4.2s ease-in-out infinite}
+/* Butterflies flutter (daytime ambient; group hidden at night via applySky) */
+@keyframes flutter{0%{transform:translate(0,0) rotate(-2deg)}25%{transform:translate(14px,-12px) rotate(3deg)}50%{transform:translate(30px,2px) rotate(-3deg)}75%{transform:translate(12px,14px) rotate(2deg)}100%{transform:translate(0,0) rotate(-2deg)}}
+.flutter{transform-box:view-box;animation:flutter 11s ease-in-out infinite}
+@keyframes wingbeat{0%,100%{transform:scaleX(1)}50%{transform:scaleX(.45)}}
+.fly-wing{transform-box:fill-box;transform-origin:50% 50%;animation:wingbeat .32s ease-in-out infinite}
 /* Dog (puppy) ears + tail — driven by applyDogExtras; smooth transitions + tail wag */
 .dog-ear{transform-box:view-box;transition:transform .45s ease}
 .dog-tail{transform-box:view-box;transition:transform .45s ease}
@@ -643,6 +648,40 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
     <stop offset="0%" stop-color="#bcd9c4" stop-opacity=".7"/>
     <stop offset="100%" stop-color="#6e8f7e" stop-opacity=".35"/>
   </linearGradient>
+  <!-- ── LUSH FOLIAGE gradients (overhead canopy, big tropical leaves, flowers) ── -->
+  <linearGradient id="canopy-ceiling-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#0f2417"/><stop offset="60%" stop-color="#14532d"/>
+    <stop offset="100%" stop-color="#1f6b3a"/>
+  </linearGradient>
+  <linearGradient id="vine-leaf-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#1f6b3a"/><stop offset="100%" stop-color="#14532d"/>
+  </linearGradient>
+  <linearGradient id="big-leaf-g" x1="0" y1="0" x2="0.4" y2="1">
+    <stop offset="0%" stop-color="#1f6b3a"/><stop offset="55%" stop-color="#14532d"/>
+    <stop offset="100%" stop-color="#0b1f12"/>
+  </linearGradient>
+  <linearGradient id="big-leaf-g2" x1="0" y1="0" x2="0.5" y2="1">
+    <stop offset="0%" stop-color="#2f8f4e"/><stop offset="60%" stop-color="#1f6b3a"/>
+    <stop offset="100%" stop-color="#0f2417"/>
+  </linearGradient>
+  <linearGradient id="elephant-leaf-g" x1="0" y1="0" x2="0" y2="1">
+    <stop offset="0%" stop-color="#2f8f4e"/><stop offset="100%" stop-color="#14532d"/>
+  </linearGradient>
+  <linearGradient id="fg-leaf-g" x1="0" y1="0" x2="0.3" y2="1">
+    <stop offset="0%" stop-color="#14532d"/><stop offset="100%" stop-color="#0b1f12"/>
+  </linearGradient>
+  <radialGradient id="heliconia-g" cx="40%" cy="35%" r="75%">
+    <stop offset="0%" stop-color="#f2b134"/><stop offset="50%" stop-color="#e58b4a"/>
+    <stop offset="100%" stop-color="#e0533a"/>
+  </radialGradient>
+  <radialGradient id="hibiscus-g" cx="50%" cy="42%" r="70%">
+    <stop offset="0%" stop-color="#f2b134"/><stop offset="45%" stop-color="#e0533a"/>
+    <stop offset="100%" stop-color="#9d2424"/>
+  </radialGradient>
+  <radialGradient id="orchid-g" cx="50%" cy="40%" r="70%">
+    <stop offset="0%" stop-color="#f5c4d6"/><stop offset="55%" stop-color="#d94f7a"/>
+    <stop offset="100%" stop-color="#a8325a"/>
+  </radialGradient>
   <radialGradient id="vignette-g" cx="50%" cy="46%" r="62%">
     <stop offset="0%" stop-color="#000000" stop-opacity="0"/>
     <stop offset="78%" stop-color="#000000" stop-opacity="0"/>
@@ -736,6 +775,71 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <polygon points="772,118 808,118 760,470 672,470" fill="url(#god-ray)" opacity=".7"/>
   <polygon points="512,140 532,140 360,460 300,460" fill="url(#god-ray)" opacity=".55"/>
   <polygon points="858,124 884,124 900,440 836,440" fill="url(#god-ray)" opacity=".5"/>
+</g>
+
+<!-- ══ OVERHEAD CANOPY CEILING + HANGING VINES (very top; god-rays read between) ══ -->
+<!-- dark layered canopy fringe across the top edge -->
+<path d="M 0 0 L 1000 0 L 1000 38
+         Q 952 70 904 42 Q 856 78 808 46 Q 760 80 712 44
+         Q 664 76 616 42 Q 568 74 520 40 Q 472 76 424 42
+         Q 376 74 328 40 Q 280 74 232 42 Q 184 76 136 42
+         Q 88 72 40 40 Q 18 30 0 36 Z" fill="url(#canopy-ceiling-g)" opacity=".96"/>
+<!-- leaf clumps hanging down off the fringe -->
+<g fill="url(#canopy-ceiling-g)" opacity=".9">
+  <ellipse cx="60" cy="44" rx="46" ry="30"/><ellipse cx="150" cy="52" rx="40" ry="26"/>
+  <ellipse cx="252" cy="46" rx="44" ry="28"/><ellipse cx="352" cy="54" rx="42" ry="26"/>
+  <ellipse cx="452" cy="46" rx="46" ry="30"/><ellipse cx="548" cy="52" rx="40" ry="26"/>
+  <ellipse cx="648" cy="46" rx="44" ry="28"/><ellipse cx="744" cy="52" rx="42" ry="26"/>
+  <ellipse cx="844" cy="46" rx="46" ry="30"/><ellipse cx="938" cy="52" rx="42" ry="28"/>
+</g>
+<!-- canopy leaf highlights catching the light -->
+<g fill="#1f6b3a" opacity=".55">
+  <ellipse cx="110" cy="40" rx="22" ry="13"/><ellipse cx="402" cy="40" rx="24" ry="13"/>
+  <ellipse cx="600" cy="42" rx="20" ry="12"/><ellipse cx="800" cy="40" rx="24" ry="13"/>
+</g>
+<!-- hand-drawn leaf clusters dripping off the ceiling -->
+<g fill="#14532d">
+  <path d="M 92 60 Q 70 84 78 110 Q 96 90 100 64 Z"/>
+  <path d="M 96 62 Q 120 84 116 112 Q 100 92 92 66 Z" fill="#1f6b3a"/>
+  <path d="M 318 58 Q 296 86 306 116 Q 322 92 326 62 Z"/>
+  <path d="M 322 60 Q 346 84 342 114 Q 326 94 318 64 Z" fill="#1f6b3a"/>
+  <path d="M 686 58 Q 664 86 674 116 Q 690 92 694 62 Z"/>
+  <path d="M 690 60 Q 714 84 710 114 Q 694 94 686 64 Z" fill="#1f6b3a"/>
+  <path d="M 876 56 Q 854 84 864 114 Q 880 90 884 60 Z"/>
+  <path d="M 880 58 Q 904 82 900 112 Q 884 92 876 62 Z" fill="#1f6b3a"/>
+</g>
+<!-- dangling lianas / vines with small leaf nodes (some sway) -->
+<g stroke="#3f2d18" fill="none" stroke-linecap="round">
+  <path d="M 198 36 Q 204 90 196 150 Q 190 200 200 252" stroke-width="2.4" opacity=".75"/>
+  <path d="M 198 36 Q 204 90 196 150 Q 190 200 200 252" stroke="#5c4327" stroke-width="0.9" opacity=".5"/>
+  <path d="M 504 40 Q 498 110 506 188" stroke-width="2.2" opacity=".7"/>
+  <path d="M 760 44 Q 768 100 758 168 Q 752 210 762 250" stroke-width="2.2" opacity=".72"/>
+</g>
+<g class="palm-sway" style="transform-origin:312px 40px;animation-delay:-1.4s">
+  <path d="M 312 40 Q 318 100 308 168 Q 302 220 312 278" stroke="#3f2d18" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".78"/>
+  <g fill="url(#vine-leaf-g)">
+    <ellipse cx="306" cy="120" rx="7" ry="3.4" transform="rotate(-32 306 120)"/>
+    <ellipse cx="314" cy="170" rx="7" ry="3.4" transform="rotate(28 314 170)"/>
+    <ellipse cx="307" cy="222" rx="6.5" ry="3.2" transform="rotate(-30 307 222)"/>
+    <ellipse cx="312" cy="266" rx="7" ry="3.4" transform="rotate(20 312 266)"/>
+  </g>
+</g>
+<g class="palm-sway" style="transform-origin:642px 42px;animation-delay:-3.2s">
+  <path d="M 642 42 Q 636 104 646 174 Q 652 224 642 286" stroke="#3f2d18" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".78"/>
+  <g fill="url(#vine-leaf-g)">
+    <ellipse cx="640" cy="116" rx="7" ry="3.4" transform="rotate(30 640 116)"/>
+    <ellipse cx="648" cy="166" rx="7" ry="3.4" transform="rotate(-28 648 166)"/>
+    <ellipse cx="642" cy="218" rx="6.5" ry="3.2" transform="rotate(26 642 218)"/>
+    <ellipse cx="641" cy="272" rx="7" ry="3.4" transform="rotate(-22 641 272)"/>
+  </g>
+</g>
+<g class="palm-sway" style="transform-origin:864px 44px;animation-delay:-2.3s">
+  <path d="M 864 44 Q 870 98 860 156 Q 854 196 862 236" stroke="#3f2d18" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".72"/>
+  <g fill="url(#vine-leaf-g)">
+    <ellipse cx="862" cy="110" rx="6.5" ry="3.2" transform="rotate(-30 862 110)"/>
+    <ellipse cx="864" cy="158" rx="6.5" ry="3.2" transform="rotate(26 864 158)"/>
+    <ellipse cx="861" cy="208" rx="6" ry="3" transform="rotate(-24 861 208)"/>
+  </g>
 </g>
 
 <!-- ══ MUDDY CAMP CLEARING (ground plane, wet-earth layered) ══ -->
@@ -872,6 +976,130 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
     <path d="M 848 300 Q 824 290 808 286"/><path d="M 876 288 Q 900 280 916 278"/>
     <path d="M 848 300 Q 866 284 878 274"/>
   </g>
+</g>
+
+<!-- ══ MIDGROUND BIG-LEAF PLANTS flanking the clearing edges (NOT the centre) ══ -->
+<!-- LEFT cluster (x ~60–240) : elephant-ear / banana / monstera + leafy shrub -->
+<g class="palm-sway" style="transform-origin:96px 430px;animation-delay:-1.7s">
+  <!-- elephant-ear leaves -->
+  <path d="M 96 430 Q 50 412 36 372 Q 70 380 96 408 Q 86 388 100 374 Q 110 396 110 420 Q 134 388 168 380 Q 152 414 116 430 Z" fill="url(#elephant-leaf-g)"/>
+  <g stroke="#0f2417" stroke-width="1.5" fill="none" opacity=".55">
+    <path d="M 96 430 Q 70 404 44 378"/><path d="M 100 426 Q 116 402 150 386"/>
+  </g>
+</g>
+<g class="palm-sway" style="transform-origin:150px 432px;animation-delay:-3.0s">
+  <!-- tall banana fan -->
+  <path d="M 150 432 Q 126 372 132 320" stroke="#6b4f2a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 132 326 Q 96 312 74 318 Q 104 300 134 312 Z" fill="url(#big-leaf-g)"/>
+  <path d="M 132 320 Q 110 288 100 262 Q 130 290 136 318 Z" fill="url(#big-leaf-g2)"/>
+  <path d="M 134 320 Q 138 286 146 262 Q 144 290 140 320 Z" fill="url(#big-leaf-g)"/>
+  <path d="M 134 322 Q 168 296 192 282 Q 162 312 138 322 Z" fill="url(#big-leaf-g2)"/>
+  <path d="M 134 326 Q 172 318 198 326 Q 168 308 132 316 Z" fill="url(#big-leaf-g)"/>
+  <g stroke="#0f2417" stroke-width="1.3" opacity=".45" fill="none">
+    <path d="M 132 326 Q 108 312 80 316"/><path d="M 134 320 Q 162 300 188 286"/>
+  </g>
+</g>
+<!-- split-leaf monstera, left edge -->
+<g fill="url(#big-leaf-g)" opacity=".95">
+  <path d="M 214 434 Q 168 416 156 376 Q 178 392 196 398 Q 184 380 198 372 Q 206 392 212 406
+           Q 214 384 230 380 Q 226 402 224 414 Q 244 396 268 394 Q 250 420 220 434 Z"/>
+</g>
+<path d="M 214 434 Q 192 408 170 384" stroke="#0f2417" stroke-width="1.6" fill="none" opacity=".5"/>
+<!-- leafy shrub mound, left -->
+<g fill="#14532d">
+  <ellipse cx="70" cy="432" rx="40" ry="20"/><ellipse cx="44" cy="426" rx="26" ry="16" fill="#1f6b3a"/>
+  <ellipse cx="96" cy="428" rx="28" ry="16" fill="#1f6b3a"/><ellipse cx="68" cy="420" rx="22" ry="13" fill="#2f8f4e" opacity=".85"/>
+</g>
+
+<!-- RIGHT cluster (x ~760–960) -->
+<g class="palm-sway" style="transform-origin:904px 430px;animation-delay:-2.4s">
+  <path d="M 904 430 Q 950 412 964 372 Q 930 380 904 408 Q 914 388 900 374 Q 890 396 890 420 Q 866 388 832 380 Q 848 414 884 430 Z" fill="url(#elephant-leaf-g)"/>
+  <g stroke="#0f2417" stroke-width="1.5" fill="none" opacity=".55">
+    <path d="M 904 430 Q 930 404 956 378"/><path d="M 900 426 Q 884 402 850 386"/>
+  </g>
+</g>
+<g class="palm-sway" style="transform-origin:850px 432px;animation-delay:-1.0s">
+  <path d="M 850 432 Q 874 372 868 320" stroke="#6b4f2a" stroke-width="6" fill="none" stroke-linecap="round"/>
+  <path d="M 868 326 Q 904 312 926 318 Q 896 300 866 312 Z" fill="url(#big-leaf-g)"/>
+  <path d="M 868 320 Q 890 288 900 262 Q 870 290 864 318 Z" fill="url(#big-leaf-g2)"/>
+  <path d="M 866 320 Q 862 286 854 262 Q 856 290 860 320 Z" fill="url(#big-leaf-g)"/>
+  <path d="M 866 322 Q 832 296 808 282 Q 838 312 862 322 Z" fill="url(#big-leaf-g2)"/>
+  <path d="M 866 326 Q 828 318 802 326 Q 832 308 868 316 Z" fill="url(#big-leaf-g)"/>
+  <g stroke="#0f2417" stroke-width="1.3" opacity=".45" fill="none">
+    <path d="M 868 326 Q 892 312 920 316"/><path d="M 866 320 Q 838 300 812 286"/>
+  </g>
+</g>
+<!-- split-leaf monstera, right edge -->
+<g fill="url(#big-leaf-g)" opacity=".95">
+  <path d="M 786 434 Q 832 416 844 376 Q 822 392 804 398 Q 816 380 802 372 Q 794 392 788 406
+           Q 786 384 770 380 Q 774 402 776 414 Q 756 396 732 394 Q 750 420 780 434 Z"/>
+</g>
+<path d="M 786 434 Q 808 408 830 384" stroke="#0f2417" stroke-width="1.6" fill="none" opacity=".5"/>
+<g fill="#14532d">
+  <ellipse cx="930" cy="432" rx="40" ry="20"/><ellipse cx="956" cy="426" rx="26" ry="16" fill="#1f6b3a"/>
+  <ellipse cx="904" cy="428" rx="28" ry="16" fill="#1f6b3a"/><ellipse cx="932" cy="420" rx="22" ry="13" fill="#2f8f4e" opacity=".85"/>
+</g>
+
+<!-- ══ DENSER FERNS / UNDERGROWTH along the clearing EDGES (not centre) ══ -->
+<g stroke-linecap="round" fill="none">
+  <g stroke="#1f6b3a" stroke-width="2.6">
+    <path d="M 36 446 Q 22 422 12 404"/><path d="M 36 446 Q 30 420 28 402"/>
+    <path d="M 36 446 Q 48 422 60 408"/><path d="M 36 446 Q 56 428 70 420"/>
+  </g>
+  <g stroke="#2f8f4e" stroke-width="2.2">
+    <path d="M 248 450 Q 234 428 224 412"/><path d="M 248 450 Q 244 426 242 410"/>
+    <path d="M 248 450 Q 262 428 274 414"/>
+  </g>
+  <g stroke="#1f6b3a" stroke-width="2.6">
+    <path d="M 968 448 Q 982 424 992 406"/><path d="M 968 448 Q 974 422 976 404"/>
+    <path d="M 968 448 Q 956 424 944 410"/><path d="M 968 448 Q 948 430 934 422"/>
+  </g>
+  <g stroke="#2f8f4e" stroke-width="2.2">
+    <path d="M 752 450 Q 766 428 776 412"/><path d="M 752 450 Q 756 426 758 410"/>
+    <path d="M 752 450 Q 738 428 726 414"/>
+  </g>
+  <!-- feathery fern leaflets -->
+  <g stroke="#86b04a" stroke-width="1.3" opacity=".6">
+    <path d="M 24 424 l -5 -6 M 30 416 l -5 -6 M 52 420 l 5 -6 M 240 426 l -4 -6 M 264 424 l 5 -6 M 980 424 l 5 -6 M 956 422 l -5 -6 M 740 426 l -4 -6"/>
+  </g>
+</g>
+
+<!-- ══ TROPICAL FLOWERS — heliconia / hibiscus / orchid colour pops in foliage ══ -->
+<!-- heliconia (left foliage) -->
+<g transform="translate(118 396)">
+  <path d="M 0 0 Q 2 -26 6 -46" stroke="#1f6b3a" stroke-width="3" fill="none" stroke-linecap="round"/>
+  <path d="M 4 -8 Q -12 -10 -18 -2 Q -6 -14 6 -12 Z" fill="url(#heliconia-g)"/>
+  <path d="M 5 -20 Q 21 -22 27 -14 Q 13 -26 1 -24 Z" fill="url(#heliconia-g)"/>
+  <path d="M 6 -32 Q -10 -34 -16 -26 Q -4 -38 8 -36 Z" fill="url(#heliconia-g)"/>
+  <path d="M 7 -42 Q 21 -46 25 -39" stroke="#f2b134" stroke-width="3" fill="none" stroke-linecap="round"/>
+</g>
+<!-- hibiscus (right foliage) -->
+<g transform="translate(872 402)">
+  <g fill="url(#hibiscus-g)">
+    <ellipse cx="0" cy="-8" rx="8" ry="5" transform="rotate(-60 0 -8)"/>
+    <ellipse cx="0" cy="-8" rx="8" ry="5" transform="rotate(0 0 -8)"/>
+    <ellipse cx="0" cy="-8" rx="8" ry="5" transform="rotate(60 0 -8)"/>
+    <ellipse cx="0" cy="-8" rx="8" ry="5" transform="rotate(120 0 -8)"/>
+    <ellipse cx="0" cy="-8" rx="8" ry="5" transform="rotate(180 0 -8)"/>
+  </g>
+  <circle cx="0" cy="-8" r="3.2" fill="#f2b134"/>
+  <line x1="0" y1="-8" x2="0" y2="-22" stroke="#e0533a" stroke-width="1.4"/>
+  <circle cx="0" cy="-22" r="1.6" fill="#f2b134"/>
+</g>
+<!-- small orchid / bromeliad pink pop (right midground) -->
+<g transform="translate(796 422)">
+  <g fill="url(#orchid-g)">
+    <ellipse cx="0" cy="0" rx="5.5" ry="3.4" transform="rotate(-50 0 0)"/>
+    <ellipse cx="0" cy="0" rx="5.5" ry="3.4" transform="rotate(10 0 0)"/>
+    <ellipse cx="0" cy="0" rx="5.5" ry="3.4" transform="rotate(70 0 0)"/>
+  </g>
+  <circle cx="0" cy="0" r="2" fill="#f2b134"/>
+</g>
+<!-- heliconia accent (left edge low) -->
+<g transform="translate(58 458)">
+  <path d="M 0 0 Q -2 -18 -4 -32" stroke="#1f6b3a" stroke-width="2.6" fill="none" stroke-linecap="round"/>
+  <path d="M -3 -6 Q 11 -8 17 -1 Q 5 -13 -7 -10 Z" fill="url(#heliconia-g)"/>
+  <path d="M -4 -18 Q -18 -20 -23 -13 Q -11 -24 1 -21 Z" fill="url(#heliconia-g)"/>
 </g>
 
 <!-- ══ SILVER PORSCHE CAYENNE — overland 4x4 (hero prop), parked in the mud ══ -->
@@ -1019,6 +1247,31 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <path d="M 612 152 Q 621 143 630 152 Q 639 143 648 152"/>
 </g>
 
+<!-- ══ BUTTERFLIES (daytime ambient; group hidden at night via applySky) ══ -->
+<g id="butterflies">
+  <g class="flutter" style="animation-delay:-1.2s">
+    <g transform="translate(320 330)">
+      <path class="fly-wing" d="M 0 0 Q -10 -8 -8 2 Q -10 9 0 4 Z" fill="#e58b4a"/>
+      <path class="fly-wing" d="M 0 0 Q 10 -8 8 2 Q 10 9 0 4 Z" fill="#f2b134"/>
+      <line x1="0" y1="-2" x2="0" y2="5" stroke="#3f2d18" stroke-width="1.1"/>
+    </g>
+  </g>
+  <g class="flutter" style="animation-delay:-5.4s">
+    <g transform="translate(372 358)">
+      <path class="fly-wing" style="animation-delay:-.1s" d="M 0 0 Q -9 -7 -7 2 Q -9 8 0 3 Z" fill="#d94f7a"/>
+      <path class="fly-wing" style="animation-delay:-.1s" d="M 0 0 Q 9 -7 7 2 Q 9 8 0 3 Z" fill="#e0533a"/>
+      <line x1="0" y1="-2" x2="0" y2="4" stroke="#3f2d18" stroke-width="1"/>
+    </g>
+  </g>
+  <g class="flutter" style="animation-delay:-8.1s">
+    <g transform="translate(648 344)">
+      <path class="fly-wing" style="animation-delay:-.05s" d="M 0 0 Q -10 -8 -8 2 Q -10 9 0 4 Z" fill="#f2b134"/>
+      <path class="fly-wing" style="animation-delay:-.05s" d="M 0 0 Q 10 -8 8 2 Q 10 9 0 4 Z" fill="#e58b4a"/>
+      <line x1="0" y1="-2" x2="0" y2="5" stroke="#3f2d18" stroke-width="1.1"/>
+    </g>
+  </g>
+</g>
+
 <!-- ══ FOREGROUND FRAMING FRONDS (soft-focus jungle depth) ══ -->
 <g opacity=".55" filter="url(#soft-blur)" stroke="#0f2417" stroke-linecap="round" fill="none">
   <!-- top-left big leaf -->
@@ -1058,6 +1311,52 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <path class="leaf-fall" style="animation-duration:17s;animation-delay:-7s;fill:#cdd98a" d="M 470 -18 Q 479 -9 470 2 Q 461 -9 470 -18 Z" transform-origin="470px -8px" fill="#cdd98a"/>
   <path class="leaf-fall" style="animation-duration:15s;animation-delay:-11s;fill:#b9a04a" d="M 690 -16 Q 698 -8 690 4 Q 682 -8 690 -16 Z" transform-origin="690px -6px" fill="#b9a04a"/>
   <path class="leaf-fall" style="animation-duration:19s;animation-delay:-4s" d="M 840 -18 Q 849 -9 840 2 Q 831 -9 840 -18 Z" transform-origin="840px -8px"/>
+</g>
+
+<!-- ══ FULLER BIG TROPICAL FOREGROUND LEAVES (lower corners; frame the scene) ══ -->
+<!-- LOWER-LEFT: split-leaf monstera + banana leaf, dark + lush -->
+<g fill="url(#fg-leaf-g)">
+  <!-- big split-leaf monstera fanning up from bottom-left corner -->
+  <path d="M -30 600 Q -40 500 30 446 Q 60 426 96 420
+           Q 76 446 100 452 Q 70 470 96 486 Q 60 494 84 514
+           Q 44 518 66 540 Q 26 542 44 566 Q 6 564 20 600 Z"/>
+</g>
+<!-- monstera split notches (negative space) -->
+<g fill="#0b1f12">
+  <path d="M 40 470 Q 60 478 56 496 Q 44 486 40 470 Z"/>
+  <path d="M 28 514 Q 50 522 46 540 Q 32 530 28 514 Z"/>
+  <path d="M 18 556 Q 38 562 34 580 Q 22 570 18 556 Z"/>
+</g>
+<path d="M -30 600 Q 20 528 70 446" stroke="#1f6b3a" stroke-width="2.6" fill="none" opacity=".5"/>
+<!-- banana foreground blade over the monstera -->
+<g fill="url(#big-leaf-g)" opacity=".96">
+  <path d="M -24 600 Q 30 560 120 470 Q 150 442 186 426
+           Q 150 470 110 520 Q 70 568 38 600 Z"/>
+</g>
+<path d="M -24 600 Q 70 522 184 428" stroke="#0f2417" stroke-width="2.2" fill="none" opacity=".55"/>
+<g stroke="#0f2417" stroke-width="1.1" opacity=".4" fill="none">
+  <path d="M 30 560 Q 70 540 110 524"/><path d="M 90 500 Q 120 482 152 470"/>
+</g>
+
+<!-- LOWER-RIGHT: split-leaf monstera + banana leaf -->
+<g fill="url(#fg-leaf-g)">
+  <path d="M 1030 600 Q 1040 500 970 446 Q 940 426 904 420
+           Q 924 446 900 452 Q 930 470 904 486 Q 940 494 916 514
+           Q 956 518 934 540 Q 974 542 956 566 Q 994 564 980 600 Z"/>
+</g>
+<g fill="#0b1f12">
+  <path d="M 960 470 Q 940 478 944 496 Q 956 486 960 470 Z"/>
+  <path d="M 972 514 Q 950 522 954 540 Q 968 530 972 514 Z"/>
+  <path d="M 982 556 Q 962 562 966 580 Q 978 570 982 556 Z"/>
+</g>
+<path d="M 1030 600 Q 980 528 930 446" stroke="#1f6b3a" stroke-width="2.6" fill="none" opacity=".5"/>
+<g fill="url(#big-leaf-g)" opacity=".96">
+  <path d="M 1024 600 Q 970 560 880 470 Q 850 442 814 426
+           Q 850 470 890 520 Q 930 568 962 600 Z"/>
+</g>
+<path d="M 1024 600 Q 930 522 816 428" stroke="#0f2417" stroke-width="2.2" fill="none" opacity=".55"/>
+<g stroke="#0f2417" stroke-width="1.1" opacity=".4" fill="none">
+  <path d="M 970 560 Q 930 540 890 524"/><path d="M 910 500 Q 880 482 848 470"/>
 </g>
 
 <!-- ══ CINEMATIC VIGNETTE (subtle edge darkening) ══ -->
@@ -1562,6 +1861,8 @@ function applySky(sky) {
   // Sun shafts only break through in daylight; soften the haze at night.
   const gr=document.getElementById('god-rays'); if(gr) gr.style.display=isNight?'none':''
   const isDusk=sky==='evening'; if(gr&&isDusk) gr.style.display=''
+  // Butterflies only flit about in daylight
+  const bf=document.getElementById('butterflies'); if(bf) bf.style.display=isNight?'none':''
   document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
   drawStars(isNight)
   document.getElementById('world').className=isNight?'night':sky
