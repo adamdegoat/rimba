@@ -388,6 +388,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   color:rgba(255,255,255,.5);font-size:11px;font-weight:700;letter-spacing:.3px;
   text-transform:uppercase;text-decoration:none;transition:all .2s;font-family:'Plus Jakarta Sans',sans-serif}
 #story-btn:hover{border-color:rgba(255,255,255,.2);color:rgba(255,255,255,.85);background:rgba(255,255,255,.09)}
+/* a one-time invite glow drawing first-time visitors to the full story archive */
+@keyframes storyNudge{0%,100%{box-shadow:0 0 0 0 rgba(246,181,61,0);border-color:rgba(255,255,255,.1)}
+  50%{box-shadow:0 0 0 5px rgba(246,181,61,.16);border-color:rgba(246,181,61,.55)}}
+#story-btn.nudge{animation:storyNudge 2.1s ease-in-out infinite;color:rgba(255,255,255,.8)}
+/* the "· updated Nh ago" recency tag appended to the latest-pulse banner */
+.pulse-age{color:rgba(246,181,61,.85);font-weight:700;white-space:nowrap}
 
 /* ── MOBILE ── */
 @media(max-width:768px){
@@ -1916,7 +1922,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <span id="status-msg"></span>
 
   <div class="hud-actions">
-    <a id="story-btn" href="story.html">📖 Story</a>
+    <a id="story-btn" href="story.html">📖 Read the Story</a>
   </div>
 </div>
 
@@ -2087,7 +2093,7 @@ function applySky(sky) {
   const gd=document.getElementById('ground-dapple'); if(gd) gd.style.display=isNight?'none':''
   // Butterflies only flit about in daylight
   const bf=document.getElementById('butterflies'); if(bf) bf.style.display=isNight?'none':''
-  document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.48':'0')
+  document.getElementById('night-overlay')?.setAttribute('opacity',isNight?'0.3':'0')
   // Low ground fog thickens at dawn, lingers a little into morning
   document.getElementById('dawn-fog')?.setAttribute('opacity', sky==='dawn'?'0.6':sky==='morning'?'0.32':'0')
   drawStars(isNight)
@@ -2123,6 +2129,7 @@ function updateStatusBar() {
   document.getElementById('status-countdown').textContent=cd
 
   let lastStr='—'
+  let lastRel=''
   if(S.feed&&S.feed.length>0) {
     const lastRun=[...S.feed].reverse().find(e=>e.type!=='birth')
     const ts=lastRun?.timestamp
@@ -2130,9 +2137,10 @@ function updateStatusBar() {
       const d=new Date(ts)
       const sgtD=new Date(d.getTime()+d.getTimezoneOffset()*60000+8*3600000)
       lastStr=fmtTime(sgtD)
+      lastRel=relAgo(ts)
     }
   }
-  document.getElementById('status-last').textContent=lastStr
+  document.getElementById('status-last').textContent = lastStr + (lastRel?' ('+lastRel+')':'')
   applySky(skyFromHour(sgt.getHours()))
   applySunShadow(sgt)
   applyWeather(S.world && S.world.weather)
@@ -3461,7 +3469,11 @@ function updateWorld() {
   document.getElementById('cycle-label').textContent=cap(w.cycle||'')
   document.getElementById('ds-day').textContent='Day '+(w.day||1)
   document.getElementById('ds-cycle').textContent=cap(w.cycle||'')
-  if(w.pulse) document.getElementById('pulse').textContent=w.pulse
+  if(w.pulse){
+    const p=document.getElementById('pulse'); p.textContent=w.pulse
+    const age=relAgo(latestFeedTs())
+    if(age){ const s=document.createElement('span'); s.className='pulse-age'; s.textContent=' · '+age; p.appendChild(s) }
+  }
   positionSceneLine()
 
   const CHARS=Object.keys(S.chars)
@@ -3552,6 +3564,10 @@ function drawStars(active) {
 const ALL_STEPS=['morning','midday','evening','night']
 
 function cap(s){return s?s[0].toUpperCase()+s.slice(1):''}
+// Relative "time ago" from an SGT-naive ISO timestamp (correct for any visitor timezone).
+function tsToMs(ts){const m=String(ts||'').match(/(\d+)-(\d+)-(\d+)T(\d+):(\d+)(?::(\d+))?/);return m?Date.UTC(+m[1],+m[2]-1,+m[3],+m[4]-8,+m[5],+m[6]||0):null}
+function relAgo(ts){const ms=tsToMs(ts);if(ms==null)return '';let d=Date.now()-ms;if(d<0)d=0;const mn=Math.floor(d/60000);if(mn<1)return 'just now';if(mn<60)return mn+' min ago';const h=Math.floor(mn/60);if(h<24)return h+'h ago';const dd=Math.floor(h/24);return dd===1?'yesterday':dd+' days ago'}
+function latestFeedTs(){const lr=[...(S.feed||[])].reverse().find(e=>e&&e.type!=='birth');return lr?lr.timestamp:null}
 
 let S={chars:{},feed:[],world:{}}
 
@@ -3843,7 +3859,15 @@ if(_hudEl && window.ResizeObserver){
 }
 
 setInterval(updateStatusBar,60000)
-init().then(()=>{ initTapStats(); setHudVar() })
+init().then(()=>{ initTapStats(); setHudVar() });
+
+// One-time invite: gently nudge first-time visitors toward the full story archive (with day recaps).
+;(function(){
+  const btn=document.getElementById('story-btn'); if(!btn) return
+  const KEY='rimba_storyBtnSeen'
+  if(!localStorage.getItem(KEY)){ btn.classList.add('nudge'); setTimeout(()=>btn.classList.remove('nudge'),14000) }
+  btn.addEventListener('click',()=>{ localStorage.setItem(KEY,'1'); btn.classList.remove('nudge') })
+})()
 
 // ── AUDIENCE VOTING ("sway, don't script") ──────────────────────────────────
 const VOTE_URL='https://wuorljdhcucldqqeqlvy.supabase.co';
