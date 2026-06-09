@@ -3726,6 +3726,10 @@ loadVote();
   @keyframes iwMote{0%{opacity:0;transform:translate(0,0)}30%{opacity:.7}70%{opacity:.6}100%{opacity:0;transform:translate(20px,-30px)}}
   .iw-flit{transform-box:fill-box;transform-origin:center;animation:iwFlit 7s ease-in-out infinite}
   @keyframes iwFlit{0%{transform:translate(0,0)}25%{transform:translate(16px,-12px)}50%{transform:translate(30px,5px)}75%{transform:translate(12px,14px)}100%{transform:translate(0,0)}}
+  .iw-twinkle{animation:iwTwinkle 3.2s ease-in-out infinite}
+  @keyframes iwTwinkle{0%,100%{opacity:.45}50%{opacity:1}}
+  .iw-steam{transform-box:fill-box;transform-origin:bottom center;animation:iwSteam 3.4s ease-in-out infinite}
+  @keyframes iwSteam{0%{opacity:0;transform:translateY(0) scaleX(1)}30%{opacity:.5}100%{opacity:0;transform:translateY(-22px) scaleX(1.5)}}
   `;
   const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
   const world=document.getElementById('world');
@@ -3802,13 +3806,26 @@ function jungleView(x,y,w,h,win,opt){
   layers.forEach((L,li)=>{ let p=`M ${x} ${F(y+h)} L ${x} ${F(horizon+L.d)} `;
     for(let i=0;i<=14;i++){ const bump=((i*53+li*37)%44)+ (i%2? 8:0); p+=`L ${F(x+i*w/14)} ${F(horizon+L.d-bump)} `; } p+=`L ${x+w} ${F(y+h)} Z`;
     s+=`<path d="${p}" fill="${G[li]}" opacity="${L.o}"/>`; });
-  // full trees with fuller multi-blob crowns, varied depth
-  [[0.12,30,3],[0.3,22,4],[0.5,26,3],[0.68,20,4],[0.86,34,2],[0.97,24,3]].forEach(([fx,r,li])=>{ const tx=x+w*fx, ty=horizon+10+li*4; const cc=G[Math.min(li+1,4)];
-    s+=`<rect x="${F(tx-3.5)}" y="${F(ty)}" width="7" height="${F(y+h-ty)}" fill="${N?'#16291d':'#3a2c1c'}" opacity=".8"/>`;
-    s+=`<circle cx="${F(tx)}" cy="${F(ty)}" r="${r}" fill="${cc}"/><circle cx="${F(tx-r*.6)}" cy="${F(ty+r*.2)}" r="${F(r*.66)}" fill="${cc}"/><circle cx="${F(tx+r*.6)}" cy="${F(ty+r*.16)}" r="${F(r*.6)}" fill="${cc}"/><circle cx="${F(tx)}" cy="${F(ty-r*.5)}" r="${F(r*.6)}" fill="${cc}"/>`;
-    s+=`<circle cx="${F(tx-r*.3)}" cy="${F(ty-r*.3)}" r="${F(r*.4)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; });
+  // scalloped dense treetop crowns along the canopy edges (lush rainforest mass)
+  [{d:30,c:G[2],step:13},{d:58,c:G[3],step:15}].forEach(L=>{ for(let i=0;i<=L.step;i++){ const cx=x+i*w/L.step, cy=horizon+L.d+((i%2)*6); s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(24+(i*37%5)*7)}" fill="${L.c}"/>`; } });
+  // ── lush Malaysian rainforest: broad emergents, fan palms, banana clumps ──
+  const trunk=(N?'#16291d':'#46341f');
+  const emergent=(tx,ty,r,cc)=>`<g><rect x="${F(tx-4)}" y="${F(ty)}" width="8" height="${F(y+h-ty)}" fill="${trunk}" opacity=".85"/>`+
+    `<ellipse cx="${F(tx)}" cy="${F(ty)}" rx="${F(r*1.55)}" ry="${F(r*.72)}" fill="${cc}"/><ellipse cx="${F(tx-r*.82)}" cy="${F(ty+5)}" rx="${F(r*.85)}" ry="${F(r*.5)}" fill="${cc}"/><ellipse cx="${F(tx+r*.82)}" cy="${F(ty+5)}" rx="${F(r*.8)}" ry="${F(r*.5)}" fill="${cc}"/><ellipse cx="${F(tx)}" cy="${F(ty-r*.46)}" rx="${F(r*.95)}" ry="${F(r*.52)}" fill="${cc}"/>`+
+    `<ellipse cx="${F(tx-r*.45)}" cy="${F(ty-r*.32)}" rx="${F(r*.5)}" ry="${F(r*.3)}" fill="#fff" opacity="${N?'.04':'.09'}"/></g>`;
+  const palm=(tx,ty,sc,cc)=>{ let g=`<g opacity=".97"><path d="M ${F(tx-2)} ${F(y+h)} Q ${F(tx+9*sc)} ${F(ty+(y+h-ty)*.4)} ${F(tx)} ${F(ty)}" stroke="${trunk}" stroke-width="${F(5*sc)}" fill="none"/>`;
+    for(let k=0;k<8;k++){ const a=(-158+k*45)*Math.PI/180, ex=tx+Math.cos(a)*62*sc, ey=ty+Math.sin(a)*42*sc+4, mx=tx+Math.cos(a)*32*sc, my=ty+Math.sin(a)*20*sc-7;
+      g+=`<path d="M ${F(tx)} ${F(ty)} Q ${F(mx)} ${F(my)} ${F(ex)} ${F(ey)}" stroke="${cc}" stroke-width="${F(6.5*sc)}" fill="none" stroke-linecap="round"/>`; }
+    return g+`<circle cx="${F(tx)}" cy="${F(ty)}" r="${F(5*sc)}" fill="${trunk}"/></g>`; };
+  const banana=(tx,ty,sc,cc)=>{ let g=`<g>`; for(let k=0;k<5;k++){ const a=-90+(k-2)*31, ln=50*sc;
+    g+=`<g transform="translate(${F(tx)} ${F(ty)}) rotate(${a})"><path d="M 0 0 Q ${F(12*sc)} ${F(-ln*.5)} 0 ${F(-ln)} Q ${F(-12*sc)} ${F(-ln*.5)} 0 0 Z" fill="${cc}"/><line x1="0" y1="0" x2="0" y2="${F(-ln)}" stroke="#000" stroke-width="1" opacity=".14"/></g>`; } return g+`</g>`; };
+  [['e',0.07,33,2],['e',0.72,25,2],['p',0.19,1.05,3],['e',0.4,27,3],['p',0.53,0.95,3],['p',0.86,1.12,3],['e',0.96,31,3],['b',0.29,1,4],['b',0.63,0.95,4]]
+    .sort((m,n)=>m[3]-n[3]).forEach(([t,fx,a,li])=>{ const tx=x+w*fx, ty=horizon+10+li*5, cc=G[Math.min(li+1,4)];
+      s+= t==='p'?palm(tx,ty,a,cc) : t==='b'?banana(tx,ty+34,a,cc) : emergent(tx,ty,a,cc); });
+  // dense undergrowth shrub band filling the jungle floor (lush)
+  for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8); s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(26+(i*53%5)*7)}" fill="${G[4]}"/>`; }
   // undergrowth ferns along the base of the view
-  for(let i=0;i<14;i++){ const fxp=x+(i*w/13), fb=y+h-10, fh=18+ (i*29)%26; const fc=G[4];
+  for(let i=0;i<14;i++){ const fxp=x+(i*w/13), fb=y+h-10, fh=18+ (i*29)%26; const fc=N?'#1d3a23':'#356b2c';
     let fr=`<g opacity=".9">`; for(let b=-2;b<=2;b++){ fr+=`<path d="M ${F(fxp)} ${F(fb)} Q ${F(fxp+b*10)} ${F(fb-fh*.7)} ${F(fxp+b*15)} ${F(fb-fh)}" stroke="${fc}" stroke-width="3" fill="none"/>`; } s+=fr+'</g>'; }
   // hanging vines + leaves drooping into the top of the view
   for(let i=0;i<6;i++){ const vx=x+w*(0.08+i*0.16), vl=h*(0.26+(i%3)*0.08); s+=`<path d="M ${F(vx)} ${y} q 14 ${F(vl*.6)} -6 ${F(vl)}" stroke="${N?'#1b2f20':'#3a6b40'}" stroke-width="3" fill="none" opacity=".8"/><ellipse cx="${F(vx-6)}" cy="${F(y+vl)}" rx="9" ry="5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".8"/><ellipse cx="${F(vx+2)}" cy="${F(y+vl*.7)}" rx="6" ry="3.5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".6"/>`; }
@@ -3917,6 +3934,7 @@ function tentSVG(){
   return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7a4e"/><stop offset="1" stop-color="#42361f"/></linearGradient>
   <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".95"/><stop offset="1" stop-color="transparent"/></radialGradient>
+  <radialGradient id="twarm" cx="50%" cy="22%" r="70%"><stop offset="0" stop-color="#ffcf86" stop-opacity=".22"/><stop offset="1" stop-color="#ffcf86" stop-opacity="0"/></radialGradient>
   <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="url(#twall)"/>
   <!-- canvas panel seams + soft side shading (desktop) -->
@@ -3943,8 +3961,15 @@ function tentSVG(){
   <g transform="translate(862 210)"><line x1="0" y1="-44" x2="0" y2="-6" stroke="#2a2012" stroke-width="2"/><path d="M -26 -6 q26 -16 52 0 l-6 46 q-20 9 -40 0 Z" fill="#5a4a2e"/><path d="M -26 -6 q26 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
   <!-- mesh phone-pocket on the left wall -->
   <g transform="translate(196 430)"><path d="M -52 0 Q 0 -16 52 0 L 46 40 L -46 40 Z" fill="#6f5d3a" opacity=".8"/><path d="M -52 0 Q 0 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
+  <!-- warm ambient wash over the canvas (cozy) -->
+  <rect width="1000" height="600" fill="url(#twarm)"/>
+  <!-- string of warm fairy lights draped across the ridge -->
+  <path d="M 150 64 Q 500 102 850 64" stroke="#5a4a2e" stroke-width="2" fill="none" opacity=".75"/>
+  ${[...Array(13)].map((_,i)=>{const t=i/12,bx=(150+t*700).toFixed(0),by=(64+38*4*t*(1-t)).toFixed(1);return `<line x1="${bx}" y1="${by}" x2="${bx}" y2="${(+by+8).toFixed(1)}" stroke="#5a4a2e" stroke-width="1.4"/><circle class="iw-twinkle" style="animation-delay:${(i*0.21).toFixed(2)}s" cx="${bx}" cy="${(+by+14).toFixed(1)}" r="9" fill="#ffe7a0" opacity=".16"/><circle class="iw-twinkle" style="animation-delay:${(i*0.21).toFixed(2)}s" cx="${bx}" cy="${(+by+14).toFixed(1)}" r="4.6" fill="#ffe9ad"/><circle cx="${bx}" cy="${(+by+14).toFixed(1)}" r="2.2" fill="#fffaf0"/>`;}).join('')}
   <!-- warm floor glow -->
   <ellipse cx="500" cy="600" rx="440" ry="130" fill="url(#tlant)" opacity=".4"/>
+  <!-- steaming mug resting on the tent floor -->
+  <g transform="translate(372 566)"><path class="iw-steam" d="M 0 -16 q 6 -8 0 -16" stroke="#fff" stroke-width="2.5" fill="none" opacity=".4"/><rect x="-13" y="-16" width="26" height="20" rx="4" fill="#7a5a3a"/><path d="M 13 -11 q 12 0 12 8 q 0 7 -12 6" stroke="#7a5a3a" stroke-width="3" fill="none"/><ellipse cx="0" cy="-16" rx="13" ry="3.5" fill="#3a2a18"/></g>
   <!-- POV: your own legs in the bag / the cat / empty bag -->
   ${human?povBag(_appr(human)):(cat?'':emptyBag())}
   ${cat?povCat(_appr(cat), human?640:632, human?.8:.9):''}
@@ -3961,6 +3986,7 @@ function leantoSVG(){
   const human=present.filter(c=>!_isCat(c))[0]; const cat=present.filter(_isCat)[0];
   return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
   <defs><radialGradient id="lfire" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".9"/><stop offset="1" stop-color="transparent"/></radialGradient>
+  <radialGradient id="lwarm" cx="62%" cy="80%" r="78%"><stop offset="0" stop-color="#ffb259" stop-opacity=".2"/><stop offset="1" stop-color="#ffb259" stop-opacity="0"/></radialGradient>
   <clipPath id="lopen"><path d="M 104 96 L 896 96 L 858 452 L 142 452 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="#0c100a"/>
   <!-- the live jungle through the open front -->
@@ -3984,9 +4010,17 @@ function leantoSVG(){
   <!-- woven mat under everything -->
   <ellipse cx="500" cy="540" rx="400" ry="64" fill="#6b5a38"/><ellipse cx="500" cy="536" rx="368" ry="54" fill="#7d6a44"/>
   <g stroke="#5a4a2e" stroke-width="1.5" opacity=".45">${[...Array(10)].map((_,i)=>`<line x1="${180+i*72}" y1="492" x2="${180+i*72}" y2="582"/>`).join('')}</g>
+  <!-- hung lantern (left) casting a soft warm glow -->
+  <g transform="translate(386 150)"><line x1="0" y1="-58" x2="0" y2="-30" stroke="#2a2012" stroke-width="2"/><ellipse cx="0" cy="-6" rx="34" ry="30" fill="#ffd98a" opacity=".22"/><rect x="-3" y="-38" width="6" height="9" rx="2" fill="#2a2418"/><rect x="-10" y="-30" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="-26" width="14" height="20" rx="3" fill="#ffe6ad"/></g>
   <!-- campfire just outside, warm glow into the shelter -->
-  <ellipse cx="700" cy="486" rx="220" ry="92" fill="url(#lfire)" opacity=".55"/>
+  <ellipse cx="700" cy="486" rx="230" ry="96" fill="url(#lfire)" opacity=".6"/>
   ${campfire(700,492,1.1)}
+  <!-- kettle warming at the fire -->
+  <g transform="translate(776 506)"><ellipse cx="0" cy="8" rx="22" ry="6" fill="#000" opacity=".3"/><path class="iw-steam" d="M -2 -22 q 7 -9 0 -17" stroke="#fff" stroke-width="2.4" fill="none" opacity=".4"/><path d="M -18 6 Q -21 -16 0 -16 Q 21 -16 18 6 Z" fill="#241d14"/><rect x="-7" y="-25" width="14" height="8" rx="2" fill="#241d14"/><path d="M 15 -7 q 15 3 12 14" stroke="#241d14" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="12" ry="3" fill="#3a2e1e"/></g>
+  <!-- cozy warm light wash (fire + lantern) -->
+  <rect width="1000" height="600" fill="url(#lwarm)"/>
+  <!-- soft daylight shafts spilling in through the open front onto the mat -->
+  ${!win.night?`<g class="iw-ray">${[0,1,2].map(i=>{const ox=300+i*150;return `<polygon points="${ox},120 ${ox+70},120 ${ox+220},566 ${ox+30},566" fill="#fff6da" opacity=".09"/>`;}).join('')}</g>`:''}
   <!-- POV: your own crossed legs / the cat / empty mat -->
   ${human?povSitLegs(_appr(human)):(cat?'':emptyMat())}
   ${cat?povCat(_appr(cat), human?430:560, human?.72:.86):''}
