@@ -402,6 +402,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   #chat-panel{bottom:var(--above-hud)}
   /* roomier tap targets on touch screens (UX audit #3) */
   #story-btn{padding:.5rem .7rem;font-size:10px;min-height:38px}
+  #res-hud{flex-flow:row wrap!important;justify-content:flex-end!important;max-width:128px;align-items:flex-end}
   #res-hud .res-pill{min-height:32px;padding:6px 8px}
   #chat-header{min-height:44px}
   .bubble{max-width:82px;padding:3px 6px}
@@ -496,7 +497,7 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 .res-pill-val{font-size:8px;font-weight:700;font-family:'Plus Jakarta Sans',sans-serif;min-width:13px;text-align:right}
 /* Resource detail card */
 #res-card{
-  width:min(220px,calc(100vw - 36px));
+  width:min(220px,calc(100vw - 36px));position:absolute;right:0;bottom:100%;margin-bottom:8px;z-index:31;
   background:rgba(4,8,22,.92);border:1px solid rgba(255,255,255,.1);border-radius:12px;
   overflow:hidden;max-height:0;opacity:0;pointer-events:none;
   transition:max-height .32s cubic-bezier(.4,0,.2,1),opacity .22s ease;
