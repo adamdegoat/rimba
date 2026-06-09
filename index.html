@@ -3709,6 +3709,14 @@ loadVote();
   #interior-title .it-sub{font:600 10.5px/1 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.62);margin-top:3px}
   .iwin-rain{animation:iwinRain .7s linear infinite}
   @keyframes iwinRain{from{transform:translateY(-12px)}to{transform:translateY(14px)}}
+  .iw-ray{animation:iwRay 6s ease-in-out infinite}
+  @keyframes iwRay{0%,100%{opacity:.10}50%{opacity:.2}}
+  .iw-fly{transform-box:fill-box;transform-origin:center;animation:iwFly 4s ease-in-out infinite}
+  @keyframes iwFly{0%,100%{opacity:.15;transform:translateY(2px)}50%{opacity:1;transform:translateY(-7px)}}
+  .iw-fire{transform-box:fill-box;transform-origin:50% 100%;animation:iwFire .42s ease-in-out infinite alternate}
+  @keyframes iwFire{from{transform:scaleY(.9) scaleX(1.04)}to{transform:scaleY(1.1) scaleX(.95)}}
+  .iw-ember{transform-box:fill-box;transform-origin:center;animation:iwEmber 2.4s ease-out infinite}
+  @keyframes iwEmber{0%{opacity:0;transform:translateY(0)}20%{opacity:.9}100%{opacity:0;transform:translateY(-46px)}}
   `;
   const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
   const world=document.getElementById('world');
@@ -3743,114 +3751,217 @@ function windowSky(){
   const wx=((S.world&&S.world.weather)||'').toLowerCase();
   const rain=/rain|storm|drizzle|shower|downpour|monsoon|thunder|wet/.test(wx);
   const M={ morning:{top:'#a6cfe6',bot:'#e3eede',canopy:'#2f5536'}, midday:{top:'#74b6d8',bot:'#c7e6cf',canopy:'#2b4f31'},
-            evening:{top:'#ec8f54',bot:'#f5cf94',canopy:'#3a2c20'}, night:{top:'#0d1626',bot:'#182a40',canopy:'#0a120d'} };
+            evening:{top:'#ec8f54',bot:'#f5cf94',canopy:'#3a2c20'}, night:{top:'#14223a',bot:'#243b58',canopy:'#16291d'} };
   const m=M[cyc]||M.midday; return {...m, rain, night:cyc==='night'};
 }
-function windowArt(x,y,w,h,win){
-  let s=`<defs><linearGradient id="iwinsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient></defs>`;
-  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#iwinsky)"/>`;
-  if(win.night){ for(let i=0;i<18;i++) s+=`<circle cx="${(x+(i*61)%w).toFixed(0)}" cy="${(y+(i*37)%(h*0.55)).toFixed(0)}" r="1" fill="#fff" opacity="${(.3+(i%4)*.15).toFixed(2)}"/>`; }
-  else { s+=`<circle cx="${x+w*0.74}" cy="${y+h*0.22}" r="${win.night?0:18}" fill="#fff7d6" opacity="${win.top==='#ec8f54'?.7:.5}"/>`; }
-  // layered canopy silhouettes (depth)
-  for(let L=0;L<2;L++){ const cy=y+h-30-L*16, col=L?win.canopy:'#000000'; const op=L?.85:.3;
-    let p=`M ${x} ${y+h} `; for(let i=0;i<=10;i++){ p+=`L ${(x+i*w/10).toFixed(0)} ${(cy-((i*53+L*29)%34)).toFixed(0)} `; } p+=`L ${x+w} ${y+h} Z`;
-    s+=`<path d="${p}" fill="${col}" opacity="${op}"/>`; }
-  // a couple of trunks
-  s+=`<rect x="${x+w*0.2}" y="${y+h*0.55}" width="6" height="${h*0.45}" fill="${win.canopy}" opacity=".7"/><rect x="${x+w*0.66}" y="${y+h*0.5}" width="7" height="${h*0.5}" fill="${win.canopy}" opacity=".7"/>`;
-  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<34;i++){ const rx=x+(i*53)%w, ry=y+(i*29)%h; r+=`<line x1="${rx.toFixed(0)}" y1="${ry.toFixed(0)}" x2="${(rx-5).toFixed(0)}" y2="${(ry+16).toFixed(0)}" stroke="#d3e6f2" stroke-width="1.2" opacity=".5"/>`; } s+=r+'</g>'; }
+function _appr(cid){ return (S.chars[cid]&&S.chars[cid].appearance)||{}; }
+// ── the live jungle seen through a shelter opening: layered depth, sky, weather, life ──
+function jungleView(x,y,w,h,win,opt){
+  opt=opt||{}; const F=n=>n.toFixed(1);
+  const horizon = y + h*(opt.high?0.50:0.56);   // where the canopy tops sit
+  const sx = x + w*(win.night?0.72:0.28), sy = y + h*0.19;
+  let s=`<defs>
+    <linearGradient id="jvsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset=".55" stop-color="${win.bot}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient>
+    <radialGradient id="jvsun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fffae6"/><stop offset=".35" stop-color="#fff1b8" stop-opacity=".85"/><stop offset="1" stop-color="#fff1b8" stop-opacity="0"/></radialGradient>
+    <linearGradient id="jvmist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.night?'#243a54':'#f3f8ef'}" stop-opacity="0"/><stop offset="1" stop-color="${win.night?'#243a54':'#eaf3ea'}" stop-opacity=".55"/></linearGradient></defs>`;
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#jvsky)"/>`;
+  // celestial body
+  if(win.night){
+    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="52" fill="url(#jvsun)" opacity=".5"/><circle cx="${F(sx)}" cy="${F(sy)}" r="24" fill="#eef2ff"/><circle cx="${F(sx+10)}" cy="${F(sy-6)}" r="21" fill="${win.top}"/>`;
+    for(let i=0;i<28;i++) s+=`<circle cx="${F(x+(i*131+37)%w)}" cy="${F(y+(i*71)%(h*0.5))}" r="${i%3?'.8':'1.5'}" fill="#fff" opacity="${(.35+(i%4)*.15).toFixed(2)}"/>`;
+  } else {
+    let rays='<g class="iw-ray">'; for(let i=-3;i<=3;i++) rays+=`<polygon points="${F(sx)},${F(sy)} ${F(sx+i*64-34)},${F(y+h)} ${F(sx+i*64+34)},${F(y+h)}" fill="#fff7d6" opacity=".5"/>`; s+=rays+'</g>';
+    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="82" fill="url(#jvsun)"/><circle cx="${F(sx)}" cy="${F(sy)}" r="27" fill="#fffdf0"/>`;
+    for(let i=0;i<3;i++){ const bx=x+w*0.52+i*44, by=y+h*0.16+i*15; s+=`<path d="M ${F(bx)} ${F(by)} q 8 -7 15 0 q 8 -7 15 0" stroke="#33473a" stroke-width="2" fill="none" opacity=".5"/>`; }
+  }
+  // distant misty ridge
+  s+=`<path d="M ${x} ${F(horizon)} Q ${F(x+w*.28)} ${F(horizon-58)} ${F(x+w*.5)} ${F(horizon-18)} Q ${F(x+w*.76)} ${F(horizon-64)} ${x+w} ${F(horizon-8)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${win.night?'#2a3b50':'#9fb9a8'}" opacity=".5"/>`;
+  s+=`<rect x="${x}" y="${F(horizon-34)}" width="${w}" height="78" fill="url(#jvmist)"/>`;
+  // canopy depth layers (back -> front)
+  const layers=[{o:.55,c:win.night?'#234630':'#41714a',d:0},{o:.82,c:win.night?'#1a3522':'#2f5536',d:26},{o:1,c:win.canopy,d:58}];
+  layers.forEach((L,li)=>{ let p=`M ${x} ${F(y+h)} L ${x} ${F(horizon+L.d)} `;
+    for(let i=0;i<=12;i++){ p+=`L ${F(x+i*w/12)} ${F(horizon+L.d-((i*53+li*37)%42))} `; } p+=`L ${x+w} ${F(y+h)} Z`;
+    s+=`<path d="${p}" fill="${L.c}" opacity="${L.o}"/>`; });
+  // a few full trees for jungle character
+  [[0.15,30],[0.85,36],[0.5,24]].forEach(([fx,r])=>{ const tx=x+w*fx, ty=horizon+12;
+    s+=`<rect x="${F(tx-4)}" y="${F(ty)}" width="8" height="${F(y+h-ty)}" fill="${win.canopy}" opacity=".85"/>`;
+    s+=`<circle cx="${F(tx)}" cy="${F(ty)}" r="${r}" fill="${win.night?'#13241a':'#274a2e'}" opacity=".92"/><circle cx="${F(tx-r*.5)}" cy="${F(ty+5)}" r="${F(r*.7)}" fill="${win.night?'#16291d':'#2c542f'}" opacity=".92"/>`; });
+  // hanging vines drooping into the top of the view
+  for(let i=0;i<5;i++){ const vx=x+w*(0.12+i*0.19); s+=`<path d="M ${F(vx)} ${y} q 12 ${F(h*.18)} -5 ${F(h*.32)}" stroke="${win.night?'#1b2f20':'#2f5536'}" stroke-width="3" fill="none" opacity=".75"/><ellipse cx="${F(vx-5)}" cy="${F(y+h*.32)}" rx="8" ry="4.5" fill="${win.night?'#1f3525':'#3a6b40'}" opacity=".75"/>`; }
+  // fireflies at night
+  if(win.night) for(let i=0;i<11;i++){ const fx=x+(i*97+30)%w, fy=y+h*0.42+(i*57)%(h*0.42); s+=`<circle class="iw-fly" style="animation-delay:${(i*0.37).toFixed(2)}s" cx="${F(fx)}" cy="${F(fy)}" r="2.4" fill="#fff2a0"/>`; }
+  // rain
+  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<48;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
+  s+=`<rect x="${x}" y="${F(y+h-13)}" width="${w}" height="16" fill="${win.night?'#0c160e':'#23371f'}"/>`;
   return s;
 }
+// ── a small flickering campfire (logs, flames, ember sparks, glow) ──
+function campfire(cx,cy,scale){ scale=scale||1;
+  return `<g transform="translate(${cx} ${cy}) scale(${scale})">
+    <path d="M -28 7 L 28 -5" stroke="#2f2114" stroke-width="8" stroke-linecap="round"/><path d="M -28 -5 L 28 7" stroke="#46341f" stroke-width="8" stroke-linecap="round"/>
+    <ellipse cx="0" cy="2" rx="20" ry="7" fill="#ff7a18" opacity=".5"/>
+    <path class="iw-fire" d="M 0 -4 C -16 -22 -11 -38 0 -52 C 11 -38 17 -24 0 -4 Z" fill="#ff8a2c"/>
+    <path class="iw-fire" style="animation-delay:.12s" d="M 0 -6 C -8 -20 -6 -32 0 -42 C 7 -31 11 -20 0 -6 Z" fill="#ffd24a"/>
+    <circle class="iw-ember" cx="-6" cy="-30" r="1.6" fill="#ffd24a"/><circle class="iw-ember" style="animation-delay:.8s" cx="8" cy="-26" r="1.3" fill="#ffb04a"/><circle class="iw-ember" style="animation-delay:1.6s" cx="0" cy="-34" r="1.4" fill="#ffd24a"/>
+  </g>`;
+}
+// ── first-person legs: sitting upright, legs extended toward the view, own boots ──
+function povSitLegs(a){
+  const pants=a.pants||'#46523a', boots=a.boots||'#2a1f14', skin=a.skin||'#d9a066', sleeve=a.outfit||'#4d6b3c';
+  return `<g>
+    <ellipse cx="500" cy="600" rx="210" ry="96" fill="#000" opacity=".18"/>
+    <!-- thighs / lap close to camera -->
+    <path d="M 352 600 Q 378 506 472 498 L 528 498 Q 622 506 648 600 Z" fill="${pants}"/>
+    <!-- two shins extending to the boots -->
+    <path d="M 452 540 Q 442 478 456 444 L 488 444 Q 498 484 502 540 Z" fill="${pants}"/>
+    <path d="M 498 540 Q 502 484 512 444 L 544 444 Q 558 478 548 540 Z" fill="${pants}"/>
+    <ellipse cx="476" cy="512" rx="34" ry="18" fill="#fff" opacity=".06"/><ellipse cx="524" cy="512" rx="34" ry="18" fill="#fff" opacity=".06"/>
+    <path d="M 352 600 Q 378 506 472 498" stroke="#000" stroke-width="3" opacity=".12" fill="none"/><path d="M 648 600 Q 622 506 528 498" stroke="#000" stroke-width="3" opacity=".12" fill="none"/>
+    <!-- boots, toes up/away from camera -->
+    <g fill="${boots}"><path d="M 446 462 Q 444 430 464 428 Q 484 428 486 452 L 486 478 Q 466 486 446 478 Z"/><path d="M 514 462 Q 516 430 536 428 Q 556 430 554 462 L 552 478 Q 534 486 514 478 Z"/></g>
+    <ellipse cx="465" cy="430" rx="20" ry="8" fill="#000" opacity=".18"/><ellipse cx="535" cy="430" rx="20" ry="8" fill="#000" opacity=".18"/>
+    <g stroke="#000" stroke-width="2" opacity=".3"><line x1="456" y1="448" x2="476" y2="448"/><line x1="455" y1="460" x2="477" y2="460"/><line x1="524" y1="448" x2="544" y2="448"/><line x1="523" y1="460" x2="545" y2="460"/></g>
+    <!-- forearms + hands resting on the thighs -->
+    <g><path d="M 360 600 Q 392 556 432 548 L 444 566 Q 404 578 380 600 Z" fill="${sleeve}"/>
+      <ellipse cx="436" cy="552" rx="17" ry="13" fill="${skin}"/>
+      <g stroke="#000" stroke-width="1.4" opacity=".18"><line x1="430" y1="544" x2="446" y2="556"/><line x1="436" y1="542" x2="448" y2="552"/></g></g>
+    <g><path d="M 640 600 Q 608 556 568 548 L 556 566 Q 596 578 620 600 Z" fill="${sleeve}"/>
+      <ellipse cx="564" cy="552" rx="17" ry="13" fill="${skin}"/>
+      <g stroke="#000" stroke-width="1.4" opacity=".18"><line x1="570" y1="544" x2="554" y2="556"/><line x1="564" y1="542" x2="552" y2="552"/></g></g>
+  </g>`;
+}
+// ── first-person legs: lying in a sleeping bag, feet bumps at the far end ──
+function povBag(a){
+  const bag=a.outfit||'#3b556b', skin=a.skin||'#d9a066';
+  return `<g>
+    <ellipse cx="500" cy="600" rx="220" ry="70" fill="#000" opacity=".2"/>
+    <path d="M 318 600 Q 360 472 500 466 Q 640 472 682 600 Z" fill="${bag}"/>
+    <path d="M 318 600 Q 360 480 500 474 Q 640 480 682 600 Z" fill="#000" opacity=".12"/>
+    <g stroke="#000" stroke-width="2" opacity=".13" fill="none"><path d="M 430 600 Q 452 506 488 478"/><path d="M 500 600 L 500 474"/><path d="M 570 600 Q 548 506 512 478"/></g>
+    <!-- two foot bumps -->
+    <ellipse cx="476" cy="486" rx="27" ry="22" fill="${bag}"/><ellipse cx="524" cy="486" rx="27" ry="22" fill="${bag}"/>
+    <ellipse cx="476" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/><ellipse cx="524" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/>
+    <!-- folded-down bag lip + a hand resting -->
+    <path d="M 360 540 Q 500 510 640 540 L 636 560 Q 500 532 364 560 Z" fill="#fff" opacity=".08"/>
+    <ellipse cx="588" cy="556" rx="16" ry="11" fill="${skin}"/>
+  </g>`;
+}
+// ── left-behind resting spot when nobody's inside (honest empty state) ──
+function emptyMat(){
+  return `<g>
+    <ellipse cx="500" cy="600" rx="220" ry="80" fill="#000" opacity=".16"/>
+    <ellipse cx="500" cy="556" rx="190" ry="40" fill="#6b5a38"/><ellipse cx="500" cy="552" rx="170" ry="32" fill="#7d6a44"/>
+    <g stroke="#5a4a2e" stroke-width="1.5" opacity=".5">${[...Array(7)].map((_,i)=>`<line x1="${350+i*50}" y1="520" x2="${350+i*50}" y2="582"/>`).join('')}</g>
+    <!-- folded blanket + a left-behind mug -->
+    <path d="M 392 548 Q 470 532 548 548 L 540 572 Q 470 558 400 572 Z" fill="#48586a"/><path d="M 392 548 Q 470 532 548 548" stroke="#fff" stroke-width="2" opacity=".12" fill="none"/>
+    <g transform="translate(596 556)"><rect x="-11" y="-15" width="22" height="19" rx="3" fill="#7a5a3a"/><path d="M 11 -10 q 12 0 12 8 q 0 8 -12 7" stroke="#7a5a3a" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="11" ry="3" fill="#3a2a18"/></g>
+  </g>`;
+}
+function _isCat(cid){ return (S.chars[cid]&&S.chars[cid].species)==='cat'; }
+// ── a curled, dozing cat (Mutu) — only drawn when the cat is actually inside ──
+function povCat(a,cx,sc){ cx=cx==null?500:cx; sc=sc||1;
+  const coat=a.coat||'#d98a4a', belly=a.belly||'#f2c89a', stripe=a.stripe||'#a8612a';
+  return `<g transform="translate(${cx} 540) scale(${sc})">
+    <ellipse cx="0" cy="18" rx="80" ry="20" fill="#000" opacity=".2"/>
+    <ellipse cx="0" cy="0" rx="66" ry="38" fill="${coat}"/>
+    <ellipse cx="-4" cy="12" rx="52" ry="22" fill="${belly}" opacity=".9"/>
+    <path d="M 58 8 Q 100 0 90 -34 Q 82 -54 56 -46" stroke="${coat}" stroke-width="17" fill="none" stroke-linecap="round"/>
+    <g stroke="${stripe}" stroke-width="4" opacity=".55" fill="none"><path d="M -28 -22 q 8 10 0 22"/><path d="M -6 -28 q 8 12 0 26"/><path d="M 16 -25 q 7 12 0 24"/><path d="M 40 -16 q 6 10 0 20"/></g>
+    <circle cx="-52" cy="-4" r="23" fill="${coat}"/>
+    <path d="M -70 -22 l 7 16 l -16 -1 Z" fill="${coat}"/><path d="M -40 -24 l 12 13 l -17 0 Z" fill="${coat}"/>
+    <path d="M -68 -20 l 4 9 l -9 0 Z" fill="${stripe}" opacity=".5"/><path d="M -42 -22 l 7 8 l -10 0 Z" fill="${stripe}" opacity=".5"/>
+    <path d="M -60 -5 q 4 4 9 0" stroke="#241a12" stroke-width="2" fill="none"/><path d="M -48 -5 q 4 4 9 0" stroke="#241a12" stroke-width="2" fill="none"/>
+    <path d="M -53 2 l 3 3 l 3 -3" stroke="#241a12" stroke-width="1.8" fill="none"/>
+    <g stroke="#3a2a18" stroke-width="1" opacity=".5"><line x1="-50" y1="3" x2="-72" y2="-1"/><line x1="-50" y1="5" x2="-72" y2="7"/></g>
+  </g>`;
+}
 function tentSVG(){
-  const win=windowSky(); const occ=_present('tent'); const c0=occ[0]?(getCharColor(occ[0])||'#8a6f4a'): '#8a6f4a';
-  const skin=(occ[0]&&S.chars[occ[0]]&&S.chars[occ[0]].appearance&&S.chars[occ[0]].appearance.skin)||'#d9a066';
-  // doorway opening = central triangle, apex ~(500,70) widening to base 350..650 @ y500. The canvas
-  // flaps cover everything outside it, so it reads as "looking out the unzipped door" on any crop.
+  const win=windowSky(); const present=_present('tent');
+  const human=present.filter(c=>!_isCat(c))[0]; const cat=present.filter(_isCat)[0];
+  // doorway opening = central triangle; the canvas flaps frame the elevated canopy view.
   return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a7449"/><stop offset="1" stop-color="#473a26"/></linearGradient>
-  <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".9"/><stop offset="1" stop-color="transparent"/></radialGradient>
+  <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7a4e"/><stop offset="1" stop-color="#42361f"/></linearGradient>
+  <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".95"/><stop offset="1" stop-color="transparent"/></radialGradient>
   <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="url(#twall)"/>
-  <!-- canvas panel seams + soft shading across the walls (mostly seen on desktop) -->
-  <g stroke="#3a2f1d" stroke-width="2" opacity=".22">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
-  <rect width="170" height="600" fill="#000" opacity=".12"/><rect x="830" width="170" height="600" fill="#000" opacity=".12"/>
-  <!-- the live view through the door (drawn first, then framed by canvas) -->
-  ${windowArt(300,60,400,460,win)}
-  <!-- left + right canvas flaps that close in to leave a triangular doorway -->
+  <!-- canvas panel seams + soft side shading (desktop) -->
+  <g stroke="#3a2f1d" stroke-width="2" opacity=".2">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
+  <rect width="180" height="600" fill="#000" opacity=".14"/><rect x="820" width="180" height="600" fill="#000" opacity=".14"/>
+  <!-- elevated canopy view through the unzipped door -->
+  <g clip-path="url(#tdoor)">${jungleView(300,60,400,460,win,{high:true})}</g>
+  <!-- canvas flaps closing to a triangular doorway -->
   <path d="M -20 -20 L 520 64 L 354 520 L -20 520 Z" fill="url(#twall)"/>
   <path d="M 1020 -20 L 480 64 L 646 520 L 1020 520 Z" fill="url(#twall)"/>
-  <!-- inner trim/seam + zipper teeth along each flap edge (unzipped door) -->
-  <path d="M 520 64 L 354 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
-  <path d="M 480 64 L 646 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
-  <path d="M 520 64 L 354 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
-  <path d="M 480 64 L 646 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
+  <!-- seam + zipper teeth (unzipped door) -->
+  <path d="M 520 64 L 354 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/><path d="M 480 64 L 646 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
+  <path d="M 520 64 L 354 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/><path d="M 480 64 L 646 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
   <circle cx="354" cy="520" r="6" fill="#d9c089"/><circle cx="646" cy="520" r="6" fill="#d9c089"/>
-  <!-- draped top valance + ridge seam -->
+  <!-- draped valance + ridge ribs -->
   <path d="M -20 -20 L 1020 -20 L 1020 46 Q 500 12 -20 46 Z" fill="#5a4a2e"/>
   <path d="M 0 30 Q 500 70 1000 30" stroke="#3a2f1d" stroke-width="3" fill="none" opacity=".6"/>
   ${[0,1,2,3].map(i=>`<path d="M${120+i*220} 30 L500 64" stroke="#6f5d3a" stroke-width="2" opacity=".4" fill="none"/>`).join('')}
-  <!-- fine mesh net stretched over the opening -->
-  <g clip-path="url(#tdoor)" stroke="#e9eef0" stroke-width=".5" opacity=".11">${[...Array(13)].map((_,i)=>`<line x1="${360+i*24}" y1="60" x2="${360+i*24}" y2="520"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="350" y1="${100+i*40}" x2="650" y2="${100+i*40}"/>`).join('')}</g>
-  <!-- lantern hung at the door edge -->
-  <g transform="translate(372 150)"><rect x="-3" y="-40" width="6" height="40" fill="#3a2f1d"/><rect x="-10" y="-2" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="2" width="14" height="20" rx="3" fill="#ffd98a"/><ellipse cx="0" cy="12" rx="34" ry="30" fill="#ffd98a" opacity=".22"/></g>
-  <!-- coiled rope on the left wall + satchel on the right (balance the desktop walls) -->
+  <!-- mesh net over the opening -->
+  <g clip-path="url(#tdoor)" stroke="#e9eef0" stroke-width=".5" opacity=".1">${[...Array(13)].map((_,i)=>`<line x1="${360+i*24}" y1="60" x2="${360+i*24}" y2="520"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="350" y1="${100+i*40}" x2="650" y2="${100+i*40}"/>`).join('')}</g>
+  <!-- hung lantern + wall gear -->
+  <g transform="translate(372 150)"><rect x="-3" y="-40" width="6" height="40" fill="#3a2f1d"/><rect x="-10" y="-2" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="2" width="14" height="20" rx="3" fill="#ffd98a"/><ellipse cx="0" cy="12" rx="36" ry="32" fill="#ffd98a" opacity=".24"/></g>
   <g transform="translate(150 250)" stroke="#6b5836" stroke-width="5" fill="none" opacity=".8"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="0" r="14"/><circle cx="0" cy="0" r="7"/></g>
   <g transform="translate(862 210)"><line x1="0" y1="-44" x2="0" y2="-6" stroke="#2a2012" stroke-width="2"/><path d="M -26 -6 q26 -16 52 0 l-6 46 q-20 9 -40 0 Z" fill="#5a4a2e"/><path d="M -26 -6 q26 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
-  <!-- foreground floor glow + sleeping bag -->
-  <ellipse cx="500" cy="600" rx="420" ry="120" fill="url(#tlant)" opacity=".45"/>
-  <path d="M -20 600 Q 250 528 520 540 Q 800 552 1020 600 Z" fill="#3b4a55"/>
-  <path d="M -20 600 Q 250 532 520 544 Q 800 556 1020 600 Z" fill="#4a5d6b" opacity=".6"/>
-  ${occ.length?`<!-- subtle occupant: someone reclining in the bag, head clears the caption -->
-    <path d="M 408 524 Q 530 506 648 540 Q 690 556 690 600 L 408 600 Z" fill="${c0}" opacity=".72"/>
-    <path d="M 424 522 Q 540 508 648 540" stroke="#000" stroke-width="3" opacity=".16" fill="none"/>
-    <ellipse cx="436" cy="516" rx="21" ry="18" fill="${skin}"/>
-    <path d="M 421 510 Q 436 495 453 512" stroke="#241a12" stroke-width="6" fill="none" stroke-linecap="round"/>`:''}
+  <!-- mesh phone-pocket on the left wall -->
+  <g transform="translate(196 430)"><path d="M -52 0 Q 0 -16 52 0 L 46 40 L -46 40 Z" fill="#6f5d3a" opacity=".8"/><path d="M -52 0 Q 0 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
+  <!-- warm floor glow -->
+  <ellipse cx="500" cy="600" rx="440" ry="130" fill="url(#tlant)" opacity=".4"/>
+  <!-- POV: your own legs in the bag / the cat / empty bag -->
+  ${human?povBag(_appr(human)):(cat?'':emptyBag())}
+  ${cat?povCat(_appr(cat), human?640:632, human?.8:.9):''}
   </svg>`;
 }
+function emptyBag(){ return `<g>
+  <ellipse cx="500" cy="600" rx="220" ry="64" fill="#000" opacity=".18"/>
+  <path d="M 330 600 Q 380 512 500 506 Q 620 512 670 600 Z" fill="#3b4a55"/>
+  <path d="M 360 540 Q 500 514 640 540 L 632 566 Q 500 540 368 566 Z" fill="#4a5d6b" opacity=".7"/>
+  <path d="M 360 540 Q 500 514 640 540" stroke="#fff" stroke-width="2" opacity=".1" fill="none"/>
+</g>`; }
 function leantoSVG(){
-  const win=windowSky();
+  const win=windowSky(); const present=_present('leanto');
+  const human=present.filter(c=>!_isCat(c))[0]; const cat=present.filter(_isCat)[0];
   return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
-  <defs><linearGradient id="lback" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27331f"/><stop offset="1" stop-color="#1a2417"/></linearGradient>
-  <radialGradient id="lfire" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".8"/><stop offset="1" stop-color="transparent"/></radialGradient></defs>
-  <rect width="1000" height="600" fill="url(#lback)"/>
-  <!-- open front framing the jungle + fire glow -->
-  <path d="M 150 120 L 850 120 L 810 470 L 190 470 Z" fill="#0e120c"/>
-  ${windowArt(168,132,664,330,win)}
+  <defs><radialGradient id="lfire" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".9"/><stop offset="1" stop-color="transparent"/></radialGradient>
+  <clipPath id="lopen"><path d="M 104 96 L 896 96 L 858 452 L 142 452 Z"/></clipPath></defs>
+  <rect width="1000" height="600" fill="#0c100a"/>
+  <!-- the live jungle through the open front -->
+  <g clip-path="url(#lopen)">${jungleView(104,96,792,356,win)}</g>
+  <!-- opening trim -->
+  <path d="M 104 96 L 896 96 L 858 452 L 142 452 Z" fill="none" stroke="#1c1206" stroke-width="6" opacity=".7"/>
   <!-- slanted log-and-frond roof overhead -->
-  <path d="M -20 40 L 1020 -40 L 1020 70 L -20 150 Z" fill="#3a2c18"/>
-  <g stroke="#52402a" stroke-width="5" opacity=".8">${[...Array(7)].map((_,i)=>`<line x1="${-20+i*150}" y1="${110-i*14}" x2="${40+i*150}" y2="${-30-i*14}"/>`).join('')}</g>
-  <g fill="#2f5536">${[...Array(9)].map((_,i)=>`<path d="M${i*120-10} ${120-i*10} q40 -26 80 -4 q-30 14 -80 4 Z" opacity=".85"/>`).join('')}</g>
-  <!-- back posts -->
-  <rect x="120" y="120" width="10" height="360" fill="#3a2c18"/><rect x="860" y="120" width="10" height="360" fill="#3a2c18"/>
-  <!-- woven mat / leaf bedding on the ground -->
-  <ellipse cx="500" cy="520" rx="360" ry="60" fill="#6b5a38"/><ellipse cx="500" cy="516" rx="330" ry="50" fill="#7d6a44"/>
-  <g stroke="#5a4a2e" stroke-width="1.5" opacity=".5">${[...Array(8)].map((_,i)=>`<line x1="${200+i*75}" y1="478" x2="${200+i*75}" y2="556"/>`).join('')}</g>
-  <!-- hung satchel + gourd from the roof beam -->
-  <line x1="700" y1="120" x2="700" y2="150" stroke="#2a2012" stroke-width="2"/>
-  <path d="M 686 150 q14 -10 28 0 l-4 30 q-10 5 -20 0 Z" fill="#5a4a2e"/>
-  <line x1="300" y1="120" x2="300" y2="146" stroke="#2a2012" stroke-width="2"/>
-  <ellipse cx="300" cy="156" rx="11" ry="14" fill="#6b5a38"/>
-  <!-- rolled bedroll on the left -->
-  <g transform="translate(250 502)"><rect x="-46" y="-18" width="92" height="22" rx="11" fill="#48586a"/><ellipse cx="-46" cy="-7" rx="6" ry="11" fill="#39495a"/><ellipse cx="46" cy="-7" rx="6" ry="11" fill="#39495a"/></g>
-  <!-- campfire (logs + flames) with warm glow, lighting the shelter -->
-  <ellipse cx="640" cy="498" rx="200" ry="84" fill="url(#lfire)" opacity=".55"/>
-  <g transform="translate(640 500)"><path d="M -26 6 L 26 -4" stroke="#3a2a18" stroke-width="7" stroke-linecap="round"/><path d="M -26 -4 L 26 6" stroke="#46341f" stroke-width="7" stroke-linecap="round"/>
-  <path d="M 0 -6 C -14 -20 -10 -34 0 -46 C 8 -34 14 -22 0 -6 Z" fill="#ff8a2c"/><path d="M 0 -8 C -7 -18 -5 -28 0 -36 C 5 -27 9 -18 0 -8 Z" fill="#ffd24a"/></g>
-  <rect y="556" width="1000" height="44" fill="#16100a"/>
+  <path d="M -20 38 L 1020 -42 L 1020 64 L -20 144 Z" fill="#3a2c18"/>
+  <path d="M -20 38 L 1020 -42 L 1020 -14 L -20 66 Z" fill="#2c2012"/>
+  <g stroke="#52402a" stroke-width="6" opacity=".85">${[...Array(8)].map((_,i)=>`<line x1="${-20+i*135}" y1="${112-i*12}" x2="${44+i*135}" y2="${-28-i*12}"/>`).join('')}</g>
+  <g stroke="#6b5836" stroke-width="2" opacity=".5">${[...Array(8)].map((_,i)=>`<line x1="${-10+i*135}" y1="${104-i*12}" x2="${-10+i*135}" y2="${118-i*12}"/>`).join('')}</g>
+  <g fill="#2f5536">${[...Array(11)].map((_,i)=>`<path d="M${i*100-20} ${122-i*8} q44 -28 88 -4 q-34 16 -88 4 Z" opacity=".88"/>`).join('')}</g>
+  <g fill="#3a6b40" opacity=".7">${[...Array(10)].map((_,i)=>`<path d="M${i*108+10} ${112-i*8} q34 -22 70 -2 q-26 12 -70 2 Z"/>`).join('')}</g>
+  <!-- support posts with lashing -->
+  <rect x="118" y="92" width="14" height="372" rx="3" fill="#3a2c18"/><rect x="120" y="92" width="4" height="372" fill="#52402a" opacity=".6"/>
+  <rect x="868" y="92" width="14" height="372" rx="3" fill="#3a2c18"/><rect x="870" y="92" width="4" height="372" fill="#52402a" opacity=".6"/>
+  <g stroke="#6b5836" stroke-width="3" opacity=".8"><line x1="116" y1="150" x2="134" y2="156"/><line x1="116" y1="160" x2="134" y2="166"/><line x1="866" y1="150" x2="884" y2="156"/><line x1="866" y1="160" x2="884" y2="166"/></g>
+  <!-- hung satchel + gourd -->
+  <line x1="720" y1="100" x2="720" y2="132" stroke="#2a2012" stroke-width="2"/><path d="M 706 132 q14 -10 28 0 l-4 32 q-10 5 -20 0 Z" fill="#5a4a2e"/>
+  <line x1="288" y1="100" x2="288" y2="128" stroke="#2a2012" stroke-width="2"/><ellipse cx="288" cy="140" rx="12" ry="15" fill="#6b5a38"/>
+  <!-- woven mat under everything -->
+  <ellipse cx="500" cy="540" rx="400" ry="64" fill="#6b5a38"/><ellipse cx="500" cy="536" rx="368" ry="54" fill="#7d6a44"/>
+  <g stroke="#5a4a2e" stroke-width="1.5" opacity=".45">${[...Array(10)].map((_,i)=>`<line x1="${180+i*72}" y1="492" x2="${180+i*72}" y2="582"/>`).join('')}</g>
+  <!-- campfire just outside, warm glow into the shelter -->
+  <ellipse cx="700" cy="486" rx="220" ry="92" fill="url(#lfire)" opacity=".55"/>
+  ${campfire(700,492,1.1)}
+  <!-- POV: your own crossed legs / the cat / empty mat -->
+  ${human?povSitLegs(_appr(human)):(cat?'':emptyMat())}
+  ${cat?povCat(_appr(cat), human?430:560, human?.72:.86):''}
+  <rect y="588" width="1000" height="20" fill="#0c0a06"/>
   </svg>`;
 }
 function renderInteriorOccupants(key){
-  const box=document.getElementById('interior-chars'); if(!box) return; box.innerHTML='';
-  if(key!=='leanto') return;  // tent draws its occupant hint in the SVG
-  const occ=_present(key); const n=occ.length;
-  // seat them on the left half of the mat (the fire sits on the right), spread evenly
-  occ.forEach((cid,i)=>{
-    const col=getCharColor(cid)||'#caa';
-    const d=document.createElement('div'); d.className='ioc';
-    d.style.left=(n===1?40:(20+ (44/(n+1))*(i+1)))+'%'; d.style.bottom='17%';
-    d.style.transform='translateX(-50%) scale(1.5)'; d.style.transformOrigin='bottom center';
-    d.innerHTML=makeGenericCharSVG(cid, col, (S.chars[cid].appearance&&S.chars[cid].appearance.skin));
-    box.appendChild(d);
-  });
+  // Occupants are now drawn first-person inside the scene SVG (povSitLegs/povBag/povCat),
+  // so the old standing-avatar overlay is no longer used.
+  const box=document.getElementById('interior-chars'); if(box) box.innerHTML='';
 }
 function enterInterior(key){
   const I=INTERIORS[key]; if(!I) return;
