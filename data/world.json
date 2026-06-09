@@ -1,16 +1,16 @@
 {
   "day": 2,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-09",
-  "pulse": "Wesley made it through a full day of real work—Chills sees that. The jungle hasn't softened, but Wesley isn't drowning anymore.",
-  "scene": "Wesley's hands are torn from a day of salvaging at the Cayenne, but he finished without breaking. By evening they're eating Mutu's fresh kill at the fire while the lean-to stands secure for the night.",
+  "pulse": "Wesley carried no fear into the night. Both Chills and Mutu see it. That changes everything.",
+  "scene": "Wesley worked through the full day; by nightfall he and Chills sit by the fire as Mutu—uncharacteristically—leans against Wesley's leg, and the tension between them finally eases.",
   "resources_prev": {
     "food": 0,
-    "water": 50,
-    "wood": 44,
+    "water": 54,
+    "wood": 43,
     "medicine": 20
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 88,
+      "condition": 84,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 54,
-    "wood": 43,
-    "medicine": 20
+    "water": 56,
+    "wood": 42,
+    "medicine": 18
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
-  "camp_climate": "steady",
+  "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-09:evening",
+  "last_cycle_key": "2026-06-09:night",
   "cayenne": {
     "stripped": []
   },
@@ -47,7 +47,8 @@
     "present": true
   },
   "day_summaries": {
-    "1": "Day 1 broke Wesley and tested Chills: the Cayenne bogged, Wesley's panic fouled the water, then he failed at fire. By nightfall Chills had coaxed a flame from dry heartwood with patient hands, and Wesley's shame cracked open — he saw it wasn't preaching but simple survival, and he believed. They ate warm. The jungle night was hard, but they would live it."
+    "1": "Day 1 broke Wesley and tested Chills: the Cayenne bogged, Wesley's panic fouled the water, then he failed at fire. By nightfall Chills had coaxed a flame from dry heartwood with patient hands, and Wesley's shame cracked open — he saw it wasn't preaching but simple survival, and he believed. They ate warm. The jungle night was hard, but they would live it.",
+    "2": "Day 2 was Wesley's breakthrough—he came forward wanting to work and pushed through salvaging the Cayenne without breaking. By nightfall his hands were shredded but his fear was gone, and Mutu, sensing the shift, showed him affection for the first time. The city scholar had become a survivor."
   },
   "lean": {
     "id": "work_redemption",

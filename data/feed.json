@@ -612,5 +612,95 @@
       }
     ],
     "timestamp": "2026-06-09T18:02:25.359464"
+  },
+  {
+    "day": 2,
+    "cycle": "night",
+    "character": "chills",
+    "action": "He tends the fire and watches Wesley flex his torn hands, the first real calm night in the camp.",
+    "thought": "He stepped up. He's stronger than I knew.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "satisfied",
+    "timestamp": "2026-06-09T23:03:03.222941"
+  },
+  {
+    "day": 2,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "He rests by the fire, examining his shredded hands while Mutu leans against his leg for the first time.",
+    "thought": "Hands torn but I finished the day.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-09T23:03:03.222941"
+  },
+  {
+    "day": 2,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "He presses his entire body against Wesley's leg, purring softly, a rare gesture of acceptance after a day of watching him work.",
+    "thought": "He belongs here now. He's safe.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-09T23:03:03.222941"
+  },
+  {
+    "day": 2,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the fire's edge, Wesley rests his shredded hands while Mutu—for the first time—presses hard against him, and Chills watches a city scholar becoming a survivor.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Hands are absolutely destroyed."
+      },
+      {
+        "speaker": "chills",
+        "line": "Let me wrap them."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Why waste the medicine on this?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Because you stayed."
+      },
+      {
+        "speaker": "wesley",
+        "line": "He's leaning on me. Mutu never does that."
+      },
+      {
+        "speaker": "chills",
+        "line": "He knows."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Knows what?"
+      },
+      {
+        "speaker": "chills",
+        "line": "That you didn't run."
+      }
+    ],
+    "timestamp": "2026-06-09T23:03:03.222941"
   }
 ]
