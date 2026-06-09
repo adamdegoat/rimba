@@ -3716,8 +3716,10 @@ loadVote();
   .hotspot .hs-tap{position:absolute;left:50%;top:-18px;transform:translateX(-50%);white-space:nowrap;
     font:800 8px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55);opacity:0;transition:opacity .2s}
   .hotspot:hover .hs-tap{opacity:1}
-  #interior{position:fixed;inset:0;z-index:100000;background:#0a0f0c;display:none;overflow:hidden}
-  #interior.show{display:block}
+  #interior{position:fixed;inset:0;z-index:100000;background:#0a0f0c;overflow:hidden;
+    opacity:0;visibility:hidden;transform:scale(1.05);pointer-events:none;
+    transition:opacity .42s ease,transform .55s cubic-bezier(.22,.8,.3,1),visibility .42s}
+  #interior.show{opacity:1;visibility:visible;transform:scale(1);pointer-events:auto}
   #interior-scene{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
   #interior-scene::-webkit-scrollbar{display:none}
   #interior-scene svg{display:block;height:100%;width:auto;max-width:none}
@@ -3758,6 +3760,27 @@ loadVote();
   @keyframes iwTwinkle{0%,100%{opacity:.45}50%{opacity:1}}
   .iw-steam{transform-box:fill-box;transform-origin:bottom center;animation:iwSteam 3.4s ease-in-out infinite}
   @keyframes iwSteam{0%{opacity:0;transform:translateY(0) scaleX(1)}30%{opacity:.5}100%{opacity:0;transform:translateY(-22px) scaleX(1.5)}}
+  .iw-breathe{transform-box:fill-box;transform-origin:50% 100%;animation:iwBreathe 4.6s ease-in-out infinite}
+  @keyframes iwBreathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.02)}}
+  .iw-tail{transform-box:fill-box;transform-origin:0% 100%;animation:iwTail 3.6s ease-in-out infinite}
+  @keyframes iwTail{0%,100%{transform:rotate(2deg)}50%{transform:rotate(-7deg)}}
+  .iw-ear{transform-box:fill-box;transform-origin:50% 100%;animation:iwEar 5.2s ease-in-out infinite}
+  @keyframes iwEar{0%,92%,100%{transform:rotate(0)}95%{transform:rotate(-9deg)}}
+  .iw-cloud{animation:iwCloud 60s linear infinite}
+  @keyframes iwCloud{from{transform:translateX(-60px)}to{transform:translateX(60px)}}
+  .iw-bird{animation:iwBird 14s linear infinite}
+  @keyframes iwBird{0%{opacity:0;transform:translate(0,0)}6%{opacity:.6}94%{opacity:.6}100%{opacity:0;transform:translate(220px,-30px)}}
+  .iw-gibbon{transform-box:fill-box;transform-origin:50% 0%;animation:iwGibbon 6s ease-in-out infinite}
+  @keyframes iwGibbon{0%,100%{transform:rotate(-9deg)}50%{transform:rotate(9deg)}}
+  .iw-flash{animation:iwFlash 9s ease-out infinite}
+  @keyframes iwFlash{0%,4%,100%{opacity:0}1%{opacity:.7}2%{opacity:.15}3%{opacity:.6}}
+  .iw-drip{transform-box:fill-box;transform-origin:50% 0%;animation:iwDrip 2.4s ease-in infinite}
+  @keyframes iwDrip{0%{opacity:0;transform:translateY(0) scaleY(.4)}20%{opacity:.7}100%{opacity:0;transform:translateY(40px) scaleY(1.2)}}
+  #interior-hint{position:fixed;left:50%;bottom:78px;transform:translateX(-50%);z-index:100004;pointer-events:none;
+    background:rgba(12,18,14,.72);backdrop-filter:blur(6px);-webkit-backdrop-filter:blur(6px);border:1px solid rgba(255,255,255,.2);
+    color:#fff1d6;font:700 11px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.5px;padding:7px 13px;border-radius:999px;opacity:0;white-space:nowrap}
+  #interior-hint.show{animation:iwHint 3.2s ease-in-out forwards}
+  @keyframes iwHint{0%{opacity:0;transform:translateX(-50%) translateY(6px)}14%{opacity:1;transform:translateX(-50%) translateY(0)}72%{opacity:1}100%{opacity:0;transform:translateX(-50%) translateY(-5px)}}
   `;
   const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
   const world=document.getElementById('world');
@@ -3766,7 +3789,8 @@ loadVote();
   intr.innerHTML=`<div id="interior-scene"></div><div id="interior-chars"></div>
     <div id="interior-title"><span class="it-ico"></span><div><div class="it-main"></div><div class="it-sub"></div></div></div>
     <div id="interior-scrim"></div>
-    <button id="interior-exit" onclick="exitInterior()">↩ step out</button><div id="interior-cap"></div>`;
+    <button id="interior-exit" onclick="exitInterior()">↩ step out</button><div id="interior-cap"></div>
+    <div id="interior-hint">⟷ drag to look around</div>`;
   document.body.appendChild(intr);
 })();
 
@@ -3792,9 +3816,10 @@ function windowSky(){
   const cyc=((S.world&&S.world.cycle)||'midday').toLowerCase();
   const wx=((S.world&&S.world.weather)||'').toLowerCase();
   const rain=/rain|storm|drizzle|shower|downpour|monsoon|thunder|wet/.test(wx);
+  const storm=/storm|thunder|monsoon|squall|gale|deluge|lightning|tempest/.test(wx);
   const M={ morning:{top:'#a6cfe6',bot:'#e3eede',canopy:'#2f5536'}, midday:{top:'#74b6d8',bot:'#c7e6cf',canopy:'#2b4f31'},
             evening:{top:'#ec8f54',bot:'#f5cf94',canopy:'#3a2c20'}, night:{top:'#14223a',bot:'#243b58',canopy:'#16291d'} };
-  const m=M[cyc]||M.midday; return {...m, rain, night:cyc==='night'};
+  const m=M[cyc]||M.midday; return {...m, rain, storm, night:cyc==='night'};
 }
 function _appr(cid){ return (S.chars[cid]&&S.chars[cid].appearance)||{}; }
 // ── the live jungle seen through a shelter opening: layered depth, sky, weather, life ──
@@ -3825,6 +3850,11 @@ function jungleView(x,y,w,h,win,opt){
     s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="86" fill="url(#jvsun)"/><circle cx="${F(sx)}" cy="${F(sy)}" r="27" fill="#fffdf0"/>`;
     for(let i=0;i<4;i++){ const bx=x+w*0.5+i*40, by=y+h*0.15+(i%2)*18; s+=`<path d="M ${F(bx)} ${F(by)} q 8 -7 15 0 q 8 -7 15 0" stroke="#33473a" stroke-width="2" fill="none" opacity=".45"/>`; }
   }
+  // a soft drifting cloud + a bird gliding across (day only — the view is alive)
+  if(!N){
+    s+=`<g class="iw-cloud" fill="#ffffff" opacity="${win.storm?'.5':'.7'}"><ellipse cx="${F(x+w*0.62)}" cy="${F(y+h*0.12)}" rx="48" ry="16"/><ellipse cx="${F(x+w*0.55)}" cy="${F(y+h*0.14)}" rx="34" ry="13"/><ellipse cx="${F(x+w*0.69)}" cy="${F(y+h*0.14)}" rx="30" ry="12"/></g>`;
+    s+=`<g class="iw-bird" fill="none" stroke="#33473a" stroke-width="2" opacity=".55"><path d="M ${F(x+w*0.18)} ${F(y+h*0.22)} q 7 -7 13 0 q 7 -7 13 0"/></g>`;
+  }
   // two distant misty ridges (depth)
   s+=`<path d="M ${x} ${F(horizon-12)} Q ${F(x+w*.3)} ${F(horizon-70)} ${F(x+w*.55)} ${F(horizon-26)} Q ${F(x+w*.8)} ${F(horizon-72)} ${x+w} ${F(horizon-18)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#33486a':'#acc4b3'}" opacity=".45"/>`;
   s+=`<path d="M ${x} ${F(horizon)} Q ${F(x+w*.26)} ${F(horizon-50)} ${F(x+w*.5)} ${F(horizon-14)} Q ${F(x+w*.74)} ${F(horizon-58)} ${x+w} ${F(horizon-6)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#2a3b58':'#8fb09e'}" opacity=".5"/>`;
@@ -3851,6 +3881,9 @@ function jungleView(x,y,w,h,win,opt){
   [['e',0.07,33,2],['e',0.72,25,2],['p',0.19,1.05,3],['e',0.4,27,3],['p',0.53,0.95,3],['p',0.86,1.12,3],['e',0.96,31,3],['b',0.29,1,4],['b',0.63,0.95,4]]
     .sort((m,n)=>m[3]-n[3]).forEach(([t,fx,a,li])=>{ const tx=x+w*fx, ty=horizon+10+li*5, cc=G[Math.min(li+1,4)];
       s+= t==='p'?palm(tx,ty,a,cc) : t==='b'?banana(tx,ty+34,a,cc) : emergent(tx,ty,a,cc); });
+  // a gibbon swinging from a canopy branch (a little life in the trees)
+  { const gx=x+w*0.74, gy=horizon+6, gc=N?'#0f1f15':'#2a2016';
+    s+=`<g class="iw-gibbon"><line x1="${F(gx)}" y1="${F(gy-30)}" x2="${F(gx)}" y2="${F(gy)}" stroke="${gc}" stroke-width="3"/><ellipse cx="${F(gx)}" cy="${F(gy+16)}" rx="9" ry="13" fill="${gc}"/><circle cx="${F(gx)}" cy="${F(gy+2)}" r="7" fill="${gc}"/><path d="M ${F(gx)} ${F(gy+6)} Q ${F(gx-12)} ${F(gy-6)} ${F(gx-3)} ${F(gy-14)}" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M ${F(gx)} ${F(gy+24)} q -10 12 -4 22" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/></g>`; }
   // dense undergrowth shrub band w/ volume highlight (lush jungle floor)
   for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8), r=26+(i*53%5)*7;
     s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${G[4]}"/><circle cx="${F(cx-r*.3)}" cy="${F(cy-r*.34)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; }
@@ -3879,6 +3912,9 @@ function jungleView(x,y,w,h,win,opt){
   // rain
   if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<52;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
   s+=`<rect x="${x}" y="${F(y+h-12)}" width="${w}" height="16" fill="${G[4]}"/>`;
+  // storm: a grey gloom over the view + an occasional lightning flash
+  if(win.storm){ s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#2a3340" opacity=".34"/>`;
+    s+=`<rect class="iw-flash" x="${x}" y="${y}" width="${w}" height="${h}" fill="#eaf2ff"/>`; }
   // soft vignette for a cozy, relaxing frame
   s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#jvvig)"/>`;
   return s;
@@ -3921,7 +3957,7 @@ function povSitLegs(a){
 // ── first-person legs: lying in a sleeping bag, feet bumps at the far end ──
 function povBag(a){
   const bag=a.outfit||'#3b556b', skin=a.skin||'#d9a066';
-  return `<g>
+  return `<g class="iw-breathe">
     <ellipse cx="500" cy="600" rx="220" ry="70" fill="#000" opacity=".2"/>
     <path d="M 318 600 Q 360 472 500 466 Q 640 472 682 600 Z" fill="${bag}"/>
     <path d="M 318 600 Q 360 480 500 474 Q 640 480 682 600 Z" fill="#000" opacity=".12"/>
@@ -3951,18 +3987,30 @@ function povCat(a,cx,sc){ cx=cx==null?500:cx; sc=sc||1;
   const coat=a.coat||'#d98a4a', belly=a.belly||'#f2c89a', stripe=a.stripe||'#a8612a';
   return `<g transform="translate(${cx} 540) scale(${sc})">
     <ellipse cx="0" cy="18" rx="80" ry="20" fill="#000" opacity=".2"/>
-    <ellipse cx="0" cy="0" rx="66" ry="38" fill="${coat}"/>
-    <ellipse cx="-4" cy="12" rx="52" ry="22" fill="${belly}" opacity=".9"/>
-    <path d="M 58 8 Q 100 0 90 -34 Q 82 -54 56 -46" stroke="${coat}" stroke-width="17" fill="none" stroke-linecap="round"/>
-    <g stroke="${stripe}" stroke-width="4" opacity=".55" fill="none"><path d="M -28 -22 q 8 10 0 22"/><path d="M -6 -28 q 8 12 0 26"/><path d="M 16 -25 q 7 12 0 24"/><path d="M 40 -16 q 6 10 0 20"/></g>
+    <g class="iw-tail"><path d="M 58 8 Q 100 0 90 -34 Q 82 -54 56 -46" stroke="${coat}" stroke-width="17" fill="none" stroke-linecap="round"/></g>
+    <g class="iw-breathe">
+      <ellipse cx="0" cy="0" rx="66" ry="38" fill="${coat}"/>
+      <ellipse cx="-4" cy="12" rx="52" ry="22" fill="${belly}" opacity=".9"/>
+      <g stroke="${stripe}" stroke-width="4" opacity=".55" fill="none"><path d="M -28 -22 q 8 10 0 22"/><path d="M -6 -28 q 8 12 0 26"/><path d="M 16 -25 q 7 12 0 24"/><path d="M 40 -16 q 6 10 0 20"/></g>
+    </g>
     <circle cx="-52" cy="-4" r="23" fill="${coat}"/>
-    <path d="M -70 -22 l 7 16 l -16 -1 Z" fill="${coat}"/><path d="M -40 -24 l 12 13 l -17 0 Z" fill="${coat}"/>
-    <path d="M -68 -20 l 4 9 l -9 0 Z" fill="${stripe}" opacity=".5"/><path d="M -42 -22 l 7 8 l -10 0 Z" fill="${stripe}" opacity=".5"/>
+    <g class="iw-ear"><path d="M -70 -22 l 7 16 l -16 -1 Z" fill="${coat}"/><path d="M -40 -24 l 12 13 l -17 0 Z" fill="${coat}"/>
+      <path d="M -68 -20 l 4 9 l -9 0 Z" fill="${stripe}" opacity=".5"/><path d="M -42 -22 l 7 8 l -10 0 Z" fill="${stripe}" opacity=".5"/></g>
     <path d="M -60 -5 q 4 4 9 0" stroke="#241a12" stroke-width="2" fill="none"/><path d="M -48 -5 q 4 4 9 0" stroke="#241a12" stroke-width="2" fill="none"/>
     <path d="M -53 2 l 3 3 l 3 -3" stroke="#241a12" stroke-width="1.8" fill="none"/>
     <g stroke="#3a2a18" stroke-width="1" opacity=".5"><line x1="-50" y1="3" x2="-72" y2="-1"/><line x1="-50" y1="5" x2="-72" y2="7"/></g>
   </g>`;
 }
+// ── owner décor: each shelter holds its owner's belongings (fixed; not tied to who's in) ──
+function _propPhone(px,py){ return `<g transform="translate(${px} ${py})"><rect x="-17" y="-3" width="34" height="7" rx="1.5" fill="#7a4a3a"/><rect x="-15" y="-9" width="30" height="7" rx="1.5" fill="#3a5a7a"/><g transform="translate(3 -22) rotate(-13)"><ellipse cx="0" cy="-2" rx="27" ry="19" fill="#a9d6ff" opacity=".16"/><rect x="-9" y="-15" width="18" height="30" rx="3" fill="#16212c"/><rect x="-6" y="-12" width="12" height="22" rx="1" fill="#a9d6ff" opacity=".92"/></g></g>`; }
+function _propYarn(px,py){ return `<g transform="translate(${px} ${py})"><ellipse cx="0" cy="13" rx="14" ry="4" fill="#000" opacity=".2"/><circle r="12" fill="#c0563f"/><g stroke="#9a3f2c" stroke-width="1.4" fill="none" opacity=".8"><path d="M -9 -3 Q 0 2 9 -4"/><path d="M -10 3 Q 0 8 10 2"/><path d="M -4 -10 Q 2 0 -2 10"/></g><path d="M 12 3 q 15 4 11 15" stroke="#c0563f" stroke-width="2" fill="none"/></g>`; }
+function _propNaturalist(px,py){ return `<g transform="translate(${px} ${py})"><g transform="rotate(-6)"><path d="M -20 0 L 1 -4 L 1 7 L -20 9 Z" fill="#e6d8b8"/><path d="M 20 0 L 1 -4 L 1 7 L 20 9 Z" fill="#f1e7cd"/><g stroke="#b7a77f" stroke-width="1" opacity=".7"><line x1="-15" y1="2" x2="-3" y2="0.5"/><line x1="-15" y1="5" x2="-3" y2="3.5"/><line x1="6" y1="0.5" x2="16" y2="2"/></g></g><line x1="6" y1="-6" x2="22" y2="-13" stroke="#caa14a" stroke-width="2.5" stroke-linecap="round"/>`+
+  `<g transform="translate(34 1)"><path d="M -9 0 L 9 0 L 7 13 L -7 13 Z" fill="#9a8a6a"/><path d="M -9 0 L 9 0 L 8 3 L -8 3 Z" fill="#7a6a4a"/><path d="M 0 1 V -14" stroke="#4a7a3a" stroke-width="2"/><path d="M 0 -8 Q -10 -12 -12 -6 Q -4 -6 0 -8" fill="#4a8a3a"/><path d="M 0 -12 Q 9 -16 12 -9 Q 4 -9 0 -12" fill="#4a8a3a"/></g></g>`; }
+function _charProp(cid,px,py){ const a=S.chars[cid]||{}, arch=(a.archetype||'').toLowerCase();
+  if(_isCat(cid)) return _propYarn(px,py);
+  if(/scholar|city|finance/.test(arch)) return _propPhone(px,py);
+  return _propNaturalist(px,py); }
+function ownerDecor(key,spots){ return _owners(key).map((cid,i)=>_charProp(cid, spots[i%spots.length][0], spots[i%spots.length][1])).join(''); }
 function tentSVG(){
   const win=windowSky(); const present=_present('tent');
   const human=present.filter(c=>!_isCat(c))[0]; const cat=present.filter(_isCat)[0];
@@ -4012,6 +4060,8 @@ function tentSVG(){
   <!-- POV: your own legs in the bag / the cat / empty bag -->
   ${human?povBag(_appr(human)):(cat?'':emptyBag())}
   ${cat?povCat(_appr(cat), human?640:632, human?.8:.9):''}
+  <!-- the owners' belongings live here (Wesley's phone, Mutu's yarn) -->
+  ${ownerDecor('tent',[[430,520],[300,574]])}
   </svg>`;
 }
 function emptyBag(){ return `<g>
@@ -4032,6 +4082,7 @@ function leantoSVG(){
   <g clip-path="url(#lopen)">${jungleView(104,96,792,356,win)}</g>
   <!-- opening trim -->
   <path d="M 104 96 L 896 96 L 858 452 L 142 452 Z" fill="none" stroke="#1c1206" stroke-width="6" opacity=".7"/>
+  ${win.rain?`<g>${[...Array(10)].map((_,i)=>`<ellipse class="iw-drip" style="animation-delay:${((i*0.23)%2).toFixed(2)}s" cx="${130+i*78}" cy="102" rx="2.2" ry="7" fill="#cfe2f0" opacity=".6"/>`).join('')}</g>`:''}
   <!-- slanted log-and-frond roof overhead -->
   <path d="M -20 38 L 1020 -42 L 1020 64 L -20 144 Z" fill="#3a2c18"/>
   <path d="M -20 38 L 1020 -42 L 1020 -14 L -20 66 Z" fill="#2c2012"/>
@@ -4063,6 +4114,8 @@ function leantoSVG(){
   <!-- POV: your own crossed legs / the cat / empty mat -->
   ${human?povSitLegs(_appr(human)):(cat?'':emptyMat())}
   ${cat?povCat(_appr(cat), human?430:560, human?.72:.86):''}
+  <!-- Chills' belongings live here (field journal + a potted seedling) -->
+  ${ownerDecor('leanto',[[388,560]])}
   <rect y="588" width="1000" height="20" fill="#0c0a06"/>
   </svg>`;
 }
@@ -4077,7 +4130,9 @@ function enterInterior(key){
   scene.innerHTML = key==='tent'?tentSVG():leantoSVG();
   // the scene fills the height and overflows the width on narrow screens — centre it
   // on the door so the view + occupant show first, with room to pan left/right.
-  requestAnimationFrame(()=>{ try{ scene.scrollLeft=(scene.scrollWidth-scene.clientWidth)/2 }catch(e){} });
+  requestAnimationFrame(()=>{ try{ scene.scrollLeft=(scene.scrollWidth-scene.clientWidth)/2;
+    const hint=document.getElementById('interior-hint'); if(hint){ hint.classList.remove('show'); void hint.offsetWidth;
+      if(scene.scrollWidth-scene.clientWidth>40) hint.classList.add('show'); } }catch(e){} });
   document.querySelector('#interior-title .it-ico').textContent = I.icon||'';
   document.querySelector('#interior-title .it-main').textContent = I.name;
   document.querySelector('#interior-title .it-sub').textContent = I.pov||'';
