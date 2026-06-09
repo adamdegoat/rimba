@@ -3276,6 +3276,7 @@ function updateWorld() {
       document.body.scrollLeft = target
     })
   }
+  try{ renderInteriorHotspots() }catch(e){}
 }
 
 // ── STARS CANVAS ─────────────────────────────────────────
@@ -3666,6 +3667,206 @@ document.addEventListener('click', e=>{
   }
 });
 loadVote();
+
+/* ════════════════ INTERIORS — step into the rooftop tent / lean-to ════════════════
+   Click a shelter → see inside it: a live window framing the real sky + weather, and
+   whoever is sheltering there (subtle). A warm "who's inside" badge blends onto each
+   shelter in the camp. Reuses S.chars[].shelter, S.world.cycle/weather, makeGenericCharSVG. */
+(function(){
+  const css = `
+  #hotspots{position:absolute;inset:0;z-index:14;pointer-events:none}
+  .hotspot{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer}
+  .hotspot .hs-glow{position:absolute;left:50%;top:50%;width:70px;height:52px;transform:translate(-50%,-50%);border-radius:50%;
+    background:radial-gradient(closest-side,rgba(255,201,110,.32),transparent);opacity:0;transition:opacity .35s;pointer-events:none}
+  .hotspot.occupied .hs-glow{opacity:1;animation:hsGlow 3.4s ease-in-out infinite}
+  @keyframes hsGlow{0%,100%{opacity:.6}50%{opacity:1}}
+  .hotspot .hs-badge{position:absolute;left:50%;top:-34px;transform:translateX(-50%);white-space:nowrap;
+    background:rgba(12,18,14,.84);border:1px solid rgba(255,210,130,.42);color:#ffe3a8;
+    font:700 10px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.3px;padding:4px 9px;border-radius:999px;
+    box-shadow:0 2px 9px rgba(0,0,0,.45);display:none;align-items:center;gap:4px}
+  .hotspot.occupied .hs-badge{display:inline-flex}
+  .hotspot .hs-tap{position:absolute;left:50%;top:-18px;transform:translateX(-50%);white-space:nowrap;
+    font:800 8px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55);opacity:0;transition:opacity .2s}
+  .hotspot:hover .hs-tap{opacity:1}
+  #interior{position:fixed;inset:0;z-index:100000;background:#0a0f0c;display:none;overflow:hidden}
+  #interior.show{display:block}
+  #interior-scene,#interior-scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #interior-chars{position:absolute;inset:0;z-index:100001;pointer-events:none}
+  #interior-chars .ioc{position:absolute;transform:translateX(-50%)}
+  #interior-exit{position:fixed;top:12px;right:12px;z-index:100003;background:rgba(12,18,14,.72);backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.22);color:#eef3ff;
+    font:700 13px/1 'Plus Jakarta Sans',sans-serif;padding:9px 15px;border-radius:19px;cursor:pointer}
+  #interior-cap{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:100003;max-width:84vw;text-align:center;
+    color:rgba(255,236,200,.92);font:600 12.5px/1.35 'Plus Jakarta Sans',sans-serif;
+    background:rgba(10,15,12,.62);padding:7px 15px;border-radius:13px;backdrop-filter:blur(5px)}
+  #interior-title{position:fixed;top:14px;left:14px;z-index:100003;display:flex;align-items:center;gap:8px;
+    background:rgba(12,18,14,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    border:1px solid rgba(255,210,130,.34);border-radius:14px;padding:8px 14px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
+  #interior-title .it-ico{font-size:17px;line-height:1}
+  #interior-title .it-main{font:800 13.5px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.4px;color:#ffe3a8;text-transform:uppercase}
+  #interior-title .it-sub{font:600 10.5px/1 'Plus Jakarta Sans',sans-serif;color:rgba(255,255,255,.62);margin-top:3px}
+  .iwin-rain{animation:iwinRain .7s linear infinite}
+  @keyframes iwinRain{from{transform:translateY(-12px)}to{transform:translateY(14px)}}
+  `;
+  const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
+  const world=document.getElementById('world');
+  if(world){ const h=document.createElement('div'); h.id='hotspots'; world.appendChild(h); }
+  const intr=document.createElement('div'); intr.id='interior';
+  intr.innerHTML=`<div id="interior-scene"></div><div id="interior-chars"></div>
+    <div id="interior-title"><span class="it-ico"></span><div><div class="it-main"></div><div class="it-sub"></div></div></div>
+    <button id="interior-exit" onclick="exitInterior()">↩ step out</button><div id="interior-cap"></div>`;
+  document.body.appendChild(intr);
+})();
+
+const INTERIORS = {
+  tent:   { shelter:'cayenne', hx:384, hy:362, name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", pov:"Your view from inside · looking out" },
+  leanto: { shelter:'lean_to', hx:660, hy:404, name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", pov:"Peeking into the shelter" },
+};
+function _occ(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
+function _fname(cid){ const n=(S.chars[cid]&&S.chars[cid].name)||cid; return n.split(' ')[0]; }
+function windowSky(){
+  const cyc=((S.world&&S.world.cycle)||'midday').toLowerCase();
+  const wx=((S.world&&S.world.weather)||'').toLowerCase();
+  const rain=/rain|storm|drizzle|shower|downpour|monsoon|thunder|wet/.test(wx);
+  const M={ morning:{top:'#a6cfe6',bot:'#e3eede',canopy:'#2f5536'}, midday:{top:'#74b6d8',bot:'#c7e6cf',canopy:'#2b4f31'},
+            evening:{top:'#ec8f54',bot:'#f5cf94',canopy:'#3a2c20'}, night:{top:'#0d1626',bot:'#182a40',canopy:'#0a120d'} };
+  const m=M[cyc]||M.midday; return {...m, rain, night:cyc==='night'};
+}
+function windowArt(x,y,w,h,win){
+  let s=`<defs><linearGradient id="iwinsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient></defs>`;
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#iwinsky)"/>`;
+  if(win.night){ for(let i=0;i<18;i++) s+=`<circle cx="${(x+(i*61)%w).toFixed(0)}" cy="${(y+(i*37)%(h*0.55)).toFixed(0)}" r="1" fill="#fff" opacity="${(.3+(i%4)*.15).toFixed(2)}"/>`; }
+  else { s+=`<circle cx="${x+w*0.74}" cy="${y+h*0.22}" r="${win.night?0:18}" fill="#fff7d6" opacity="${win.top==='#ec8f54'?.7:.5}"/>`; }
+  // layered canopy silhouettes (depth)
+  for(let L=0;L<2;L++){ const cy=y+h-30-L*16, col=L?win.canopy:'#000000'; const op=L?.85:.3;
+    let p=`M ${x} ${y+h} `; for(let i=0;i<=10;i++){ p+=`L ${(x+i*w/10).toFixed(0)} ${(cy-((i*53+L*29)%34)).toFixed(0)} `; } p+=`L ${x+w} ${y+h} Z`;
+    s+=`<path d="${p}" fill="${col}" opacity="${op}"/>`; }
+  // a couple of trunks
+  s+=`<rect x="${x+w*0.2}" y="${y+h*0.55}" width="6" height="${h*0.45}" fill="${win.canopy}" opacity=".7"/><rect x="${x+w*0.66}" y="${y+h*0.5}" width="7" height="${h*0.5}" fill="${win.canopy}" opacity=".7"/>`;
+  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<34;i++){ const rx=x+(i*53)%w, ry=y+(i*29)%h; r+=`<line x1="${rx.toFixed(0)}" y1="${ry.toFixed(0)}" x2="${(rx-5).toFixed(0)}" y2="${(ry+16).toFixed(0)}" stroke="#d3e6f2" stroke-width="1.2" opacity=".5"/>`; } s+=r+'</g>'; }
+  return s;
+}
+function tentSVG(){
+  const win=windowSky(); const occ=_occ('tent'); const c0=occ[0]?(getCharColor(occ[0])||'#8a6f4a'): '#8a6f4a';
+  const skin=(occ[0]&&S.chars[occ[0]]&&S.chars[occ[0]].appearance&&S.chars[occ[0]].appearance.skin)||'#d9a066';
+  // doorway opening = central triangle, apex ~(500,70) widening to base 350..650 @ y500. The canvas
+  // flaps cover everything outside it, so it reads as "looking out the unzipped door" on any crop.
+  return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8a7449"/><stop offset="1" stop-color="#473a26"/></linearGradient>
+  <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".9"/><stop offset="1" stop-color="transparent"/></radialGradient>
+  <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
+  <rect width="1000" height="600" fill="url(#twall)"/>
+  <!-- canvas panel seams + soft shading across the walls (mostly seen on desktop) -->
+  <g stroke="#3a2f1d" stroke-width="2" opacity=".22">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
+  <rect width="170" height="600" fill="#000" opacity=".12"/><rect x="830" width="170" height="600" fill="#000" opacity=".12"/>
+  <!-- the live view through the door (drawn first, then framed by canvas) -->
+  ${windowArt(300,60,400,460,win)}
+  <!-- left + right canvas flaps that close in to leave a triangular doorway -->
+  <path d="M -20 -20 L 520 64 L 354 520 L -20 520 Z" fill="url(#twall)"/>
+  <path d="M 1020 -20 L 480 64 L 646 520 L 1020 520 Z" fill="url(#twall)"/>
+  <!-- inner trim/seam + zipper teeth along each flap edge (unzipped door) -->
+  <path d="M 520 64 L 354 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
+  <path d="M 480 64 L 646 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
+  <path d="M 520 64 L 354 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
+  <path d="M 480 64 L 646 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
+  <circle cx="354" cy="520" r="6" fill="#d9c089"/><circle cx="646" cy="520" r="6" fill="#d9c089"/>
+  <!-- draped top valance + ridge seam -->
+  <path d="M -20 -20 L 1020 -20 L 1020 46 Q 500 12 -20 46 Z" fill="#5a4a2e"/>
+  <path d="M 0 30 Q 500 70 1000 30" stroke="#3a2f1d" stroke-width="3" fill="none" opacity=".6"/>
+  ${[0,1,2,3].map(i=>`<path d="M${120+i*220} 30 L500 64" stroke="#6f5d3a" stroke-width="2" opacity=".4" fill="none"/>`).join('')}
+  <!-- fine mesh net stretched over the opening -->
+  <g clip-path="url(#tdoor)" stroke="#e9eef0" stroke-width=".5" opacity=".11">${[...Array(13)].map((_,i)=>`<line x1="${360+i*24}" y1="60" x2="${360+i*24}" y2="520"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="350" y1="${100+i*40}" x2="650" y2="${100+i*40}"/>`).join('')}</g>
+  <!-- lantern hung at the door edge -->
+  <g transform="translate(372 150)"><rect x="-3" y="-40" width="6" height="40" fill="#3a2f1d"/><rect x="-10" y="-2" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="2" width="14" height="20" rx="3" fill="#ffd98a"/><ellipse cx="0" cy="12" rx="34" ry="30" fill="#ffd98a" opacity=".22"/></g>
+  <!-- coiled rope on the left wall + satchel on the right (balance the desktop walls) -->
+  <g transform="translate(150 250)" stroke="#6b5836" stroke-width="5" fill="none" opacity=".8"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="0" r="14"/><circle cx="0" cy="0" r="7"/></g>
+  <g transform="translate(862 210)"><line x1="0" y1="-44" x2="0" y2="-6" stroke="#2a2012" stroke-width="2"/><path d="M -26 -6 q26 -16 52 0 l-6 46 q-20 9 -40 0 Z" fill="#5a4a2e"/><path d="M -26 -6 q26 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
+  <!-- foreground floor glow + sleeping bag -->
+  <ellipse cx="500" cy="600" rx="420" ry="120" fill="url(#tlant)" opacity=".45"/>
+  <path d="M -20 600 Q 250 528 520 540 Q 800 552 1020 600 Z" fill="#3b4a55"/>
+  <path d="M -20 600 Q 250 532 520 544 Q 800 556 1020 600 Z" fill="#4a5d6b" opacity=".6"/>
+  ${occ.length?`<!-- subtle occupant: someone reclining in the bag, head clears the caption -->
+    <path d="M 408 524 Q 530 506 648 540 Q 690 556 690 600 L 408 600 Z" fill="${c0}" opacity=".72"/>
+    <path d="M 424 522 Q 540 508 648 540" stroke="#000" stroke-width="3" opacity=".16" fill="none"/>
+    <ellipse cx="436" cy="516" rx="21" ry="18" fill="${skin}"/>
+    <path d="M 421 510 Q 436 495 453 512" stroke="#241a12" stroke-width="6" fill="none" stroke-linecap="round"/>`:''}
+  </svg>`;
+}
+function leantoSVG(){
+  const win=windowSky();
+  return `<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+  <defs><linearGradient id="lback" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#27331f"/><stop offset="1" stop-color="#1a2417"/></linearGradient>
+  <radialGradient id="lfire" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".8"/><stop offset="1" stop-color="transparent"/></radialGradient></defs>
+  <rect width="1000" height="600" fill="url(#lback)"/>
+  <!-- open front framing the jungle + fire glow -->
+  <path d="M 150 120 L 850 120 L 810 470 L 190 470 Z" fill="#0e120c"/>
+  ${windowArt(168,132,664,330,win)}
+  <!-- slanted log-and-frond roof overhead -->
+  <path d="M -20 40 L 1020 -40 L 1020 70 L -20 150 Z" fill="#3a2c18"/>
+  <g stroke="#52402a" stroke-width="5" opacity=".8">${[...Array(7)].map((_,i)=>`<line x1="${-20+i*150}" y1="${110-i*14}" x2="${40+i*150}" y2="${-30-i*14}"/>`).join('')}</g>
+  <g fill="#2f5536">${[...Array(9)].map((_,i)=>`<path d="M${i*120-10} ${120-i*10} q40 -26 80 -4 q-30 14 -80 4 Z" opacity=".85"/>`).join('')}</g>
+  <!-- back posts -->
+  <rect x="120" y="120" width="10" height="360" fill="#3a2c18"/><rect x="860" y="120" width="10" height="360" fill="#3a2c18"/>
+  <!-- woven mat / leaf bedding on the ground -->
+  <ellipse cx="500" cy="520" rx="360" ry="60" fill="#6b5a38"/><ellipse cx="500" cy="516" rx="330" ry="50" fill="#7d6a44"/>
+  <g stroke="#5a4a2e" stroke-width="1.5" opacity=".5">${[...Array(8)].map((_,i)=>`<line x1="${200+i*75}" y1="478" x2="${200+i*75}" y2="556"/>`).join('')}</g>
+  <!-- hung satchel + gourd from the roof beam -->
+  <line x1="700" y1="120" x2="700" y2="150" stroke="#2a2012" stroke-width="2"/>
+  <path d="M 686 150 q14 -10 28 0 l-4 30 q-10 5 -20 0 Z" fill="#5a4a2e"/>
+  <line x1="300" y1="120" x2="300" y2="146" stroke="#2a2012" stroke-width="2"/>
+  <ellipse cx="300" cy="156" rx="11" ry="14" fill="#6b5a38"/>
+  <!-- rolled bedroll on the left -->
+  <g transform="translate(250 502)"><rect x="-46" y="-18" width="92" height="22" rx="11" fill="#48586a"/><ellipse cx="-46" cy="-7" rx="6" ry="11" fill="#39495a"/><ellipse cx="46" cy="-7" rx="6" ry="11" fill="#39495a"/></g>
+  <!-- campfire (logs + flames) with warm glow, lighting the shelter -->
+  <ellipse cx="640" cy="498" rx="200" ry="84" fill="url(#lfire)" opacity=".55"/>
+  <g transform="translate(640 500)"><path d="M -26 6 L 26 -4" stroke="#3a2a18" stroke-width="7" stroke-linecap="round"/><path d="M -26 -4 L 26 6" stroke="#46341f" stroke-width="7" stroke-linecap="round"/>
+  <path d="M 0 -6 C -14 -20 -10 -34 0 -46 C 8 -34 14 -22 0 -6 Z" fill="#ff8a2c"/><path d="M 0 -8 C -7 -18 -5 -28 0 -36 C 5 -27 9 -18 0 -8 Z" fill="#ffd24a"/></g>
+  <rect y="556" width="1000" height="44" fill="#16100a"/>
+  </svg>`;
+}
+function renderInteriorOccupants(key){
+  const box=document.getElementById('interior-chars'); if(!box) return; box.innerHTML='';
+  if(key!=='leanto') return;  // tent draws its occupant hint in the SVG
+  const occ=_occ(key); const n=occ.length;
+  // seat them on the left half of the mat (the fire sits on the right), spread evenly
+  occ.forEach((cid,i)=>{
+    const col=getCharColor(cid)||'#caa';
+    const d=document.createElement('div'); d.className='ioc';
+    d.style.left=(n===1?40:(20+ (44/(n+1))*(i+1)))+'%'; d.style.bottom='17%';
+    d.style.transform='translateX(-50%) scale(1.5)'; d.style.transformOrigin='bottom center';
+    d.innerHTML=makeGenericCharSVG(cid, col, (S.chars[cid].appearance&&S.chars[cid].appearance.skin));
+    box.appendChild(d);
+  });
+}
+function enterInterior(key){
+  const I=INTERIORS[key]; if(!I) return;
+  document.getElementById('interior-scene').innerHTML = key==='tent'?tentSVG():leantoSVG();
+  document.querySelector('#interior-title .it-ico').textContent = I.icon||'';
+  document.querySelector('#interior-title .it-main').textContent = I.name;
+  document.querySelector('#interior-title .it-sub').textContent = I.pov||'';
+  renderInteriorOccupants(key);
+  const occ=_occ(key).map(_fname);
+  const who = occ.length? (occ.length<=2?occ.join(' & '):occ.length+' of them')+' sheltering here' : 'empty right now';
+  document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
+  document.getElementById('interior').classList.add('show');
+}
+function exitInterior(){ document.getElementById('interior').classList.remove('show'); }
+function renderInteriorHotspots(){
+  const layer=document.getElementById('hotspots'); if(!layer) return;
+  layer.innerHTML='';
+  Object.keys(INTERIORS).forEach(key=>{
+    const I=INTERIORS[key]; const {left,top}=svgToViewport(I.hx,I.hy);
+    const occ=_occ(key).map(_fname);
+    const occupied=occ.length>0;
+    const txt = occ.length===0?'' : occ.length===1?occ[0]+" inside" : occ.length===2?occ.join(' & ') : occ.length+' inside';
+    const d=document.createElement('div'); d.className='hotspot'+(occupied?' occupied':'');
+    d.style.left=left; d.style.top=top;
+    d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge"><span class="em">🪔</span>${txt}</div><div class="hs-tap">tap to look inside</div>
+      <div style="width:80px;height:64px"></div>`;
+    d.onclick=()=>enterInterior(key);
+    layer.appendChild(d);
+  });
+}
 </script>
 </body>
 </html>
