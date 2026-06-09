@@ -1,526 +1,526 @@
 [
-  {
-    "day": 1,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "Emerges from the lean-to into humid morning heat and walks toward the Cayenne when he hears Wesley's distressed voice.",
-    "thought": "Panic costs water. Now we adapt.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "alert",
-    "timestamp": "2026-06-08T11:35:01.438405"
+ {
+  "day": 1,
+  "cycle": "morning",
+  "character": "chills",
+  "action": "Emerges from the lean-to into humid morning heat and walks toward the Cayenne when he hears Wesley's distressed voice.",
+  "thought": "Panic costs water. Now we adapt.",
+  "location": {
+   "waypoint": "camp_mid",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "Crouches by the Cayenne's cracked radiator, seeing the pooled coolant and engine oil, and realizes the water jug sits in the contamination.",
-    "thought": "Just wasted our water on day one.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "panicked",
-    "timestamp": "2026-06-08T11:35:01.438405"
+  "shelter": "lean_to",
+  "mood": "alert",
+  "timestamp": "2026-06-08T11:35:01.438405"
+ },
+ {
+  "day": 1,
+  "cycle": "morning",
+  "character": "wesley",
+  "action": "Crouches by the Cayenne's cracked radiator, seeing the pooled coolant and engine oil, and realizes the water jug sits in the contamination.",
+  "thought": "Just wasted our water on day one.",
+  "location": {
+   "waypoint": "cayenne_hood",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "Sits on the Cayenne's roof, tail curled, watching the two humans move below with cool feline assessment.",
-    "thought": "They worry over water. I hunt.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-08T11:35:01.438405"
+  "shelter": "cayenne",
+  "mood": "panicked",
+  "timestamp": "2026-06-08T11:35:01.438405"
+ },
+ {
+  "day": 1,
+  "cycle": "morning",
+  "character": "mutu",
+  "action": "Sits on the Cayenne's roof, tail curled, watching the two humans move below with cool feline assessment.",
+  "thought": "They worry over water. I hunt.",
+  "location": {
+   "waypoint": "cayenne_hood",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the Cayenne's hood, Wesley explains the cracked radiator and fouled water as Chills arrives to assess the damage.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "The radiator's cracked. Oil everywhere. I knocked the water in—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Into the pooled oil?"
-      },
-      {
-        "speaker": "wesley",
-        "line": "Yeah. I was checking the crankshaft, I—I wasn't thinking—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Okay. We gather from the river. Fresh water. You come."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I fouled our water on day one. This is bad."
-      },
-      {
-        "speaker": "chills",
-        "line": "Which is why we filter and boil. This teaches us both."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Not what I wanted to learn."
-      },
-      {
-        "speaker": "chills",
-        "line": "Come on. Let's move."
-      }
-    ],
-    "timestamp": "2026-06-08T11:35:01.438405"
+  "shelter": "cayenne",
+  "mood": "calm",
+  "timestamp": "2026-06-08T11:35:01.438405"
+ },
+ {
+  "day": 1,
+  "cycle": "morning",
+  "type": "interaction",
+  "characters": [
+   "wesley",
+   "chills"
+  ],
+  "description": "Wesley has fouled their water supply on day one, but Chills answers with practical calm, and together they head to the river.",
+  "dialogue": [
+   {
+    "speaker": "wesley",
+    "line": "The radiator's cracked. Oil everywhere. I knocked the water in—"
+   },
+   {
+    "speaker": "chills",
+    "line": "Into the pooled oil?"
+   },
+   {
+    "speaker": "wesley",
+    "line": "Yeah. I was checking the crankshaft, I—I wasn't thinking—"
+   },
+   {
+    "speaker": "chills",
+    "line": "Okay. We gather from the river. Fresh water. You come."
+   },
+   {
+    "speaker": "wesley",
+    "line": "I fouled our water on day one. This is bad."
+   },
+   {
+    "speaker": "chills",
+    "line": "Which is why we filter and boil. This teaches us both."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Not what I wanted to learn."
+   },
+   {
+    "speaker": "chills",
+    "line": "Come on. Let's move."
+   }
+  ],
+  "timestamp": "2026-06-08T11:35:01.438405"
+ },
+ {
+  "day": 1,
+  "cycle": "midday",
+  "character": "chills",
+  "action": "Knelt at the dead campfire, running his hands over the sodden wood and looking toward the river, jaw set.",
+  "thought": "Get the fire going. He'll steady down.",
+  "location": {
+   "waypoint": "campfire_left",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 1,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "Knelt at the dead campfire, running his hands over the sodden wood and looking toward the river, jaw set.",
-    "thought": "Get the fire going. He'll steady down.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "alert",
-    "timestamp": "2026-06-08T12:15:56.451346"
+  "shelter": "lean_to",
+  "mood": "alert",
+  "timestamp": "2026-06-08T12:15:56.451346"
+ },
+ {
+  "day": 1,
+  "cycle": "midday",
+  "character": "wesley",
+  "action": "Stood a few meters away, dusty and sweating, watching Chills assess the dead fire and wanting to ask something but not knowing what.",
+  "thought": "I ruined the water. I ruined everything already.",
+  "location": {
+   "waypoint": "campfire_right",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 1,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "Stood a few meters away, dusty and sweating, watching Chills assess the dead fire and wanting to ask something but not knowing what.",
-    "thought": "I ruined the water. I ruined everything already.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-08T12:15:56.451346"
+  "shelter": "cayenne",
+  "mood": "anxious",
+  "timestamp": "2026-06-08T12:15:56.451346"
+ },
+ {
+  "day": 1,
+  "cycle": "midday",
+  "character": "mutu",
+  "action": "Padded to a shaded spot near the Cayenne's rear and lay down, tail curled, watching the two men with steady green eyes.",
+  "thought": "Dry place. They'll sort it out eventually.",
+  "location": {
+   "waypoint": "cayenne_rear",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 1,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "Padded to a shaded spot near the Cayenne's rear and lay down, tail curled, watching the two men with steady green eyes.",
-    "thought": "Dry place. They'll sort it out eventually.",
-    "location": {
-      "waypoint": "cayenne_rear",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-08T12:15:56.451346"
+  "shelter": "cayenne",
+  "mood": "calm",
+  "timestamp": "2026-06-08T12:15:56.451346"
+ },
+ {
+  "day": 1,
+  "cycle": "midday",
+  "type": "interaction",
+  "characters": [
+   "chills",
+   "wesley"
+  ],
+  "description": "With no clear path forward, Chills offers Wesley one: they gather dry wood from the lean-to shelter and kindle a fire to boil whatever water they find.",
+  "dialogue": [
+   {
+    "speaker": "chills",
+    "line": "Water's the first thing. Then fire."
+   },
+   {
+    "speaker": "wesley",
+    "line": "The radiator fouled everything. I panicked like an idiot."
+   },
+   {
+    "speaker": "chills",
+    "line": "You're here. You're learning. That's all that matters now."
+   },
+   {
+    "speaker": "wesley",
+    "line": "I shouldn't have wasted clean water in the first hour."
+   },
+   {
+    "speaker": "chills",
+    "line": "River's maybe two hundred meters. We boil what we need."
+   },
+   {
+    "speaker": "wesley",
+    "line": "How? Everything's soaked. What do I actually do?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Come. Help me get dry wood from the lean-to. We build from there."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Okay. Show me."
+   }
+  ],
+  "timestamp": "2026-06-08T12:15:56.451346"
+ },
+ {
+  "day": 1,
+  "cycle": "evening",
+  "character": "chills",
+  "action": "Searching under ferns and fallen wood for heartwood, gathering the driest pieces methodically and moving toward the cold fire pit.",
+  "thought": "The hearts stay dry if you know where to look. We'll eat warm tonight.",
+  "location": {
+   "waypoint": "campfire_left",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 1,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the dead campfire, Chills assesses what's needed while Wesley watches, guilty and uncertain.",
-    "dialogue": [
-      {
-        "speaker": "chills",
-        "line": "Water's the first thing. Then fire."
-      },
-      {
-        "speaker": "wesley",
-        "line": "The radiator fouled everything. I panicked like an idiot."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're here. You're learning. That's all that matters now."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I shouldn't have wasted clean water in the first hour."
-      },
-      {
-        "speaker": "chills",
-        "line": "River's maybe two hundred meters. We boil what we need."
-      },
-      {
-        "speaker": "wesley",
-        "line": "How? Everything's soaked. What do I actually do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Come. Help me get dry wood from the lean-to. We build from there."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay. Show me."
-      }
-    ],
-    "timestamp": "2026-06-08T12:15:56.451346"
+  "shelter": "lean_to",
+  "mood": "determined",
+  "timestamp": "2026-06-08T18:01:27.408542"
+ },
+ {
+  "day": 1,
+  "cycle": "evening",
+  "character": "wesley",
+  "action": "Slumped on a log near the dead fire, watching Chills work, legs aching and chest tight with the weight of having failed.",
+  "thought": "I couldn't even keep a fire alive. He should be furious.",
+  "location": {
+   "waypoint": "campfire_right",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "character": "chills",
-    "action": "Searching under ferns and fallen wood for heartwood, gathering the driest pieces methodically and moving toward the cold fire pit.",
-    "thought": "The hearts stay dry if you know where to look. We'll eat warm tonight.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "determined",
-    "timestamp": "2026-06-08T18:01:27.408542"
+  "shelter": "cayenne",
+  "mood": "weary",
+  "timestamp": "2026-06-08T18:01:27.408542"
+ },
+ {
+  "day": 1,
+  "cycle": "evening",
+  "character": "mutu",
+  "action": "Prowling the darkening camp edge in that alert, deliberate way cats hunt at dusk, then returning to settle on the Cayenne hood, watching Chills work.",
+  "thought": "He's focused. The dark won't take us tonight.",
+  "location": {
+   "waypoint": "cayenne_rear",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "Slumped on a log near the dead fire, watching Chills work, legs aching and chest tight with the weight of having failed.",
-    "thought": "I couldn't even keep a fire alive. He should be furious.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-08T18:01:27.408542"
+  "shelter": "cayenne",
+  "mood": "watchful",
+  "timestamp": "2026-06-08T18:01:27.408542"
+ },
+ {
+  "day": 1,
+  "cycle": "evening",
+  "type": "interaction",
+  "characters": [
+   "chills",
+   "wesley"
+  ],
+  "description": "Wesley fails twice to catch the fire, doubt rising until Chills resets the goal: day one doesn't demand success—only alive and asking for help.",
+  "dialogue": [
+   {
+    "speaker": "wesley",
+    "line": "I couldn't restart it. The wood's too wet."
+   },
+   {
+    "speaker": "chills",
+    "line": "The surface is. The hearts stay dry underneath — come see."
+   },
+   {
+    "speaker": "wesley",
+    "line": "I tried twice. I'm just going to fail again."
+   },
+   {
+    "speaker": "chills",
+    "line": "You tried. That's not failure yet. Show me where you gathered from."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Why aren't you angry with me?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Day one, Wesley. You're alive. You asked for help. That's enough."
+   },
+   {
+    "speaker": "wesley",
+    "line": "That doesn't feel like enough."
+   },
+   {
+    "speaker": "chills",
+    "line": "Not yet. But it will be."
+   }
+  ],
+  "timestamp": "2026-06-08T18:01:27.408542"
+ },
+ {
+  "day": 1,
+  "cycle": "night",
+  "character": "chills",
+  "action": "Kneels at the fire pit, arranging dry heartwood with steady hands and patient breath until a spark catches and blooms into flame.",
+  "thought": "This will hold. We'll warm tonight.",
+  "location": {
+   "waypoint": "campfire_left",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "Prowling the darkening camp edge in that alert, deliberate way cats hunt at dusk, then returning to settle on the Cayenne hood, watching Chills work.",
-    "thought": "He's focused. The dark won't take us tonight.",
-    "location": {
-      "waypoint": "cayenne_rear",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-08T18:01:27.408542"
+  "shelter": "lean_to",
+  "mood": "focused",
+  "timestamp": "2026-06-08T23:02:16.432258"
+ },
+ {
+  "day": 1,
+  "cycle": "night",
+  "character": "wesley",
+  "action": "Huddles near the pit, shivering, watching Chills with fear and shame and desperate hope.",
+  "thought": "Let this work. Please let him be right.",
+  "location": {
+   "waypoint": "campfire_right",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the cold fire pit in the fading dusk, Chills gathers heartwood while Wesley sits nearby, defeated. The cat watches from the Cayenne hood as the light fades.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I couldn't restart it. The wood's too wet."
-      },
-      {
-        "speaker": "chills",
-        "line": "The surface is. The hearts stay dry underneath — come see."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I tried twice. I'm just going to fail again."
-      },
-      {
-        "speaker": "chills",
-        "line": "You tried. That's not failure yet. Show me where you gathered from."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Why aren't you angry with me?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Day one, Wesley. You're alive. You asked for help. That's enough."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That doesn't feel like enough."
-      },
-      {
-        "speaker": "chills",
-        "line": "Not yet. But it will be."
-      }
-    ],
-    "timestamp": "2026-06-08T18:01:27.408542"
+  "shelter": "cayenne",
+  "mood": "anxious",
+  "timestamp": "2026-06-08T23:02:16.432258"
+ },
+ {
+  "day": 1,
+  "cycle": "night",
+  "character": "mutu",
+  "action": "Sits on the Cayenne hood, eyes fixed on Chills, tail curled, watching the warmth come.",
+  "thought": "Fire means safe. Fire means Chills is steady.",
+  "location": {
+   "waypoint": "cayenne_hood",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 1,
-    "cycle": "night",
-    "character": "chills",
-    "action": "Kneels at the fire pit, arranging dry heartwood with steady hands and patient breath until a spark catches and blooms into flame.",
-    "thought": "This will hold. We'll warm tonight.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-08T23:02:16.432258"
+  "shelter": "cayenne",
+  "mood": "watchful",
+  "timestamp": "2026-06-08T23:02:16.432258"
+ },
+ {
+  "day": 1,
+  "cycle": "night",
+  "type": "interaction",
+  "characters": [
+   "chills",
+   "wesley"
+  ],
+  "description": "Chills' certainty breaks through Wesley's paralysis—a hundred fires have taught him something worth trusting, and Wesley, finally, begins to listen.",
+  "dialogue": [
+   {
+    "speaker": "wesley",
+    "line": "I'll ruin this too. Like the water."
+   },
+   {
+    "speaker": "chills",
+    "line": "No. This wood is dry. Watch it work."
+   },
+   {
+    "speaker": "wesley",
+    "line": "How can you be sure?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Because I've done this a hundred times."
+   },
+   {
+    "speaker": "wesley",
+    "line": "I've done nothing."
+   },
+   {
+    "speaker": "chills",
+    "line": "You're learning. That's the only way."
+   }
+  ],
+  "timestamp": "2026-06-08T23:02:16.432258"
+ },
+ {
+  "day": 2,
+  "cycle": "morning",
+  "character": "chills",
+  "action": "He tends the fire in the early light, watching the day break, then looks toward Wesley approaching the campfire.",
+  "thought": "He's steadier today. Ready for real work.",
+  "location": {
+   "waypoint": "campfire_left",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 1,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "Huddles near the pit, shivering, watching Chills with fear and shame and desperate hope.",
-    "thought": "Let this work. Please let him be right.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-08T23:02:16.432258"
+  "shelter": "lean_to",
+  "mood": "focused",
+  "timestamp": "2026-06-09T07:03:01.046401"
+ },
+ {
+  "day": 2,
+  "cycle": "morning",
+  "character": "wesley",
+  "action": "He emerges from the Cayenne shelter, stiff and uncertain, then walks toward Chills at the fire.",
+  "thought": "I need to do something right today.",
+  "location": {
+   "waypoint": "campfire_right",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 1,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "Sits on the Cayenne hood, eyes fixed on Chills, tail curled, watching the warmth come.",
-    "thought": "Fire means safe. Fire means Chills is steady.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-08T23:02:16.432258"
+  "shelter": "cayenne",
+  "mood": "anxious",
+  "timestamp": "2026-06-09T07:03:01.046401"
+ },
+ {
+  "day": 2,
+  "cycle": "morning",
+  "character": "mutu",
+  "action": "The cat stretches on the Cayenne hood, ears alert, watching Chills and Wesley at the fire below.",
+  "thought": "They're moving. Something's lighter today.",
+  "location": {
+   "waypoint": "cayenne_hood",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 1,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the fire pit in full dark, Chills arranges dry heartwood while Wesley huddles nearby, cold and ashamed, with Mutu watching from the Cayenne hood.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I'll ruin this too. Like the water."
-      },
-      {
-        "speaker": "chills",
-        "line": "No. This wood is dry. Watch it work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "How can you be sure?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Because I've done this a hundred times."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I've done nothing."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're learning. That's the only way."
-      }
-    ],
-    "timestamp": "2026-06-08T23:02:16.432258"
+  "shelter": "cayenne",
+  "mood": "watchful",
+  "timestamp": "2026-06-09T07:03:01.046401"
+ },
+ {
+  "day": 2,
+  "cycle": "morning",
+  "type": "interaction",
+  "characters": [
+   "wesley",
+   "chills"
+  ],
+  "description": "Wesley steps forward to help fix the Cayenne, and Chills answers his doubt with a simple reframe: thinking, not knowledge, is where to start.",
+  "dialogue": [
+   {
+    "speaker": "wesley",
+    "line": "I want to help fix the Cayenne."
+   },
+   {
+    "speaker": "chills",
+    "line": "Let's go. Battery first."
+   },
+   {
+    "speaker": "wesley",
+    "line": "I don't know engines."
+   },
+   {
+    "speaker": "chills",
+    "line": "You know how to think. Start there."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Really?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Yeah."
+   }
+  ],
+  "timestamp": "2026-06-09T07:03:01.046401"
+ },
+ {
+  "day": 2,
+  "cycle": "midday",
+  "character": "chills",
+  "action": "He steadies the alternator connector while Wesley works the bolts, watching his focus build with quiet approval.",
+  "thought": "He's finally stepping up. Really stepping up.",
+  "location": {
+   "waypoint": "cayenne_door",
+   "x": 42,
+   "y": 50
   },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "He tends the fire in the early light, watching the day break, then looks toward Wesley approaching the campfire.",
-    "thought": "He's steadier today. Ready for real work.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-09T07:03:01.046401"
+  "shelter": "lean_to",
+  "mood": "focused",
+  "timestamp": "2026-06-09T12:31:18.039657"
+ },
+ {
+  "day": 2,
+  "cycle": "midday",
+  "character": "wesley",
+  "action": "He kneels in the mud beneath the Cayenne's open hood, carefully working each bolt free under Chills' patient direction, trying not to overthink every movement.",
+  "thought": "Slow. Careful. I can actually do this.",
+  "location": {
+   "waypoint": "cayenne_door",
+   "x": 70,
+   "y": 40
   },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "He emerges from the Cayenne shelter, stiff and uncertain, then walks toward Chills at the fire.",
-    "thought": "I need to do something right today.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-09T07:03:01.046401"
+  "shelter": "cayenne",
+  "mood": "determined",
+  "timestamp": "2026-06-09T12:31:18.039657"
+ },
+ {
+  "day": 2,
+  "cycle": "midday",
+  "character": "mutu",
+  "action": "From a low perch on the roof, the cat watches the two men bent over the engine bay, ears swiveling to track the sounds of work.",
+  "thought": "They're quiet together. Both steady now.",
+  "location": {
+   "waypoint": "cayenne_hood",
+   "x": 80,
+   "y": 30
   },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "The cat stretches on the Cayenne hood, ears alert, watching Chills and Wesley at the fire below.",
-    "thought": "They're moving. Something's lighter today.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the campfire in the early morning light, Wesley approaches Chills and for the first time offers to work.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I want to help fix the Cayenne."
-      },
-      {
-        "speaker": "chills",
-        "line": "Let's go. Battery first."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I don't know engines."
-      },
-      {
-        "speaker": "chills",
-        "line": "You know how to think. Start there."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Really?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Yeah."
-      }
-    ],
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "He steadies the alternator connector while Wesley works the bolts, watching his focus build with quiet approval.",
-    "thought": "He's finally stepping up. Really stepping up.",
-    "location": {
-      "waypoint": "cayenne_door",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "He kneels in the mud beneath the Cayenne's open hood, carefully working each bolt free under Chills' patient direction, trying not to overthink every movement.",
-    "thought": "Slow. Careful. I can actually do this.",
-    "location": {
-      "waypoint": "cayenne_door",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "determined",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "From a low perch on the roof, the cat watches the two men bent over the engine bay, ears swiveling to track the sounds of work.",
-    "thought": "They're quiet together. Both steady now.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the bogged Cayenne's engine bay in the midday glare, Chills guides Wesley through salvaging usable parts—the first real work Wesley has done without flinching.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "What are we actually looking for?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Battery, wiring, alternator. Everything we strip stays useful."
-      },
-      {
-        "speaker": "wesley",
-        "line": "But... we need water, food. Does this even matter?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Right now, no. Later, yes. You learn to keep your options open."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay. What do I do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "These bolts. Slow, don't strip them. I'll steady the connector."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Like this?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Exactly like that."
-      }
-    ],
-    "timestamp": "2026-06-09T12:31:18.039657"
-  }
+  "shelter": "cayenne",
+  "mood": "watchful",
+  "timestamp": "2026-06-09T12:31:18.039657"
+ },
+ {
+  "day": 2,
+  "cycle": "midday",
+  "type": "interaction",
+  "characters": [
+   "wesley",
+   "chills"
+  ],
+  "description": "Wesley moves from doubt to doing—working each bolt slow and careful while Chills steadies the connector, learning through his hands.",
+  "dialogue": [
+   {
+    "speaker": "wesley",
+    "line": "What are we actually looking for?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Battery, wiring, alternator. Everything we strip stays useful."
+   },
+   {
+    "speaker": "wesley",
+    "line": "But... we need water, food. Does this even matter?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Right now, no. Later, yes. You learn to keep your options open."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Okay. What do I do?"
+   },
+   {
+    "speaker": "chills",
+    "line": "These bolts. Slow, don't strip them. I'll steady the connector."
+   },
+   {
+    "speaker": "wesley",
+    "line": "Like this?"
+   },
+   {
+    "speaker": "chills",
+    "line": "Exactly like that."
+   }
+  ],
+  "timestamp": "2026-06-09T12:31:18.039657"
+ }
 ]
