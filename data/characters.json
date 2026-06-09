@@ -1,326 +1,221 @@
 {
-  "luke": {
-    "name": "Luke",
-    "age": 47,
-    "archetype": "homesteader",
-    "color": "#9a3b2e",
+  "chills": {
+    "name": "Chills",
+    "age": 37,
+    "archetype": "naturalist",
+    "color": "#6a994e",
     "scores": {
-      "trust": 81,
-      "openness": 66,
-      "ambition": 78,
-      "loneliness": 9,
-      "resilience": 90,
+      "trust": 66,
+      "openness": 73,
+      "ambition": 55,
+      "loneliness": 17,
+      "resilience": 93,
       "health": 100,
-      "hunger": 61,
-      "thirst": 59,
-      "energy": 64
+      "hunger": 51,
+      "thirst": 53,
+      "energy": 69
     },
-    "mood": "thoughtful",
-    "where": "home",
+    "mood": "focused",
     "location": {
-      "waypoint": "sawhorse",
-      "x": 44,
-      "y": 52
+      "waypoint": "cayenne_door",
+      "x": 42,
+      "y": 50
     },
-    "shelter": "cabin",
+    "shelter": "lean_to",
     "relationships": {
-      "rebecca": {
-        "closeness": 96,
-        "tension": 4,
+      "wesley": {
+        "closeness": 34,
+        "tension": 8,
         "attraction": 0
       },
-      "nate": {
-        "closeness": 90,
-        "tension": 5,
-        "attraction": 0
-      },
-      "tommy": {
-        "closeness": 87,
-        "tension": 5,
-        "attraction": 0
-      },
-      "jacob": {
-        "closeness": 89,
-        "tension": 3,
+      "mutu": {
+        "closeness": 82,
+        "tension": 0,
         "attraction": 0
       }
     },
-    "bio": "47, a former attorney who traded the courtroom for the wild. Calm, dry-witted, and endlessly capable — fire, framing, fishing, fixing — he's the builder and the patient teacher, faith and family at his core. He bought this weathered, long-abandoned homestead deep in interior Alaska and intends to make it home, one project at a time. Relentlessly optimistic, which the country will test.",
+    "bio": "37, a former gym owner who closed his gym four years ago to live on the road. He overlands the region out of his Porsche Cayenne with his cat Mutu — and a one-wheel electric skateboard strapped to the roof rack that he rides for fun. Climbs trees on a whim, just to sit up in the canopy and think. He preaches that nature heals the mind and that self-sustainable living is the cure for modern life. Calm, fit, genuinely capable in the wild — and endlessly optimistic, which the jungle is about to test.",
     "appearance": {
-      "skin": "#d8a878",
+      "skin": "#c08a5a",
       "hair": {
-        "style": "short",
-        "color": "#5a4632"
+        "style": "bun",
+        "color": "#3a2a1a"
       },
       "accessory": "cap",
-      "outfit": "#9a3b2e",
-      "accColor": "#3a2a1a",
-      "pants": "#3f4a3a",
+      "outfit": "#4d6b3c",
+      "accColor": "#caa14a",
+      "pants": "#4a5236",
       "boots": "#3a2a18",
       "gear": [
-        "axe",
-        "tool_belt"
+        "backpack",
+        "knife",
+        "rope"
       ],
       "beard": true
     },
     "interaction": {
-      "with": "nate",
+      "with": "wesley",
       "state": "working_together"
     },
-    "memories": []
+    "memories": [
+      {
+        "day": 1,
+        "text": "Wesley panicked and wasted water, but he's here and learning. That's enough.",
+        "weight": 1
+      },
+      {
+        "day": 1,
+        "text": "Wesley admitted he couldn't start the fire and asked for help instead of quitting.",
+        "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "Wesley panicked and failed, but he stayed. He's still here. That matters.",
+        "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "He came forward wanting to work. That's the shift. That's real.",
+        "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "Wesley bent to real work without falling apart. That matters.",
+        "weight": 2
+      }
+    ]
   },
-  "rebecca": {
-    "name": "Rebecca",
-    "age": 45,
-    "archetype": "the anchor",
-    "color": "#3f7d6e",
+  "wesley": {
+    "name": "Wesley Koh",
+    "age": 27,
+    "archetype": "city scholar",
+    "color": "#6ba3e0",
     "scores": {
-      "trust": 83,
-      "openness": 70,
-      "ambition": 58,
-      "loneliness": 11,
-      "resilience": 86,
+      "trust": 57,
+      "openness": 56,
+      "ambition": 80,
+      "loneliness": 31,
+      "resilience": 25,
       "health": 100,
-      "hunger": 61,
-      "thirst": 59,
-      "energy": 64
+      "hunger": 51,
+      "thirst": 53,
+      "energy": 69
     },
-    "mood": "grounded",
-    "where": "home",
+    "mood": "determined",
     "location": {
-      "waypoint": "cabin_porch",
-      "x": 64,
-      "y": 46
+      "waypoint": "cayenne_door",
+      "x": 70,
+      "y": 40
     },
-    "shelter": "cabin",
+    "shelter": "cayenne",
     "relationships": {
-      "luke": {
-        "closeness": 96,
-        "tension": 4,
+      "chills": {
+        "closeness": 30,
+        "tension": 11,
         "attraction": 0
       },
-      "nate": {
-        "closeness": 91,
-        "tension": 5,
-        "attraction": 0
-      },
-      "tommy": {
-        "closeness": 90,
-        "tension": 6,
-        "attraction": 0
-      },
-      "jacob": {
-        "closeness": 93,
-        "tension": 3,
+      "mutu": {
+        "closeness": 9,
+        "tension": 0,
         "attraction": 0
       }
     },
-    "bio": "45, the heart of the homestead and the steady realist who keeps everyone fed, warm and on track. She runs the boys' lessons, turns a rough cabin into a real home, and quietly stress-tests the dream against money, weather and what the kids actually need. Warm, grounded, and the reason it all holds together.",
+    "bio": "27, raised in Singapore's pressure-cooker — top schools, the scholarship track, a finance job — with wealthy parents and almost no time outdoors. He came on this trip only because his family was weighing whether to fund Chills' eco-retreat. Soft hands, anxious, fussy about discomfort — but genuinely book-smart (water chemistry, rationing, first aid). The jungle terrifies him; his mind is the only tool he trusts.",
     "appearance": {
-      "skin": "#ead0b4",
+      "skin": "#e8c9a8",
       "hair": {
-        "style": "bun",
-        "color": "#6b4a2e"
+        "style": "short",
+        "color": "#1a1a1a"
       },
-      "outfit": "#3f7d6e",
-      "pants": "#4a5a64",
-      "boots": "#4a3320",
+      "accessory": "sunglasses",
+      "outfit": "#27406b",
+      "pants": "#2c3447",
+      "boots": "#1b1e26",
       "gear": [
-        "apron"
-      ]
+        "slingbag"
+      ],
+      "beard": true
     },
     "interaction": {
-      "with": "jacob",
+      "with": "chills",
       "state": "working_together"
-    }
+    },
+    "memories": [
+      {
+        "day": 1,
+        "text": "Panicked over the cracked radiator and fouled the water. Day one.",
+        "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "Chills didn't blame me. He just said I'm learning. I want to believe that.",
+        "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "Chills showed me dry heartwood without blame when I'd already quit.",
+        "weight": 2
+      },
+      {
+        "day": 1,
+        "text": "The fire caught. He wasn't preaching. He was saving us.",
+        "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "He didn't blame me like I feared. He just showed up ready.",
+        "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "I didn't panic. I just listened and did it. He trusted me.",
+        "weight": 2
+      }
+    ]
   },
-  "nate": {
-    "name": "Nate",
-    "age": 14,
-    "archetype": "the eldest",
-    "color": "#2f5d8a",
+  "mutu": {
+    "name": "Mutu",
+    "species": "cat",
+    "age": 4,
+    "archetype": "road cat",
+    "color": "#d98a4a",
     "scores": {
-      "trust": 73,
-      "openness": 58,
-      "ambition": 65,
-      "loneliness": 19,
-      "resilience": 71,
-      "health": 100,
-      "hunger": 61,
-      "thirst": 59,
-      "energy": 64
+      "trust": 62,
+      "openness": 40,
+      "ambition": 0,
+      "loneliness": 38,
+      "resilience": 85,
+      "hunger": 51,
+      "thirst": 53,
+      "energy": 86,
+      "health": 100
     },
-    "mood": "steady",
-    "where": "home",
+    "mood": "watchful",
     "location": {
-      "waypoint": "woodpile",
-      "x": 30,
-      "y": 58
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
     },
-    "shelter": "cabin",
+    "shelter": "cayenne",
     "relationships": {
-      "luke": {
-        "closeness": 90,
-        "tension": 5,
+      "chills": {
+        "closeness": 86,
+        "tension": 0,
         "attraction": 0
       },
-      "rebecca": {
-        "closeness": 91,
-        "tension": 5,
-        "attraction": 0
-      },
-      "tommy": {
-        "closeness": 76,
-        "tension": 13,
-        "attraction": 0
-      },
-      "jacob": {
-        "closeness": 75,
-        "tension": 8,
+      "wesley": {
+        "closeness": 9,
+        "tension": 0,
         "attraction": 0
       }
     },
-    "bio": "14, the eldest son, growing into real responsibility and quietly proud when his dad trusts him with a man's job. Capable and a little serious, learning leadership and patience the hard way — and that the homestead doesn't care how grown-up you feel.",
+    "bio": "Chills' ginger tabby — green-eyed, road-hardened from years of overlanding, and utterly unbothered. Independent and quietly devoted to Chills, a sly little hunter who senses the weather turning long before the humans do.",
     "appearance": {
-      "skin": "#e0b890",
-      "hair": {
-        "style": "short",
-        "color": "#4a3724"
-      },
-      "accessory": "cap",
-      "outfit": "#2f5d8a",
-      "pants": "#394150",
-      "boots": "#34281c"
-    },
-    "interaction": {
-      "with": "luke",
-      "state": "working_together"
-    },
-    "memories": []
-  },
-  "tommy": {
-    "name": "Tommy",
-    "age": 11,
-    "archetype": "the spark",
-    "color": "#c9772e",
-    "scores": {
-      "trust": 70,
-      "openness": 79,
-      "ambition": 61,
-      "loneliness": 15,
-      "resilience": 62,
-      "health": 100,
-      "hunger": 61,
-      "thirst": 59,
-      "energy": 64
-    },
-    "mood": "buzzing",
-    "where": "home",
-    "location": {
-      "waypoint": "yard_mid",
-      "x": 78,
-      "y": 60
-    },
-    "shelter": "cabin",
-    "relationships": {
-      "luke": {
-        "closeness": 87,
-        "tension": 5,
-        "attraction": 0
-      },
-      "rebecca": {
-        "closeness": 90,
-        "tension": 6,
-        "attraction": 0
-      },
-      "nate": {
-        "closeness": 76,
-        "tension": 13,
-        "attraction": 0
-      },
-      "jacob": {
-        "closeness": 82,
-        "tension": 7,
-        "attraction": 0
-      }
-    },
-    "bio": "11, the spirited middle son — all energy, always in the thick of the action, forever one idea ahead of his own two hands. Eager, funny, sometimes bites off more than he can chew, and slowly turning that fire into real skill.",
-    "appearance": {
-      "skin": "#e6c098",
-      "hair": {
-        "style": "short",
-        "color": "#6b4a2e"
-      },
-      "accessory": "beanie",
-      "accColor": "#c9772e",
-      "outfit": "#c9772e",
-      "pants": "#3a4450",
-      "boots": "#34281c"
+      "coat": "#d98a4a",
+      "belly": "#f2c89a",
+      "stripe": "#a8612a",
+      "eye": "#5fa86b"
     },
     "interaction": null
-  },
-  "jacob": {
-    "name": "Jacob",
-    "age": 8,
-    "archetype": "the wild one",
-    "color": "#caa83a",
-    "scores": {
-      "trust": 74,
-      "openness": 85,
-      "ambition": 40,
-      "loneliness": 13,
-      "resilience": 58,
-      "health": 100,
-      "hunger": 61,
-      "thirst": 59,
-      "energy": 64
-    },
-    "mood": "restless",
-    "where": "home",
-    "location": {
-      "waypoint": "cabin_front",
-      "x": 54,
-      "y": 64
-    },
-    "shelter": "cabin",
-    "relationships": {
-      "luke": {
-        "closeness": 89,
-        "tension": 3,
-        "attraction": 0
-      },
-      "rebecca": {
-        "closeness": 93,
-        "tension": 3,
-        "attraction": 0
-      },
-      "nate": {
-        "closeness": 75,
-        "tension": 8,
-        "attraction": 0
-      },
-      "tommy": {
-        "closeness": 82,
-        "tension": 7,
-        "attraction": 0
-      }
-    },
-    "bio": "8, the youngest — fearless, funny, and wide-eyed at everything the wild puts in front of him. The true 'outdoor boy', the comic relief and the heart, forever keeping up with his brothers and surprising everyone with small, brave moments.",
-    "appearance": {
-      "skin": "#eccaa2",
-      "hair": {
-        "style": "short",
-        "color": "#7a5836"
-      },
-      "accessory": "beanie",
-      "accColor": "#caa83a",
-      "outfit": "#caa83a",
-      "pants": "#3a4450",
-      "boots": "#34281c"
-    },
-    "interaction": {
-      "with": "rebecca",
-      "state": "working_together"
-    }
   }
 }

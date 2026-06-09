@@ -1,20 +1,31 @@
 {
-  "world": "alaskanboys",
+  "world": "rimba",
   "poll": {
     "id": "2026-06-09",
     "closes": "tonight",
-    "question": "After a long day settling in, Luke wants to push on the shelter frame before dark, but Rebecca thinks the boys need to see the creek — to start loving this place. What ma",
+    "question": "They have meat from the hunt. Should Wesley and Chills feast tonight—or ration carefully across the days ahead?",
     "options": [
       {
-        "id": "race_the_weather",
-        "label": "Work the frame",
-        "desc": "Winter's coming — every daylight hour counts toward shelter."
+        "id": "feast_tonight",
+        "label": "Feast tonight",
+        "desc": "Food and warmth might shift Wesley's broken mood—show him they're building together"
       },
       {
-        "id": "settle_the_kids",
-        "label": "Walk to the creek",
-        "desc": "The boys need to bond with this place, not just build it."
+        "id": "ration_carefully",
+        "label": "Ration carefully",
+        "desc": "Chills' steady wisdom—Wesley learns survival is about patience, not quick wins"
       }
     ]
+  },
+  "in_play": {
+    "id": "work_redemption",
+    "label": "Put him to work",
+    "desc": "Let salvaging the Cayenne become his redemption",
+    "decided": "2026-06-09",
+    "votes": 3,
+    "tally": {
+      "anchor_together": 1,
+      "work_redemption": 2
+    }
   }
 }

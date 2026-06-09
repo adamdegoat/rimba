@@ -1,10 +1,10 @@
 {
   "day": 1,
-  "text": "The endless hauling and splitting slowly teaches Luke something new about Nate's stubborn patience.",
-  "flavor": "the daily grind",
-  "cycle": "midday",
-  "happens_at": "12:30pm",
-  "status": "activated",
-  "revealed_at": "2026-06-09T15:16:32.689292",
-  "activated_at": "2026-06-09T15:17:01.618846"
+  "text": "Mutu refuses to sleep near Wesley's camp spot, leads Chills to higher ground instead.",
+  "flavor": "Mutu's instinct",
+  "cycle": "morning",
+  "happens_at": "7am",
+  "status": "upcoming",
+  "revealed_at": "2026-06-09T00:00:27.668033",
+  "activated_at": null
 }
