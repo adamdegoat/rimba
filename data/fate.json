@@ -4,7 +4,7 @@
   "flavor": "the daily grind",
   "cycle": "midday",
   "happens_at": "12:30pm",
-  "status": "upcoming",
+  "status": "activated",
   "revealed_at": "2026-06-09T15:16:32.689292",
-  "activated_at": null
+  "activated_at": "2026-06-09T15:17:01.618846"
 }
