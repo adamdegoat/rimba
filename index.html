@@ -425,11 +425,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 /* ── HOVER STAT CARD ── */
 .stat-card{
   position:absolute;bottom:110%;pointer-events:none;z-index:80;
-  width:200px;background:rgba(0,0,0,.92);border-radius:12px;
-  padding:11px 13px;opacity:0;transform:translateY(6px);
+  width:230px;max-width:84vw;background:rgba(6,10,18,.94);border-radius:12px;
+  padding:12px 14px;opacity:0;transform:translateY(6px);
   transition:opacity .18s ease,transform .18s ease;
   backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  font-family:'VT323',monospace;line-height:1.4;white-space:nowrap
+  font-family:'Plus Jakarta Sans',sans-serif;line-height:1.4;white-space:normal;
+  box-shadow:0 14px 40px rgba(0,0,0,.6)
 }
 .char:hover .stat-card{opacity:1;transform:translateY(0)}
 .stat-card.right{left:90%;transform:translateY(6px)}
@@ -453,7 +454,14 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 .sc-bar{flex:1;height:3px;background:rgba(255,255,255,.08);border-radius:3px;overflow:hidden}
 .sc-fill{height:100%;border-radius:3px}
 .sc-val{font-size:12px;color:rgba(255,255,255,.5);width:22px;text-align:right;flex-shrink:0}
-.sc-bond{font-size:13px;margin-bottom:2px}
+.sc-bond{font-size:12.5px;color:rgba(255,255,255,.72);margin-bottom:2px}
+/* ── character-snapshot rows (the visitor-friendly card) ── */
+.sc-role{font-size:11px;color:rgba(255,255,255,.45);letter-spacing:.6px;text-transform:uppercase;margin:-1px 0 7px}
+.sc-bio{font-size:12px;color:rgba(255,255,255,.62);line-height:1.5;margin-bottom:9px}
+.sc-line{display:flex;gap:8px;align-items:baseline;margin-bottom:6px}
+.sc-key{font-size:10px;color:rgba(255,255,255,.32);letter-spacing:1px;text-transform:uppercase;flex:0 0 52px}
+.sc-now{font-size:12.5px;color:rgba(255,255,255,.85);line-height:1.45;flex:1}
+.sc-bonds{margin-top:7px;padding-top:7px;border-top:1px solid rgba(255,255,255,.06);display:flex;flex-direction:column;gap:3px}
 
 /* ── STRUCTURES LAYER ── */
 #structures-layer{position:absolute;inset:0;pointer-events:none;z-index:5;transform:translateY(calc(-1 * var(--world-shift,0px)))}
@@ -3317,56 +3325,62 @@ function buildStatCard(cid) {
   if(!el || !S.chars[cid]) return
   const c = S.chars[cid]
   const col = getScColor(cid)
-  const fill = getScFill(cid)
+  const s = c.scores || {}
 
-  const scoreRows = SCORE_LABELS.map(k => {
-    const v = c.scores?.[k] ?? 0
-    return `<div class="sc-row">
-      <span class="sc-label">${k}</span>
-      <div class="sc-bar"><div class="sc-fill" style="width:${v}%;background:${fill}88"></div></div>
-      <span class="sc-val">${v}</span>
-    </div>`
-  }).join('')
+  // ── A "character snapshot" for visitors: who they are + how they're doing, in plain words ──
+  // identity: their bio's first sentence (strip a leading "35, ", cap the length)
+  let bio = (c.bio||'').trim().replace(/^\d+,\s*/,'')
+  bio = (bio.split(/(?<=[.!?])\s+/)[0] || bio)
+  if(bio.length>132) bio = bio.slice(0,129).replace(/\s+\S*$/,'')+'…'
+  if(bio) bio = bio.charAt(0).toUpperCase()+bio.slice(1)
 
-  const survRows = SURVIVAL_LABELS.map(k => {
-    const v = c.scores?.[k] ?? (k==='health' ? 100 : 0)
-    const sc = survColor(v)
-    return `<div class="sc-row">
-      <span class="sc-label">${k}</span>
-      <div class="sc-bar"><div class="sc-fill" style="width:${v}%;background:${sc}"></div></div>
-      <span class="sc-val" style="color:${sc}">${v}</span>
-    </div>`
-  }).join('')
+  // "right now": current mood + a plain physical read (high hunger/thirst = fed/hydrated)
+  const cond = c.condition || c.ailment
+  let condIcon='', condTxt=''
+  if(cond==='injured'||cond==='hurt'){ condIcon='🤕'; condTxt='injured, mending' }
+  else if(cond==='sick'){ condIcon='🤒'; condTxt='sick, recovering' }
+  else {
+    const issues=[]
+    if((s.health??100)<50) issues.push('worn down')
+    if((s.energy??100)<35) issues.push('exhausted')
+    if((s.hunger??100)<40) issues.push('hungry')
+    if((s.thirst??100)<40) issues.push('parched')
+    condTxt = issues.length ? (issues.length===1?issues[0]:issues.slice(0,-1).join(', ')+' and '+issues.slice(-1)) : 'holding up'
+  }
+  const nowLine = `${condIcon?condIcon+' ':''}${cap(c.mood||'—')} — ${condTxt}`
 
-  const others = Object.keys(S.chars).filter(k=>k!==cid)
-  const bondRows = others.map(oid => {
-    const rel = c.relationships?.[oid] || {}
-    const cl = rel.closeness ?? 0
-    const at = rel.attraction ?? 0
-    const heart = at >= 30 ? ' ❤' : at >= 10 ? ' ·' : ''
-    const oName = S.chars[oid]?.name?.split(' ')[0] || cap(oid)
-    const oCol = getScColor(oid)
-    return `<div class="sc-bond" style="color:rgba(255,255,255,.6)">
-      <span style="color:${oCol}">${oName}</span>
-      <span style="color:rgba(255,255,255,.3)"> — closeness </span>
-      <span style="color:${fill}">${cl}</span>${heart ? `<span style="color:#f43f5e;font-size:11px">${heart}</span>` : ''}
-    </div>`
-  }).join('')
+  // "nature": 2-3 plain traits from the strongest personality scores
+  const traitDefs = [['resilience','Tough','Easily shaken'],['openness','Open','Guarded'],['trust','Trusting','Suspicious'],['ambition','Driven','Laid-back']]
+  const traits = traitDefs.map(([k,hi,lo])=>{ const v=s[k]; if(v==null) return null; const d=Math.abs(v-50); if(d<12) return null; return {w:v>=50?hi:lo, d} }).filter(Boolean)
+  if((s.loneliness??0)>62) traits.push({w:'Lonely', d:s.loneliness-50})
+  traits.sort((a,b)=>b.d-a.d)
+  const nature = traits.slice(0,3).map(t=>t.w).join(' · ')
 
-  el.style.borderColor = col+'44'
+  // "bonds": relationships in plain language (notable ones)
+  const bondLine = (rel,name)=>{
+    const a=rel.attraction??0, t=rel.tension??0, cl=rel.closeness??0
+    if(a>=25 && cl>=50) return `💛 Close with ${name}`
+    if(a>=25) return `💛 Drawn to ${name}`
+    if(t>=40) return `⚡ At odds with ${name}`
+    if(cl>=55) return `🤝 Close with ${name}`
+    if(cl<=25) return `· Distant from ${name}`
+    return `· Getting to know ${name}`
+  }
+  const bondsHtml = Object.keys(S.chars).filter(k=>k!==cid).map(oid=>{
+    const rel = c.relationships?.[oid]; if(!rel) return ''
+    const oName = S.chars[oid]?.tag || (S.chars[oid]?.name||cap(oid)).split(' ')[0]
+    return `<div class="sc-bond">${bondLine(rel, oName)}</div>`
+  }).filter(Boolean).join('')
+
+  const role = `${c.age?c.age+' · ':''}the ${cap(c.archetype||'survivor')}`
   el.style.border = `1px solid ${col}33`
-  const condBadge = (c.condition && c.condition!=='healthy')
-    ? `<div class="sc-cond sc-cond-${c.condition}">${c.condition==='injured'?'🤕 INJURED':'🤒 SICK'}</div>` : ''
   el.innerHTML = `
     <div class="sc-name" style="color:${col}">${c.name||cap(cid)}</div>
-    <div class="sc-mood">${c.mood||'—'}</div>
-    ${condBadge}
-    <div class="sc-section">Stats</div>
-    ${scoreRows}
-    <div class="sc-section" style="margin-top:7px">Survival</div>
-    ${survRows}
-    <div class="sc-section" style="margin-top:7px">Bonds</div>
-    ${bondRows}
+    <div class="sc-role">${role}</div>
+    ${bio ? `<div class="sc-bio">${bio}</div>` : ''}
+    <div class="sc-line"><span class="sc-key">Right now</span><span class="sc-now">${nowLine}</span></div>
+    ${nature ? `<div class="sc-line"><span class="sc-key">Nature</span><span class="sc-now">${nature}</span></div>` : ''}
+    ${bondsHtml ? `<div class="sc-bonds">${bondsHtml}</div>` : ''}
   `
 
   // auto-flip horizontal + vertical based on character screen position
