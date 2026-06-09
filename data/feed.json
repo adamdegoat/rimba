@@ -702,5 +702,103 @@
       }
     ],
     "timestamp": "2026-06-09T23:03:03.222941"
+  },
+  {
+    "day": 3,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes before first light and stirs the fire into steadier flames, moving with easy purpose.",
+    "thought": "Today teaches patience, not speed.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-10T07:02:57.371654"
+  },
+  {
+    "day": 3,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Emerges from the Cayenne and unwraps his torn hands, flexing them with a sharp wince.",
+    "thought": "Shredded and swollen. What can I do today?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-10T07:02:57.371654"
+  },
+  {
+    "day": 3,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Follows Wesley from the Cayenne and settles against his leg at the fire's warmth.",
+    "thought": "Safe when I'm close to him.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-10T07:02:57.371654"
+  },
+  {
+    "day": 3,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the fire's edge in the grey dawn, Wesley flexes his shredded hands while Chills tends the embers, and Mutu presses against Wesley's leg—a moment of pause before the day moves forward.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands are shredded. I can't do much today."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's yesterday talking. You did good work."
+      },
+      {
+        "speaker": "wesley",
+        "line": "But we're out of food. We need to move."
+      },
+      {
+        "speaker": "chills",
+        "line": "We do. But slow. The jungle rewards patience, not panic."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's philosophy, not a plan."
+      },
+      {
+        "speaker": "chills",
+        "line": "Sometimes that's all we've got out here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So what do I do?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Rest this morning. Walk the forest edge this afternoon—light work, eyes and ears."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And if we come up short on food?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We won't. Trust the jungle."
+      }
+    ],
+    "timestamp": "2026-06-10T07:02:57.371654"
   }
 ]

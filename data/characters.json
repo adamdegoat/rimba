@@ -5,17 +5,17 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 71,
-      "openness": 74,
-      "ambition": 55,
-      "loneliness": 9,
+      "trust": 72,
+      "openness": 75,
+      "ambition": 54,
+      "loneliness": 7,
       "resilience": 93,
       "health": 100,
-      "hunger": 47,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 96
+      "energy": 89
     },
-    "mood": "satisfied",
+    "mood": "calm",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 42,
-        "tension": 3,
+        "closeness": 43,
+        "tension": 2,
         "attraction": 0
       },
       "mutu": {
@@ -92,6 +92,11 @@
         "day": 2,
         "text": "Wesley didn't run. He stayed and did the work. That changes things.",
         "weight": 2
+      },
+      {
+        "day": 3,
+        "text": "Wesley's learning: patience wins in the jungle.",
+        "weight": 1
       }
     ]
   },
@@ -101,15 +106,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 62,
-      "openness": 60,
-      "ambition": 81,
-      "loneliness": 23,
-      "resilience": 29,
+      "trust": 63,
+      "openness": 61,
+      "ambition": 80,
+      "loneliness": 20,
+      "resilience": 30,
       "health": 100,
-      "hunger": 47,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 84
+      "energy": 65
     },
     "mood": "weary",
     "location": {
@@ -120,12 +125,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 38,
-        "tension": 6,
+        "closeness": 39,
+        "tension": 5,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 14,
+        "closeness": 16,
         "tension": 0,
         "attraction": 0
       }
@@ -190,10 +195,15 @@
         "day": 2,
         "text": "I worked all day without panicking. Chills saw it. That matters.",
         "weight": 3
+      },
+      {
+        "day": 3,
+        "text": "Slow heals faster than pushing through pain.",
+        "weight": 1
       }
     ],
     "condition": "injured",
-    "recovery": 5
+    "recovery": 3
   },
   "mutu": {
     "name": "Mutu",
@@ -202,14 +212,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 63,
+      "trust": 64,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 36,
+      "loneliness": 34,
       "resilience": 85,
-      "hunger": 47,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 100,
+      "energy": 93,
       "health": 100
     },
     "mood": "affectionate",
@@ -226,7 +236,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 16,
+        "closeness": 18,
         "tension": 0,
         "attraction": 0
       }
@@ -238,6 +248,9 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null
+    "interaction": {
+      "with": "wesley",
+      "state": "sitting_together"
+    }
   }
 }
