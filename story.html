@@ -300,14 +300,10 @@ footer span{color:var(--muted);font-weight:600}
   color:rgba(255,255,255,.66);font-family:inherit;font-size:12px;letter-spacing:.04em;padding:9px 18px;border-radius:11px;
   cursor:pointer;transition:background .2s ease,color .2s ease}
 .older-toggle:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)}
-.latest-pin{background:rgba(255,255,255,.045);border:1px solid var(--border);border-left:3px solid #22c55e;
-  border-radius:14px;padding:13px 16px;margin:0 0 20px}
-.latest-pin-head{display:flex;align-items:center;gap:9px;margin-bottom:7px;flex-wrap:wrap}
-.lp-meta{font-size:11px;color:var(--muted2);letter-spacing:.02em}
-.lp-text{font-size:14px;color:var(--text);line-height:1.55}
-.lp-jump{display:inline-block;margin-top:10px;background:none;border:none;padding:0;cursor:pointer;
-  font-family:inherit;font-size:11.5px;color:var(--muted);border-bottom:1px dotted rgba(255,255,255,.28)}
-.lp-jump:hover{color:var(--text)}
+.log-jump-latest{display:inline-flex;align-items:center;gap:6px;margin:0 0 16px;background:rgba(255,255,255,.05);
+  border:1px solid var(--border);color:var(--muted);font-family:inherit;font-size:12px;letter-spacing:.02em;
+  padding:7px 14px;border-radius:11px;cursor:pointer;transition:background .2s ease,color .2s ease}
+.log-jump-latest:hover{background:rgba(255,255,255,.1);color:var(--text)}
 </style>
 </head>
 <body>
@@ -406,7 +402,7 @@ footer span{color:var(--muted);font-weight:600}
   <!-- Island Log -->
   <div class="section reveal">
     <div class="section-title">Jungle Log</div>
-    <div class="log-order-cue" style="font-size:11px;color:var(--muted);margin:-2px 0 14px;letter-spacing:.02em">Reads oldest → newest, like a book — the latest is pinned up top.</div>
+    <div class="log-order-cue" style="font-size:11px;color:var(--muted);margin:-2px 0 14px;letter-spacing:.02em">Reads oldest → newest, like a book — the newest post is at the very bottom.</div>
     <div id="full-log"></div>
   </div>
 
@@ -755,16 +751,9 @@ function renderLog() {
       ${entries}
     </div>` : ''
   }).filter(Boolean)
-  // Book order: Prologue -> Day 1 -> ... -> newest at the bottom. The latest beat is PINNED at the top so a
-  // returning visitor sees it with no scrolling; the older history folds behind "Read from the beginning".
-  let newest = null
-  S.feed.forEach(e => { if((e.type==='interaction'||e.type==='birth') && e.description){ if(!newest || (e.timestamp||'')>(newest.timestamp||'')) newest = e } })
-  const latestPin = newest ? `<div class="latest-pin">
-      <div class="latest-pin-head"><span class="latest-badge">Latest</span><span class="lp-meta">Day ${newest.day} · ${cap(newest.cycle||'')} · ${relAgo(newest.timestamp)}</span></div>
-      <div class="lp-text">${newest.description||''}</div>
-      <button class="lp-jump" onclick="jumpToNewest()">Jump to it in the story ↓</button>
-    </div>` : ''
-  const RECENT_DAYS = 3
+  // Book order: Prologue -> Day 1 -> ... -> newest at the bottom. A slim "skip to the latest" guides a
+  // returning visitor straight to the newest post at the foot; older history folds behind "Read from the beginning".
+  const RECENT_DAYS = 2
   const earlierCount = Math.max(0, __dayHtml.length - RECENT_DAYS)
   const earlierHtml = prologueHtml + (earlierCount ? __dayHtml.slice(0, earlierCount).join('') : '')
   const recentHtml = __dayHtml.slice(earlierCount).join('')
@@ -772,7 +761,8 @@ function renderLog() {
   const earlierBlock = earlierCount
     ? `<button id="older-toggle" class="older-toggle" data-label="${beginLabel}" onclick="toggleOlder()">${beginLabel}</button><div id="older-days" hidden>${earlierHtml}</div>`
     : earlierHtml
-  document.getElementById('full-log').innerHTML = latestPin + earlierBlock + recentHtml + '<span id="log-end"></span>'
+  const jumpGuide = __dayHtml.length ? `<button class="log-jump-latest" onclick="jumpToNewest()">Skip to the latest post ↓</button>` : ''
+  document.getElementById('full-log').innerHTML = jumpGuide + earlierBlock + recentHtml + '<span id="log-end"></span>'
 }
 
 function toggleOlder(){
