@@ -3718,7 +3718,9 @@ loadVote();
   .hotspot:hover .hs-tap{opacity:1}
   #interior{position:fixed;inset:0;z-index:100000;background:#0a0f0c;display:none;overflow:hidden}
   #interior.show{display:block}
-  #interior-scene,#interior-scene svg{position:absolute;inset:0;width:100%;height:100%;display:block}
+  #interior-scene{position:absolute;inset:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+  #interior-scene::-webkit-scrollbar{display:none}
+  #interior-scene svg{display:block;height:100%;width:auto;max-width:none}
   #interior-chars{position:absolute;inset:0;z-index:100001;pointer-events:none}
   #interior-chars .ioc{position:absolute;transform:translateX(-50%)}
   #interior-exit{position:fixed;top:12px;right:12px;z-index:100003;background:rgba(12,18,14,.72);backdrop-filter:blur(7px);
@@ -3969,7 +3971,7 @@ function tentSVG(){
   <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7a4e"/><stop offset="1" stop-color="#42361f"/></linearGradient>
   <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".95"/><stop offset="1" stop-color="transparent"/></radialGradient>
   <radialGradient id="twarm" cx="50%" cy="22%" r="70%"><stop offset="0" stop-color="#ffcf86" stop-opacity=".22"/><stop offset="1" stop-color="#ffcf86" stop-opacity="0"/></radialGradient>
-  <radialGradient id="tencl" gradientUnits="userSpaceOnUse" cx="500" cy="430" r="340" gradientTransform="matrix(1,0,0,1.5,0,-215)"><stop offset="0" stop-color="#140d05" stop-opacity="0"/><stop offset=".5" stop-color="#140d05" stop-opacity="0"/><stop offset="1" stop-color="#140d05" stop-opacity=".92"/></radialGradient>
+  <radialGradient id="tencl" gradientUnits="userSpaceOnUse" cx="500" cy="430" r="360" gradientTransform="matrix(1,0,0,1.5,0,-215)"><stop offset="0" stop-color="#160f06" stop-opacity="0"/><stop offset=".5" stop-color="#160f06" stop-opacity="0"/><stop offset="1" stop-color="#160f06" stop-opacity=".5"/></radialGradient>
   <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="url(#twall)"/>
   <!-- canvas panel seams + soft side shading (desktop) -->
@@ -4071,7 +4073,11 @@ function renderInteriorOccupants(key){
 }
 function enterInterior(key){
   const I=INTERIORS[key]; if(!I) return;
-  document.getElementById('interior-scene').innerHTML = key==='tent'?tentSVG():leantoSVG();
+  const scene=document.getElementById('interior-scene');
+  scene.innerHTML = key==='tent'?tentSVG():leantoSVG();
+  // the scene fills the height and overflows the width on narrow screens — centre it
+  // on the door so the view + occupant show first, with room to pan left/right.
+  requestAnimationFrame(()=>{ try{ scene.scrollLeft=(scene.scrollWidth-scene.clientWidth)/2 }catch(e){} });
   document.querySelector('#interior-title .it-ico').textContent = I.icon||'';
   document.querySelector('#interior-title .it-main').textContent = I.name;
   document.querySelector('#interior-title .it-sub').textContent = I.pov||'';
