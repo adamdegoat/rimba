@@ -300,10 +300,6 @@ footer span{color:var(--muted);font-weight:600}
   color:rgba(255,255,255,.66);font-family:inherit;font-size:12px;letter-spacing:.04em;padding:9px 18px;border-radius:11px;
   cursor:pointer;transition:background .2s ease,color .2s ease}
 .older-toggle:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)}
-.log-jump-latest{display:inline-flex;align-items:center;gap:6px;margin:0 0 16px;background:rgba(255,255,255,.05);
-  border:1px solid var(--border);color:var(--muted);font-family:inherit;font-size:12px;letter-spacing:.02em;
-  padding:7px 14px;border-radius:11px;cursor:pointer;transition:background .2s ease,color .2s ease}
-.log-jump-latest:hover{background:rgba(255,255,255,.1);color:var(--text)}
 </style>
 </head>
 <body>
@@ -718,15 +714,16 @@ function renderLog() {
     document.getElementById('full-log').innerHTML = prologueHtml + '<div style="font-size:13px;color:var(--muted);padding:1rem 0;text-align:center">No log entries yet — check back after the next cycle.</div>'
     return
   }
-  let latestMarked = false   // the very first entry rendered = the newest beat -> gets the LATEST badge
+  const newestTs = S.feed.reduce((mx,e)=> ((e.type==='interaction'||e.type==='birth') && e.description && (e.timestamp||'')>mx) ? (e.timestamp||'') : mx, '')   // newest entry gets the LATEST marker
   const __dayHtml = days.map((day, di) => {
     const cycles = byDay[day]
     const dayLatestTs = CYCLE_ORDER.flatMap(c=>cycles[c]||[]).reduce((mx,e)=>(e.timestamp>mx?e.timestamp:mx),'')
     const entries = CYCLE_ORDER.filter(c=>cycles[c]).map(cyc =>   // morning->night within the day (book order)
       cycles[cyc].map(e => {
         const cTag = fmtSGTS(e.timestamp) || CYCLE_HOUR_S[cyc]||cyc
-        const badge = ''
-        const cls = 'log-entry'
+        const isLatest = e.timestamp && e.timestamp === newestTs
+        const badge = isLatest ? `<span class="latest-badge">Latest</span><span class="log-rel">${relAgo(e.timestamp)}</span> ` : ''
+        const cls = isLatest ? 'log-entry log-entry-latest' : 'log-entry'
         if(e.type === 'interaction') {
           const dots = (e.characters||[]).map(cid=>`<div class="log-dot" style="background:${CHARS[cid]||'#475569'}"></div>`).join('')
           return `<div class="${cls}">
@@ -761,8 +758,7 @@ function renderLog() {
   const earlierBlock = earlierCount
     ? `<button id="older-toggle" class="older-toggle" data-label="${beginLabel}" onclick="toggleOlder()">${beginLabel}</button><div id="older-days" hidden>${earlierHtml}</div>`
     : earlierHtml
-  const jumpGuide = __dayHtml.length ? `<button class="log-jump-latest" onclick="jumpToNewest()">Skip to the latest post ↓</button>` : ''
-  document.getElementById('full-log').innerHTML = jumpGuide + earlierBlock + recentHtml + '<span id="log-end"></span>'
+  document.getElementById('full-log').innerHTML = earlierBlock + recentHtml
 }
 
 function toggleOlder(){
@@ -771,7 +767,6 @@ function toggleOlder(){
   if(o.hasAttribute('hidden')){ o.removeAttribute('hidden'); b.textContent='▴ Hide the early days'; o.scrollIntoView({behavior:'smooth',block:'start'}) }
   else { o.setAttribute('hidden',''); b.textContent=b.dataset.label||'📖 Read from the beginning' }
 }
-function jumpToNewest(){ const e=document.getElementById('log-end'); if(e) e.scrollIntoView({behavior:'smooth',block:'end'}) }
 
 async function init() {
   try {
