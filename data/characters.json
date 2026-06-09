@@ -5,27 +5,27 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 64,
-      "openness": 72,
+      "trust": 66,
+      "openness": 73,
       "ambition": 55,
-      "loneliness": 19,
+      "loneliness": 17,
       "resilience": 93,
       "health": 100,
-      "hunger": 53,
+      "hunger": 51,
       "thirst": 53,
-      "energy": 76
+      "energy": 69
     },
     "mood": "focused",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "cayenne_door",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 32,
-        "tension": 9,
+        "closeness": 34,
+        "tension": 8,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -77,6 +77,11 @@
         "day": 2,
         "text": "He came forward wanting to work. That's the shift. That's real.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "Wesley bent to real work without falling apart. That matters.",
+        "weight": 2
       }
     ]
   },
@@ -86,27 +91,27 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 55,
+      "trust": 57,
       "openness": 56,
       "ambition": 80,
-      "loneliness": 33,
-      "resilience": 24,
+      "loneliness": 31,
+      "resilience": 25,
       "health": 100,
-      "hunger": 53,
+      "hunger": 51,
       "thirst": 53,
-      "energy": 76
+      "energy": 69
     },
-    "mood": "anxious",
+    "mood": "determined",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "cayenne_door",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 28,
-        "tension": 12,
+        "closeness": 30,
+        "tension": 11,
         "attraction": 0
       },
       "mutu": {
@@ -133,7 +138,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -160,6 +165,11 @@
         "day": 2,
         "text": "He didn't blame me like I feared. He just showed up ready.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "I didn't panic. I just listened and did it. He trusted me.",
+        "weight": 2
       }
     ]
   },
@@ -173,11 +183,11 @@
       "trust": 62,
       "openness": 40,
       "ambition": 0,
-      "loneliness": 35,
+      "loneliness": 38,
       "resilience": 85,
-      "hunger": 53,
+      "hunger": 51,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "watchful",
