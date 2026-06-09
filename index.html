@@ -3935,6 +3935,7 @@ function tentSVG(){
   <defs><linearGradient id="twall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#8f7a4e"/><stop offset="1" stop-color="#42361f"/></linearGradient>
   <radialGradient id="tlant" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".95"/><stop offset="1" stop-color="transparent"/></radialGradient>
   <radialGradient id="twarm" cx="50%" cy="22%" r="70%"><stop offset="0" stop-color="#ffcf86" stop-opacity=".22"/><stop offset="1" stop-color="#ffcf86" stop-opacity="0"/></radialGradient>
+  <radialGradient id="tencl" gradientUnits="userSpaceOnUse" cx="500" cy="430" r="340" gradientTransform="matrix(1,0,0,1.5,0,-215)"><stop offset="0" stop-color="#140d05" stop-opacity="0"/><stop offset=".5" stop-color="#140d05" stop-opacity="0"/><stop offset="1" stop-color="#140d05" stop-opacity=".92"/></radialGradient>
   <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="url(#twall)"/>
   <!-- canvas panel seams + soft side shading (desktop) -->
@@ -3963,6 +3964,8 @@ function tentSVG(){
   <g transform="translate(196 430)"><path d="M -52 0 Q 0 -16 52 0 L 46 40 L -46 40 Z" fill="#6f5d3a" opacity=".8"/><path d="M -52 0 Q 0 -16 52 0" stroke="#3a2f1d" stroke-width="2" fill="none"/></g>
   <!-- warm ambient wash over the canvas (cozy) -->
   <rect width="1000" height="600" fill="url(#twarm)"/>
+  <!-- interior collapses into shadow at the sides so it reads snug & narrow (a rooftop tent is small) -->
+  <rect width="1000" height="600" fill="url(#tencl)"/>
   <!-- string of warm fairy lights draped across the ridge -->
   <path d="M 150 64 Q 500 102 850 64" stroke="#5a4a2e" stroke-width="2" fill="none" opacity=".75"/>
   ${[...Array(13)].map((_,i)=>{const t=i/12,bx=(150+t*700).toFixed(0),by=(64+38*4*t*(1-t)).toFixed(1);return `<line x1="${bx}" y1="${by}" x2="${bx}" y2="${(+by+8).toFixed(1)}" stroke="#5a4a2e" stroke-width="1.4"/><circle class="iw-twinkle" style="animation-delay:${(i*0.21).toFixed(2)}s" cx="${bx}" cy="${(+by+14).toFixed(1)}" r="9" fill="#ffe7a0" opacity=".16"/><circle class="iw-twinkle" style="animation-delay:${(i*0.21).toFixed(2)}s" cx="${bx}" cy="${(+by+14).toFixed(1)}" r="4.6" fill="#ffe9ad"/><circle cx="${bx}" cy="${(+by+14).toFixed(1)}" r="2.2" fill="#fffaf0"/>`;}).join('')}
