@@ -825,10 +825,19 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <ellipse cx="280" cy="308" rx="50" ry="30"/><ellipse cx="760" cy="302" rx="58" ry="34"/>
   <ellipse cx="900" cy="308" rx="54" ry="32"/><ellipse cx="980" cy="300" rx="50" ry="30"/>
 </g>
-<!-- canopy highlight dapples -->
-<g fill="#86b04a" opacity=".4">
-  <ellipse cx="200" cy="266" rx="20" ry="11"/><ellipse cx="480" cy="262" rx="22" ry="12"/>
-  <ellipse cx="770" cy="264" rx="20" ry="11"/>
+<!-- canopy sunlit highlights (volume across the treeline) -->
+<g fill="#8fb84f" opacity=".42">
+  <ellipse cx="120" cy="274" rx="22" ry="12"/><ellipse cx="200" cy="266" rx="20" ry="11"/><ellipse cx="330" cy="276" rx="22" ry="12"/><ellipse cx="480" cy="262" rx="24" ry="13"/>
+  <ellipse cx="610" cy="276" rx="22" ry="12"/><ellipse cx="700" cy="270" rx="22" ry="12"/><ellipse cx="770" cy="264" rx="20" ry="11"/><ellipse cx="900" cy="272" rx="22" ry="12"/><ellipse cx="970" cy="276" rx="20" ry="11"/>
+</g>
+<!-- emergent-crown volume highlights -->
+<g fill="#fff" opacity=".08"><ellipse cx="150" cy="246" rx="26" ry="13"/><ellipse cx="520" cy="240" rx="28" ry="14"/><ellipse cx="850" cy="248" rx="25" ry="12"/></g>
+<!-- flowering accents at the treeline edge (behind the clearing) -->
+<g id="bg-blossoms">
+  <g transform="translate(95 326)"><circle r="3" fill="#e0533c"/><circle cx="-6" cy="-3" r="3" fill="#e0533c"/><circle cx="6" cy="-3" r="3" fill="#e0533c"/><circle cx="0" cy="-7" r="3" fill="#e0533c"/></g>
+  <g transform="translate(420 330)"><circle r="3" fill="#ec7fa6"/><circle cx="-6" cy="-3" r="3" fill="#ec7fa6"/><circle cx="6" cy="-3" r="3" fill="#ec7fa6"/><circle cx="0" cy="-7" r="3" fill="#ec7fa6"/></g>
+  <g transform="translate(690 328)"><circle r="3" fill="#f2933a"/><circle cx="-6" cy="-3" r="3" fill="#f2933a"/><circle cx="6" cy="-3" r="3" fill="#f2933a"/><circle cx="0" cy="-7" r="3" fill="#f2933a"/></g>
+  <g transform="translate(930 330)"><circle r="3" fill="#e0533c"/><circle cx="-6" cy="-3" r="3" fill="#e0533c"/><circle cx="6" cy="-3" r="3" fill="#e0533c"/><circle cx="0" cy="-7" r="3" fill="#e0533c"/></g>
 </g>
 
 <!-- ══ AERIAL DEPTH HAZE (mist sitting where canopy meets clearing) ══ -->
@@ -3823,8 +3832,9 @@ function jungleView(x,y,w,h,win,opt){
   layers.forEach((L,li)=>{ let p=`M ${x} ${F(y+h)} L ${x} ${F(horizon+L.d)} `;
     for(let i=0;i<=14;i++){ const bump=((i*53+li*37)%44)+ (i%2? 8:0); p+=`L ${F(x+i*w/14)} ${F(horizon+L.d-bump)} `; } p+=`L ${x+w} ${F(y+h)} Z`;
     s+=`<path d="${p}" fill="${G[li]}" opacity="${L.o}"/>`; });
-  // scalloped dense treetop crowns along the canopy edges (lush rainforest mass)
-  [{d:30,c:G[2],step:13},{d:58,c:G[3],step:15}].forEach(L=>{ for(let i=0;i<=L.step;i++){ const cx=x+i*w/L.step, cy=horizon+L.d+((i%2)*6); s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(24+(i*37%5)*7)}" fill="${L.c}"/>`; } });
+  // scalloped dense treetop crowns w/ volume (highlight up-left, shade down-right)
+  [{d:30,c:G[2],step:13},{d:58,c:G[3],step:15}].forEach(L=>{ for(let i=0;i<=L.step;i++){ const cx=x+i*w/L.step, cy=horizon+L.d+((i%2)*6), r=24+(i*37%5)*7;
+    s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${L.c}"/><circle cx="${F(cx-r*.32)}" cy="${F(cy-r*.34)}" r="${F(r*.56)}" fill="#fff" opacity="${N?'.05':'.13'}"/><circle cx="${F(cx+r*.34)}" cy="${F(cy+r*.3)}" r="${F(r*.5)}" fill="#000" opacity=".1"/>`; } });
   // ── lush Malaysian rainforest: broad emergents, fan palms, banana clumps ──
   const trunk=(N?'#16291d':'#46341f');
   const emergent=(tx,ty,r,cc)=>`<g><rect x="${F(tx-4)}" y="${F(ty)}" width="8" height="${F(y+h-ty)}" fill="${trunk}" opacity=".85"/>`+
@@ -3839,11 +3849,18 @@ function jungleView(x,y,w,h,win,opt){
   [['e',0.07,33,2],['e',0.72,25,2],['p',0.19,1.05,3],['e',0.4,27,3],['p',0.53,0.95,3],['p',0.86,1.12,3],['e',0.96,31,3],['b',0.29,1,4],['b',0.63,0.95,4]]
     .sort((m,n)=>m[3]-n[3]).forEach(([t,fx,a,li])=>{ const tx=x+w*fx, ty=horizon+10+li*5, cc=G[Math.min(li+1,4)];
       s+= t==='p'?palm(tx,ty,a,cc) : t==='b'?banana(tx,ty+34,a,cc) : emergent(tx,ty,a,cc); });
-  // dense undergrowth shrub band filling the jungle floor (lush)
-  for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8); s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(26+(i*53%5)*7)}" fill="${G[4]}"/>`; }
+  // dense undergrowth shrub band w/ volume highlight (lush jungle floor)
+  for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8), r=26+(i*53%5)*7;
+    s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${G[4]}"/><circle cx="${F(cx-r*.3)}" cy="${F(cy-r*.34)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; }
   // undergrowth ferns along the base of the view
   for(let i=0;i<14;i++){ const fxp=x+(i*w/13), fb=y+h-10, fh=18+ (i*29)%26; const fc=N?'#1d3a23':'#356b2c';
     let fr=`<g opacity=".9">`; for(let b=-2;b<=2;b++){ fr+=`<path d="M ${F(fxp)} ${F(fb)} Q ${F(fxp+b*10)} ${F(fb-fh*.7)} ${F(fxp+b*15)} ${F(fb-fh)}" stroke="${fc}" stroke-width="3" fill="none"/>`; } s+=fr+'</g>'; }
+  // tree ferns (fronds fanning up) + tropical flowers for variety & a pop of colour
+  [[0.1,1],[0.9,0.92],[0.48,0.8]].forEach(([fx,sc])=>{ const cx=x+w*fx, cb=y+h-12; let g=`<g stroke="${N?'#234a2c':'#3f7a39'}" stroke-width="${F(3*sc)}" fill="none" stroke-linecap="round" opacity=".92">`;
+    for(let k=0;k<7;k++){ const ang=(-70+k*23)*Math.PI/180, ex=cx+Math.sin(ang)*44*sc, ey=cb-Math.cos(ang)*48*sc, mx=cx+Math.sin(ang)*22*sc, my=cb-Math.cos(ang)*28*sc;
+      g+=`<path d="M ${F(cx)} ${F(cb)} Q ${F(mx)} ${F(my)} ${F(ex)} ${F(ey)}"/>`; } s+=g+'</g>'; });
+  const flower=(fx,fy,c,sc)=>`<g transform="translate(${F(fx)} ${F(fy)}) scale(${sc||1})">${[0,72,144,216,288].map(a=>`<ellipse cx="0" cy="-7" rx="4.5" ry="8" fill="${c}" transform="rotate(${a})"/>`).join('')}<circle r="3.2" fill="#ffd24a"/></g>`;
+  if(!N) [[0.17,'#e0533c'],[0.5,'#ec7fa6'],[0.83,'#f2933a'],[0.34,'#e0533c'],[0.66,'#ec7fa6']].forEach(([fx,c],i)=>{ s+=flower(x+w*fx, y+h-(30+(i%3)*9), c, 1.05); });
   // hanging vines + leaves drooping into the top of the view
   for(let i=0;i<6;i++){ const vx=x+w*(0.08+i*0.16), vl=h*(0.26+(i%3)*0.08); s+=`<path d="M ${F(vx)} ${y} q 14 ${F(vl*.6)} -6 ${F(vl)}" stroke="${N?'#1b2f20':'#3a6b40'}" stroke-width="3" fill="none" opacity=".8"/><ellipse cx="${F(vx-6)}" cy="${F(y+vl)}" rx="9" ry="5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".8"/><ellipse cx="${F(vx+2)}" cy="${F(y+vl*.7)}" rx="6" ry="3.5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".6"/>`; }
   // big foreground frame leaves drooping from the top edge — pointed tropical leaves w/ midribs
