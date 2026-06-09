@@ -8,17 +8,17 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
 <title>Rimba — a never-ending story</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Ctext y='.9em' font-size='88'%3E%F0%9F%8C%BF%3C/text%3E%3C/svg%3E">
-<meta name="description" content="Rimba is a never-ending story — two Singaporeans and a cat stranded deep in the Malaysian jungle after their 4x4 breaks down, surviving four times a day. No script, no crew, no rescue. The characters change and surprise you on their own.">
+<meta name="description" content="Rimba is a never-ending story — two Singaporeans and a cat stranded deep in the Malaysian jungle after their 4x4 breaks down, surviving five times a day. No script, no crew, no rescue. The characters change and surprise you on their own.">
 <meta name="theme-color" content="#0a1410">
 <!-- Social share preview -->
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="The Never Ending Story Project">
 <meta property="og:title" content="Rimba — a never-ending story">
-<meta property="og:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving four times a day. No script, no crew, no rescue.">
+<meta property="og:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving five times a day. No script, no crew, no rescue.">
 <meta property="og:url" content="https://adamdegoat.github.io/rimba/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Rimba — a never-ending story">
-<meta name="twitter:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving four times a day.">
+<meta name="twitter:description" content="Two Singaporeans and a cat stranded deep in the Malaysian jungle, surviving five times a day.">
 
 <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;700;800&family=VT323&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="theme.css"><!-- shared Never Ending Story house-style tokens -->
@@ -1636,11 +1636,13 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   <div id="status-strip">
     <div class="stp" id="stp-morning">🌅 7am</div>
     <span class="stp-arr">›</span>
-    <div class="stp" id="stp-midday">☀️ 12:30pm</div>
+    <div class="stp" id="stp-midday">☀️ 11:30am</div>
     <span class="stp-arr">›</span>
-    <div class="stp" id="stp-evening">🌆 6pm</div>
+    <div class="stp" id="stp-afternoon">🌤️ 3pm</div>
     <span class="stp-arr">›</span>
-    <div class="stp" id="stp-night">🌙 11pm</div>
+    <div class="stp" id="stp-evening">🌆 6:30pm</div>
+    <span class="stp-arr">›</span>
+    <div class="stp" id="stp-night">🌙 10:30pm</div>
   </div>
 
   <div id="status-info">
@@ -1756,9 +1758,10 @@ function getSGT() {
 }
 
 function skyFromHour(h) {
-  if(h>=23||h<7)  return 'night'
-  if(h<12) return 'morning'
-  if(h<18) return 'midday'
+  if(h>=22.5||h<7) return 'night'
+  if(h<11.5) return 'morning'
+  if(h<15)   return 'midday'
+  if(h<18.5) return 'afternoon'
   return 'evening'
 }
 
@@ -1768,7 +1771,7 @@ function fmtTime(sgt) {
   return `${dh}:${m}${ap}`
 }
 
-const RUN_MINUTES = [{h:7,m:0},{h:12,m:30},{h:18,m:0},{h:23,m:0}]
+const RUN_MINUTES = [{h:7,m:0},{h:11,m:30},{h:15,m:0},{h:18,m:30},{h:22,m:30}]
 function nextRun(sgt) {
   const total=sgt.getHours()*60+sgt.getMinutes()
   let nr=RUN_MINUTES.find(r=>r.h*60+r.m>total)
@@ -1868,7 +1871,7 @@ function updateStatusBar() {
     }
   }
   document.getElementById('status-last').textContent = lastStr + (lastRel?' ('+lastRel+')':'')
-  applySky(skyFromHour(sgt.getHours()))
+  applySky(skyFromHour(sgt.getHours()+sgt.getMinutes()/60))
   applySunShadow(sgt)
   applyWeather(S.world && S.world.weather)
   const completedToday = new Set(S.feed.filter(e=>e.day===(S.world?.day||1)&&e.type!=='birth').map(e=>e.cycle))
@@ -2089,7 +2092,7 @@ function updateBubble(cid) {
   el.textContent=t
 }
 
-const CYCLE_HOUR = {morning:'7am',midday:'12:30pm',evening:'6pm',night:'11pm'}
+const CYCLE_HOUR = {morning:'7am',midday:'11:30am',afternoon:'3pm',evening:'6:30pm',night:'10:30pm'}
 const CHAR_COLOR = {chills:'#6a994e',wesley:'#6ba3e0',mutu:'#d98a4a'}
 function getCharColor(cid){return CHAR_COLOR[cid]||S.chars[cid]?.color||'#e2e8f0'}
 
