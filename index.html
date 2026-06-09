@@ -4041,8 +4041,6 @@ function tentSVG(){
   <path d="M -20 -20 L 1020 -20 L 1020 46 Q 500 12 -20 46 Z" fill="#5a4a2e"/>
   <path d="M 0 30 Q 500 70 1000 30" stroke="#3a2f1d" stroke-width="3" fill="none" opacity=".6"/>
   ${[0,1,2,3].map(i=>`<path d="M${120+i*220} 30 L500 64" stroke="#6f5d3a" stroke-width="2" opacity=".4" fill="none"/>`).join('')}
-  <!-- mesh net over the opening -->
-  <g clip-path="url(#tdoor)" stroke="#e9eef0" stroke-width=".5" opacity=".1">${[...Array(13)].map((_,i)=>`<line x1="${360+i*24}" y1="60" x2="${360+i*24}" y2="520"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="350" y1="${100+i*40}" x2="650" y2="${100+i*40}"/>`).join('')}</g>
   <!-- hung lantern + wall gear -->
   <g transform="translate(372 150)"><rect x="-3" y="-40" width="6" height="40" fill="#3a2f1d"/><rect x="-10" y="-2" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="2" width="14" height="20" rx="3" fill="#ffd98a"/><ellipse cx="0" cy="12" rx="36" ry="32" fill="#ffd98a" opacity=".24"/></g>
   <g transform="translate(150 250)" stroke="#6b5836" stroke-width="5" fill="none" opacity=".8"><circle cx="0" cy="0" r="22"/><circle cx="0" cy="0" r="14"/><circle cx="0" cy="0" r="7"/></g>
