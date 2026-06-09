@@ -2939,7 +2939,15 @@ function makeGenericCharSVG(cid, color, skin) {
   // sweat sheen at high wear
   const sweat = wear > .5 ? `<g fill="#cdeaf2" opacity="${Math.min(.5, wear*.55).toFixed(2)}"><ellipse cx="-10" cy="-70" rx="1" ry="2.1"/><ellipse cx="10" cy="-71" rx=".9" ry="1.8"/></g>` : ''
 
-  return `<svg class="char-svg" id="svg-${cid}" width="19" height="45" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
+  // hair sheen (hidden under headwear) + per-character size: kids render smaller, subtle adult variation — silhouette distinctiveness
+  const _hh = (acc==='hood'||acc==='cap'||acc==='beanie') ? '' : `<path d="M -7.5 -81.5 Q -1 -85 6 -82.5" stroke="#ffffff" stroke-width="1.7" fill="none" opacity=".2" stroke-linecap="round"/><path d="M -9 -76.5 Q -7 -80.5 -4 -82" stroke="#ffffff" stroke-width="1.1" fill="none" opacity=".14" stroke-linecap="round"/>`
+  const _ageN = (S.chars && S.chars[cid] && S.chars[cid].age)
+  let _sz = 1
+  if (typeof _ageN === 'number') _sz = _ageN<=9 ? 0.82 : _ageN<=12 ? 0.88 : _ageN<=15 ? 0.93 : 1
+  const _hsh = String(cid).split('').reduce((a,c)=>a+c.charCodeAt(0),0)
+  _sz *= 1 + ((_hsh % 7) - 3) * 0.012
+  const _W = (19*_sz).toFixed(1), _H = (45*_sz).toFixed(1)
+  return `<svg class="char-svg" id="svg-${cid}" width="${_W}" height="${_H}" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
     <defs>
       <linearGradient id="og-${cid}" x1="0" y1="0" x2="0" y2="1">
         <stop offset="0" stop-color="${outfit}"/>
@@ -2991,7 +2999,7 @@ function makeGenericCharSVG(cid, color, skin) {
     <ellipse cx="0" cy="-72" rx="11.5" ry="11.5" fill="${skin}"/>
     <path d="M -11.5 -72 C -11 -64 -7 -61 0 -61 C 7 -61 11 -64 11.5 -72 C 9 -65 -9 -65 -11.5 -72 Z" fill="${shade}"/>
     ${stubble}${sweat}
-    ${hairFront}
+    ${hairFront}${_hh}
     <path id="brow-l-${cid}" d="M -9 -77.5 L -3 -76" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" fill="none"/>
     <path id="brow-r-${cid}" d="M 3 -76 L 9 -77.5" stroke="#2b2118" stroke-width="1.6" stroke-linecap="round" fill="none"/>
     <g id="eyes-normal-${cid}">
