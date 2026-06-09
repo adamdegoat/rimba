@@ -270,9 +270,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   background:rgba(10,18,32,.82);backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px);
   color:#f1f5f9;padding:3px 6px;border-radius:7px;
   font-size:6.5px;font-weight:600;max-width:80px;min-width:48px;text-align:center;
-  line-height:1.4;pointer-events:none;white-space:normal;z-index:25;
+  line-height:1.4;pointer-events:none;white-space:normal;z-index:25;transition:opacity .22s ease;
   border:1px solid rgba(255,255,255,.06);border-top-width:2px}
 .bubble::after{display:none}
+/* FOCUS MODE: while a character's stat card is open, fade the speech bubbles so the card stands clean & alone */
+#world:has(.stat-card.tap-open) .bubble{opacity:0;pointer-events:none}
+@media (hover:hover){#world:has(.char:hover) .bubble{opacity:0;pointer-events:none}}
 .bubble-name{font-size:6px;font-weight:800;letter-spacing:.9px;text-transform:uppercase;margin-bottom:2px}
 .bubble-text{font-size:6.5px}
 .bubble-text.dog-emote{font-size:15px;line-height:1}
@@ -415,9 +418,9 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
   /* res-hud now anchors bottom-right via the base rule on all sizes */
   .stat-card{display:none}
   .stat-card.tap-open{display:block;opacity:1;transform:translateY(0)}
-  .stat-card.right,.stat-card.left{left:50%;transform:translateX(-50%);right:auto}
-  .stat-card.tap-open.right,.stat-card.tap-open.left{transform:translateX(-50%)}
-  .stat-card.tap-open.below{transform:translateX(-50%)}
+  .stat-card.right,.stat-card.left{left:50%;transform:translateX(calc(-50% + var(--sc-shift,0px)));right:auto}
+  .stat-card.tap-open.right,.stat-card.tap-open.left{transform:translateX(calc(-50% + var(--sc-shift,0px)))}
+  .stat-card.tap-open.below{transform:translateX(calc(-50% + var(--sc-shift,0px)))}
   /* Feed drawer taller on mobile */
   #chat-panel.feed-open{height:62vh}
 }
@@ -1942,6 +1945,20 @@ function toggleFeed() {
   }
 }
 
+// Keep a tapped-open stat card fully on-screen: if a character near the edge pushes the
+// centered card off the viewport, nudge it back in with a shift var (mobile only).
+function clampStatCard(sc){
+  if(!sc) return
+  sc.style.setProperty('--sc-shift','0px')
+  requestAnimationFrame(()=>{
+    const r=sc.getBoundingClientRect(), m=8
+    let shift=0
+    if(r.left<m) shift=m-r.left
+    else if(r.right>window.innerWidth-m) shift=(window.innerWidth-m)-r.right
+    sc.style.setProperty('--sc-shift', Math.round(shift)+'px')
+  })
+}
+
 // Tap character to show stat card
 function initTapStats() {
   // Tap a character to toggle their stat card — DELEGATED on #world so it works for static AND
@@ -1953,7 +1970,7 @@ function initTapStats() {
       const sc = document.getElementById('sc-'+cid)
       const wasOpen = sc && sc.classList.contains('tap-open')
       document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('tap-open'))
-      if(sc && !wasOpen) sc.classList.add('tap-open')
+      if(sc && !wasOpen){ sc.classList.add('tap-open'); clampStatCard(sc) }
     } else if(!charEl) {
       document.querySelectorAll('.stat-card').forEach(c => c.classList.remove('tap-open'))
     }
