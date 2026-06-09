@@ -296,6 +296,10 @@ footer span{color:var(--muted);font-weight:600}
   .section-title{font-size:1.1rem}
   .log-cycle-tag{width:36px;font-size:9px}
 }
+.older-toggle{display:block;margin:20px auto 8px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);
+  color:rgba(255,255,255,.66);font-family:inherit;font-size:12px;letter-spacing:.04em;padding:9px 18px;border-radius:11px;
+  cursor:pointer;transition:background .2s ease,color .2s ease}
+.older-toggle:hover{background:rgba(255,255,255,.1);color:rgba(255,255,255,.85)}
 </style>
 </head>
 <body>
@@ -394,6 +398,7 @@ footer span{color:var(--muted);font-weight:600}
   <!-- Island Log -->
   <div class="section reveal">
     <div class="section-title">Jungle Log</div>
+    <div class="log-order-cue" style="font-size:11px;color:var(--muted);margin:-2px 0 14px;letter-spacing:.02em">Newest first — scroll down for how it began.</div>
     <div id="full-log"></div>
   </div>
 
@@ -710,7 +715,7 @@ function renderLog() {
     return
   }
   let latestMarked = false   // the very first entry rendered = the newest beat -> gets the LATEST badge
-  document.getElementById('full-log').innerHTML = days.map((day, di) => {
+  const __dayHtml = days.map((day, di) => {
     const cycles = byDay[day]
     const dayLatestTs = CYCLE_ORDER.flatMap(c=>cycles[c]||[]).reduce((mx,e)=>(e.timestamp>mx?e.timestamp:mx),'')
     const entries = CYCLE_ORDER.filter(c=>cycles[c]).reverse().map(cyc =>   // latest cycle first within the day (filter() makes a new array, so this never mutates CYCLE_ORDER)
@@ -742,7 +747,21 @@ function renderLog() {
       <div class="log-day-header">Day ${day}${relTag}</div>
       ${entries}
     </div>` : ''
-  }).filter(Boolean).join('') + prologueHtml   // Prologue (the START) goes at the BOTTOM, under the oldest day
+  }).filter(Boolean)
+  // (#5) keep the most recent days open; tuck older days behind a toggle so the log never becomes an endless scroll
+  const RECENT_DAYS = 4
+  const olderCount = Math.max(0, __dayHtml.length - RECENT_DAYS)
+  const olderBlock = olderCount
+    ? `<button id="older-toggle" class="older-toggle" onclick="toggleOlder()">▾ Show earlier days (${olderCount})</button><div id="older-days" hidden>${__dayHtml.slice(RECENT_DAYS).join('')}</div>`
+    : ''
+  document.getElementById('full-log').innerHTML = __dayHtml.slice(0, RECENT_DAYS).join('') + olderBlock + prologueHtml   // Prologue (the START) goes at the BOTTOM
+}
+
+function toggleOlder(){
+  const o=document.getElementById('older-days'), b=document.getElementById('older-toggle')
+  if(!o||!b) return
+  if(o.hasAttribute('hidden')){ o.removeAttribute('hidden'); b.textContent='▴ Hide earlier days' }
+  else { o.setAttribute('hidden',''); b.textContent=`▾ Show earlier days (${o.querySelectorAll('.log-day').length})`; b.scrollIntoView({block:'center'}) }
 }
 
 async function init() {
