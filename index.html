@@ -3685,6 +3685,8 @@ loadVote();
     font:700 10px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.3px;padding:4px 9px;border-radius:999px;
     box-shadow:0 2px 9px rgba(0,0,0,.45);display:none;align-items:center;gap:4px}
   .hotspot.occupied .hs-badge{display:inline-flex}
+  .hotspot.vacant .hs-badge{display:inline-flex;opacity:.6;background:rgba(12,18,14,.66);border-color:rgba(255,255,255,.16);color:#dfe6ea}
+  .hotspot.vacant .hs-badge .em{opacity:.55;filter:grayscale(.5)}
   .hotspot .hs-tap{position:absolute;left:50%;top:-18px;transform:translateX(-50%);white-space:nowrap;
     font:800 8px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.6px;text-transform:uppercase;color:rgba(255,255,255,.55);opacity:0;transition:opacity .2s}
   .hotspot:hover .hs-tap{opacity:1}
@@ -3719,11 +3721,23 @@ loadVote();
 })();
 
 const INTERIORS = {
-  tent:   { shelter:'cayenne', hx:384, hy:362, name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", pov:"Your view from inside · looking out" },
-  leanto: { shelter:'lean_to', hx:660, hy:404, name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", pov:"Peeking into the shelter" },
+  tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], hx:384, hy:362, name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", pov:"Your view from inside · looking out" },
+  leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'],               hx:660, hy:404, name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", pov:"Peeking into the shelter" },
 };
-function _occ(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
+// who's PHYSICALLY here this cycle (live location), vs who this shelter BELONGS to (static).
+function _present(key){ const w=INTERIORS[key].wps; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&w.indexOf((S.chars[c].location||{}).waypoint)>=0); }
+function _owners(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
 function _fname(cid){ const n=(S.chars[cid]&&S.chars[cid].name)||cid; return n.split(' ')[0]; }
+function _whereLabel(cid){
+  const wp=((S.chars[cid]&&S.chars[cid].location)||{}).waypoint||'';
+  if(/campfire|camp_mid/.test(wp)) return 'at the fire';
+  if(/cayenne/.test(wp)) return 'by the Cayenne';
+  if(/shelter/.test(wp)) return 'at the lean-to';
+  if(/river|shallows|log_crossing/.test(wp)) return 'down by the river';
+  if(/forest|fern|fig|bamboo|ridge|trail/.test(wp)) return 'out in the jungle';
+  if(/mud_flat/.test(wp)) return 'out on the mud flat';
+  return 'out in camp';
+}
 function windowSky(){
   const cyc=((S.world&&S.world.cycle)||'midday').toLowerCase();
   const wx=((S.world&&S.world.weather)||'').toLowerCase();
@@ -3747,7 +3761,7 @@ function windowArt(x,y,w,h,win){
   return s;
 }
 function tentSVG(){
-  const win=windowSky(); const occ=_occ('tent'); const c0=occ[0]?(getCharColor(occ[0])||'#8a6f4a'): '#8a6f4a';
+  const win=windowSky(); const occ=_present('tent'); const c0=occ[0]?(getCharColor(occ[0])||'#8a6f4a'): '#8a6f4a';
   const skin=(occ[0]&&S.chars[occ[0]]&&S.chars[occ[0]].appearance&&S.chars[occ[0]].appearance.skin)||'#d9a066';
   // doorway opening = central triangle, apex ~(500,70) widening to base 350..650 @ y500. The canvas
   // flaps cover everything outside it, so it reads as "looking out the unzipped door" on any crop.
@@ -3827,7 +3841,7 @@ function leantoSVG(){
 function renderInteriorOccupants(key){
   const box=document.getElementById('interior-chars'); if(!box) return; box.innerHTML='';
   if(key!=='leanto') return;  // tent draws its occupant hint in the SVG
-  const occ=_occ(key); const n=occ.length;
+  const occ=_present(key); const n=occ.length;
   // seat them on the left half of the mat (the fire sits on the right), spread evenly
   occ.forEach((cid,i)=>{
     const col=getCharColor(cid)||'#caa';
@@ -3845,8 +3859,11 @@ function enterInterior(key){
   document.querySelector('#interior-title .it-main').textContent = I.name;
   document.querySelector('#interior-title .it-sub').textContent = I.pov||'';
   renderInteriorOccupants(key);
-  const occ=_occ(key).map(_fname);
-  const who = occ.length? (occ.length<=2?occ.join(' & '):occ.length+' of them')+' sheltering here' : 'empty right now';
+  const present=_present(key), owners=_owners(key);
+  let who;
+  if(present.length){ const ns=present.map(_fname); who=(ns.length<=2?ns.join(' & '):ns.length+' of them')+' sheltering here'; }
+  else if(owners.length){ const ns=owners.map(_fname); who=(ns.length<=2?ns.join(' & '):'they')+(ns.length===1?' bunks here':' bunk here')+' — '+_whereLabel(owners[0])+' right now'; }
+  else who='no one here right now';
   document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
   document.getElementById('interior').classList.add('show');
 }
@@ -3856,10 +3873,12 @@ function renderInteriorHotspots(){
   layer.innerHTML='';
   Object.keys(INTERIORS).forEach(key=>{
     const I=INTERIORS[key]; const {left,top}=svgToViewport(I.hx,I.hy);
-    const occ=_occ(key).map(_fname);
-    const occupied=occ.length>0;
-    const txt = occ.length===0?'' : occ.length===1?occ[0]+" inside" : occ.length===2?occ.join(' & ') : occ.length+' inside';
-    const d=document.createElement('div'); d.className='hotspot'+(occupied?' occupied':'');
+    const present=_present(key).map(_fname), owners=_owners(key).map(_fname);
+    let txt, cls;
+    if(present.length){ txt = present.length===1?present[0]+' inside' : present.length===2?present.join(' & ')+' inside' : present.length+' inside'; cls=' occupied'; }
+    else if(owners.length){ txt = (owners.length<=2?owners.join(' & '):owners.length+' of them')+'’s spot'; cls=' vacant'; }
+    else { txt=''; cls=''; }
+    const d=document.createElement('div'); d.className='hotspot'+cls;
     d.style.left=left; d.style.top=top;
     d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge"><span class="em">🪔</span>${txt}</div><div class="hs-tap">tap to look inside</div>
       <div style="width:80px;height:64px"></div>`;
