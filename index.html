@@ -3698,9 +3698,11 @@ loadVote();
   #interior-exit{position:fixed;top:12px;right:12px;z-index:100003;background:rgba(12,18,14,.72);backdrop-filter:blur(7px);
     -webkit-backdrop-filter:blur(7px);border:1px solid rgba(255,255,255,.22);color:#eef3ff;
     font:700 13px/1 'Plus Jakarta Sans',sans-serif;padding:9px 15px;border-radius:19px;cursor:pointer}
-  #interior-cap{position:fixed;bottom:16px;left:50%;transform:translateX(-50%);z-index:100003;max-width:84vw;text-align:center;
-    color:rgba(255,236,200,.92);font:600 12.5px/1.35 'Plus Jakarta Sans',sans-serif;
-    background:rgba(10,15,12,.62);padding:7px 15px;border-radius:13px;backdrop-filter:blur(5px)}
+  #interior-scrim{position:fixed;left:0;right:0;bottom:0;height:170px;z-index:100002;pointer-events:none;
+    background:linear-gradient(to top,rgba(7,11,8,.8),rgba(7,11,8,.42) 42%,rgba(7,11,8,0))}
+  #interior-cap{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);z-index:100003;max-width:88vw;text-align:center;
+    color:#fff6e8;font:600 13px/1.4 'Plus Jakarta Sans',sans-serif;letter-spacing:.2px;
+    text-shadow:0 1px 7px rgba(0,0,0,.95),0 1px 3px rgba(0,0,0,.85)}
   #interior-title{position:fixed;top:14px;left:14px;z-index:100003;display:flex;align-items:center;gap:8px;
     background:rgba(12,18,14,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
     border:1px solid rgba(255,210,130,.34);border-radius:14px;padding:8px 14px;box-shadow:0 4px 16px rgba(0,0,0,.4)}
@@ -3717,6 +3719,13 @@ loadVote();
   @keyframes iwFire{from{transform:scaleY(.9) scaleX(1.04)}to{transform:scaleY(1.1) scaleX(.95)}}
   .iw-ember{transform-box:fill-box;transform-origin:center;animation:iwEmber 2.4s ease-out infinite}
   @keyframes iwEmber{0%{opacity:0;transform:translateY(0)}20%{opacity:.9}100%{opacity:0;transform:translateY(-46px)}}
+  .iw-sway{transform-box:fill-box;transform-origin:top center;animation:iwSway 7s ease-in-out infinite}
+  .iw-sway2{transform-box:fill-box;transform-origin:top center;animation:iwSway 9.5s ease-in-out infinite reverse}
+  @keyframes iwSway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+  .iw-mote{transform-box:fill-box;transform-origin:center;animation:iwMote 10s ease-in-out infinite}
+  @keyframes iwMote{0%{opacity:0;transform:translate(0,0)}30%{opacity:.7}70%{opacity:.6}100%{opacity:0;transform:translate(20px,-30px)}}
+  .iw-flit{transform-box:fill-box;transform-origin:center;animation:iwFlit 7s ease-in-out infinite}
+  @keyframes iwFlit{0%{transform:translate(0,0)}25%{transform:translate(16px,-12px)}50%{transform:translate(30px,5px)}75%{transform:translate(12px,14px)}100%{transform:translate(0,0)}}
   `;
   const st=document.createElement('style'); st.textContent=css; document.head.appendChild(st);
   const world=document.getElementById('world');
@@ -3724,6 +3733,7 @@ loadVote();
   const intr=document.createElement('div'); intr.id='interior';
   intr.innerHTML=`<div id="interior-scene"></div><div id="interior-chars"></div>
     <div id="interior-title"><span class="it-ico"></span><div><div class="it-main"></div><div class="it-sub"></div></div></div>
+    <div id="interior-scrim"></div>
     <button id="interior-exit" onclick="exitInterior()">↩ step out</button><div id="interior-cap"></div>`;
   document.body.appendChild(intr);
 })();
@@ -3757,42 +3767,67 @@ function windowSky(){
 function _appr(cid){ return (S.chars[cid]&&S.chars[cid].appearance)||{}; }
 // ── the live jungle seen through a shelter opening: layered depth, sky, weather, life ──
 function jungleView(x,y,w,h,win,opt){
-  opt=opt||{}; const F=n=>n.toFixed(1);
+  opt=opt||{}; const F=n=>n.toFixed(1); const N=win.night;
   const horizon = y + h*(opt.high?0.50:0.56);   // where the canopy tops sit
-  const sx = x + w*(win.night?0.72:0.28), sy = y + h*0.19;
+  const sx = x + w*(N?0.72:0.28), sy = y + h*0.18;
+  // per-cycle palette for foliage so each time of day feels distinct & relaxing
+  const G = N ? ['#2b5238','#1f4029','#16301e','#102417','#0c1c12']
+        : (win.top==='#ec8f54') ? ['#6e8a4a','#557239','#3f5b2c','#2f4a23','#24381b']   // golden evening
+        : (win.top==='#a6cfe6') ? ['#8fb56a','#6e9a4c','#52803a','#3c662c','#2c5022']   // soft morning
+        : ['#7cae5a','#5c9243','#437534','#315c28','#244620'];                          // lush midday
   let s=`<defs>
-    <linearGradient id="jvsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset=".55" stop-color="${win.bot}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient>
+    <linearGradient id="jvsky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset=".4" stop-color="${win.top}"/><stop offset=".72" stop-color="${win.bot}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient>
     <radialGradient id="jvsun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fffae6"/><stop offset=".35" stop-color="#fff1b8" stop-opacity=".85"/><stop offset="1" stop-color="#fff1b8" stop-opacity="0"/></radialGradient>
-    <linearGradient id="jvmist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.night?'#243a54':'#f3f8ef'}" stop-opacity="0"/><stop offset="1" stop-color="${win.night?'#243a54':'#eaf3ea'}" stop-opacity=".55"/></linearGradient></defs>`;
+    <radialGradient id="jvbloom" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${N?'#9fb6d6':'#fff6da'}" stop-opacity="${N?'.28':'.5'}"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="jvmist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#2c4664':'#f3f8ef'}" stop-opacity="0"/><stop offset="1" stop-color="${N?'#2c4664':'#eef5e9'}" stop-opacity=".6"/></linearGradient>
+    <radialGradient id="jvvig" cx="50%" cy="46%" r="62%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0a140d" stop-opacity=".4"/></radialGradient></defs>`;
   s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#jvsky)"/>`;
+  // soft light bloom over the sky
+  s+=`<circle cx="${F(sx)}" cy="${F(sy+10)}" r="${F(h*0.6)}" fill="url(#jvbloom)"/>`;
   // celestial body
-  if(win.night){
-    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="52" fill="url(#jvsun)" opacity=".5"/><circle cx="${F(sx)}" cy="${F(sy)}" r="24" fill="#eef2ff"/><circle cx="${F(sx+10)}" cy="${F(sy-6)}" r="21" fill="${win.top}"/>`;
-    for(let i=0;i<28;i++) s+=`<circle cx="${F(x+(i*131+37)%w)}" cy="${F(y+(i*71)%(h*0.5))}" r="${i%3?'.8':'1.5'}" fill="#fff" opacity="${(.35+(i%4)*.15).toFixed(2)}"/>`;
+  if(N){
+    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="54" fill="url(#jvsun)" opacity=".55"/><circle cx="${F(sx)}" cy="${F(sy)}" r="24" fill="#eef2ff"/><circle cx="${F(sx+10)}" cy="${F(sy-6)}" r="21" fill="${win.top}"/>`;
+    for(let i=0;i<30;i++) s+=`<circle cx="${F(x+(i*131+37)%w)}" cy="${F(y+(i*71)%(h*0.48))}" r="${i%3?'.8':'1.5'}" fill="#fff" opacity="${(.35+(i%4)*.15).toFixed(2)}"/>`;
   } else {
-    let rays='<g class="iw-ray">'; for(let i=-3;i<=3;i++) rays+=`<polygon points="${F(sx)},${F(sy)} ${F(sx+i*64-34)},${F(y+h)} ${F(sx+i*64+34)},${F(y+h)}" fill="#fff7d6" opacity=".5"/>`; s+=rays+'</g>';
-    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="82" fill="url(#jvsun)"/><circle cx="${F(sx)}" cy="${F(sy)}" r="27" fill="#fffdf0"/>`;
-    for(let i=0;i<3;i++){ const bx=x+w*0.52+i*44, by=y+h*0.16+i*15; s+=`<path d="M ${F(bx)} ${F(by)} q 8 -7 15 0 q 8 -7 15 0" stroke="#33473a" stroke-width="2" fill="none" opacity=".5"/>`; }
+    let rays='<g class="iw-ray">'; for(let i=-3;i<=3;i++) rays+=`<polygon points="${F(sx)},${F(sy)} ${F(sx+i*64-40)},${F(y+h)} ${F(sx+i*64+40)},${F(y+h)}" fill="#fff7d6" opacity=".45"/>`; s+=rays+'</g>';
+    s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="86" fill="url(#jvsun)"/><circle cx="${F(sx)}" cy="${F(sy)}" r="27" fill="#fffdf0"/>`;
+    for(let i=0;i<4;i++){ const bx=x+w*0.5+i*40, by=y+h*0.15+(i%2)*18; s+=`<path d="M ${F(bx)} ${F(by)} q 8 -7 15 0 q 8 -7 15 0" stroke="#33473a" stroke-width="2" fill="none" opacity=".45"/>`; }
   }
-  // distant misty ridge
-  s+=`<path d="M ${x} ${F(horizon)} Q ${F(x+w*.28)} ${F(horizon-58)} ${F(x+w*.5)} ${F(horizon-18)} Q ${F(x+w*.76)} ${F(horizon-64)} ${x+w} ${F(horizon-8)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${win.night?'#2a3b50':'#9fb9a8'}" opacity=".5"/>`;
-  s+=`<rect x="${x}" y="${F(horizon-34)}" width="${w}" height="78" fill="url(#jvmist)"/>`;
-  // canopy depth layers (back -> front)
-  const layers=[{o:.55,c:win.night?'#234630':'#41714a',d:0},{o:.82,c:win.night?'#1a3522':'#2f5536',d:26},{o:1,c:win.canopy,d:58}];
+  // two distant misty ridges (depth)
+  s+=`<path d="M ${x} ${F(horizon-12)} Q ${F(x+w*.3)} ${F(horizon-70)} ${F(x+w*.55)} ${F(horizon-26)} Q ${F(x+w*.8)} ${F(horizon-72)} ${x+w} ${F(horizon-18)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#33486a':'#acc4b3'}" opacity=".45"/>`;
+  s+=`<path d="M ${x} ${F(horizon)} Q ${F(x+w*.26)} ${F(horizon-50)} ${F(x+w*.5)} ${F(horizon-14)} Q ${F(x+w*.74)} ${F(horizon-58)} ${x+w} ${F(horizon-6)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#2a3b58':'#8fb09e'}" opacity=".5"/>`;
+  s+=`<rect x="${x}" y="${F(horizon-38)}" width="${w}" height="84" fill="url(#jvmist)"/>`;
+  // 5 canopy depth layers (back -> front), lush gradient
+  const layers=[{o:.6,d:-6},{o:.78,d:14},{o:.9,d:34},{o:.97,d:56},{o:1,d:82}];
   layers.forEach((L,li)=>{ let p=`M ${x} ${F(y+h)} L ${x} ${F(horizon+L.d)} `;
-    for(let i=0;i<=12;i++){ p+=`L ${F(x+i*w/12)} ${F(horizon+L.d-((i*53+li*37)%42))} `; } p+=`L ${x+w} ${F(y+h)} Z`;
-    s+=`<path d="${p}" fill="${L.c}" opacity="${L.o}"/>`; });
-  // a few full trees for jungle character
-  [[0.15,30],[0.85,36],[0.5,24]].forEach(([fx,r])=>{ const tx=x+w*fx, ty=horizon+12;
-    s+=`<rect x="${F(tx-4)}" y="${F(ty)}" width="8" height="${F(y+h-ty)}" fill="${win.canopy}" opacity=".85"/>`;
-    s+=`<circle cx="${F(tx)}" cy="${F(ty)}" r="${r}" fill="${win.night?'#13241a':'#274a2e'}" opacity=".92"/><circle cx="${F(tx-r*.5)}" cy="${F(ty+5)}" r="${F(r*.7)}" fill="${win.night?'#16291d':'#2c542f'}" opacity=".92"/>`; });
-  // hanging vines drooping into the top of the view
-  for(let i=0;i<5;i++){ const vx=x+w*(0.12+i*0.19); s+=`<path d="M ${F(vx)} ${y} q 12 ${F(h*.18)} -5 ${F(h*.32)}" stroke="${win.night?'#1b2f20':'#2f5536'}" stroke-width="3" fill="none" opacity=".75"/><ellipse cx="${F(vx-5)}" cy="${F(y+h*.32)}" rx="8" ry="4.5" fill="${win.night?'#1f3525':'#3a6b40'}" opacity=".75"/>`; }
-  // fireflies at night
-  if(win.night) for(let i=0;i<11;i++){ const fx=x+(i*97+30)%w, fy=y+h*0.42+(i*57)%(h*0.42); s+=`<circle class="iw-fly" style="animation-delay:${(i*0.37).toFixed(2)}s" cx="${F(fx)}" cy="${F(fy)}" r="2.4" fill="#fff2a0"/>`; }
+    for(let i=0;i<=14;i++){ const bump=((i*53+li*37)%44)+ (i%2? 8:0); p+=`L ${F(x+i*w/14)} ${F(horizon+L.d-bump)} `; } p+=`L ${x+w} ${F(y+h)} Z`;
+    s+=`<path d="${p}" fill="${G[li]}" opacity="${L.o}"/>`; });
+  // full trees with fuller multi-blob crowns, varied depth
+  [[0.12,30,3],[0.3,22,4],[0.5,26,3],[0.68,20,4],[0.86,34,2],[0.97,24,3]].forEach(([fx,r,li])=>{ const tx=x+w*fx, ty=horizon+10+li*4; const cc=G[Math.min(li+1,4)];
+    s+=`<rect x="${F(tx-3.5)}" y="${F(ty)}" width="7" height="${F(y+h-ty)}" fill="${N?'#16291d':'#3a2c1c'}" opacity=".8"/>`;
+    s+=`<circle cx="${F(tx)}" cy="${F(ty)}" r="${r}" fill="${cc}"/><circle cx="${F(tx-r*.6)}" cy="${F(ty+r*.2)}" r="${F(r*.66)}" fill="${cc}"/><circle cx="${F(tx+r*.6)}" cy="${F(ty+r*.16)}" r="${F(r*.6)}" fill="${cc}"/><circle cx="${F(tx)}" cy="${F(ty-r*.5)}" r="${F(r*.6)}" fill="${cc}"/>`;
+    s+=`<circle cx="${F(tx-r*.3)}" cy="${F(ty-r*.3)}" r="${F(r*.4)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; });
+  // undergrowth ferns along the base of the view
+  for(let i=0;i<14;i++){ const fxp=x+(i*w/13), fb=y+h-10, fh=18+ (i*29)%26; const fc=G[4];
+    let fr=`<g opacity=".9">`; for(let b=-2;b<=2;b++){ fr+=`<path d="M ${F(fxp)} ${F(fb)} Q ${F(fxp+b*10)} ${F(fb-fh*.7)} ${F(fxp+b*15)} ${F(fb-fh)}" stroke="${fc}" stroke-width="3" fill="none"/>`; } s+=fr+'</g>'; }
+  // hanging vines + leaves drooping into the top of the view
+  for(let i=0;i<6;i++){ const vx=x+w*(0.08+i*0.16), vl=h*(0.26+(i%3)*0.08); s+=`<path d="M ${F(vx)} ${y} q 14 ${F(vl*.6)} -6 ${F(vl)}" stroke="${N?'#1b2f20':'#3a6b40'}" stroke-width="3" fill="none" opacity=".8"/><ellipse cx="${F(vx-6)}" cy="${F(y+vl)}" rx="9" ry="5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".8"/><ellipse cx="${F(vx+2)}" cy="${F(y+vl*.7)}" rx="6" ry="3.5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".6"/>`; }
+  // big foreground frame leaves drooping from the top edge — pointed tropical leaves w/ midribs
+  const lfa=N?'#13291b':'#244a2b', lfb=N?'#0e1f15':'#1c3a22';
+  const leaf=(px,py,L,W,rot,fill,op)=>`<g transform="translate(${F(px)} ${F(py)}) rotate(${rot})" opacity="${op}"><path d="M 0 0 Q ${W} ${F(L*.42)} 0 ${L} Q ${-W} ${F(L*.42)} 0 0 Z" fill="${fill}"/><path d="M 0 4 L 0 ${F(L-5)}" stroke="#000" stroke-width="1.4" opacity=".16"/><path d="M 0 ${F(L*.32)} L ${F(W*.5)} ${F(L*.46)} M 0 ${F(L*.54)} L ${F(-W*.45)} ${F(L*.64)}" stroke="#000" stroke-width="1" opacity=".1" fill="none"/></g>`;
+  s+=`<g class="iw-sway">`+leaf(x+w*.07,y-4,h*.36,28,16,lfb,'.95')+leaf(x+w*.18,y-8,h*.27,21,40,lfa,'.9')+`</g>`;
+  s+=`<g class="iw-sway2">`+leaf(x+w*.93,y-4,h*.36,28,-16,lfb,'.95')+leaf(x+w*.82,y-8,h*.27,21,-40,lfa,'.9')+`</g>`;
+  s+=`<g class="iw-sway">`+leaf(x+w*.5,y-10,h*.3,25,4,lfb,'.92')+`</g>`;
+  // life: butterflies + drifting motes by day, fireflies by night
+  if(N){ for(let i=0;i<12;i++){ const fx=x+(i*97+30)%w, fy=y+h*0.4+(i*57)%(h*0.44); s+=`<circle class="iw-fly" style="animation-delay:${(i*0.37).toFixed(2)}s" cx="${F(fx)}" cy="${F(fy)}" r="2.5" fill="#fff2a0"/>`; } }
+  else { for(let i=0;i<9;i++){ const mx=x+(i*113+50)%w, my=y+h*0.3+(i*67)%(h*0.5); s+=`<circle class="iw-mote" style="animation-delay:${(i*1.1).toFixed(1)}s" cx="${F(mx)}" cy="${F(my)}" r="2" fill="#fff7d6"/>`; }
+    [[0.34,0.42,'#f2b134'],[0.64,0.54,'#e98aa8']].forEach(([bx,by,bc],i)=>{ const px=x+w*bx, py=y+h*by;
+      s+=`<g class="iw-flit" style="animation-delay:${i*2.5}s"><g transform="translate(${F(px)} ${F(py)})"><ellipse cx="-5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="-4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><ellipse cx="4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><line x1="0" y1="-6" x2="0" y2="7" stroke="#2a2418" stroke-width="1.6"/></g></g>`; }); }
   // rain
-  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<48;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
-  s+=`<rect x="${x}" y="${F(y+h-13)}" width="${w}" height="16" fill="${win.night?'#0c160e':'#23371f'}"/>`;
+  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<52;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
+  s+=`<rect x="${x}" y="${F(y+h-12)}" width="${w}" height="16" fill="${G[4]}"/>`;
+  // soft vignette for a cozy, relaxing frame
+  s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#jvvig)"/>`;
   return s;
 }
 // ── a small flickering campfire (logs, flames, ember sparks, glow) ──
