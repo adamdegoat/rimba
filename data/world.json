@@ -1,16 +1,16 @@
 {
   "day": 2,
-  "cycle": "midday",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-09",
-  "pulse": "For the first time, Wesley's anxiety quieted into focus—and Chills saw it, and let him work.",
-  "scene": "At midday, Chills and Wesley worked together at the open engine bay, Wesley carefully undoing the battery wiring under Chills' patient direction while Mutu watched from the hood.",
+  "pulse": "Wesley made it through a full day of real work—Chills sees that. The jungle hasn't softened, but Wesley isn't drowning anymore.",
+  "scene": "Wesley's hands are torn from a day of salvaging at the Cayenne, but he finished without breaking. By evening they're eating Mutu's fresh kill at the fire while the lean-to stands secure for the night.",
   "resources_prev": {
     "food": 0,
-    "water": 46,
-    "wood": 41,
+    "water": 50,
+    "wood": 44,
     "medicine": 20
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 92,
+      "condition": 88,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 50,
-    "wood": 44,
+    "water": 54,
+    "wood": 43,
     "medicine": 20
   },
   "fire": {
     "lit": true,
-    "fuel": 12
+    "fuel": 16
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-09:midday",
+  "last_cycle_key": "2026-06-09:evening",
   "cayenne": {
     "stripped": []
   },

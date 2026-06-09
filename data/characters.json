@@ -5,27 +5,27 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 66,
-      "openness": 73,
+      "trust": 69,
+      "openness": 74,
       "ambition": 55,
-      "loneliness": 17,
+      "loneliness": 13,
       "resilience": 93,
       "health": 100,
-      "hunger": 51,
+      "hunger": 49,
       "thirst": 53,
-      "energy": 69
+      "energy": 62
     },
-    "mood": "focused",
+    "mood": "satisfied",
     "location": {
-      "waypoint": "cayenne_door",
+      "waypoint": "shelter_mouth",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 34,
-        "tension": 8,
+        "closeness": 37,
+        "tension": 6,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "working_together"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -82,6 +82,11 @@
         "day": 2,
         "text": "Wesley bent to real work without falling apart. That matters.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "Wesley worked hard and didn't panic. He's stepping into something real.",
+        "weight": 2
       }
     ]
   },
@@ -91,31 +96,31 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 57,
-      "openness": 56,
+      "trust": 60,
+      "openness": 58,
       "ambition": 80,
-      "loneliness": 31,
-      "resilience": 25,
+      "loneliness": 27,
+      "resilience": 27,
       "health": 100,
-      "hunger": 51,
+      "hunger": 49,
       "thirst": 53,
-      "energy": 69
+      "energy": 62
     },
-    "mood": "determined",
+    "mood": "weary",
     "location": {
-      "waypoint": "cayenne_door",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 30,
-        "tension": 11,
+        "closeness": 33,
+        "tension": 9,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 9,
+        "closeness": 11,
         "tension": 0,
         "attraction": 0
       }
@@ -138,7 +143,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "working_together"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -170,6 +175,11 @@
         "day": 2,
         "text": "I didn't panic. I just listened and did it. He trusted me.",
         "weight": 2
+      },
+      {
+        "day": 2,
+        "text": "Made it through a full day of work without breaking. Chills just noticed.",
+        "weight": 2
       }
     ]
   },
@@ -180,19 +190,19 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 62,
-      "openness": 40,
+      "trust": 63,
+      "openness": 41,
       "ambition": 0,
-      "loneliness": 38,
+      "loneliness": 35,
       "resilience": 85,
-      "hunger": 51,
+      "hunger": 49,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
-    "mood": "watchful",
+    "mood": "content",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
@@ -204,7 +214,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 9,
+        "closeness": 11,
         "tension": 0,
         "attraction": 0
       }
@@ -216,6 +226,9 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null
+    "interaction": {
+      "with": "chills",
+      "state": "sitting_together"
+    }
   }
 }
