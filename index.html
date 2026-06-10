@@ -4535,8 +4535,9 @@ function lookoutSVG(){
     s+=`<path class="iw-flash" d="M 690 70 L 660 190 L 690 190 L 650 320" stroke="#fdf6c8" stroke-width="3" fill="none" opacity=".0"/>`; }
   s+=`<rect width="1000" height="600" fill="url(#lkwash)" pointer-events="none"/>`;
   s+=`<rect width="1000" height="600" fill="url(#lkvig)" pointer-events="none"/>`;
-  // ── secret falls hotspot — fully invisible: no cursor, no tooltip, no hint; only we know it's here ──
-  s+=`<rect class="lk-secret" x="34" y="252" width="176" height="220" fill="#fff" opacity="0" pointer-events="all"/>`;
+  // ── secret falls hotspot — the WHOLE waterfall (cliff + cascade + pool) is the tap target,
+  //    fully invisible (no cursor/tooltip/hint), drawn last so nothing covers it ──
+  s+=`<rect class="lk-secret" x="0" y="206" width="266" height="286" fill="#fff" opacity="0" pointer-events="all"/>`;
   return s+`</svg>`;
 }
 // ── parallax driver for the Waterfall Lookout: layer groups (.lkL, data-px=depth) drift at
@@ -4595,7 +4596,16 @@ function enterInterior(key){
   // parallax driver runs for any interior that has depth layers (.lkL) — lookout + shelters
   requestAnimationFrame(startLookoutParallax);
   // wire the secret falls hotspot → the hidden hollow behind the waterfall
-  const _sec=scene.querySelector('.lk-secret'); if(_sec) _sec.addEventListener('click',()=>{ window.location.href='behind-the-falls.html'; });
+  // wire the secret falls hotspot — use pointer/touch (iOS fires these on tap even without a cursor;
+  // a tap-vs-scroll guard avoids navigating when the user is panning the view)
+  const _sec=scene.querySelector('.lk-secret');
+  if(_sec){ const _go=()=>{ window.location.href='behind-the-falls.html'; };
+    let _dx=0,_dy=0,_moved=false;
+    _sec.addEventListener('pointerdown',e=>{ _dx=e.clientX; _dy=e.clientY; _moved=false; });
+    _sec.addEventListener('pointermove',e=>{ if(Math.abs(e.clientX-_dx)>12||Math.abs(e.clientY-_dy)>12) _moved=true; });
+    _sec.addEventListener('pointerup',()=>{ if(!_moved) _go(); });
+    _sec.addEventListener('click', _go);                       // desktop fallback
+    _sec.addEventListener('touchend',e=>{ if(!_moved){ e.preventDefault(); _go(); } }, {passive:false}); }
 }
 function exitInterior(){ stopLookoutParallax(); document.getElementById('interior').classList.remove('show'); }
 function renderInteriorHotspots(){
