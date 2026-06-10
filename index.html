@@ -4460,7 +4460,6 @@ function lookoutSVG(){
   if(!N && !win.rain) s+=`<g fill="none" opacity=".38">${[['#ff9b6b',70],['#ffe08a',64],['#8fe0a0',58],['#8fc3e8',52]].map(([c,r])=>`<path d="M ${140-r} 452 A ${r} ${r} 0 0 1 ${140+r} 452" stroke="${c}" stroke-width="3"/>`).join('')}</g>`;
   // ── secret: the falls hide a hollow — tap the water to slip behind it (subtle twinkle hint) ──
   s+=`<g fill="#eaf6ff" opacity=".5">${[[120,332],[148,392],[112,420]].map(([x,y],i)=>`<path class="iw-twinkle" style="animation-delay:${(i*1.3).toFixed(1)}s" d="M ${x} ${y-4} l 1.3 3 l 3 1.3 l -3 1.3 l -1.3 3 l -1.3 -3 l -3 -1.3 l 3 -1.3 Z"/>`).join('')}</g>`;
-  s+=`<rect class="lk-secret" x="74" y="280" width="116" height="176" fill="#fff" opacity="0" pointer-events="all" style="cursor:pointer"><title>behind the falls…</title></rect>`;
   // ── the river runs across the FAR side, BEYOND the camp — in front of the characters, who
   //    face it (we're behind them, up at the falls). The waterfall's pool is its left end. ──
   s+=`<path d="M 96 436 Q 350 452 600 446 Q 820 440 1012 452 L 1012 478 Q 820 466 600 472 Q 350 478 96 460 Z" fill="url(#lkriver)" opacity=".9"/>`;
@@ -4536,8 +4535,10 @@ function lookoutSVG(){
   }
   if(win.storm){ s+=`<rect width="1000" height="600" fill="#10182a" opacity=".26"/>`;
     s+=`<path class="iw-flash" d="M 690 70 L 660 190 L 690 190 L 650 320" stroke="#fdf6c8" stroke-width="3" fill="none" opacity=".0"/>`; }
-  s+=`<rect width="1000" height="600" fill="url(#lkwash)"/>`;
-  s+=`<rect width="1000" height="600" fill="url(#lkvig)"/>`;
+  s+=`<rect width="1000" height="600" fill="url(#lkwash)" pointer-events="none"/>`;
+  s+=`<rect width="1000" height="600" fill="url(#lkvig)" pointer-events="none"/>`;
+  // ── secret falls hotspot — LAST so it's on top of every overlay and reliably catches the tap ──
+  s+=`<rect class="lk-secret" x="34" y="252" width="176" height="220" fill="#fff" opacity="0" pointer-events="all" style="cursor:pointer"><title>behind the falls…</title></rect>`;
   return s+`</svg>`;
 }
 // ── parallax driver for the Waterfall Lookout: layer groups (.lkL, data-px=depth) drift at
@@ -4574,7 +4575,7 @@ function enterInterior(key){
   // subject shows first, with room to pan left/right. shelters centre on the door; the
   // waterfall lookout opens on the falls (viewBox ~x130) with the camp trailing to the right.
   requestAnimationFrame(()=>{ try{
-    scene.scrollLeft = I.scenery ? Math.min(scene.scrollWidth-scene.clientWidth, (130/1000)*scene.scrollWidth)
+    scene.scrollLeft = I.scenery ? Math.min(scene.scrollWidth-scene.clientWidth, (48/1000)*scene.scrollWidth)
                                  : (scene.scrollWidth-scene.clientWidth)/2;
     const hint=document.getElementById('interior-hint'); if(hint){ hint.classList.remove('show'); void hint.offsetWidth;
       if(scene.scrollWidth-scene.clientWidth>40) hint.classList.add('show'); } }catch(e){} });
