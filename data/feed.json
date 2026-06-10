@@ -1177,5 +1177,96 @@
       }
     ],
     "timestamp": "2026-06-10T22:32:30.661133"
+  },
+  {
+    "day": 4,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Chills rises early and tends the fire, then walks the perimeter checking the wood pile and assessing what needs doing today.",
+    "thought": "Wood's running thin. Need to focus.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "attentive",
+    "timestamp": "2026-06-11T07:02:34.306848"
+  },
+  {
+    "day": 4,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Wesley wakes slowly and inches toward the fire, carefully testing his swollen hands, wincing at the tightness.",
+    "thought": "Still can't grip anything. Useless.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resigned",
+    "timestamp": "2026-06-11T07:02:34.306848"
+  },
+  {
+    "day": 4,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Mutu drops a small lizard at the camp edge and slinks up to the Cayenne hood to rest—morning's work done.",
+    "thought": "Good hunt, rest now.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "satisfied",
+    "timestamp": "2026-06-11T07:02:34.306848"
+  },
+  {
+    "day": 4,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills",
+      "mutu"
+    ],
+    "description": "Wesley tests his swollen hands at the fire while Chills checks the depleted wood pile; Mutu has left a small lizard at the camp edge, a quiet scout's gift before harder work.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Morning. How bad are they?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Still swollen. Another day healing."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So what do I do today?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Rest. Help where you can without using your hands."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Look what Mutu brought us."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. She's earning her keep."
+      },
+      {
+        "speaker": "wesley",
+        "line": "At least one of us is doing something."
+      },
+      {
+        "speaker": "chills",
+        "line": "You are. Just differently. We'll manage."
+      }
+    ],
+    "timestamp": "2026-06-11T07:02:34.306848"
   }
 ]

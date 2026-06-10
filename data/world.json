@@ -1,24 +1,24 @@
 {
-  "day": 3,
-  "cycle": "night",
+  "day": 4,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-10",
-  "pulse": "Wesley stops fighting his limits for the first time—and finds something like trust.",
-  "scene": "The fish cooked slow over the steady fire while Wesley's swollen hands finally rested. Now, as night thickens, Chills watches Wesley accept what he can't change—and Mutu keeps him steady.",
+  "last_run_date": "2026-06-11",
+  "pulse": "Wesley's stopped panicking, but the empty food and low wood say this peace is borrowed.",
+  "scene": "Wesley tests his swollen hands at the fire while Chills checks the depleted wood pile, and Mutu stretches on the Cayenne hood—a quiet morning, but resource scarcity pressing in.",
   "resources_prev": {
     "food": 0,
-    "water": 74,
+    "water": 82,
     "wood": 37,
-    "medicine": 14
+    "medicine": 13
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 64,
+      "condition": 60,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 82,
-    "wood": 37,
+    "water": 86,
+    "wood": 36,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 4
+    "fuel": 8
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-10:night",
+  "last_cycle_key": "2026-06-11:morning",
   "cayenne": {
     "stripped": []
   },
@@ -52,8 +52,8 @@
     "3": "Day 3 began with Wesley's raw hands giving out after two days of steady work. Chills shifted to fishing while Wesley rested—a lesson in patience over progress. By nightfall the two had settled into an unexpected rhythm: cooked fish, the fire steady, Mutu held Wesley close, and rest became work."
   },
   "lean": {
-    "id": "ration_carefully",
-    "label": "Ration carefully",
-    "desc": "Chills' steady wisdom—Wesley learns survival is about patience, not quick wins"
+    "id": "hold_camp",
+    "label": "Hold and consolidate",
+    "desc": "They're safe here. Mutu hunts. This hard-won peace matters."
   }
 }

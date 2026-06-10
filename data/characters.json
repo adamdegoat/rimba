@@ -5,15 +5,15 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 75,
+      "trust": 76,
       "openness": 75,
-      "ambition": 54,
+      "ambition": 55,
       "loneliness": 0,
       "resilience": 93,
       "health": 100,
-      "hunger": 42,
+      "hunger": 41,
       "thirst": 53,
-      "energy": 81
+      "energy": 67
     },
     "mood": "attentive",
     "location": {
@@ -24,12 +24,12 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 49,
+        "closeness": 51,
         "tension": 0,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 82,
+        "closeness": 83,
         "tension": 0,
         "attraction": 0
       }
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "helping"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -126,15 +126,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 67,
-      "openness": 64,
-      "ambition": 77,
-      "loneliness": 11,
-      "resilience": 35,
+      "trust": 69,
+      "openness": 65,
+      "ambition": 76,
+      "loneliness": 8,
+      "resilience": 36,
       "health": 100,
-      "hunger": 42,
+      "hunger": 41,
       "thirst": 53,
-      "energy": 34
+      "energy": 20
     },
     "mood": "resigned",
     "location": {
@@ -145,12 +145,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 45,
-        "tension": 3,
+        "closeness": 47,
+        "tension": 2,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 22,
+        "closeness": 23,
         "tension": 0,
         "attraction": 0
       }
@@ -254,28 +254,28 @@
       "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 26,
+      "loneliness": 24,
       "resilience": 85,
-      "hunger": 42,
+      "hunger": 41,
       "thirst": 53,
-      "energy": 85,
+      "energy": 71,
       "health": 100
     },
-    "mood": "affectionate",
+    "mood": "satisfied",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "cayenne_hood",
       "x": 80,
       "y": 30
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 88,
+        "closeness": 89,
         "tension": 0,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 24,
+        "closeness": 25,
         "tension": 0,
         "attraction": 0
       }
@@ -287,9 +287,6 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "wesley",
-      "state": "sitting_together"
-    }
+    "interaction": null
   }
 }

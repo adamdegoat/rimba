@@ -1,31 +1,35 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-10",
+    "id": "2026-06-11",
     "closes": "tonight",
-    "question": "Wesley's proven himself today. Tomorrow, does Chills risk the river crossing toward higher ground—or hold camp and protect the peace they've finally found?",
+    "question": "Wesley's hands are broken—maybe for days. At the river with steady rhythm, Chills must choose: stay, cross, or climb for rescue?",
     "options": [
       {
-        "id": "cross_together",
-        "label": "Risk the crossing",
-        "desc": "Wesley's ready. Together they escape the swamp. Possibly toward rescue."
+        "id": "stay_camp",
+        "label": "Stay and rest",
+        "desc": "Let Wesley heal, keep the jungle's rhythm, wait for strength"
       },
       {
-        "id": "hold_camp",
-        "label": "Hold and consolidate",
-        "desc": "They're safe here. Mutu hunts. This hard-won peace matters."
+        "id": "cross_river",
+        "label": "Risk the crossing",
+        "desc": "Wesley navigates from the boat—water crossing, forward momentum, danger"
+      },
+      {
+        "id": "climb_rescue",
+        "label": "Climb for rescue",
+        "desc": "Uphill to visibility—Wesley's mind leads, Chills carries, they reach for help"
       }
     ]
   },
   "in_play": {
-    "id": "ration_carefully",
-    "label": "Ration carefully",
-    "desc": "Chills' steady wisdom—Wesley learns survival is about patience, not quick wins",
-    "decided": "2026-06-10",
-    "votes": 5,
+    "id": "hold_camp",
+    "label": "Hold and consolidate",
+    "desc": "They're safe here. Mutu hunts. This hard-won peace matters.",
+    "decided": "2026-06-11",
+    "votes": 1,
     "tally": {
-      "feast_tonight": 1,
-      "ration_carefully": 4
+      "hold_camp": 1
     }
   }
 }
