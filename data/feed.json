@@ -1079,5 +1079,103 @@
       }
     ],
     "timestamp": "2026-06-10T18:31:26.035124"
+  },
+  {
+    "day": 3,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Tends the smoked fish at the fire's edge, glancing over at Wesley's swollen hands resting on his lap, then back to the flames.",
+    "thought": "He's learning what really matters now.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "attentive",
+    "timestamp": "2026-06-10T22:32:30.661133"
+  },
+  {
+    "day": 3,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Sits with his raw, swollen hands elevated across his knees, wincing at the pain as heat and adrenaline wear off, watching Chills work the fire.",
+    "thought": "Can't work tomorrow. Can't do anything.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resigned",
+    "timestamp": "2026-06-10T22:32:30.661133"
+  },
+  {
+    "day": 3,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Presses against Wesley's leg at the fire, kneading gently and purring, as if anchoring him to something steady.",
+    "thought": "He hurts but I'm staying close.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-10T22:32:30.661133"
+  },
+  {
+    "day": 3,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Wesley finally stops fighting his limits—swollen hands elevated at the fire while Chills tends the fish and Mutu anchors him close as night settles dark around them.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands are finished. Can't work tomorrow at all."
+      },
+      {
+        "speaker": "chills",
+        "line": "They will heal. Fire, rest, clean water—that's the medicine."
+      },
+      {
+        "speaker": "wesley",
+        "line": "But there's the shelter, the wood, the—"
+      },
+      {
+        "speaker": "chills",
+        "line": "They'll wait. Your hands matter more than any of that."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So I'm useless to you now."
+      },
+      {
+        "speaker": "chills",
+        "line": "Resting is work. The real work, right now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I hate this. Needing help."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's not weakness. That's survival."
+      },
+      {
+        "speaker": "wesley",
+        "line": "At least he believes in me."
+      },
+      {
+        "speaker": "chills",
+        "line": "So do I."
+      }
+    ],
+    "timestamp": "2026-06-10T22:32:30.661133"
   }
 ]

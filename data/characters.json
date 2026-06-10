@@ -13,9 +13,9 @@
       "health": 100,
       "hunger": 42,
       "thirst": 53,
-      "energy": 47
+      "energy": 81
     },
-    "mood": "calm",
+    "mood": "attentive",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -24,7 +24,7 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 47,
+        "closeness": 49,
         "tension": 0,
         "attraction": 0
       },
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "helping"
     },
     "memories": [
       {
@@ -112,6 +112,11 @@
         "day": 3,
         "text": "Wesley's learning to trust the pace. That's the shift.",
         "weight": 2
+      },
+      {
+        "day": 3,
+        "text": "Wesley finally accepted his limits without panic or blame.",
+        "weight": 2
       }
     ]
   },
@@ -121,17 +126,17 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 66,
-      "openness": 63,
-      "ambition": 78,
-      "loneliness": 14,
-      "resilience": 34,
+      "trust": 67,
+      "openness": 64,
+      "ambition": 77,
+      "loneliness": 11,
+      "resilience": 35,
       "health": 100,
       "hunger": 42,
       "thirst": 53,
-      "energy": 0
+      "energy": 34
     },
-    "mood": "exhausted",
+    "mood": "resigned",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -140,12 +145,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 43,
+        "closeness": 45,
         "tension": 3,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 20,
+        "closeness": 22,
         "tension": 0,
         "attraction": 0
       }
@@ -230,6 +235,11 @@
         "day": 3,
         "text": "Chills didn't blame me for being broken. He just said tomorrow.",
         "weight": 2
+      },
+      {
+        "day": 3,
+        "text": "Chills didn't dismiss my pain. He said rest is the work.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -241,14 +251,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 64,
+      "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 28,
+      "loneliness": 26,
       "resilience": 85,
       "hunger": 42,
       "thirst": 53,
-      "energy": 51,
+      "energy": 85,
       "health": 100
     },
     "mood": "affectionate",
@@ -265,7 +275,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 22,
+        "closeness": 24,
         "tension": 0,
         "attraction": 0
       }
@@ -279,7 +289,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "helping"
+      "state": "sitting_together"
     }
   }
 }

@@ -1,16 +1,16 @@
 {
   "day": 3,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-10",
-  "pulse": "Wesley's hands have given out, but Chills' patience is teaching him something that matters more than speed.",
-  "scene": "By dusk Wesley's hands hung useless and Chills fed the fire alone while Mutu settled against Wesley's leg—the day's hard truth spoken without blame, the three finally moving at the jungle's speed.",
+  "pulse": "Wesley stops fighting his limits for the first time—and finds something like trust.",
+  "scene": "The fish cooked slow over the steady fire while Wesley's swollen hands finally rested. Now, as night thickens, Chills watches Wesley accept what he can't change—and Mutu keeps him steady.",
   "resources_prev": {
     "food": 0,
-    "water": 68,
-    "wood": 39,
+    "water": 74,
+    "wood": 37,
     "medicine": 14
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 68,
+      "condition": 64,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 74,
+    "water": 82,
     "wood": 37,
-    "medicine": 14
+    "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 18
+    "fuel": 4
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-10:evening",
+  "last_cycle_key": "2026-06-10:night",
   "cayenne": {
     "stripped": []
   },
@@ -48,7 +48,8 @@
   },
   "day_summaries": {
     "1": "Day 1 broke Wesley and tested Chills: the Cayenne bogged, Wesley's panic fouled the water, then he failed at fire. By nightfall Chills had coaxed a flame from dry heartwood with patient hands, and Wesley's shame cracked open — he saw it wasn't preaching but simple survival, and he believed. They ate warm. The jungle night was hard, but they would live it.",
-    "2": "Day 2 was Wesley's breakthrough—he came forward wanting to work and pushed through salvaging the Cayenne without breaking. By nightfall his hands were shredded but his fear was gone, and Mutu, sensing the shift, showed him affection for the first time. The city scholar had become a survivor."
+    "2": "Day 2 was Wesley's breakthrough—he came forward wanting to work and pushed through salvaging the Cayenne without breaking. By nightfall his hands were shredded but his fear was gone, and Mutu, sensing the shift, showed him affection for the first time. The city scholar had become a survivor.",
+    "3": "Day 3 began with Wesley's raw hands giving out after two days of steady work. Chills shifted to fishing while Wesley rested—a lesson in patience over progress. By nightfall the two had settled into an unexpected rhythm: cooked fish, the fire steady, Mutu held Wesley close, and rest became work."
   },
   "lean": {
     "id": "ration_carefully",
