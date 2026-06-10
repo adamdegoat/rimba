@@ -4153,6 +4153,10 @@ function leantoSVG(){
   <g stroke="#5a4a2e" stroke-width="1.5" opacity=".45">${[...Array(10)].map((_,i)=>`<line x1="${180+i*72}" y1="492" x2="${180+i*72}" y2="582"/>`).join('')}</g>
   <!-- hung lantern (left) casting a soft warm glow -->
   <g transform="translate(386 150)"><line x1="0" y1="-58" x2="0" y2="-30" stroke="#2a2012" stroke-width="2"/><ellipse cx="0" cy="-6" rx="34" ry="30" fill="#ffd98a" opacity=".22"/><rect x="-3" y="-38" width="6" height="9" rx="2" fill="#2a2418"/><rect x="-10" y="-30" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="-26" width="14" height="20" rx="3" fill="#ffe6ad"/></g>
+  <!-- bare camp-clearing ground just outside the open front — gives the fire/kettle a floor
+       (without it they'd float against the distant jungle) -->
+  <path d="M 150 470 Q 500 440 850 470 L 870 520 L 130 520 Z" fill="#3f2d1b"/>
+  <ellipse cx="500" cy="452" rx="240" ry="34" fill="#4c3722"/><ellipse cx="500" cy="448" rx="210" ry="26" fill="#5a4127"/>
   <!-- THE main camp fire — OUTSIDE in the clearing, beyond your feet (never inside the shelter).
        Drawn before the legs so your boots sit in front of it; mirrors S.world.fire.lit. -->
   ${win.fireLit
