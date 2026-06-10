@@ -5,27 +5,27 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 73,
+      "trust": 75,
       "openness": 75,
       "ambition": 54,
-      "loneliness": 3,
+      "loneliness": 0,
       "resilience": 93,
       "health": 100,
-      "hunger": 44,
+      "hunger": 42,
       "thirst": 53,
-      "energy": 61
+      "energy": 47
     },
     "mood": "calm",
     "location": {
-      "waypoint": "shallows",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 45,
-        "tension": 1,
+        "closeness": 47,
+        "tension": 0,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -107,6 +107,11 @@
         "day": 3,
         "text": "Wesley's learning to wait instead of force things.",
         "weight": 1
+      },
+      {
+        "day": 3,
+        "text": "Wesley's learning to trust the pace. That's the shift.",
+        "weight": 2
       }
     ]
   },
@@ -116,31 +121,31 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 64,
-      "openness": 62,
-      "ambition": 79,
-      "loneliness": 16,
-      "resilience": 33,
+      "trust": 66,
+      "openness": 63,
+      "ambition": 78,
+      "loneliness": 14,
+      "resilience": 34,
       "health": 100,
-      "hunger": 44,
+      "hunger": 42,
       "thirst": 53,
-      "energy": 13
+      "energy": 0
     },
-    "mood": "restless",
+    "mood": "exhausted",
     "location": {
-      "waypoint": "river_rocks",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 41,
-        "tension": 4,
+        "closeness": 43,
+        "tension": 3,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 18,
+        "closeness": 20,
         "tension": 0,
         "attraction": 0
       }
@@ -163,7 +168,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -220,6 +225,11 @@
         "day": 3,
         "text": "Resting is work too. Chills taught me that.",
         "weight": 2
+      },
+      {
+        "day": 3,
+        "text": "Chills didn't blame me for being broken. He just said tomorrow.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -234,16 +244,16 @@
       "trust": 64,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 30,
+      "loneliness": 28,
       "resilience": 85,
-      "hunger": 44,
+      "hunger": 42,
       "thirst": 53,
-      "energy": 65,
+      "energy": 51,
       "health": 100
     },
     "mood": "affectionate",
     "location": {
-      "waypoint": "river_rocks",
+      "waypoint": "campfire_right",
       "x": 80,
       "y": 30
     },
@@ -255,7 +265,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 20,
+        "closeness": 22,
         "tension": 0,
         "attraction": 0
       }

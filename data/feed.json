@@ -988,5 +988,96 @@
       }
     ],
     "timestamp": "2026-06-10T15:02:09.053371"
+  },
+  {
+    "day": 3,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Feeds dry heartwood to the fire, keeping it steady as the dusk darkens around the clearing.",
+    "thought": "Keep the rhythm. Let him rest now.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-10T18:31:26.035124"
+  },
+  {
+    "day": 3,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Sits at the fire's edge with his raw hands resting limp on his thighs, watching Chills work.",
+    "thought": "My hands are broken. What about tomorrow?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "exhausted",
+    "timestamp": "2026-06-10T18:31:26.035124"
+  },
+  {
+    "day": 3,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Presses against Wesley's leg and watches the fire with steady golden eyes, purring quietly.",
+    "thought": "He's hurting. I'll stay close.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-10T18:31:26.035124"
+  },
+  {
+    "day": 3,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills",
+      "mutu"
+    ],
+    "description": "At the fire's edge as dusk thickens, Wesley's hands hang useless while Chills feeds the fire and Mutu presses against Wesley's leg—a quiet collapse and acceptance.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands are finished. I can't work tomorrow."
+      },
+      {
+        "speaker": "chills",
+        "line": "Then you rest. You did good work today."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So I'm useless now."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're tired, not useless. There's a difference."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I wanted to do more."
+      },
+      {
+        "speaker": "chills",
+        "line": "You will. Tomorrow your hands heal, next day they work."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How are you always so calm?"
+      },
+      {
+        "speaker": "chills",
+        "line": "One day at a time. That's all we have."
+      }
+    ],
+    "timestamp": "2026-06-10T18:31:26.035124"
   }
 ]
