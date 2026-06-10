@@ -1750,7 +1750,7 @@ function moodKeywordFace(mk){
 
 // ── SGT TIME ─────────────────────────────────────────────
 const RUN_HOURS = [7,12,18,23]
-const CYCLE_NAMES = {7:'morning',12:'midday',18:'evening',23:'night'}
+const CYCLE_NAMES = {7:'morning',11:'midday',15:'afternoon',18:'evening',22:'night'}
 
 function getSGT() {
   const now = new Date()
@@ -3358,7 +3358,7 @@ function drawStars(active) {
 }
 
 
-const ALL_STEPS=['morning','midday','evening','night']
+const ALL_STEPS=['morning','midday','afternoon','evening','night']
 
 function cap(s){return s?s[0].toUpperCase()+s.slice(1):''}
 // Relative "time ago" from an SGT-naive ISO timestamp (correct for any visitor timezone).
@@ -3531,7 +3531,7 @@ function showDayHistoryChips() {
   if(!inner || !S.world) return
   const w = S.world
   const WX = {clear:'☀️',rain:'🌧️',storm:'⛈️',overcast:'☁️',foggy:'🌫️'}
-  const CYNAME = {morning:'Morning',midday:'Midday',evening:'Evening',night:'Night'}
+  const CYNAME = {morning:'Morning',midday:'Midday',afternoon:'Afternoon',evening:'Evening',night:'Night'}
   const allDays = [...new Set((S.feed||[]).map(e=>e.day))].sort((a,b)=>b-a)
   if(!allDays.includes(w.day)) allDays.unshift(w.day)
   inner.innerHTML = `
