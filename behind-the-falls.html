@@ -80,8 +80,15 @@ function build(){
   const mossC=N?'#1c4429':'#2f6b3e';
 
   // cannabis fan leaf — 7 broad serrated leaflets
-  function leaflet(L,W){ const segs=5; let p='M 0 0'; for(let i=1;i<=segs;i++){const t=i/segs,y=-L*t,w=W*(1-t*0.66)*(i%2?1:.52); p+=` L ${F(-w)} ${F(y)}`;} p+=` L 0 ${F(-L)}`; for(let i=segs;i>=1;i--){const t=i/segs,y=-L*t,w=W*(1-t*0.66)*(i%2?1:.52); p+=` L ${F(w)} ${F(y)}`;} return p+' Z'; }
-  function leaf(x,y,sc,rot,c){ const angs=[-82,-55,-27,0,27,55,82], lens=[30,50,66,80,66,50,30]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.25)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+4)}" stroke="${vein}" stroke-width="1.1" opacity=".5"/></g>`; }); return g+'</g>'; }
+  // a slim, sharp-pointed, serrated cannabis leaflet (teeth angle toward the tip)
+  function leaflet(L,W){ const teeth=6; const prof=t=> t<0.24 ? (0.3+0.7*t/0.24) : Math.pow((1-t)/0.76,0.6);
+    const pts=[[0,0]];
+    for(let i=0;i<teeth;i++){ const tt=(i+0.66)/teeth, tn=(i+1)/teeth; pts.push([W*prof(tt),-L*tt]); pts.push([W*prof(tn)*0.3,-L*tn]); }
+    pts.push([0,-L]);
+    let p='M '+pts.map(([x,y])=>`${F(-x)} ${F(y)}`).join(' L ');
+    for(let i=pts.length-2;i>=1;i--) p+=` L ${F(pts[i][0])} ${F(pts[i][1])}`;
+    return p+' Z'; }
+  function leaf(x,y,sc,rot,c){ const angs=[-84,-56,-28,0,28,56,84], lens=[34,58,76,92,76,58,34]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.19)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+5)}" stroke="${vein}" stroke-width="1.1" opacity=".5"/></g>`; }); return g+'</g>'; }
   // flowering bud / cola — lumpy calyx cluster + amber pistil hairs + frosty trichomes
   function cola(cx,base,len,wid){ let g=`<g>`; const n=Math.max(4,Math.round(len/8));
     for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.6)+2.2;
