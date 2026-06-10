@@ -3667,7 +3667,10 @@ if(_hudEl && window.ResizeObserver){
 }
 
 setInterval(updateStatusBar,60000)
-init().then(()=>{ initTapStats(); setHudVar() });
+init().then(()=>{ initTapStats(); setHudVar();
+  // deep-link: returning from the hidden hollow (behind-the-falls) re-opens the Waterfall Lookout
+  try{ const p=new URLSearchParams(location.search); if(p.get('view')==='lookout'){ enterInterior('lookout');
+    history.replaceState(null,'',location.pathname); } }catch(e){} });
 
 // One-time invite: gently nudge first-time visitors toward the full story archive (with day recaps).
 ;(function(){
