@@ -4458,8 +4458,6 @@ function lookoutSVG(){
   s+=`<rect x="104" y="294" width="6" height="136" rx="3" fill="#fff" opacity=".25"/>`;
   s+=`<ellipse class="cl1" cx="150" cy="436" rx="88" ry="34" fill="url(#lkmist)" opacity=".5"/>`;
   if(!N && !win.rain) s+=`<g fill="none" opacity=".38">${[['#ff9b6b',70],['#ffe08a',64],['#8fe0a0',58],['#8fc3e8',52]].map(([c,r])=>`<path d="M ${140-r} 452 A ${r} ${r} 0 0 1 ${140+r} 452" stroke="${c}" stroke-width="3"/>`).join('')}</g>`;
-  // ── secret: the falls hide a hollow — tap the water to slip behind it (subtle twinkle hint) ──
-  s+=`<g fill="#eaf6ff" opacity=".5">${[[120,332],[148,392],[112,420]].map(([x,y],i)=>`<path class="iw-twinkle" style="animation-delay:${(i*1.3).toFixed(1)}s" d="M ${x} ${y-4} l 1.3 3 l 3 1.3 l -3 1.3 l -1.3 3 l -1.3 -3 l -3 -1.3 l 3 -1.3 Z"/>`).join('')}</g>`;
   // ── the river runs across the FAR side, BEYOND the camp — in front of the characters, who
   //    face it (we're behind them, up at the falls). The waterfall's pool is its left end. ──
   s+=`<path d="M 96 436 Q 350 452 600 446 Q 820 440 1012 452 L 1012 478 Q 820 466 600 472 Q 350 478 96 460 Z" fill="url(#lkriver)" opacity=".9"/>`;
@@ -4537,8 +4535,8 @@ function lookoutSVG(){
     s+=`<path class="iw-flash" d="M 690 70 L 660 190 L 690 190 L 650 320" stroke="#fdf6c8" stroke-width="3" fill="none" opacity=".0"/>`; }
   s+=`<rect width="1000" height="600" fill="url(#lkwash)" pointer-events="none"/>`;
   s+=`<rect width="1000" height="600" fill="url(#lkvig)" pointer-events="none"/>`;
-  // ── secret falls hotspot — LAST so it's on top of every overlay and reliably catches the tap ──
-  s+=`<rect class="lk-secret" x="34" y="252" width="176" height="220" fill="#fff" opacity="0" pointer-events="all" style="cursor:pointer"><title>behind the falls…</title></rect>`;
+  // ── secret falls hotspot — fully invisible: no cursor, no tooltip, no hint; only we know it's here ──
+  s+=`<rect class="lk-secret" x="34" y="252" width="176" height="220" fill="#fff" opacity="0" pointer-events="all"/>`;
   return s+`</svg>`;
 }
 // ── parallax driver for the Waterfall Lookout: layer groups (.lkL, data-px=depth) drift at
