@@ -59,11 +59,13 @@
 <script>
 const PW='420';
 const gate=document.getElementById('gate'), pw=document.getElementById('pw'), err=document.getElementById('err');
-function unlock(){ gate.classList.add('hidden'); setTimeout(()=>gate.style.display='none',650); try{sessionStorage.setItem('btf','1')}catch(e){}; build(); }
+function unlock(){ gate.classList.add('hidden'); setTimeout(()=>gate.style.display='none',650); build(); }
 function tryPw(){ if(pw.value.trim()===PW){ unlock(); } else { err.textContent='The rock stays shut. (think… a certain number)'; pw.value=''; } }
 document.getElementById('go').onclick=tryPw;
 pw.addEventListener('keydown',e=>{ if(e.key==='Enter') tryPw(); });
-try{ if(sessionStorage.getItem('btf')==='1'){ gate.style.display='none'; build(); } else setTimeout(()=>pw.focus(),300); }catch(e){ setTimeout(()=>pw.focus(),300); }
+// always require the number — no session memory; the room re-locks on every visit
+try{ sessionStorage.removeItem('btf'); }catch(e){}
+setTimeout(()=>pw.focus(),300);
 
 let _raf=null;
 function startParallax(){ if(_raf) cancelAnimationFrame(_raf);
