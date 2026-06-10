@@ -3945,6 +3945,11 @@ function jungleView(x,y,w,h,win,opt){
   // scalloped dense treetop crowns w/ volume (highlight up-left, shade down-right)
   [{d:30,c:G[2],step:13},{d:58,c:G[3],step:15}].forEach(L=>{ for(let i=0;i<=L.step;i++){ const cx=x+i*w/L.step, cy=horizon+L.d+((i%2)*6), r=24+(i*37%5)*7;
     s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${L.c}"/><circle cx="${F(cx-r*.32)}" cy="${F(cy-r*.34)}" r="${F(r*.56)}" fill="#fff" opacity="${N?'.05':'.13'}"/><circle cx="${F(cx+r*.34)}" cy="${F(cy+r*.3)}" r="${F(r*.5)}" fill="#000" opacity=".1"/>`; } });
+  // dense overlapping crown texture filling the mid-canopy so it's never a flat green slope
+  for(let row=0; row<4; row++){ const cy=horizon+78+row*30, r=26+row*5, cols=Math.ceil(w/38)+2;
+    for(let i=-1; i<=cols; i++){ const cx=x+i*38+(row%2?19:0), cyy=cy+(((i+row)%2)*9);
+      if(cyy>y+h-14) continue; const cc=G[Math.min(2+row,4)];
+      s+=`<circle cx="${F(cx)}" cy="${F(cyy)}" r="${F(r)}" fill="${cc}"/><circle cx="${F(cx-r*.32)}" cy="${F(cyy-r*.34)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/><circle cx="${F(cx+r*.34)}" cy="${F(cyy+r*.3)}" r="${F(r*.42)}" fill="#000" opacity=".08"/>`; } }
   s+='</g><g class="lkL" data-px=".32">';
   // ── lush Malaysian rainforest: broad emergents, fan palms, banana clumps ──
   const trunk=(N?'#16291d':'#46341f');
@@ -3963,6 +3968,11 @@ function jungleView(x,y,w,h,win,opt){
   // a gibbon swinging from a canopy branch (a little life in the trees)
   { const gx=x+w*0.74, gy=horizon+6, gc=N?'#0f1f15':'#2a2016';
     s+=`<g class="iw-gibbon"><line x1="${F(gx)}" y1="${F(gy-30)}" x2="${F(gx)}" y2="${F(gy)}" stroke="${gc}" stroke-width="3"/><ellipse cx="${F(gx)}" cy="${F(gy+16)}" rx="9" ry="13" fill="${gc}"/><circle cx="${F(gx)}" cy="${F(gy+2)}" r="7" fill="${gc}"/><path d="M ${F(gx)} ${F(gy+6)} Q ${F(gx-12)} ${F(gy-6)} ${F(gx-3)} ${F(gy-14)}" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M ${F(gx)} ${F(gy+24)} q -10 12 -4 22" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/></g>`; }
+  // a macaque perched in the near trees + a hornbill gliding over the canopy (more jungle life)
+  { const mc=N?'#0f1f15':'#2a2016', mx=x+w*0.3, my=horizon+34;
+    s+=`<g fill="${mc}"><ellipse cx="${F(mx)}" cy="${F(my)}" rx="6" ry="8"/><circle cx="${F(mx)}" cy="${F(my-9)}" r="4.4"/><path d="M ${F(mx+5)} ${F(my+4)} q 12 2 9 -10" stroke="${mc}" stroke-width="2.6" fill="none"/><line x1="${F(mx-3)}" y1="${F(my+6)}" x2="${F(mx-5)}" y2="${F(my+14)}" stroke="${mc}" stroke-width="2.4"/><line x1="${F(mx+3)}" y1="${F(my+6)}" x2="${F(mx+5)}" y2="${F(my+14)}" stroke="${mc}" stroke-width="2.4"/></g>`; }
+  if(!N){ const hx2=x+w*0.55, hy2=y+h*0.2;
+    s+=`<g class="iw-bird" transform="translate(${F(hx2)} ${F(hy2)})"><ellipse cx="0" cy="0" rx="12" ry="5.5" fill="#243a22"/><path d="M 10 -2 Q 28 -5 32 1 Q 25 3 10 3 Z" fill="#e0892a"/><circle cx="5" cy="-2" r="1.3" fill="#fff"/><path d="M -7 -3 Q -16 -12 -22 -6" stroke="#243a22" stroke-width="3.5" fill="none" stroke-linecap="round"/></g>`; }
   s+='</g><g class="lkL" data-px=".45">';
   // dense undergrowth shrub band w/ volume highlight (lush jungle floor)
   for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8), r=26+(i*53%5)*7;
