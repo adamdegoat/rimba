@@ -800,5 +800,103 @@
       }
     ],
     "timestamp": "2026-06-10T07:02:57.371654"
+  },
+  {
+    "day": 3,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Wesley sits at the river's edge, flexing his bandaged hands and watching the water for any movement he could help with.",
+    "thought": "Stillness is how the jungle works.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-10T11:32:25.841481"
+  },
+  {
+    "day": 3,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Chills kneels in the shallows, laying a thin fishing line across a pool with patient, practiced movements.",
+    "thought": "This is the real teaching right now.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-10T11:32:25.841481"
+  },
+  {
+    "day": 3,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Mutu emerges from the forest edge with a small sparrow dangling from its mouth, wet and limp.",
+    "thought": "He trusts me more each day.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-10T11:32:25.841481"
+  },
+  {
+    "day": 3,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Mutu returns with a sparrow as Wesley rests his raw hands at the river's edge and Chills sets a fishing line in the shallows, the three finally moving together at the jungle's pace.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands are useless. What am I supposed to do?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Rest. Let them heal. We're not in a race."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We have no food stored. That feels like a race."
+      },
+      {
+        "speaker": "chills",
+        "line": "Which is exactly why we don't burn out chasing it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I don't follow that logic at all."
+      },
+      {
+        "speaker": "chills",
+        "line": "You will. Give it time."
+      },
+      {
+        "speaker": "wesley",
+        "line": "...Mutu?"
+      },
+      {
+        "speaker": "chills",
+        "line": "That cat doesn't panic. Neither should you."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Okay. Message received."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Rest now. You're still learning."
+      }
+    ],
+    "timestamp": "2026-06-10T11:32:25.841481"
   }
 ]

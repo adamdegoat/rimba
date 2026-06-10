@@ -5,26 +5,26 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 72,
+      "trust": 73,
       "openness": 75,
       "ambition": 54,
-      "loneliness": 7,
+      "loneliness": 5,
       "resilience": 93,
       "health": 100,
-      "hunger": 45,
+      "hunger": 44,
       "thirst": 53,
-      "energy": 89
+      "energy": 75
     },
     "mood": "calm",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "river_bank",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 43,
+        "closeness": 44,
         "tension": 2,
         "attraction": 0
       },
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -97,6 +97,11 @@
         "day": 3,
         "text": "Wesley's learning: patience wins in the jungle.",
         "weight": 1
+      },
+      {
+        "day": 3,
+        "text": "Wesley's trusting the slower way now. Real progress.",
+        "weight": 2
       }
     ]
   },
@@ -107,30 +112,30 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 63,
-      "openness": 61,
+      "openness": 62,
       "ambition": 80,
-      "loneliness": 20,
-      "resilience": 30,
+      "loneliness": 18,
+      "resilience": 31,
       "health": 100,
-      "hunger": 45,
+      "hunger": 44,
       "thirst": 53,
-      "energy": 65
+      "energy": 39
     },
     "mood": "weary",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "river_bank",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 39,
+        "closeness": 40,
         "tension": 5,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 16,
+        "closeness": 17,
         "tension": 0,
         "attraction": 0
       }
@@ -153,7 +158,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -200,10 +205,15 @@
         "day": 3,
         "text": "Slow heals faster than pushing through pain.",
         "weight": 1
+      },
+      {
+        "day": 3,
+        "text": "Patience isn't laziness. Chills was right. It's survival.",
+        "weight": 2
       }
     ],
     "condition": "injured",
-    "recovery": 3
+    "recovery": 1
   },
   "mutu": {
     "name": "Mutu",
@@ -215,16 +225,16 @@
       "trust": 64,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 34,
+      "loneliness": 32,
       "resilience": 85,
-      "hunger": 45,
+      "hunger": 44,
       "thirst": 53,
-      "energy": 93,
+      "energy": 79,
       "health": 100
     },
     "mood": "affectionate",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "river_bank",
       "x": 80,
       "y": 30
     },
@@ -236,7 +246,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 18,
+        "closeness": 19,
         "tension": 0,
         "attraction": 0
       }
@@ -250,7 +260,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": null
     }
   }
 }
