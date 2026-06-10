@@ -32,9 +32,15 @@
   @keyframes drip{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
   @keyframes mote{0%{opacity:0;transform:translate(0,0)}30%{opacity:.7}70%{opacity:.5}100%{opacity:0;transform:translate(8px,-26px)}}
   @keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+  @keyframes stream{to{stroke-dashoffset:-260}}
+  @keyframes rise{0%{opacity:0;transform:translateY(0) scale(.6)}35%{opacity:.5}100%{opacity:0;transform:translateY(-48px) scale(1.5)}}
+  @keyframes ripple{0%{transform:scale(.3);opacity:.5}100%{transform:scale(1.55);opacity:0}}
   .fall{animation:drip 1s linear infinite alternate}
   .mote{animation:mote 7s ease-in-out infinite}
   .sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5.5s ease-in-out infinite}
+  .stream{animation:stream 1.1s linear infinite}
+  .rise{transform-box:fill-box;transform-origin:center;animation:rise 3s ease-out infinite}
+  .ripple{transform-box:fill-box;transform-origin:center;animation:ripple 2.6s ease-out infinite}
 </style></head>
 <body>
 <div id="scene"></div>
@@ -127,6 +133,7 @@ function build(){
     <radialGradient id="caveBg" cx="46%" cy="40%" r="78%"><stop offset="0" stop-color="${cv1}"/><stop offset=".55" stop-color="${N?'#0d1a12':'#122318'}"/><stop offset="1" stop-color="${cv2}"/></radialGradient>
     <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${rk1}"/><stop offset="1" stop-color="${rk2}"/></linearGradient>
     <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#bcd6ee':'#dff3ff'}" stop-opacity=".85"/><stop offset="1" stop-color="${N?'#7fa6c8':'#9fc7e0'}" stop-opacity=".6"/></linearGradient>
+    <linearGradient id="wfGlow" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#5a7da8':'#eafbff'}" stop-opacity="${N?'.5':'.85'}"/><stop offset=".5" stop-color="${N?'#3a5f8a':'#bfe6f5'}" stop-opacity="${N?'.28':'.46'}"/><stop offset="1" stop-color="${N?'#1f3a5a':'#7fb8d0'}" stop-opacity="0"/></linearGradient>
     <radialGradient id="daylight" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${dl1}"/><stop offset="1" stop-color="${dl2}" stop-opacity="0"/></radialGradient>
     <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${beamC}" stop-opacity="${beamO}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></linearGradient>
     <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${N?'#6fa6b6':'#bfe6f2'}"/><stop offset="1" stop-color="${N?'#234852':'#3a6e72'}"/></radialGradient>
@@ -148,12 +155,29 @@ function build(){
   // moss patches + hanging vines on the rock
   s+=`<g fill="${mossC}" opacity=".6">${[[40,150,20],[58,300,16],[950,200,18],[930,360,15],[180,72,22],[820,74,20],[600,80,18],[360,78,16]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.6}"/>`).join('')}</g>`;
   s+=`<g stroke="${mossC}" stroke-width="2.4" fill="none" opacity=".7">${[150,470,790,300,650].map((x,i)=>`<path d="M ${x} 78 q ${i%2?10:-10} ${60+i*8} ${i%2?-4:4} ${96+i*6}"/>`).join('')}</g>`;
-  // ── waterfall curtain (left) + glowing daylight behind + pool + mist + drips ──
-  s+=`<ellipse cx="150" cy="320" rx="160" ry="270" fill="url(#daylight)" opacity=".55"/>`;
-  s+=`<rect x="56" y="58" width="156" height="472" fill="url(#curtain)" opacity=".52"/>`;
-  s+=`<g stroke="${N?'#cfe2f2':'#eaf6ff'}" stroke-width="3" opacity=".5" stroke-linecap="round">${[66,88,110,134,158,182,204].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.12).toFixed(2)}s" x1="${x}" y1="60" x2="${x-5}" y2="528"/>`).join('')}</g>`;
-  s+=`<ellipse cx="150" cy="540" rx="124" ry="32" fill="url(#pool)" opacity=".92"/>`;
-  s+=`<g fill="${N?'#9fc2cc':'#dff1f6'}" opacity=".34">${[[108,512,42,16],[182,506,30,12],[150,496,48,18]].map(([x,y,rx,ry])=>`<ellipse class="mote" style="animation-delay:${(x%4)*0.8}s" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  // ══ waterfall curtain (left) — viewed from BEHIND: daylight diffuses THROUGH the falling sheet ══
+  const wfW=N?'#cfe2f2':'#f3fcff';
+  // backlight + soft daylight bloom behind the water
+  s+=`<rect x="42" y="50" width="192" height="486" fill="url(#wfGlow)"/>`;
+  s+=`<ellipse cx="136" cy="300" rx="150" ry="250" fill="url(#daylight)" opacity=".5"/>`;
+  // two translucent water sheets (slight offset → curtain depth)
+  s+=`<path d="M 50 52 L 216 52 L 206 532 L 58 532 Z" fill="url(#curtain)" opacity=".38"/>`;
+  s+=`<path d="M 70 52 L 198 52 L 190 530 L 76 530 Z" fill="url(#curtain)" opacity=".3"/>`;
+  // flowing streamlines — animated stroke-dashoffset = continuous streaming water, varied speed/width/drift
+  let strm='<g fill="none" stroke-linecap="round">';
+  [58,72,86,100,114,128,142,156,170,184,200,210].forEach((x,i)=>{ const dur=(0.8+(i%4)*0.26).toFixed(2), sw=(1.3+(i%3)*1.1).toFixed(1), op=(0.26+(i%3)*0.12).toFixed(2), dr=(i%2?7:-7);
+    strm+=`<path class="stream" style="animation-duration:${dur}s" d="M ${x} 54 q ${dr} 240 ${(dr*0.4).toFixed(0)} 476" stroke="${wfW}" stroke-width="${sw}" stroke-dasharray="${18+(i%3)*16} ${10+(i%2)*10}" opacity="${op}"/>`; });
+  s+=strm+'</g>';
+  // bright fast highlight threads catching the light
+  s+=`<g fill="none" stroke="${N?'#dceaf6':'#ffffff'}" stroke-linecap="round" opacity=".55">${[92,150,178].map((x,i)=>`<path class="stream" style="animation-duration:${(0.58+i*0.16).toFixed(2)}s" d="M ${x} 56 q 3 240 1 470" stroke-width="1.6" stroke-dasharray="9 28"/>`).join('')}</g>`;
+  // horizontal surface shimmer drifting across the sheet
+  s+=`<g fill="none" stroke="${wfW}" stroke-width="2" opacity=".16">${[150,250,350,440].map((y,i)=>`<path class="fall" style="animation-delay:${(i*0.3).toFixed(1)}s" d="M 58 ${y} q 38 ${i%2?6:-6} 76 0 q 38 ${i%2?-6:6} 74 0"/>`).join('')}</g>`;
+  // ── impact zone: pool + ripple rings + foam + rising spray ──
+  s+=`<ellipse cx="134" cy="540" rx="128" ry="34" fill="url(#pool)" opacity=".92"/>`;
+  s+=`<g fill="none" stroke="${N?'#9fc2cc':'#eaf6ff'}" stroke-width="1.6">${[[120,540,30,15],[150,544,36,17],[110,548,24,12]].map(([x,y,rx,ry],i)=>`<ellipse class="ripple" style="animation-duration:${(2.4+i*0.6).toFixed(1)}s;animation-delay:${(i*0.8).toFixed(1)}s" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  s+=`<g fill="${N?'#cfe0e6':'#f4fbff'}" opacity=".72">${[[96,528,16,6],[128,530,20,7],[160,528,15,6],[188,532,12,5]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  s+=`<g fill="${N?'#aecad4':'#e8f6fb'}">${[[100,524,9],[134,520,12],[166,524,10],[150,514,8],[118,522,7]].map(([x,y,r],i)=>`<circle class="rise" style="animation-duration:${(2.6+(i%3)*0.7).toFixed(1)}s;animation-delay:${(i*0.5).toFixed(1)}s" cx="${x}" cy="${y}" r="${r}" opacity=".5"/>`).join('')}</g>`;
+  s+=`<g fill="${N?'#bcd6ee':'#ffffff'}" opacity=".38">${[[108,544,30,3],[150,548,22,2.4]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
   // ── cave floor ──
   s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 L 1000 600 L 0 600 Z" fill="${N?'#120d08':'#1a140d'}"/>`;
   s+=`<g fill="${N?'#1f1610':'#2a1f12'}">${holes.map(([hx])=>`<ellipse cx="${hx}" cy="540" rx="90" ry="24"/>`).join('')}</g>`;
