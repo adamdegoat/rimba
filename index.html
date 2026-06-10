@@ -4277,8 +4277,10 @@ function _campSpot(cid){
   if(/cayenne/.test(wp))           return [604+(o%3-1)*14, 488];          // RIGHT, by the Cayenne
   if(/shelter/.test(wp))           return [430+(o%3-1)*14, 488];          // LEFT, by the lean-to
   if(/river|shallow|log_cross|crossing/.test(wp)) return [470+(o%4-1.5)*30, 452];  // up at the river
-  if(/jungle|forest|canopy|trail/.test(wp))       return [220+(o%3)*30, 392];
-  return [516+(o%5)*38, 500+(o%2)*12];
+  // jungle edges — the view is mirrored, so WEST features sit on the RIGHT, EAST on the LEFT
+  if(/fig_tree|fern_hollow|ridge|forest|trail|jungle|canopy/.test(wp)) return [846+(o%3)*28, 470];
+  if(/bamboo|mud_flat/.test(wp))                  return [224+(o%3)*28, 470];
+  return [516+(o%5)*38, 500+(o%2)*12];  // anything else: out on the clearing
 }
 function lookoutSVG(){
   // An elevated overlook across the valley: the waterfall pours down the far-LEFT wall into its
