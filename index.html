@@ -4364,6 +4364,16 @@ function lookoutSVG(){
   // ── lush jungle planting ringing the clearing (kept off the campsite) ──
   const _palm=(x,y,sc,dir)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})"><path d="M 0 0 Q ${dir*5} -36 ${dir*2} -64" stroke="${N?'#26331c':'#5a4a2c'}" stroke-width="5" fill="none"/>`;for(let k=0;k<7;k++){const a=(-160+k*30)*Math.PI/180,ex=Math.cos(a)*54,ey=Math.sin(a)*26-64;g+=`<path d="M ${dir*2} -64 Q ${ex*.45} ${-64+(ey+64)*.45-8} ${ex} ${ey}" stroke="${win.canopy}" stroke-width="5.5" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
   const _fern=(x,y,sc)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})">`;for(let k=0;k<9;k++){const a=(-170+k*22.5)*Math.PI/180,ex=Math.cos(a)*30,ey=Math.sin(a)*18-6;g+=`<path d="M 0 0 Q ${ex*.5} ${ey*.5-6} ${ex} ${ey}" stroke="${N?'#2f5a3a':'#3f8048'}" stroke-width="3" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
+  // ── dense jungle FLOOR: fill the open green so the camp is only a TIGHT clearing, not a lawn ──
+  const _inCamp=(px,py)=>{ const dx=(px-514)/182, dy=(py-498)/64; return dx*dx+dy*dy<1; };
+  for(let gy=398; gy<=548; gy+=20){ for(let gx=14; gx<=986; gx+=46){
+    const jx=gx+((gy*13+gx)%28)-14, jy=gy+((gx*7)%14)-7;
+    if(jy<398||jy>548||(jy>430&&jy<462)||_inCamp(jx,jy)) continue;
+    const k=(jx*3+jy*5)%7;
+    if(k<3) s+= _fern(jx,jy,0.46+((jx)%3)*0.12);
+    else if(k<6){ const r=9+((jy)%4)*4, cc=k===3?GJ[2]:GJ[3]; s+=`<circle cx="${F(jx)}" cy="${F(jy)}" r="${F(r)}" fill="${cc}"/><circle cx="${F(jx-r*.3)}" cy="${F(jy-r*.32)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; }
+    else s+=`<g transform="translate(${F(jx)} ${F(jy)})"><path d="M 0 0 Q 9 -11 0 -21 Q -9 -11 0 0 Z" fill="${GJ[2]}"/><path d="M 9 2 Q 15 -8 8 -16 Q 4 -6 9 2 Z" fill="${GJ[3]}"/></g>`;
+  }}
   s+=`<g>${[262,330,704,772,840,910].map((x,i)=>`<g fill="${win.canopy}"><ellipse cx="${x}" cy="${400-i%2*5}" rx="${26+i%3*5}" ry="${15+i%2*4}"/><ellipse cx="${x+17}" cy="403" rx="19" ry="12"/><ellipse cx="${x-15}" cy="403" rx="17" ry="11"/></g>`).join('')}</g>`;
   s+= _palm(296,438,1,-1)+_palm(950,448,1.15,1)+_palm(892,434,.82,1)+_palm(330,420,.7,-1);
   s+= _fern(276,454,1.1)+_fern(922,462,1.2)+_fern(706,452,.9)+_fern(360,452,.82);
