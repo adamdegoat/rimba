@@ -898,5 +898,95 @@
       }
     ],
     "timestamp": "2026-06-10T11:32:25.841481"
+  },
+  {
+    "day": 3,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Setting a fishing line in the shallows with practiced, deliberate movements, unbothered by the hunger.",
+    "thought": "Let the river give. Don't force it.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-10T15:02:09.053371"
+  },
+  {
+    "day": 3,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Sitting on a river rock with his swollen hands resting in his lap, watching Chills work with an edge of frustration.",
+    "thought": "I should be doing this, not sitting here.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "restless",
+    "timestamp": "2026-06-10T15:02:09.053371"
+  },
+  {
+    "day": 3,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Pressing against Wesley's leg, purring steadily and watching the water with amber eyes.",
+    "thought": "He's hurting. I'll stay close.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "affectionate",
+    "timestamp": "2026-06-10T15:02:09.053371"
+  },
+  {
+    "day": 3,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the shallows in the hot afternoon, Chills works a fishing line with patient precision while Wesley sits nearby with his raw, swollen hands resting; Mutu presses against Wesley's leg, steady.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How long until these are usable again?"
+      },
+      {
+        "speaker": "chills",
+        "line": "A couple days if you let them rest."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We have no food. I should be helping."
+      },
+      {
+        "speaker": "chills",
+        "line": "You are helping. Healing is work."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not how rationing works."
+      },
+      {
+        "speaker": "chills",
+        "line": "It is. The jungle teaches you to pace yourself."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And if the river doesn't give?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we forage. We adapt. We don't panic."
+      }
+    ],
+    "timestamp": "2026-06-10T15:02:09.053371"
   }
 ]

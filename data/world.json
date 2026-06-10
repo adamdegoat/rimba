@@ -1,24 +1,24 @@
 {
   "day": 3,
-  "cycle": "midday",
-  "weather": "clear",
+  "cycle": "afternoon",
+  "weather": "hot",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-10",
-  "pulse": "Wesley's raw hands force stillness; Chills teaches patience, and Wesley begins to believe it.",
-  "scene": "Mutu arrived at the river with a sparrow; by midday, Wesley rested at the bank with his raw hands idle, watching Chills set a fishing line, both steady and patient.",
+  "pulse": "Wesley's injury teaches him that waiting is work; Chills' steady pace earns a new kind of trust.",
+  "scene": "At the shallows, Chills worked a fishing line while Wesley sat on a nearby rock with swollen hands resting; Mutu stayed pressed against his leg, and the three waited for the jungle to give.",
   "resources_prev": {
     "food": 0,
-    "water": 60,
-    "wood": 41,
-    "medicine": 17
+    "water": 64,
+    "wood": 40,
+    "medicine": 16
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 76,
+      "condition": 72,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 64,
-    "wood": 40,
-    "medicine": 16
+    "water": 68,
+    "wood": 39,
+    "medicine": 14
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 14
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-10:midday",
+  "last_cycle_key": "2026-06-10:afternoon",
   "cayenne": {
     "stripped": []
   },
