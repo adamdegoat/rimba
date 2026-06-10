@@ -38,6 +38,11 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 .cl1{animation:cloud-a 90s linear infinite}
 .cl2{animation:cloud-a 115s linear infinite;animation-delay:-40s}
 .cl3{animation:cloud-a 72s linear infinite;animation-delay:-22s}
+/* subtle far-background parallax breath (distant hills only, tiny + slow, CSS-only so no JS loop) */
+@keyframes bgDriftA{0%,100%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
+@keyframes bgDriftB{0%,100%{transform:translateX(-4px)}50%{transform:translateX(4px)}}
+.bg-driftA{animation:bgDriftA 27s ease-in-out infinite}
+.bg-driftB{animation:bgDriftB 34s ease-in-out infinite}
 
 /* Fire animations */
 @keyframes flk{0%,100%{transform:scaleY(1) scaleX(1)}50%{transform:scaleY(1.22) scaleX(.9)}}
@@ -790,12 +795,12 @@ html,body{width:100%;height:100%;overflow:hidden;font-family:'Plus Jakarta Sans'
 <rect x="0" y="0" width="1000" height="340" fill="url(#canopy-light)" opacity=".9"/>
 
 <!-- ══ RECEDING RAINFOREST CANOPY / HILLS (back→front, hazy→dark) ══ -->
-<!-- far ridge (lightest, hazy) -->
-<path d="M 0 268 Q 110 232 230 256 Q 360 226 500 250 Q 650 224 800 250 Q 910 232 1000 248 L 1000 320 L 0 320 Z" fill="url(#canopy-far)" opacity=".55"/>
-<!-- mid ridge -->
-<path d="M 0 290 Q 150 256 300 282 Q 470 256 640 282 Q 810 258 1000 280 L 1000 330 L 0 330 Z" fill="url(#canopy-mid)" opacity=".8"/>
+<!-- far ridge (lightest, hazy) — gentle far-parallax drift -->
+<path class="bg-driftA" d="M -16 268 Q 110 232 230 256 Q 360 226 500 250 Q 650 224 800 250 Q 910 232 1016 248 L 1016 320 L -16 320 Z" fill="url(#canopy-far)" opacity=".55"/>
+<!-- mid ridge — slower drift (parallax against the far ridge) -->
+<path class="bg-driftB" d="M -16 290 Q 150 256 300 282 Q 470 256 640 282 Q 810 258 1016 280 L 1016 330 L -16 330 Z" fill="url(#canopy-mid)" opacity=".8"/>
 <!-- canopy crown blobs along the mid ridge for texture -->
-<g fill="url(#canopy-mid)" opacity=".85">
+<g class="bg-driftB" fill="url(#canopy-mid)" opacity=".85">
   <ellipse cx="70" cy="280" rx="58" ry="34"/><ellipse cx="190" cy="272" rx="64" ry="38"/>
   <ellipse cx="330" cy="282" rx="60" ry="36"/><ellipse cx="470" cy="270" rx="66" ry="40"/>
   <ellipse cx="610" cy="280" rx="62" ry="36"/><ellipse cx="760" cy="272" rx="68" ry="40"/>
