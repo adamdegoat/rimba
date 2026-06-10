@@ -1,10 +1,10 @@
 {
-  "day": 2,
-  "text": "The work hardens Wesley's hands and softens something in him; Chills sees it.",
-  "flavor": "endurance",
+  "day": 3,
+  "text": "Wesley reveals his mother's real plan: sending him where he couldn't disappoint anymore.",
+  "flavor": "the past surfaces",
   "cycle": "evening",
   "happens_at": "6pm",
   "status": "upcoming",
-  "revealed_at": "2026-06-10T00:00:32.319933",
+  "revealed_at": "2026-06-11T00:00:43.656699",
   "activated_at": null
 }
