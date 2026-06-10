@@ -4366,11 +4366,11 @@ function lookoutSVG(){
   const _fern=(x,y,sc)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})">`;for(let k=0;k<9;k++){const a=(-170+k*22.5)*Math.PI/180,ex=Math.cos(a)*30,ey=Math.sin(a)*18-6;g+=`<path d="M 0 0 Q ${ex*.5} ${ey*.5-6} ${ex} ${ey}" stroke="${N?'#2f5a3a':'#3f8048'}" stroke-width="3" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
   // ── dense jungle FLOOR: fill the open green so the camp is only a TIGHT clearing, not a lawn ──
   const _inCamp=(px,py)=>{ const dx=(px-514)/182, dy=(py-498)/64; return dx*dx+dy*dy<1; };
-  for(let gy=398; gy<=548; gy+=20){ for(let gx=14; gx<=986; gx+=46){
+  for(let gy=350; gy<=548; gy+=18){ for(let gx=12; gx<=988; gx+=42){
     const jx=gx+((gy*13+gx)%28)-14, jy=gy+((gx*7)%14)-7;
-    if(jy<398||jy>548||(jy>430&&jy<462)||_inCamp(jx,jy)) continue;
+    if(jy<348||jy>548||(jy>432&&jy<460)||_inCamp(jx,jy)) continue;   // skip the river + the camp clearing
     const k=(jx*3+jy*5)%7;
-    if(k<3) s+= _fern(jx,jy,0.46+((jx)%3)*0.12);
+    if(k<2) s+= _fern(jx,jy,0.46+((jx)%3)*0.12);
     else if(k<6){ const r=9+((jy)%4)*4, cc=k===3?GJ[2]:GJ[3]; s+=`<circle cx="${F(jx)}" cy="${F(jy)}" r="${F(r)}" fill="${cc}"/><circle cx="${F(jx-r*.3)}" cy="${F(jy-r*.32)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; }
     else s+=`<g transform="translate(${F(jx)} ${F(jy)})"><path d="M 0 0 Q 9 -11 0 -21 Q -9 -11 0 0 Z" fill="${GJ[2]}"/><path d="M 9 2 Q 15 -8 8 -16 Q 4 -6 9 2 Z" fill="${GJ[3]}"/></g>`;
   }}
@@ -4395,6 +4395,11 @@ function lookoutSVG(){
   s+= _monkey(742,410,1)+_monkey(772,420,.78)+_monkey(150,408,.9);
   s+=`<g transform="translate(330 432)" fill="${N?'#1a130c':'#5a3f24'}" opacity=".92"><ellipse cx="0" cy="0" rx="13" ry="6"/><circle cx="13" cy="-6" r="3.6"/><path d="M 12 -9 l -2 -7 M 15 -9 l 2 -7" stroke="${N?'#1a130c':'#5a3f24'}" stroke-width="1.4"/><line x1="-8" y1="5" x2="-9" y2="15" stroke="${N?'#1a130c':'#5a3f24'}" stroke-width="2.2"/><line x1="8" y1="5" x2="9" y2="15" stroke="${N?'#1a130c':'#5a3f24'}" stroke-width="2.2"/><line x1="-13" y1="-1" x2="-18" y2="-3" stroke="${N?'#1a130c':'#5a3f24'}" stroke-width="2"/></g>`;
   s+=`<g transform="translate(256 470)" fill="${N?'#16241a':'#3a4a2a'}" opacity=".9"><ellipse cx="0" cy="0" rx="14" ry="4"/><path d="M 13 0 q 16 1 24 5" stroke="${N?'#16241a':'#3a4a2a'}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="-13" cy="-1" r="3"/><line x1="-6" y1="3" x2="-8" y2="8" stroke="${N?'#16241a':'#3a4a2a'}" stroke-width="2"/><line x1="6" y1="3" x2="8" y2="8" stroke="${N?'#16241a':'#3a4a2a'}" stroke-width="2"/></g>`;
+  // reeds + fronds leaning over the water on both banks
+  s+=`<g stroke="${cc2}" stroke-width="2.6" fill="none" stroke-linecap="round" opacity=".85">${[150,300,360,650,760,880].map((vx)=>`<path d="M ${vx} 462 q -7 -16 -17 -22 M ${vx+6} 462 q 0 -20 2 -28 M ${vx+12} 462 q 8 -14 18 -18"/>`).join('')}</g>`;
+  // more wildlife: a wild boar rooting on the far bank + a kingfisher by the water (day)
+  s+=`<g transform="translate(636 424)" fill="${N?'#16120c':'#3a2c1e'}" opacity=".9"><ellipse cx="0" cy="0" rx="15" ry="7"/><path d="M -13 -2 q -9 1 -12 7 q 7 2 12 -1 Z"/><line x1="-8" y1="6" x2="-9" y2="14" stroke="${N?'#16120c':'#3a2c1e'}" stroke-width="2.4"/><line x1="7" y1="6" x2="8" y2="14" stroke="${N?'#16120c':'#3a2c1e'}" stroke-width="2.4"/><path d="M 14 -1 q 5 0 7 3" stroke="${N?'#16120c':'#3a2c1e'}" stroke-width="2" fill="none"/></g>`;
+  if(!N) s+=`<g transform="translate(182 452)"><ellipse cx="0" cy="0" rx="4.5" ry="3.2" fill="#2a8ad0"/><circle cx="3.5" cy="-1" r="1.3" fill="#15110a"/><path d="M -4 0 l -7 1.5" stroke="#e0892a" stroke-width="1.8" stroke-linecap="round"/><path d="M -1 3 l -1 5" stroke="#e0892a" stroke-width="1.4"/></g>`;
   // ── a lush jungle waterfall down the far-left valley wall, into its pool ──
   // mossy rock cliff (textured, not a flat slab)
   s+=`<path d="M 0 224 Q 130 238 214 262 Q 258 276 256 326 Q 260 394 234 454 Q 226 470 196 466 L 0 462 Z" fill="url(#lkcliff)"/>`;
