@@ -59,63 +59,106 @@ document.getElementById('go').onclick=tryPw;
 pw.addEventListener('keydown',e=>{ if(e.key==='Enter') tryPw(); });
 try{ if(sessionStorage.getItem('btf')==='1'){ gate.style.display='none'; build(); } else setTimeout(()=>pw.focus(),300); }catch(e){ setTimeout(()=>pw.focus(),300); }
 
+let _raf=null;
+function startParallax(){ if(_raf) cancelAnimationFrame(_raf);
+  const sc=document.getElementById('scene'); const layers=[...sc.querySelectorAll('.lkL')]; if(!layers.length) return;
+  let mx=0,my=0; sc.addEventListener('pointermove',e=>{const r=sc.getBoundingClientRect(); if(!r.width)return; mx=((e.clientX-r.left)/r.width-0.5)*2; my=((e.clientY-r.top)/r.height-0.5)*2;});
+  let t0=null; const tick=ts=>{ if(t0==null)t0=ts; const t=(ts-t0)/1000, d=Math.sin(t*0.4)*0.4, AX=9, AY=4;
+    for(const g of layers){const px=parseFloat(g.getAttribute('data-px'))||0; g.setAttribute('transform',`translate(${((mx+d)*AX*px).toFixed(2)} ${(my*AY*px).toFixed(2)})`);} _raf=requestAnimationFrame(tick);}; _raf=requestAnimationFrame(tick); }
+
 function build(){
   if(document.getElementById('btf-svg')) return;
   const F=n=>(+n).toFixed(1);
-  // ── cannabis fan leaf: 7 serrated leaflets radiating from a node ──
-  function leaflet(L,W){ const segs=5; let p='M 0 0'; for(let i=1;i<=segs;i++){const t=i/segs,y=-L*t,w=W*(1-t*0.78)*(i%2?1:.5); p+=` L ${F(-w)} ${F(y)}`;} p+=` L 0 ${F(-L)}`; for(let i=segs;i>=1;i--){const t=i/segs,y=-L*t,w=W*(1-t*0.78)*(i%2?1:.5); p+=` L ${F(w)} ${F(y)}`;} return p+' Z'; }
-  function leaf(x,y,sc,rot,c,c2){ const angs=[-80,-53,-26,0,26,53,80], lens=[30,48,64,76,64,48,30]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.17)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+3)}" stroke="${c2}" stroke-width="1" opacity=".5"/></g>`; }); return g+'</g>'; }
-  function plant(x,base,h,sc,c,c2){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s"><path d="M ${F(x)} ${F(base)} Q ${F(x-4)} ${F(base-h*.5)} ${F(x)} ${F(base-h)}" stroke="#3f6b30" stroke-width="${F(3.6*sc)}" fill="none" stroke-linecap="round"/>`;
-    for(let k=0;k<4;k++){ const ly=base-h*(0.32+k*0.2), s=sc*(0.5+k*0.13), side=k%2?1:-1; g+=leaf(x+side*4, ly, s, side*34, c, c2); }
-    g+=leaf(x, base-h+2, sc*0.92, 0, c, c2);
-    g+=`<g fill="#5f9a48"><ellipse cx="${F(x)}" cy="${F(base-h+3)}" rx="${F(5*sc)}" ry="${F(10*sc)}"/><circle cx="${F(x-3)}" cy="${F(base-h-3)}" r="${F(2.4*sc)}"/><circle cx="${F(x+3)}" cy="${F(base-h)}" r="${F(2.2*sc)}"/></g></g>`;
-    return g; }
+  // ── per-cycle light: the cave reads the time of day (sun by day, moon/lamps by night) ──
+  const hr=new Date().getHours(); const N=(hr<6||hr>=19), DUSK=(hr>=17&&hr<19);
+  const beamC=N?'#cfe0ff':DUSK?'#ffd49a':'#fff6cf', beamO=N?.2:DUSK?.42:.52;
+  const dl1=N?'#3a5f8a':DUSK?'#ffe1a8':'#fff8df', dl2=N?'#1f3a5a':DUSK?'#ffcf94':'#cfe7ff';
+  const cv1=N?'#16291c':DUSK?'#26331f':'#1f3325', cv2=N?'#060d09':'#0a130d';
+  const rk1=N?'#23241f':'#34302530'.slice(0,7), rk2=N?'#0e0d0a':'#14110c';
+  const leafC=N?'#246b30':'#2f9540', leafLite=N?'#2f8f45':'#46b657', vein=N?'#143a1c':'#1c5a2a';
+  const budC=N?'#3a7a42':'#5aa84f', budLite=N?'#4f9a56':'#79c76c', pistil=N?'#c47a36':'#e0913a', frost=N?'#bfe8c8':'#eafff0';
+  const mossC=N?'#1c4429':'#2f6b3e';
+
+  // cannabis fan leaf — 7 broad serrated leaflets
+  function leaflet(L,W){ const segs=5; let p='M 0 0'; for(let i=1;i<=segs;i++){const t=i/segs,y=-L*t,w=W*(1-t*0.66)*(i%2?1:.52); p+=` L ${F(-w)} ${F(y)}`;} p+=` L 0 ${F(-L)}`; for(let i=segs;i>=1;i--){const t=i/segs,y=-L*t,w=W*(1-t*0.66)*(i%2?1:.52); p+=` L ${F(w)} ${F(y)}`;} return p+' Z'; }
+  function leaf(x,y,sc,rot,c){ const angs=[-82,-55,-27,0,27,55,82], lens=[30,50,66,80,66,50,30]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.25)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+4)}" stroke="${vein}" stroke-width="1.1" opacity=".5"/></g>`; }); return g+'</g>'; }
+  // flowering bud / cola — lumpy calyx cluster + amber pistil hairs + frosty trichomes
+  function cola(cx,base,len,wid){ let g=`<g>`; const n=Math.max(4,Math.round(len/8));
+    for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.6)+2.2;
+      g+=`<circle cx="${F(cx)}" cy="${F(yy)}" r="${F(w)}" fill="${budC}"/><circle cx="${F(cx-w*.55)}" cy="${F(yy+1)}" r="${F(w*.72)}" fill="${budC}"/><circle cx="${F(cx+w*.55)}" cy="${F(yy+1)}" r="${F(w*.66)}" fill="${budC}"/><circle cx="${F(cx-w*.2)}" cy="${F(yy-w*.4)}" r="${F(w*.42)}" fill="${budLite}"/>`; }
+    g+=`<g stroke="${pistil}" stroke-width="1.1" opacity=".8" stroke-linecap="round">`; for(let i=0;i<n*2;i++){ const t=i/(n*2), yy=base-len*t, side=i%2?1:-1, w=wid*(1-t*0.55)+2; g+=`<path d="M ${F(cx+side*w*.5)} ${F(yy)} q ${side*4} -4 ${side*7} -3"/>`; } g+='</g>';
+    g+=`<g fill="${frost}" opacity=".6">`; for(let i=0;i<n*1.5;i++){ const t=i/(n*1.5), yy=base-len*t, side=(i%3-1); g+=`<circle cx="${F(cx+side*wid*.5)}" cy="${F(yy)}" r="1"/>`; } g+='</g>'; return g+'</g>'; }
+  // plant — leafy by default; flower=true grows a top cola + side buds (in flower)
+  function plant(x,base,h,sc,c,flower){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s"><path d="M ${F(x)} ${F(base)} Q ${F(x-4)} ${F(base-h*.5)} ${F(x)} ${F(base-h)}" stroke="#3f6b30" stroke-width="${F(4*sc)}" fill="none" stroke-linecap="round"/>`;
+    for(let k=0;k<4;k++){ const ly=base-h*(0.3+k*0.2), ls=sc*(0.5+k*0.12), side=k%2?1:-1; g+=leaf(x+side*4, ly, ls, side*32, c); }
+    if(flower){ g+=cola(x, base-h+8, 46*sc, 7.5*sc)+cola(x-15*sc, base-h*0.62, 26*sc, 5*sc)+cola(x+15*sc, base-h*0.68, 24*sc, 4.6*sc)+leaf(x, base-h-30*sc, sc*0.6, 0, c); }
+    else { g+=leaf(x, base-h+2, sc*0.92, 0, c)+`<ellipse cx="${F(x)}" cy="${F(base-h+3)}" rx="${F(5*sc)}" ry="${F(10*sc)}" fill="${leafLite}"/>`; }
+    return g+'</g>'; }
 
   let s=`<svg id="btf-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs>
-    <radialGradient id="caveBg" cx="46%" cy="40%" r="75%"><stop offset="0" stop-color="#1c3322"/><stop offset=".55" stop-color="#122318"/><stop offset="1" stop-color="#070f0a"/></radialGradient>
-    <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2a22"/><stop offset="1" stop-color="#14110c"/></linearGradient>
-    <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff3ff" stop-opacity=".85"/><stop offset="1" stop-color="#9fc7e0" stop-opacity=".6"/></linearGradient>
-    <radialGradient id="daylight" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff8df"/><stop offset="1" stop-color="#cfe7ff" stop-opacity="0"/></radialGradient>
-    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6cf" stop-opacity=".5"/><stop offset="1" stop-color="#fff6cf" stop-opacity="0"/></linearGradient>
-    <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#bfe6f2"/><stop offset="1" stop-color="#3a6e72"/></radialGradient>
-    <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity=".66"/></radialGradient></defs>
+    <radialGradient id="caveBg" cx="46%" cy="40%" r="78%"><stop offset="0" stop-color="${cv1}"/><stop offset=".55" stop-color="${N?'#0d1a12':'#122318'}"/><stop offset="1" stop-color="${cv2}"/></radialGradient>
+    <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${rk1}"/><stop offset="1" stop-color="${rk2}"/></linearGradient>
+    <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#bcd6ee':'#dff3ff'}" stop-opacity=".85"/><stop offset="1" stop-color="${N?'#7fa6c8':'#9fc7e0'}" stop-opacity=".6"/></linearGradient>
+    <radialGradient id="daylight" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${dl1}"/><stop offset="1" stop-color="${dl2}" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${beamC}" stop-opacity="${beamO}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></linearGradient>
+    <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${N?'#6fa6b6':'#bfe6f2'}"/><stop offset="1" stop-color="${N?'#234852':'#3a6e72'}"/></radialGradient>
+    <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity="${N?'.74':'.66'}"/></radialGradient></defs>
     <rect width="1000" height="600" fill="url(#caveBg)"/>`;
-  // ── sunlight holes in the cave roof + beams stabbing down ──
   const holes=[[250,300],[560,470],[820,360]];
-  holes.forEach(([hx,r])=>{ s+=`<ellipse cx="${hx}" cy="46" rx="${r/9}" ry="14" fill="#fff8df"/><ellipse cx="${hx}" cy="46" rx="${r/6}" ry="22" fill="url(#daylight)"/>`;
+  // ── daylight holes + beams stabbing down ──
+  holes.forEach(([hx,r])=>{ s+=`<ellipse cx="${hx}" cy="46" rx="${r/9}" ry="14" fill="${dl1}"/><ellipse cx="${hx}" cy="46" rx="${r/6}" ry="22" fill="url(#daylight)"/>`;
     s+=`<path d="M ${hx-26} 50 L ${hx+26} 50 L ${hx+r*.18} 560 L ${hx-r*.18} 560 Z" fill="url(#beam)"/>`; });
-  // ── cave roof rock with stalactites ──
+  // ── cave roof rock + stalactites ──
   s+=`<path d="M 0 0 L 1000 0 L 1000 70 Q 940 96 900 70 Q 880 130 850 78 Q 700 104 560 80 Q 540 150 510 84 Q 360 108 230 82 Q 210 140 184 86 Q 90 104 0 80 Z" fill="url(#rock)"/>`;
   s+=`<g fill="#0e0c08" opacity=".5">${[120,330,640,760,940].map(x=>`<path d="M ${x} 70 l 10 40 l 10 -40 Z"/>`).join('')}</g>`;
-  // side walls
   s+=`<path d="M 0 0 L 0 600 L 70 600 Q 40 360 90 120 Q 30 60 0 70 Z" fill="url(#rock)"/>`;
   s+=`<path d="M 1000 0 L 1000 600 L 930 600 Q 966 360 916 120 Q 978 60 1000 70 Z" fill="url(#rock)"/>`;
-  // moss on the rock
-  s+=`<g fill="#2f6b3e" opacity=".55">${[[40,150,18],[60,300,15],[950,200,16],[930,360,14],[180,70,20],[820,72,18]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.6}"/>`).join('')}</g>`;
-  // ── the waterfall curtain across the cave mouth (left), daylight glowing behind ──
-  s+=`<ellipse cx="150" cy="320" rx="150" ry="260" fill="url(#daylight)" opacity=".5"/>`;
-  s+=`<rect x="58" y="60" width="150" height="470" fill="url(#curtain)" opacity=".5"/>`;
-  s+=`<g stroke="#eaf6ff" stroke-width="3" opacity=".5" stroke-linecap="round">${[70,92,116,140,164,188].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.13).toFixed(2)}s" x1="${x}" y1="62" x2="${x-4}" y2="528"/>`).join('')}</g>`;
-  // pool + mist at the curtain's foot
-  s+=`<ellipse cx="150" cy="540" rx="120" ry="30" fill="url(#pool)" opacity=".9"/>`;
-  s+=`<g fill="#dff1f6" opacity=".3">${[[110,512,40,16],[180,506,30,12],[150,498,46,18]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
-  // ── cave floor: rock + soil beds in the light pools ──
-  s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 L 1000 600 L 0 600 Z" fill="#1a140d"/>`;
-  s+=`<g fill="#2a1f12">${holes.map(([hx])=>`<ellipse cx="${hx}" cy="540" rx="86" ry="22"/>`).join('')}</g>`;
-  // a few wooden grow-crates / pots
+  // textured wet rock — striations + sheen so the walls aren't flat slabs
+  s+=`<g stroke="#0c0a07" stroke-width="2" fill="none" opacity=".4">${[[18,160,40],[34,300,50],[12,440,46],[966,180,44],[982,320,50],[958,460,40]].map(([x,y,l])=>`<path d="M ${x} ${y} q 18 ${l*.5} 8 ${l}"/>`).join('')}</g>`;
+  s+=`<g fill="#fff" opacity="${N?'.03':'.06'}">${[[44,200,14,40],[956,260,12,44]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  // moss patches + hanging vines on the rock
+  s+=`<g fill="${mossC}" opacity=".6">${[[40,150,20],[58,300,16],[950,200,18],[930,360,15],[180,72,22],[820,74,20],[600,80,18],[360,78,16]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.6}"/>`).join('')}</g>`;
+  s+=`<g stroke="${mossC}" stroke-width="2.4" fill="none" opacity=".7">${[150,470,790,300,650].map((x,i)=>`<path d="M ${x} 78 q ${i%2?10:-10} ${60+i*8} ${i%2?-4:4} ${96+i*6}"/>`).join('')}</g>`;
+  // ── waterfall curtain (left) + glowing daylight behind + pool + mist + drips ──
+  s+=`<ellipse cx="150" cy="320" rx="160" ry="270" fill="url(#daylight)" opacity=".55"/>`;
+  s+=`<rect x="56" y="58" width="156" height="472" fill="url(#curtain)" opacity=".52"/>`;
+  s+=`<g stroke="${N?'#cfe2f2':'#eaf6ff'}" stroke-width="3" opacity=".5" stroke-linecap="round">${[66,88,110,134,158,182,204].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.12).toFixed(2)}s" x1="${x}" y1="60" x2="${x-5}" y2="528"/>`).join('')}</g>`;
+  s+=`<ellipse cx="150" cy="540" rx="124" ry="32" fill="url(#pool)" opacity=".92"/>`;
+  s+=`<g fill="${N?'#9fc2cc':'#dff1f6'}" opacity=".34">${[[108,512,42,16],[182,506,30,12],[150,496,48,18]].map(([x,y,rx,ry])=>`<ellipse class="mote" style="animation-delay:${(x%4)*0.8}s" cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  // ── cave floor ──
+  s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 L 1000 600 L 0 600 Z" fill="${N?'#120d08':'#1a140d'}"/>`;
+  s+=`<g fill="${N?'#1f1610':'#2a1f12'}">${holes.map(([hx])=>`<ellipse cx="${hx}" cy="540" rx="90" ry="24"/>`).join('')}</g>`;
+  // dense moss + fern carpet on the floor (lush — no flat dirt gaps)
+  s+=`<g fill="${mossC}" opacity=".7">${[...Array(20)].map((_,i)=>{const x=20+i*50, y=524+((i*37)%30), r=14+((i*13)%4)*5; return `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.55}"/>`;}).join('')}</g>`;
+  s+=`<g stroke="${N?'#234a2c':'#3f7a44'}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".82">${[60,170,330,430,560,690,830,930].map((x,i)=>`<path d="M ${x} ${566-i%2*4} q -9 -22 -18 -32 M ${x+7} ${566-i%2*4} q 0 -26 1 -36 M ${x+14} ${566-i%2*4} q 9 -22 18 -30"/>`).join('')}</g>`;
+  // grow-crates
   s+=`<g fill="#5a4326" stroke="#3a2c18" stroke-width="2">${[[330,548],[560,556],[820,548]].map(([x,y])=>`<path d="M ${x-34} ${y} L ${x+34} ${y} L ${x+28} ${y+22} L ${x-28} ${y+22} Z"/>`).join('')}</g>`;
-  // ── the crop: cannabis plants thriving in the sunbeams ──
-  const G='#2f8f3e', G2='#1c5a2a';
-  s+= plant(250,540,150,1.05,G,G2)+plant(206,548,108,.8,G,G2)+plant(300,546,120,.85,'#3aa047',G2);
-  s+= plant(560,556,166,1.12,G,G2)+plant(516,556,120,.86,'#3aa047',G2)+plant(606,552,128,.9,G,G2);
-  s+= plant(820,548,150,1.0,G,G2)+plant(872,552,108,.78,'#3aa047',G2)+plant(778,552,118,.84,G,G2);
-  // ferns + a hanging lantern for that lived-in grow vibe
-  s+=`<g stroke="#2f6b3e" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85">${[120,690,910,400].map(x=>`<path d="M ${x} 560 q -12 -30 -26 -46 M ${x+8} 560 q 0 -36 0 -54 M ${x+16} 560 q 12 -30 26 -46"/>`).join('')}</g>`;
-  s+=`<g><line x1="700" y1="0" x2="700" y2="118" stroke="#3a2c18" stroke-width="2"/><rect x="688" y="118" width="24" height="30" rx="5" fill="#2a2114"/><ellipse cx="700" cy="133" rx="7" ry="10" fill="#ffd98a"/><ellipse cx="700" cy="133" rx="16" ry="20" fill="#ffd98a" opacity=".22"/></g>`;
-  // glowing dust motes in the beams
-  s+=`<g fill="#fff6cf">${holes.flatMap(([hx],j)=>[0,1,2,3].map(i=>`<circle class="mote" style="animation-delay:${(j*1.4+i*1.6).toFixed(1)}s" cx="${hx-20+i*12}" cy="${260+i*60}" r="2"/>`)).join('')}</g>`;
+
+  // ══ MID parallax layer — the crop (mix of flowering + leafy) ══
+  s+='<g class="lkL" data-px=".32">';
+  s+= plant(250,540,150,1.05,leafC,true)+plant(206,548,110,.8,leafLite,false)+plant(300,546,126,.85,leafC,true);
+  s+= plant(560,556,168,1.14,leafC,true)+plant(516,556,122,.86,leafC,true)+plant(606,552,130,.9,leafLite,false);
+  s+= plant(820,548,150,1.02,leafC,true)+plant(872,552,112,.8,leafLite,true)+plant(778,552,120,.84,leafC,false);
+  s+='</g>';
+
+  // ══ NEAR parallax layer — foreground ferns + a watering can + the gecko ══
+  s+='<g class="lkL" data-px=".62">';
+  s+=`<g stroke="${N?'#1d3a23':'#356b2c'}" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".95">${[110,690,910,400].map(x=>`<path d="M ${x} 582 q -13 -32 -28 -48 M ${x+9} 582 q 0 -40 0 -58 M ${x+18} 582 q 13 -32 28 -48"/>`).join('')}</g>`;
+  s+=`<g transform="translate(430 556)"><path d="M -16 0 q -2 -12 8 -14 l 14 0 q 10 2 8 14 Z" fill="#7a8a52"/><rect x="-16" y="-2" width="32" height="4" rx="2" fill="#5e6e3e"/><path d="M 14 -8 q 14 -2 18 8" stroke="#7a8a52" stroke-width="3" fill="none"/></g>`;
+  s+=`<g transform="translate(900 560)" fill="${N?'#2a3a24':'#4a6b32'}"><ellipse cx="0" cy="0" rx="16" ry="5"/><path d="M 14 0 q 14 1 22 5" stroke="${N?'#2a3a24':'#4a6b32'}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="-14" cy="-1" r="3.4"/></g>`;
+  s+='</g>';
+
+  // hanging lantern / grow-lamp (brighter at night)
+  s+=`<g><line x1="700" y1="0" x2="700" y2="118" stroke="#3a2c18" stroke-width="2"/><rect x="688" y="118" width="24" height="30" rx="5" fill="#2a2114"/><ellipse cx="700" cy="133" rx="7" ry="10" fill="#ffd98a"/><ellipse cx="700" cy="133" rx="${N?28:16}" ry="${N?34:20}" fill="#ffd98a" opacity="${N?'.34':'.22'}"/></g>`;
+  // a moth circling the lamp + glowing motes in the beams + fireflies (night)
+  s+=`<g class="mote" fill="#e8e2cc" opacity=".8"><ellipse cx="724" cy="128" rx="5" ry="3.4"/><ellipse cx="732" cy="128" rx="5" ry="3.4"/></g>`;
+  s+=`<g fill="${beamC}">${holes.flatMap(([hx],j)=>[0,1,2,3].map(i=>`<circle class="mote" style="animation-delay:${(j*1.4+i*1.6).toFixed(1)}s" cx="${hx-20+i*12}" cy="${260+i*60}" r="2"/>`)).join('')}</g>`;
+  if(N) s+=`<g fill="#bdf5a0">${[[180,470],[470,500],[760,460],[330,520],[640,512]].map(([x,y],i)=>`<circle class="mote" style="animation-delay:${(i*.9).toFixed(1)}s" cx="${x}" cy="${y}" r="2.2"/>`).join('')}</g>`;
+  // water drips off the cave roof
+  s+=`<g stroke="${N?'#9fc2cc':'#cfe7ff'}" stroke-width="1.6" opacity=".5" stroke-linecap="round">${[130,330,650,760,930].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.4).toFixed(1)}s" x1="${x}" y1="106" x2="${x}" y2="120"/>`).join('')}</g>`;
   s+=`<rect width="1000" height="600" fill="url(#vig)"/></svg>`;
   document.getElementById('scene').innerHTML=s;
+  startParallax();
 }
 </script>
 </body></html>
