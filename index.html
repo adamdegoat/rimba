@@ -1978,6 +1978,37 @@ function toPos(x, y, waypoint) {
   return {left: leftPct+'%', top:(48+(y/100)*32)+'%'}
 }
 
+// ── Settle home characters INTO their shelter (so the camp agrees with the peek) ──
+// When at the at-home spot of their OWN shelter, lounge them at it: Chills reclines
+// under the lean-to tarp; Wesley settles by the Cayenne. The cat keeps its own pose.
+// sx/sy are camp-svg FEET coords; left maps straight from the viewBox (hx/10 %) so it
+// lands on the structure on desktop AND mobile (svgToViewport's top is correct).
+const SETTLE = {
+  lean_to: { sx:652, sy:420, wps:['shelter_mouth','shelter_side'], recline:-24 },
+  cayenne: { sx:300, sy:500, wps:['cayenne_door','cayenne_hood','cayenne_rear'], recline:-12 },
+}
+function settleHomeChars(positions){
+  const W=isMobile()?getWorldWidth():window.innerWidth, H=stageH()
+  const byShelter={}
+  positions.forEach(p=>{ const c=S.chars[p.id]; if(!c) return
+    if(_isCat(p.id)) return                                  // pets keep their own roaming pose
+    const S2=SETTLE[c.shelter]; if(!S2) return
+    if(S2.wps.indexOf((c.location||{}).waypoint) < 0) return
+    ;(byShelter[c.shelter]=byShelter[c.shelter]||[]).push(p) })
+  Object.keys(byShelter).forEach(sh=>{ const S2=SETTLE[sh], g=byShelter[sh], n=g.length
+    g.forEach((p,i)=>{ const dx = n>1 ? (i-(n-1)/2)*40 : 0, sx=S2.sx+dx, sy=S2.sy
+      p.px = sx/1000*W
+      p.py = parseFloat(svgToViewport(sx,sy).top)/100*H
+      p.settled = sh; p.recline = S2.recline||0 }) })
+}
+// poses applied AFTER renderInteractions (which clears char-svg transforms each cycle)
+function applySettlePoses(positions){
+  positions.forEach(p=>{ const el=document.getElementById('char-'+p.id); if(!el) return
+    const svg=el.querySelector('.char-svg'); if(!svg) return
+    if(p.settled && p.recline){ svg.style.animation='none'; svg.style.transformOrigin='50% 100%'; svg.style.transform=`rotate(${p.recline}deg)` }
+    else if(svg.style.animation==='none'){ svg.style.removeProperty('animation') } })
+}
+
 function toggleFeed() {
   const panel = document.getElementById('chat-panel')
   panel.classList.toggle('feed-open')
@@ -3259,6 +3290,7 @@ function updateWorld() {
     return {id:cid, px, py}
   })
   separateChars(positions)
+  settleHomeChars(positions)   // home characters lounge AT their shelter, not standing in the open
 
   positions.forEach(p=>{
     const el=document.getElementById('char-'+p.id); if(!el) return
@@ -3274,6 +3306,7 @@ function updateWorld() {
 
   nudgeBubbles(positions)
   renderInteractions(positions)
+  applySettlePoses(positions)  // recline a settled lean-to / Cayenne resident
   renderChat()
   updateStatusBar()
   updateStatCards()
