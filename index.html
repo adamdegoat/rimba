@@ -4307,15 +4307,18 @@ function lookoutSVG(){
     <linearGradient id="lkwash" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${_wc}" stop-opacity="0"/><stop offset=".46" stop-color="${_wc}" stop-opacity="0"/><stop offset="1" stop-color="${_wc}" stop-opacity="${_wo}"/></linearGradient>
     <radialGradient id="lkfire" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ff9a3c" stop-opacity=".5"/><stop offset=".6" stop-color="#ff7a18" stop-opacity=".18"/><stop offset="1" stop-color="#ff7a18" stop-opacity="0"/></radialGradient></defs>
   <rect width="1000" height="600" fill="url(#lksky)"/>`;
+  s+='<g class="lkL" data-px=".06">';
   // sun / moon / stars / clouds (high sky band)
   if(N){ s+=`<circle cx="772" cy="90" r="46" fill="url(#lksun)" opacity=".5"/><circle cx="772" cy="90" r="21" fill="#eef2ff"/><circle cx="781" cy="84" r="18" fill="${win.top}"/>`;
     for(let i=0;i<26;i++) s+=`<circle cx="${F((i*149+40)%1000)}" cy="${F((i*53)%150+6)}" r="${i%3?'.8':'1.4'}" fill="#fff" opacity="${(.3+(i%4)*.15).toFixed(2)}"/>`;
   } else { s+= win.rain ? `<circle cx="772" cy="92" r="58" fill="#c4d0d2" opacity=".45"/>` : `<circle cx="772" cy="86" r="76" fill="url(#lksun)"/><circle cx="772" cy="86" r="26" fill="#fffdf0"/>`;
     s+=`<g class="cl1" fill="#fff" opacity=".82"><ellipse cx="540" cy="56" rx="46" ry="13"/><ellipse cx="500" cy="66" rx="32" ry="10"/></g><g class="cl2" fill="#fff" opacity=".6"><ellipse cx="300" cy="74" rx="40" ry="11"/><ellipse cx="350" cy="64" rx="28" ry="8"/></g>`; }
   s+=`<g class="iw-bird" stroke="${N?'#9aa6b8':'#54646c'}" stroke-width="2" fill="none" opacity=".5">${[[500,120],[542,134],[586,122]].map(([x,y])=>`<path d="M ${x} ${y} q 7 -6 14 0 q 7 -6 14 0"/>`).join('')}</g>`;
+  s+='</g><g class="lkL" data-px=".12">';
   // far ridges + canopy wall ringing the valley
   s+=`<path d="M 0 196 Q 240 140 470 184 Q 690 138 900 180 Q 956 166 1000 184 L 1000 270 L 0 270 Z" fill="${ridgeA}" opacity=".5"/>`;
   s+=`<path d="M 0 220 Q 300 174 560 212 Q 780 182 1000 218 L 1000 296 L 0 296 Z" fill="${ridgeB}" opacity=".6"/>`;
+  s+='</g><g class="lkL" data-px=".2">';
   for(let r=0;r<3;r++){ const cyr=250+r*22;
     s+=`<g fill="${win.canopy}" opacity="${(.5+r*.16).toFixed(2)}">`+[...Array(10)].map((_,i)=>`<ellipse cx="${F(i*118-30+r*46)}" cy="${F(cyr)}" rx="80" ry="${28+r*5}"/>`).join('')+`</g>`; }
   // canopy volume — sunlit up-light on the treetops, shadow tucked beneath
@@ -4326,10 +4329,13 @@ function lookoutSVG(){
   // atmospheric depth — a soft haze band setting the jungle back + god-rays from the sun (day)
   s+=`<rect x="0" y="324" width="1000" height="44" fill="${N?'#1a2a36':'#c2dcd2'}" opacity=".16"/>`;
   if(!N && !win.rain) s+=`<g fill="#fff8e0" opacity=".06">${[700,764,828].map(x=>`<path d="M ${x} 80 L ${x+34} 80 L ${x-280} 560 L ${x-356} 560 Z"/>`).join('')}</g>`;
+  s+='</g><g class="lkL" data-px=".34">';
   // ── the camp's valley floor — a lush green clearing, spread out below me ──
   s+=`<ellipse cx="600" cy="442" rx="486" ry="106" fill="url(#lkgrass)"/><ellipse cx="606" cy="430" rx="424" ry="82" fill="${N?'#2c4022':'#6c9240'}" opacity=".55"/>`;
   // grassy tufts dappling the floor
   s+=`<g stroke="${N?'#2f5a3a':'#508f3c'}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5">${[...Array(26)].map((_,i)=>{const x=130+i*34, y=398+((i*47)%72); return `<path d="M ${x} ${y} q -3 -8 -6 -13 M ${x+3} ${y} q 0 -10 0 -15 M ${x+6} ${y} q 3 -8 6 -13"/>`;}).join('')}</g>`;
+  // soft valley mist sitting in the mid-distance (breathes with the parallax)
+  s+=`<ellipse cx="470" cy="426" rx="380" ry="30" fill="url(#lkmist)" opacity="${N?'.16':'.22'}"/><ellipse cx="690" cy="408" rx="220" ry="20" fill="url(#lkmist)" opacity="${N?'.12':'.16'}"/>`;
   // ── lush jungle planting ringing the clearing (kept off the campsite) ──
   const _palm=(x,y,sc,dir)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})"><path d="M 0 0 Q ${dir*5} -36 ${dir*2} -64" stroke="${N?'#26331c':'#5a4a2c'}" stroke-width="5" fill="none"/>`;for(let k=0;k<7;k++){const a=(-160+k*30)*Math.PI/180,ex=Math.cos(a)*54,ey=Math.sin(a)*26-64;g+=`<path d="M ${dir*2} -64 Q ${ex*.45} ${-64+(ey+64)*.45-8} ${ex} ${ey}" stroke="${win.canopy}" stroke-width="5.5" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
   const _fern=(x,y,sc)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})">`;for(let k=0;k<9;k++){const a=(-170+k*22.5)*Math.PI/180,ex=Math.cos(a)*30,ey=Math.sin(a)*18-6;g+=`<path d="M 0 0 Q ${ex*.5} ${ey*.5-6} ${ex} ${ey}" stroke="${N?'#2f5a3a':'#3f8048'}" stroke-width="3" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
@@ -4382,6 +4388,7 @@ function lookoutSVG(){
   // river sparkle + dragonflies skimming the surface
   s+=`<g stroke="#fff" stroke-width="1.5" stroke-linecap="round" opacity=".5">${[[230,454],[430,458],[660,454],[880,458]].map(([x,y],i)=>`<line class="iw-twinkle" style="animation-delay:${(i*.3).toFixed(1)}s" x1="${x}" y1="${y}" x2="${x+14}" y2="${y}"/>`).join('')}</g>`;
   if(!N && !win.rain) s+=`<g>${[[420,432],[700,428]].map(([x,y],i)=>`<g class="iw-twinkle" style="animation-delay:${(i*.5).toFixed(1)}s"><ellipse cx="${x}" cy="${y}" rx="6" ry="1.6" fill="#5ec8d8" opacity=".85"/><line x1="${x}" y1="${y-1}" x2="${x}" y2="${y+5}" stroke="#3a8a99" stroke-width="1.4"/></g>`).join('')}</g>`;
+  s+='</g><g class="lkL" data-px=".46">';
   // ── the camp, on the bank BELOW the river; we're behind it (up at the falls), so the
   //    Cayenne is on the RIGHT, the lean-to on the LEFT, the fire in the middle ──
   s+=`<ellipse cx="514" cy="490" rx="158" ry="44" fill="${N?'#3a2d1a':'#7a5a34'}" opacity=".62"/><ellipse cx="514" cy="492" rx="120" ry="32" fill="${N?'#2f2415':'#6b4f2c'}" opacity=".5"/>`;
@@ -4426,6 +4433,7 @@ function lookoutSVG(){
   s+=`<g fill="${win.canopy}" opacity=".96"><ellipse cx="1006" cy="150" rx="92" ry="58"/><ellipse cx="938" cy="120" rx="54" ry="32"/></g><g fill="${win.canopy}" opacity=".6"><ellipse cx="968" cy="98" rx="40" ry="22"/></g>`;
   // a butterfly drifting by the pool (day)
   if(!N && !win.rain) s+=`<g class="iw-twinkle" opacity=".95"><ellipse cx="208" cy="372" rx="5" ry="3.4" transform="rotate(-22 208 372)" fill="#f4a93a"/><ellipse cx="218" cy="372" rx="5" ry="3.4" transform="rotate(22 218 372)" fill="#e8852a"/></g>`;
+  s+='</g><g class="lkL" data-px="1">';
   // ── the rock rim under my feet (foreground — I'm up high looking out over it) ──
   s+=`<path d="M 0 600 L 0 556 Q 260 540 560 548 Q 800 554 1000 544 L 1000 600 Z" fill="url(#lkledge)"/>`;
   s+=`<path d="M 0 558 Q 260 542 560 550 Q 800 556 1000 546" stroke="${N?'#4a4330':'#7a6240'}" stroke-width="3" fill="none" opacity=".5"/>`;
@@ -4433,6 +4441,7 @@ function lookoutSVG(){
   // big out-of-focus jungle leaves framing the bottom corners (foreground depth)
   const _leaf=(x,y,rot,sc)=>`<g transform="translate(${x} ${y}) rotate(${rot}) scale(${sc})"><path d="M 0 0 Q 30 -12 70 0 Q 30 12 0 0 Z" fill="${N?'#0e1c12':'#163016'}"/><path d="M 4 0 L 64 0" stroke="${N?'#0a160d':'#0f240f'}" stroke-width="1.4"/></g>`;
   s+= _leaf(-12,580,-50,2.5)+_leaf(34,598,-30,1.9)+_leaf(1012,580,-130,2.5)+_leaf(966,598,-150,1.9);
+  s+='</g>';
   if(win.rain){
     // overcast veil dulls the whole valley
     s+=`<rect width="1000" height="600" fill="${N?'#16222e':'#6f828c'}" opacity="${win.storm?'.34':'.22'}"/>`;
@@ -4446,6 +4455,32 @@ function lookoutSVG(){
   s+=`<rect width="1000" height="600" fill="url(#lkwash)"/>`;
   s+=`<rect width="1000" height="600" fill="url(#lkvig)"/>`;
   return s+`</svg>`;
+}
+// ── parallax driver for the Waterfall Lookout: layer groups (.lkL, data-px=depth) drift at
+//    different rates from a slow ambient breath + (desktop) the pointer, for a 3D-window feel ──
+let _lkRaf=null, _lkOff=null;
+function startLookoutParallax(){
+  stopLookoutParallax();
+  const scene=document.getElementById('interior-scene'); if(!scene) return;
+  const layers=[...scene.querySelectorAll('.lkL')]; if(!layers.length) return;
+  let mx=0, my=0;
+  const onMove=(e)=>{ const r=scene.getBoundingClientRect(); if(!r.width) return;
+    mx=((e.clientX-r.left)/r.width-0.5)*2; my=((e.clientY-r.top)/r.height-0.5)*2; };
+  scene.addEventListener('pointermove', onMove);
+  _lkOff=()=>scene.removeEventListener('pointermove', onMove);
+  let t0=null;
+  const tick=(ts)=>{ if(t0==null) t0=ts; const t=(ts-t0)/1000;
+    const drift=Math.sin(t*0.45)*0.4, AX=13, AY=5;
+    for(const g of layers){ const px=parseFloat(g.getAttribute('data-px'))||0;
+      g.setAttribute('transform',`translate(${((mx+drift)*AX*px).toFixed(2)} ${(my*AY*px).toFixed(2)})`); }
+    _lkRaf=requestAnimationFrame(tick); };
+  _lkRaf=requestAnimationFrame(tick);
+}
+function stopLookoutParallax(){
+  if(_lkRaf){ cancelAnimationFrame(_lkRaf); _lkRaf=null; }
+  if(_lkOff){ _lkOff(); _lkOff=null; }
+  const scene=document.getElementById('interior-scene');
+  if(scene) scene.querySelectorAll('.lkL').forEach(g=>g.removeAttribute('transform'));
 }
 function enterInterior(key){
   const I=INTERIORS[key]; if(!I) return;
@@ -4474,8 +4509,9 @@ function enterInterior(key){
     document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
   }
   document.getElementById('interior').classList.add('show');
+  if(key==='lookout') requestAnimationFrame(startLookoutParallax); else stopLookoutParallax();
 }
-function exitInterior(){ document.getElementById('interior').classList.remove('show'); }
+function exitInterior(){ stopLookoutParallax(); document.getElementById('interior').classList.remove('show'); }
 function renderInteriorHotspots(){
   const layer=document.getElementById('hotspots'); if(!layer) return; layer.innerHTML='';
   const H=stageH();
