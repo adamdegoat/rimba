@@ -1,0 +1,121 @@
+<!doctype html><html lang="en"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Behind the Falls · Rimba</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box}
+  html,body{margin:0;height:100%;background:#070f0a;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#eef3ee;overflow:hidden}
+  #scene{position:fixed;inset:0}
+  #scene svg{width:100%;height:100%;display:block}
+  #cap{position:fixed;left:0;right:0;bottom:14px;text-align:center;font-size:13px;color:rgba(238,243,238,.82);
+    text-shadow:0 2px 8px #000;padding:0 18px;z-index:5;pointer-events:none;font-weight:600}
+  #back{position:fixed;top:12px;left:12px;z-index:6;background:rgba(10,18,12,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
+    border:1px solid rgba(255,255,255,.22);color:#eef3ff;text-decoration:none;font-weight:700;font-size:13px;padding:8px 14px;border-radius:11px}
+  #gate{position:fixed;inset:0;z-index:20;display:flex;align-items:center;justify-content:center;
+    background:radial-gradient(120% 100% at 50% 28%,#14271b,#060d09);transition:opacity .6s ease}
+  .g-card{width:min(92vw,360px);background:rgba(10,18,12,.72);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+    border:1px solid rgba(120,200,140,.25);border-radius:18px;padding:30px 26px;text-align:center;box-shadow:0 22px 60px rgba(0,0,0,.6)}
+  .g-ic{font-size:36px;filter:drop-shadow(0 0 10px rgba(120,220,150,.4))}
+  .g-title{font-family:'Cinzel',serif;font-weight:700;letter-spacing:.05em;color:#c4eccd;margin:10px 0 5px;font-size:21px}
+  .g-sub{font-size:12.5px;color:rgba(238,243,238,.6);margin-bottom:18px;line-height:1.55}
+  #pw{width:100%;text-align:center;font-size:22px;letter-spacing:.45em;padding:12px;border-radius:11px;
+    border:1px solid rgba(120,200,140,.3);background:rgba(0,0,0,.35);color:#eaf6ec;outline:none}
+  #pw:focus{border-color:#7fd89a;box-shadow:0 0 0 3px rgba(120,200,140,.18)}
+  #go{margin-top:14px;width:100%;padding:13px;border:none;border-radius:11px;cursor:pointer;
+    background:linear-gradient(135deg,#5fbf78,#3f9a5a);color:#06120b;font-weight:800;letter-spacing:.12em;font-size:12.5px;text-transform:uppercase}
+  #err{color:#fca5a5;font-size:12px;height:16px;margin-top:10px;letter-spacing:.2px}
+  .hidden{opacity:0!important;pointer-events:none}
+  @keyframes drip{from{transform:translateY(-4px)}to{transform:translateY(4px)}}
+  @keyframes mote{0%{opacity:0;transform:translate(0,0)}30%{opacity:.7}70%{opacity:.5}100%{opacity:0;transform:translate(8px,-26px)}}
+  @keyframes sway{0%,100%{transform:rotate(-1.6deg)}50%{transform:rotate(1.6deg)}}
+  .fall{animation:drip 1s linear infinite alternate}
+  .mote{animation:mote 7s ease-in-out infinite}
+  .sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5.5s ease-in-out infinite}
+</style></head>
+<body>
+<div id="scene"></div>
+<a id="back" href="./">↩ back to Rimba</a>
+<div id="cap">The hollow behind the falls — sun slips through the cave roof, and something green has taken root.</div>
+<div id="gate">
+  <div class="g-card">
+    <div class="g-ic">🌿</div>
+    <div class="g-title">Behind the Falls</div>
+    <div class="g-sub">There's a hollow behind the water — dry, warm, lit by holes in the rock. It's not on any map. Whisper the number.</div>
+    <input id="pw" inputmode="numeric" placeholder="• • •" autocomplete="off" aria-label="password">
+    <button id="go">Slip behind the water</button>
+    <div id="err"></div>
+  </div>
+</div>
+<script>
+const PW='420';
+const gate=document.getElementById('gate'), pw=document.getElementById('pw'), err=document.getElementById('err');
+function unlock(){ gate.classList.add('hidden'); setTimeout(()=>gate.style.display='none',650); try{sessionStorage.setItem('btf','1')}catch(e){}; build(); }
+function tryPw(){ if(pw.value.trim()===PW){ unlock(); } else { err.textContent='The rock stays shut. (think… a certain number)'; pw.value=''; } }
+document.getElementById('go').onclick=tryPw;
+pw.addEventListener('keydown',e=>{ if(e.key==='Enter') tryPw(); });
+try{ if(sessionStorage.getItem('btf')==='1'){ gate.style.display='none'; build(); } else setTimeout(()=>pw.focus(),300); }catch(e){ setTimeout(()=>pw.focus(),300); }
+
+function build(){
+  if(document.getElementById('btf-svg')) return;
+  const F=n=>(+n).toFixed(1);
+  // ── cannabis fan leaf: 7 serrated leaflets radiating from a node ──
+  function leaflet(L,W){ const segs=5; let p='M 0 0'; for(let i=1;i<=segs;i++){const t=i/segs,y=-L*t,w=W*(1-t*0.78)*(i%2?1:.5); p+=` L ${F(-w)} ${F(y)}`;} p+=` L 0 ${F(-L)}`; for(let i=segs;i>=1;i--){const t=i/segs,y=-L*t,w=W*(1-t*0.78)*(i%2?1:.5); p+=` L ${F(w)} ${F(y)}`;} return p+' Z'; }
+  function leaf(x,y,sc,rot,c,c2){ const angs=[-80,-53,-26,0,26,53,80], lens=[30,48,64,76,64,48,30]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.17)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+3)}" stroke="${c2}" stroke-width="1" opacity=".5"/></g>`; }); return g+'</g>'; }
+  function plant(x,base,h,sc,c,c2){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s"><path d="M ${F(x)} ${F(base)} Q ${F(x-4)} ${F(base-h*.5)} ${F(x)} ${F(base-h)}" stroke="#3f6b30" stroke-width="${F(3.6*sc)}" fill="none" stroke-linecap="round"/>`;
+    for(let k=0;k<4;k++){ const ly=base-h*(0.32+k*0.2), s=sc*(0.5+k*0.13), side=k%2?1:-1; g+=leaf(x+side*4, ly, s, side*34, c, c2); }
+    g+=leaf(x, base-h+2, sc*0.92, 0, c, c2);
+    g+=`<g fill="#5f9a48"><ellipse cx="${F(x)}" cy="${F(base-h+3)}" rx="${F(5*sc)}" ry="${F(10*sc)}"/><circle cx="${F(x-3)}" cy="${F(base-h-3)}" r="${F(2.4*sc)}"/><circle cx="${F(x+3)}" cy="${F(base-h)}" r="${F(2.2*sc)}"/></g></g>`;
+    return g; }
+
+  let s=`<svg id="btf-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs>
+    <radialGradient id="caveBg" cx="46%" cy="40%" r="75%"><stop offset="0" stop-color="#1c3322"/><stop offset=".55" stop-color="#122318"/><stop offset="1" stop-color="#070f0a"/></radialGradient>
+    <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#2e2a22"/><stop offset="1" stop-color="#14110c"/></linearGradient>
+    <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#dff3ff" stop-opacity=".85"/><stop offset="1" stop-color="#9fc7e0" stop-opacity=".6"/></linearGradient>
+    <radialGradient id="daylight" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#fff8df"/><stop offset="1" stop-color="#cfe7ff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#fff6cf" stop-opacity=".5"/><stop offset="1" stop-color="#fff6cf" stop-opacity="0"/></linearGradient>
+    <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="#bfe6f2"/><stop offset="1" stop-color="#3a6e72"/></radialGradient>
+    <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity=".66"/></radialGradient></defs>
+    <rect width="1000" height="600" fill="url(#caveBg)"/>`;
+  // ── sunlight holes in the cave roof + beams stabbing down ──
+  const holes=[[250,300],[560,470],[820,360]];
+  holes.forEach(([hx,r])=>{ s+=`<ellipse cx="${hx}" cy="46" rx="${r/9}" ry="14" fill="#fff8df"/><ellipse cx="${hx}" cy="46" rx="${r/6}" ry="22" fill="url(#daylight)"/>`;
+    s+=`<path d="M ${hx-26} 50 L ${hx+26} 50 L ${hx+r*.18} 560 L ${hx-r*.18} 560 Z" fill="url(#beam)"/>`; });
+  // ── cave roof rock with stalactites ──
+  s+=`<path d="M 0 0 L 1000 0 L 1000 70 Q 940 96 900 70 Q 880 130 850 78 Q 700 104 560 80 Q 540 150 510 84 Q 360 108 230 82 Q 210 140 184 86 Q 90 104 0 80 Z" fill="url(#rock)"/>`;
+  s+=`<g fill="#0e0c08" opacity=".5">${[120,330,640,760,940].map(x=>`<path d="M ${x} 70 l 10 40 l 10 -40 Z"/>`).join('')}</g>`;
+  // side walls
+  s+=`<path d="M 0 0 L 0 600 L 70 600 Q 40 360 90 120 Q 30 60 0 70 Z" fill="url(#rock)"/>`;
+  s+=`<path d="M 1000 0 L 1000 600 L 930 600 Q 966 360 916 120 Q 978 60 1000 70 Z" fill="url(#rock)"/>`;
+  // moss on the rock
+  s+=`<g fill="#2f6b3e" opacity=".55">${[[40,150,18],[60,300,15],[950,200,16],[930,360,14],[180,70,20],[820,72,18]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.6}"/>`).join('')}</g>`;
+  // ── the waterfall curtain across the cave mouth (left), daylight glowing behind ──
+  s+=`<ellipse cx="150" cy="320" rx="150" ry="260" fill="url(#daylight)" opacity=".5"/>`;
+  s+=`<rect x="58" y="60" width="150" height="470" fill="url(#curtain)" opacity=".5"/>`;
+  s+=`<g stroke="#eaf6ff" stroke-width="3" opacity=".5" stroke-linecap="round">${[70,92,116,140,164,188].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.13).toFixed(2)}s" x1="${x}" y1="62" x2="${x-4}" y2="528"/>`).join('')}</g>`;
+  // pool + mist at the curtain's foot
+  s+=`<ellipse cx="150" cy="540" rx="120" ry="30" fill="url(#pool)" opacity=".9"/>`;
+  s+=`<g fill="#dff1f6" opacity=".3">${[[110,512,40,16],[180,506,30,12],[150,498,46,18]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
+  // ── cave floor: rock + soil beds in the light pools ──
+  s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 L 1000 600 L 0 600 Z" fill="#1a140d"/>`;
+  s+=`<g fill="#2a1f12">${holes.map(([hx])=>`<ellipse cx="${hx}" cy="540" rx="86" ry="22"/>`).join('')}</g>`;
+  // a few wooden grow-crates / pots
+  s+=`<g fill="#5a4326" stroke="#3a2c18" stroke-width="2">${[[330,548],[560,556],[820,548]].map(([x,y])=>`<path d="M ${x-34} ${y} L ${x+34} ${y} L ${x+28} ${y+22} L ${x-28} ${y+22} Z"/>`).join('')}</g>`;
+  // ── the crop: cannabis plants thriving in the sunbeams ──
+  const G='#2f8f3e', G2='#1c5a2a';
+  s+= plant(250,540,150,1.05,G,G2)+plant(206,548,108,.8,G,G2)+plant(300,546,120,.85,'#3aa047',G2);
+  s+= plant(560,556,166,1.12,G,G2)+plant(516,556,120,.86,'#3aa047',G2)+plant(606,552,128,.9,G,G2);
+  s+= plant(820,548,150,1.0,G,G2)+plant(872,552,108,.78,'#3aa047',G2)+plant(778,552,118,.84,G,G2);
+  // ferns + a hanging lantern for that lived-in grow vibe
+  s+=`<g stroke="#2f6b3e" stroke-width="3" fill="none" stroke-linecap="round" opacity=".85">${[120,690,910,400].map(x=>`<path d="M ${x} 560 q -12 -30 -26 -46 M ${x+8} 560 q 0 -36 0 -54 M ${x+16} 560 q 12 -30 26 -46"/>`).join('')}</g>`;
+  s+=`<g><line x1="700" y1="0" x2="700" y2="118" stroke="#3a2c18" stroke-width="2"/><rect x="688" y="118" width="24" height="30" rx="5" fill="#2a2114"/><ellipse cx="700" cy="133" rx="7" ry="10" fill="#ffd98a"/><ellipse cx="700" cy="133" rx="16" ry="20" fill="#ffd98a" opacity=".22"/></g>`;
+  // glowing dust motes in the beams
+  s+=`<g fill="#fff6cf">${holes.flatMap(([hx],j)=>[0,1,2,3].map(i=>`<circle class="mote" style="animation-delay:${(j*1.4+i*1.6).toFixed(1)}s" cx="${hx-20+i*12}" cy="${260+i*60}" r="2"/>`)).join('')}</g>`;
+  s+=`<rect width="1000" height="600" fill="url(#vig)"/></svg>`;
+  document.getElementById('scene').innerHTML=s;
+}
+</script>
+</body></html>

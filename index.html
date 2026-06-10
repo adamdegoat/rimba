@@ -4458,6 +4458,9 @@ function lookoutSVG(){
   s+=`<rect x="104" y="294" width="6" height="136" rx="3" fill="#fff" opacity=".25"/>`;
   s+=`<ellipse class="cl1" cx="150" cy="436" rx="88" ry="34" fill="url(#lkmist)" opacity=".5"/>`;
   if(!N && !win.rain) s+=`<g fill="none" opacity=".38">${[['#ff9b6b',70],['#ffe08a',64],['#8fe0a0',58],['#8fc3e8',52]].map(([c,r])=>`<path d="M ${140-r} 452 A ${r} ${r} 0 0 1 ${140+r} 452" stroke="${c}" stroke-width="3"/>`).join('')}</g>`;
+  // ── secret: the falls hide a hollow — tap the water to slip behind it (subtle twinkle hint) ──
+  s+=`<g fill="#eaf6ff" opacity=".5">${[[120,332],[148,392],[112,420]].map(([x,y],i)=>`<path class="iw-twinkle" style="animation-delay:${(i*1.3).toFixed(1)}s" d="M ${x} ${y-4} l 1.3 3 l 3 1.3 l -3 1.3 l -1.3 3 l -1.3 -3 l -3 -1.3 l 3 -1.3 Z"/>`).join('')}</g>`;
+  s+=`<rect class="lk-secret" x="74" y="280" width="116" height="176" fill="#fff" opacity="0" pointer-events="all" style="cursor:pointer"><title>behind the falls…</title></rect>`;
   // ── the river runs across the FAR side, BEYOND the camp — in front of the characters, who
   //    face it (we're behind them, up at the falls). The waterfall's pool is its left end. ──
   s+=`<path d="M 96 436 Q 350 452 600 446 Q 820 440 1012 452 L 1012 478 Q 820 466 600 472 Q 350 478 96 460 Z" fill="url(#lkriver)" opacity=".9"/>`;
@@ -4592,6 +4595,8 @@ function enterInterior(key){
   document.getElementById('interior').classList.add('show');
   // parallax driver runs for any interior that has depth layers (.lkL) — lookout + shelters
   requestAnimationFrame(startLookoutParallax);
+  // wire the secret falls hotspot → the hidden hollow behind the waterfall
+  const _sec=scene.querySelector('.lk-secret'); if(_sec) _sec.addEventListener('click',()=>{ window.location.href='behind-the-falls.html'; });
 }
 function exitInterior(){ stopLookoutParallax(); document.getElementById('interior').classList.remove('show'); }
 function renderInteriorHotspots(){
