@@ -3840,6 +3840,11 @@ function windowSky(){
   return {...m, rain, storm, night:cyc==='night', cycle:cyc, day:(S.world&&S.world.day)||1, fireLit, fuel};
 }
 function _appr(cid){ return (S.chars[cid]&&S.chars[cid].appearance)||{}; }
+// live story state → drawn realism (read-only)
+function _hurt(cid){ const c=S.chars[cid]||{}; const cond=((c.condition||c.state||'')+'').toLowerCase();
+  if(/injur|hurt|wound|ail|sick|bitten|limp|broken|cut|gash/.test(cond)) return true;
+  const h=c.scores&&c.scores.health; return typeof h==='number'&&h<50; }
+function _close(a,b){ const r=(S.chars[a]&&S.chars[a].relationships&&S.chars[a].relationships[b])||{}; return typeof r.closeness==='number'?r.closeness:50; }
 // ── the live jungle seen through a shelter opening: layered depth, sky, weather, life ──
 function jungleView(x,y,w,h,win,opt){
   opt=opt||{}; const F=n=>n.toFixed(1); const N=win.night;
@@ -3969,7 +3974,8 @@ function coldCampfire(cx,cy,scale){ scale=scale||1;
   </g>`;
 }
 // ── first-person legs: sitting upright, legs extended toward the view, own boots ──
-function povSitLegs(a){
+function povSitLegs(cid){
+  const a=_appr(cid), hurt=_hurt(cid);
   const pants=a.pants||'#46523a', boots=a.boots||'#2a1f14', skin=a.skin||'#d9a066', sleeve=a.outfit||'#4d6b3c';
   return `<g>
     <ellipse cx="500" cy="600" rx="210" ry="96" fill="#000" opacity=".18"/>
@@ -3984,6 +3990,10 @@ function povSitLegs(a){
     <g fill="${boots}"><path d="M 446 462 Q 444 430 464 428 Q 484 428 486 452 L 486 478 Q 466 486 446 478 Z"/><path d="M 514 462 Q 516 430 536 428 Q 556 430 554 462 L 552 478 Q 534 486 514 478 Z"/></g>
     <ellipse cx="465" cy="430" rx="20" ry="8" fill="#000" opacity=".18"/><ellipse cx="535" cy="430" rx="20" ry="8" fill="#000" opacity=".18"/>
     <g stroke="#000" stroke-width="2" opacity=".3"><line x1="456" y1="448" x2="476" y2="448"/><line x1="455" y1="460" x2="477" y2="460"/><line x1="524" y1="448" x2="544" y2="448"/><line x1="523" y1="460" x2="545" y2="460"/></g>
+    ${hurt?`<!-- a bandaged shin — this character is hurt (live state) -->
+      <g transform="rotate(-3 524 500)"><path d="M 502 472 Q 524 468 546 474 L 543 532 Q 524 538 506 532 Z" fill="#e2d8be"/>
+      <g stroke="#bcb091" stroke-width="1.6" opacity=".8" fill="none"><path d="M 504 484 Q 524 480 544 486"/><path d="M 505 498 Q 524 494 545 500"/><path d="M 505 512 Q 524 509 544 514"/><path d="M 530 472 L 520 532"/></g>
+      <path d="M 528 490 q 6 5 1 11 q -7 -2 -1 -11" fill="#b5503a" opacity=".5"/></g>`:''}
     <!-- forearms + hands resting on the thighs -->
     <g><path d="M 360 600 Q 392 556 432 548 L 444 566 Q 404 578 380 600 Z" fill="${sleeve}"/>
       <ellipse cx="436" cy="552" rx="17" ry="13" fill="${skin}"/>
@@ -3994,7 +4004,8 @@ function povSitLegs(a){
   </g>`;
 }
 // ── first-person legs: lying in a sleeping bag, feet bumps at the far end ──
-function povBag(a){
+function povBag(cid){
+  const a=_appr(cid), hurt=_hurt(cid);
   const bag=a.outfit||'#3b556b', skin=a.skin||'#d9a066';
   return `<g class="iw-breathe">
     <ellipse cx="500" cy="600" rx="220" ry="70" fill="#000" opacity=".2"/>
@@ -4004,9 +4015,10 @@ function povBag(a){
     <!-- two foot bumps -->
     <ellipse cx="476" cy="486" rx="27" ry="22" fill="${bag}"/><ellipse cx="524" cy="486" rx="27" ry="22" fill="${bag}"/>
     <ellipse cx="476" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/><ellipse cx="524" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/>
-    <!-- folded-down bag lip + a hand resting -->
+    <!-- folded-down bag lip + a hand resting (bandaged if hurt) -->
     <path d="M 360 540 Q 500 510 640 540 L 636 560 Q 500 532 364 560 Z" fill="#fff" opacity=".08"/>
-    <ellipse cx="588" cy="556" rx="16" ry="11" fill="${skin}"/>
+    ${hurt?`<g><path d="M 570 546 Q 588 540 606 546 L 604 566 Q 588 571 572 566 Z" fill="#e2d8be"/><g stroke="#bcb091" stroke-width="1.4" opacity=".8" fill="none"><path d="M 572 553 Q 588 549 604 553"/><path d="M 572 560 Q 588 557 604 560"/></g></g>`
+      :`<ellipse cx="588" cy="556" rx="16" ry="11" fill="${skin}"/>`}
   </g>`;
 }
 // ── left-behind resting spot when nobody's inside (honest empty state) ──
@@ -4063,6 +4075,8 @@ function tentSVG(){
   <rect width="1000" height="600" fill="url(#twall)"/>
   <!-- canvas panel seams + soft side shading (desktop) -->
   <g stroke="#3a2f1d" stroke-width="2" opacity=".2">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
+  <!-- faint canvas weave (texture) -->
+  <g stroke="#6b5836" stroke-width="1" opacity=".05">${[...Array(20)].map((_,i)=>`<line x1="0" y1="${i*32}" x2="1000" y2="${i*32}"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="${i*100}" y1="0" x2="${i*100+120}" y2="600"/>`).join('')}</g>
   <rect width="180" height="600" fill="#000" opacity=".14"/><rect x="820" width="180" height="600" fill="#000" opacity=".14"/>
   <!-- elevated canopy view through the unzipped door -->
   <g clip-path="url(#tdoor)">${jungleView(300,60,400,460,win,{high:true,campSmoke:true})}</g>
@@ -4095,8 +4109,8 @@ function tentSVG(){
   <!-- steaming mug resting on the tent floor -->
   <g transform="translate(372 566)"><path class="iw-steam" d="M 0 -16 q 6 -8 0 -16" stroke="#fff" stroke-width="2.5" fill="none" opacity=".4"/><rect x="-13" y="-16" width="26" height="20" rx="4" fill="#7a5a3a"/><path d="M 13 -11 q 12 0 12 8 q 0 7 -12 6" stroke="#7a5a3a" stroke-width="3" fill="none"/><ellipse cx="0" cy="-16" rx="13" ry="3.5" fill="#3a2a18"/></g>
   <!-- POV: your own legs in the bag / the cat / empty bag -->
-  ${human?povBag(_appr(human)):(cat?'':emptyBag())}
-  ${cat?povCat(_appr(cat), human?640:632, human?.8:.9):''}
+  ${human?povBag(human):(cat?'':emptyBag())}
+  ${cat?povCat(_appr(cat), human?(_close(human,cat)>55?604:662):632, human?.8:.9):''}
   <!-- the owners' belongings live here (Wesley's phone, Mutu's yarn) -->
   ${ownerDecor('tent',[[430,520],[300,574]])}
   </svg>`;
@@ -4151,8 +4165,9 @@ function leantoSVG(){
   <!-- soft daylight shafts spilling in through the open front onto the mat -->
   ${!win.night?`<g class="iw-ray">${[0,1,2].map(i=>{const ox=300+i*150;return `<polygon points="${ox},120 ${ox+70},120 ${ox+220},566 ${ox+30},566" fill="#fff6da" opacity=".09"/>`;}).join('')}</g>`:''}
   <!-- POV: your own crossed legs / the cat / empty mat -->
-  ${human?povSitLegs(_appr(human)):(cat?'':emptyMat())}
-  ${cat?povCat(_appr(cat), human?430:560, human?.72:.86):''}
+  ${human?povSitLegs(human):(cat?'':emptyMat())}
+  ${cat?povCat(_appr(cat), human?(_close(human,cat)>55?468:408):560, human?.72:.86):''}
+  ${win.fireLit?`<ellipse class="iw-glow" cx="588" cy="562" rx="215" ry="86" fill="url(#lfire)" opacity=".3"/>`:''}
   <!-- Chills' belongings live here (field journal + a potted seedling) -->
   ${ownerDecor('leanto',[[388,560]])}
   <rect y="588" width="1000" height="20" fill="#0c0a06"/>
