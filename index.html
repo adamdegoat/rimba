@@ -3914,6 +3914,7 @@ function jungleView(x,y,w,h,win,opt){
     <linearGradient id="jvmist" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#2c4664':'#f3f8ef'}" stop-opacity="0"/><stop offset="1" stop-color="${N?'#2c4664':'#eef5e9'}" stop-opacity=".6"/></linearGradient>
     <radialGradient id="jvvig" cx="50%" cy="46%" r="62%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".72" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0a140d" stop-opacity=".4"/></radialGradient></defs>`;
   s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="url(#jvsky)"/>`;
+  s+='<g class="lkL" data-px=".06">';
   // soft light bloom over the sky
   s+=`<circle cx="${F(sx)}" cy="${F(sy+10)}" r="${F(h*0.6)}" fill="url(#jvbloom)"/>`;
   // celestial body
@@ -3921,19 +3922,21 @@ function jungleView(x,y,w,h,win,opt){
     s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="54" fill="url(#jvsun)" opacity=".55"/><circle cx="${F(sx)}" cy="${F(sy)}" r="24" fill="#eef2ff"/><circle cx="${F(sx+10)}" cy="${F(sy-6)}" r="21" fill="${win.top}"/>`;
     for(let i=0;i<30;i++) s+=`<circle cx="${F(x+(i*131+37)%w)}" cy="${F(y+(i*71)%(h*0.48))}" r="${i%3?'.8':'1.5'}" fill="#fff" opacity="${(.35+(i%4)*.15).toFixed(2)}"/>`;
   } else {
-    let rays='<g class="iw-ray">'; for(let i=-3;i<=3;i++) rays+=`<polygon points="${F(sx)},${F(sy)} ${F(sx+i*64-40)},${F(y+h)} ${F(sx+i*64+40)},${F(y+h)}" fill="#fff7d6" opacity=".45"/>`; s+=rays+'</g>';
+    if(!win.rain){ let rays='<g class="iw-ray">'; for(let i=-3;i<=3;i++) rays+=`<polygon points="${F(sx)},${F(sy)} ${F(sx+i*64-40)},${F(y+h)} ${F(sx+i*64+40)},${F(y+h)}" fill="#fff7d6" opacity=".45"/>`; s+=rays+'</g>'; }
     s+=`<circle cx="${F(sx)}" cy="${F(sy)}" r="86" fill="url(#jvsun)"/><circle cx="${F(sx)}" cy="${F(sy)}" r="27" fill="#fffdf0"/>`;
     for(let i=0;i<4;i++){ const bx=x+w*0.5+i*40, by=y+h*0.15+(i%2)*18; s+=`<path d="M ${F(bx)} ${F(by)} q 8 -7 15 0 q 8 -7 15 0" stroke="#33473a" stroke-width="2" fill="none" opacity=".45"/>`; }
   }
-  // a soft drifting cloud + a bird gliding across (day only — the view is alive)
-  if(!N){
+  // a soft drifting cloud + a bird gliding across (fair-weather day only — the view is alive)
+  if(!N && !win.rain){
     s+=`<g class="iw-cloud" fill="#ffffff" opacity="${win.storm?'.5':'.7'}"><ellipse cx="${F(x+w*0.62)}" cy="${F(y+h*0.12)}" rx="48" ry="16"/><ellipse cx="${F(x+w*0.55)}" cy="${F(y+h*0.14)}" rx="34" ry="13"/><ellipse cx="${F(x+w*0.69)}" cy="${F(y+h*0.14)}" rx="30" ry="12"/></g>`;
     s+=`<g class="iw-bird" fill="none" stroke="#33473a" stroke-width="2" opacity=".55"><path d="M ${F(x+w*0.18)} ${F(y+h*0.22)} q 7 -7 13 0 q 7 -7 13 0"/></g>`;
   }
+  s+='</g><g class="lkL" data-px=".12">';
   // two distant misty ridges (depth)
   s+=`<path d="M ${x} ${F(horizon-12)} Q ${F(x+w*.3)} ${F(horizon-70)} ${F(x+w*.55)} ${F(horizon-26)} Q ${F(x+w*.8)} ${F(horizon-72)} ${x+w} ${F(horizon-18)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#33486a':'#acc4b3'}" opacity=".45"/>`;
   s+=`<path d="M ${x} ${F(horizon)} Q ${F(x+w*.26)} ${F(horizon-50)} ${F(x+w*.5)} ${F(horizon-14)} Q ${F(x+w*.74)} ${F(horizon-58)} ${x+w} ${F(horizon-6)} L ${x+w} ${F(y+h)} L ${x} ${F(y+h)} Z" fill="${N?'#2a3b58':'#8fb09e'}" opacity=".5"/>`;
   s+=`<rect x="${x}" y="${F(horizon-38)}" width="${w}" height="84" fill="url(#jvmist)"/>`;
+  s+='</g><g class="lkL" data-px=".2">';
   // 5 canopy depth layers (back -> front), lush gradient
   const layers=[{o:.6,d:-6},{o:.78,d:14},{o:.9,d:34},{o:.97,d:56},{o:1,d:82}];
   layers.forEach((L,li)=>{ let p=`M ${x} ${F(y+h)} L ${x} ${F(horizon+L.d)} `;
@@ -3942,6 +3945,7 @@ function jungleView(x,y,w,h,win,opt){
   // scalloped dense treetop crowns w/ volume (highlight up-left, shade down-right)
   [{d:30,c:G[2],step:13},{d:58,c:G[3],step:15}].forEach(L=>{ for(let i=0;i<=L.step;i++){ const cx=x+i*w/L.step, cy=horizon+L.d+((i%2)*6), r=24+(i*37%5)*7;
     s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${L.c}"/><circle cx="${F(cx-r*.32)}" cy="${F(cy-r*.34)}" r="${F(r*.56)}" fill="#fff" opacity="${N?'.05':'.13'}"/><circle cx="${F(cx+r*.34)}" cy="${F(cy+r*.3)}" r="${F(r*.5)}" fill="#000" opacity=".1"/>`; } });
+  s+='</g><g class="lkL" data-px=".32">';
   // ── lush Malaysian rainforest: broad emergents, fan palms, banana clumps ──
   const trunk=(N?'#16291d':'#46341f');
   const emergent=(tx,ty,r,cc)=>`<g><rect x="${F(tx-4)}" y="${F(ty)}" width="8" height="${F(y+h-ty)}" fill="${trunk}" opacity=".85"/>`+
@@ -3959,6 +3963,7 @@ function jungleView(x,y,w,h,win,opt){
   // a gibbon swinging from a canopy branch (a little life in the trees)
   { const gx=x+w*0.74, gy=horizon+6, gc=N?'#0f1f15':'#2a2016';
     s+=`<g class="iw-gibbon"><line x1="${F(gx)}" y1="${F(gy-30)}" x2="${F(gx)}" y2="${F(gy)}" stroke="${gc}" stroke-width="3"/><ellipse cx="${F(gx)}" cy="${F(gy+16)}" rx="9" ry="13" fill="${gc}"/><circle cx="${F(gx)}" cy="${F(gy+2)}" r="7" fill="${gc}"/><path d="M ${F(gx)} ${F(gy+6)} Q ${F(gx-12)} ${F(gy-6)} ${F(gx-3)} ${F(gy-14)}" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/><path d="M ${F(gx)} ${F(gy+24)} q -10 12 -4 22" stroke="${gc}" stroke-width="4" fill="none" stroke-linecap="round"/></g>`; }
+  s+='</g><g class="lkL" data-px=".45">';
   // dense undergrowth shrub band w/ volume highlight (lush jungle floor)
   for(let i=0;i<=18;i++){ const cx=x+i*w/18, cy=y+h-20+((i%2)*8), r=26+(i*53%5)*7;
     s+=`<circle cx="${F(cx)}" cy="${F(cy)}" r="${F(r)}" fill="${G[4]}"/><circle cx="${F(cx-r*.3)}" cy="${F(cy-r*.34)}" r="${F(r*.5)}" fill="#fff" opacity="${N?'.04':'.1'}"/>`; }
@@ -3971,17 +3976,20 @@ function jungleView(x,y,w,h,win,opt){
       g+=`<path d="M ${F(cx)} ${F(cb)} Q ${F(mx)} ${F(my)} ${F(ex)} ${F(ey)}"/>`; } s+=g+'</g>'; });
   const flower=(fx,fy,c,sc)=>`<g transform="translate(${F(fx)} ${F(fy)}) scale(${sc||1})">${[0,72,144,216,288].map(a=>`<ellipse cx="0" cy="-7" rx="4.5" ry="8" fill="${c}" transform="rotate(${a})"/>`).join('')}<circle r="3.2" fill="#ffd24a"/></g>`;
   if(!N) [[0.17,'#e0533c'],[0.5,'#ec7fa6'],[0.83,'#f2933a'],[0.34,'#e0533c'],[0.66,'#ec7fa6']].forEach(([fx,c],i)=>{ s+=flower(x+w*fx, y+h-(30+(i%3)*9), c, 1.05); });
+  s+='</g><g class="lkL" data-px=".6">';
   // hanging vines + leaves drooping into the top of the view
   for(let i=0;i<6;i++){ const vx=x+w*(0.08+i*0.16), vl=h*(0.26+(i%3)*0.08); s+=`<path d="M ${F(vx)} ${y} q 14 ${F(vl*.6)} -6 ${F(vl)}" stroke="${N?'#1b2f20':'#3a6b40'}" stroke-width="3" fill="none" opacity=".8"/><ellipse cx="${F(vx-6)}" cy="${F(y+vl)}" rx="9" ry="5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".8"/><ellipse cx="${F(vx+2)}" cy="${F(y+vl*.7)}" rx="6" ry="3.5" fill="${N?'#1f3525':'#4a7d4a'}" opacity=".6"/>`; }
   // big foreground frame leaves drooping from the top edge — pointed tropical leaves w/ midribs
   const lfa=N?'#13291b':'#244a2b', lfb=N?'#0e1f15':'#1c3a22';
   const leaf=(px,py,L,W,rot,fill,op)=>`<g transform="translate(${F(px)} ${F(py)}) rotate(${rot})" opacity="${op}"><path d="M 0 0 Q ${W} ${F(L*.42)} 0 ${L} Q ${-W} ${F(L*.42)} 0 0 Z" fill="${fill}"/><path d="M 0 4 L 0 ${F(L-5)}" stroke="#000" stroke-width="1.4" opacity=".16"/><path d="M 0 ${F(L*.32)} L ${F(W*.5)} ${F(L*.46)} M 0 ${F(L*.54)} L ${F(-W*.45)} ${F(L*.64)}" stroke="#000" stroke-width="1" opacity=".1" fill="none"/></g>`;
+  s+='</g><g class="lkL" data-px=".85">';
   s+=`<g class="iw-sway">`+leaf(x+w*.07,y-4,h*.36,28,16,lfb,'.95')+leaf(x+w*.18,y-8,h*.27,21,40,lfa,'.9')+`</g>`;
   s+=`<g class="iw-sway2">`+leaf(x+w*.93,y-4,h*.36,28,-16,lfb,'.95')+leaf(x+w*.82,y-8,h*.27,21,-40,lfa,'.9')+`</g>`;
   s+=`<g class="iw-sway">`+leaf(x+w*.5,y-10,h*.3,25,4,lfb,'.92')+`</g>`;
+  s+='</g>';
   // life: butterflies + drifting motes by day, fireflies by night
   if(N){ for(let i=0;i<12;i++){ const fx=x+(i*97+30)%w, fy=y+h*0.4+(i*57)%(h*0.44); s+=`<circle class="iw-fly" style="animation-delay:${(i*0.37).toFixed(2)}s" cx="${F(fx)}" cy="${F(fy)}" r="2.5" fill="#fff2a0"/>`; } }
-  else { for(let i=0;i<9;i++){ const mx=x+(i*113+50)%w, my=y+h*0.3+(i*67)%(h*0.5); s+=`<circle class="iw-mote" style="animation-delay:${(i*1.1).toFixed(1)}s" cx="${F(mx)}" cy="${F(my)}" r="2" fill="#fff7d6"/>`; }
+  else if(!win.rain){ for(let i=0;i<9;i++){ const mx=x+(i*113+50)%w, my=y+h*0.3+(i*67)%(h*0.5); s+=`<circle class="iw-mote" style="animation-delay:${(i*1.1).toFixed(1)}s" cx="${F(mx)}" cy="${F(my)}" r="2" fill="#fff7d6"/>`; }
     [[0.34,0.42,'#f2b134'],[0.64,0.54,'#e98aa8']].forEach(([bx,by,bc],i)=>{ const px=x+w*bx, py=y+h*by;
       s+=`<g class="iw-flit" style="animation-delay:${i*2.5}s"><g transform="translate(${F(px)} ${F(py)})"><ellipse cx="-5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="-4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><ellipse cx="4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><line x1="0" y1="-6" x2="0" y2="7" stroke="#2a2418" stroke-width="1.6"/></g></g>`; }); }
   // a glint of the river winding through the mid-distance (subtle shimmer)
@@ -3995,8 +4003,9 @@ function jungleView(x,y,w,h,win,opt){
       s+=`<g class="iw-smoke" style="animation-delay:1s"><path d="M ${F(cfx)} ${F(cfb)} q -9 ${F(-h*0.1)} 2 ${F(-h*0.2)}" stroke="#8a958c" stroke-width="5" fill="none" opacity=".24" stroke-linecap="round"/></g>`;
     }
   }
-  // rain
-  if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<52;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
+  // rain — an overcast veil dulls the view, then the rain falls
+  if(win.rain){ s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${N?'#1a2636':'#7a8a92'}" opacity="${win.storm?'.26':'.2'}"/>`;
+    let r='<g class="iwin-rain">'; for(let i=0;i<52;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
   s+=`<rect x="${x}" y="${F(y+h-12)}" width="${w}" height="16" fill="${G[4]}"/>`;
   // storm: a grey gloom over the view + an occasional lightning flash
   if(win.storm){ s+=`<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#2a3340" opacity=".34"/>`;
@@ -4509,7 +4518,8 @@ function enterInterior(key){
     document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
   }
   document.getElementById('interior').classList.add('show');
-  if(key==='lookout') requestAnimationFrame(startLookoutParallax); else stopLookoutParallax();
+  // parallax driver runs for any interior that has depth layers (.lkL) — lookout + shelters
+  requestAnimationFrame(startLookoutParallax);
 }
 function exitInterior(){ stopLookoutParallax(); document.getElementById('interior').classList.remove('show'); }
 function renderInteriorHotspots(){
