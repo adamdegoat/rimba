@@ -4063,6 +4063,9 @@ function povBag(cid){
     <path d="M 318 600 Q 360 472 500 466 Q 640 472 682 600 Z" fill="${bag}"/>
     <path d="M 318 600 Q 360 480 500 474 Q 640 480 682 600 Z" fill="#000" opacity=".12"/>
     <g stroke="#000" stroke-width="2" opacity=".13" fill="none"><path d="M 430 600 Q 452 506 488 478"/><path d="M 500 600 L 500 474"/><path d="M 570 600 Q 548 506 512 478"/></g>
+    <!-- rounded shins/knees: a highlight down each leg + a shadow valley between, so it reads as YOUR legs -->
+    <g fill="#fff" opacity=".07"><path d="M 426 600 Q 456 512 490 482 Q 480 544 466 600 Z"/><path d="M 574 600 Q 544 512 510 482 Q 520 544 534 600 Z"/></g>
+    <path d="M 500 600 Q 500 532 500 482" stroke="#000" stroke-width="15" opacity=".09" fill="none"/>
     <!-- two foot bumps -->
     <ellipse cx="476" cy="486" rx="27" ry="22" fill="${bag}"/><ellipse cx="524" cy="486" rx="27" ry="22" fill="${bag}"/>
     <ellipse cx="476" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/><ellipse cx="524" cy="478" rx="24" ry="13" fill="#fff" opacity=".07"/>
@@ -4123,7 +4126,7 @@ function tentSVG(){
   <radialGradient id="tpool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#ffd98a" stop-opacity=".15"/><stop offset=".7" stop-color="#ffd98a" stop-opacity=".04"/><stop offset="1" stop-color="#ffd98a" stop-opacity="0"/></radialGradient>
   <radialGradient id="twarm" cx="50%" cy="40%" r="84%"><stop offset="0" stop-color="#ffcf86" stop-opacity=".26"/><stop offset=".55" stop-color="#ffcf86" stop-opacity=".09"/><stop offset="1" stop-color="#ffcf86" stop-opacity="0"/></radialGradient>
   <radialGradient id="tencl" gradientUnits="userSpaceOnUse" cx="500" cy="430" r="360" gradientTransform="matrix(1,0,0,1.5,0,-215)"><stop offset="0" stop-color="#160f06" stop-opacity="0"/><stop offset=".55" stop-color="#160f06" stop-opacity="0"/><stop offset="1" stop-color="#1a1206" stop-opacity=".4"/></radialGradient>
-  <clipPath id="tdoor"><path d="M 520 64 L 354 520 L 646 520 L 480 64 Z"/></clipPath></defs>
+  <clipPath id="tdoor"><path d="M 435 64 L 565 64 L 740 520 L 260 520 Z"/></clipPath></defs>
   <rect width="1000" height="600" fill="url(#twall)"/>
   <!-- canvas panel seams + soft side shading (desktop) -->
   <g stroke="#3a2f1d" stroke-width="2" opacity=".2">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
@@ -4131,14 +4134,17 @@ function tentSVG(){
   <g stroke="#6b5836" stroke-width="1" opacity=".05">${[...Array(20)].map((_,i)=>`<line x1="0" y1="${i*32}" x2="1000" y2="${i*32}"/>`).join('')}${[...Array(11)].map((_,i)=>`<line x1="${i*100}" y1="0" x2="${i*100+120}" y2="600"/>`).join('')}</g>
   <rect width="180" height="600" fill="#000" opacity=".1"/><rect x="820" width="180" height="600" fill="#000" opacity=".1"/>
   <!-- elevated canopy view through the unzipped door -->
-  <g clip-path="url(#tdoor)">${jungleView(300,60,400,460,win,{high:true,campSmoke:true})}</g>
-  <!-- canvas flaps closing to a triangular doorway -->
-  <path d="M -20 -20 L 520 64 L 354 520 L -20 520 Z" fill="url(#twall)"/>
-  <path d="M 1020 -20 L 480 64 L 646 520 L 1020 520 Z" fill="url(#twall)"/>
+  <g clip-path="url(#tdoor)">${jungleView(250,56,500,468,win,{high:true,campSmoke:true})}</g>
+  <!-- canvas flaps swept back to a wide, rewarding doorway -->
+  <path d="M -20 -20 L 435 64 L 260 520 L -20 520 Z" fill="url(#twall)"/>
+  <path d="M 1020 -20 L 565 64 L 740 520 L 1020 520 Z" fill="url(#twall)"/>
+  <!-- tied-back flap folds (a little shape on the swept canvas) -->
+  <path d="M 435 64 Q 372 250 260 520" stroke="#2f2614" stroke-width="3" fill="none" opacity=".3"/>
+  <path d="M 565 64 Q 628 250 740 520" stroke="#2f2614" stroke-width="3" fill="none" opacity=".3"/>
   <!-- seam + zipper teeth (unzipped door) -->
-  <path d="M 520 64 L 354 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/><path d="M 480 64 L 646 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
-  <path d="M 520 64 L 354 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/><path d="M 480 64 L 646 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
-  <circle cx="354" cy="520" r="6" fill="#d9c089"/><circle cx="646" cy="520" r="6" fill="#d9c089"/>
+  <path d="M 435 64 L 260 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/><path d="M 565 64 L 740 520" stroke="#caa96a" stroke-width="4" opacity=".55" fill="none"/>
+  <path d="M 435 64 L 260 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/><path d="M 565 64 L 740 520" stroke="#3a2f1d" stroke-width="4" opacity=".6" fill="none" stroke-dasharray="2 4"/>
+  <circle cx="260" cy="520" r="6" fill="#d9c089"/><circle cx="740" cy="520" r="6" fill="#d9c089"/>
   <!-- draped valance + ridge ribs -->
   <path d="M -20 -20 L 1020 -20 L 1020 46 Q 500 12 -20 46 Z" fill="#5a4a2e"/>
   <path d="M 0 30 Q 500 70 1000 30" stroke="#3a2f1d" stroke-width="3" fill="none" opacity=".6"/>
@@ -4161,8 +4167,8 @@ function tentSVG(){
   <!-- soft warm pool thrown by the hung lantern, so the left canvas reads cosy not void -->
   <ellipse cx="372" cy="178" rx="270" ry="290" fill="url(#tpool)"/>
   <!-- ── lived-in overlander touches ── -->
-  <!-- a clipped head-torch slung on the ridge -->
-  <g transform="translate(566 96)"><path d="M -15 -2 Q 0 -11 15 -2" stroke="#2a2418" stroke-width="3" fill="none"/><rect x="-12" y="-2" width="24" height="13" rx="4" fill="#2b3034"/><rect x="-12" y="-2" width="24" height="5" rx="3" fill="#fff" opacity=".12"/><circle cx="0" cy="5" r="4.6" fill="#fff7d6"/><circle cx="0" cy="5" r="11" fill="#fff7d6" opacity=".2"/></g>
+  <!-- a clipped head-torch slung on the right wall (clear of the wider doorway) -->
+  <g transform="translate(648 150)"><line x1="0" y1="-46" x2="0" y2="-8" stroke="#2a2418" stroke-width="2"/><path d="M -15 -8 Q 0 -17 15 -8" stroke="#2a2418" stroke-width="3" fill="none"/><rect x="-12" y="-8" width="24" height="13" rx="4" fill="#2b3034"/><rect x="-12" y="-8" width="24" height="5" rx="3" fill="#fff" opacity=".12"/><circle cx="0" cy="-1" r="4.6" fill="#fff7d6"/><circle cx="0" cy="-1" r="11" fill="#fff7d6" opacity=".2"/></g>
   <!-- a clipped polaroid on the left canvas (caught in the lantern light) -->
   <g transform="translate(238 320) rotate(-5)"><rect x="-25" y="-23" width="50" height="58" rx="2" fill="#efe7d2"/><rect x="-20" y="-18" width="40" height="36" fill="#3c5a45"/><path d="M -20 12 L -6 -7 L 4 5 L 13 -5 L 20 7 L 20 18 L -20 18 Z" fill="#5c8059"/><circle cx="-9" cy="-9" r="4.4" fill="#ffe7a0"/><rect x="-6" y="-27" width="12" height="6" rx="2" fill="#6f5d3a"/></g>
   <!-- a short cord of socks + a tee drying on the right -->
@@ -4239,6 +4245,8 @@ function leantoSVG(){
   ${win.fireLit?'':`<rect width="1000" height="600" fill="#1d2c3e" opacity=".2"/>`}
   <!-- soft daylight shafts spilling in through the open front onto the mat -->
   ${!win.night?`<g class="iw-ray">${[0,1,2].map(i=>{const ox=300+i*150;return `<polygon points="${ox},120 ${ox+70},120 ${ox+220},566 ${ox+30},566" fill="#fff6da" opacity=".09"/>`;}).join('')}</g>`:''}
+  <!-- a soft warm glow on the foreground floor (lantern + fire), so the near edge isn't a dark band -->
+  <ellipse cx="500" cy="582" rx="350" ry="92" fill="#ffb259" opacity="${win.fireLit?0.11:0.05}"/>
   <!-- POV: your own crossed legs / the cat / empty mat -->
   ${human?povSitLegs(human):(cat?'':emptyMat())}
   ${cat?povCat(_appr(cat), human?(_close(human,cat)>55?468:408):560, human?.72:.86):''}
