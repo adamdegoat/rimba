@@ -150,9 +150,14 @@ function build(){
 
   // ══ MID parallax layer — the crop (mix of flowering + leafy) ══
   s+='<g class="lkL" data-px=".32">';
+  // back row — smaller/further, fills the grow out
+  s+= plant(160,524,96,.64,leafLite,true,false)+plant(362,520,102,.7,leafC,true,true)+plant(470,522,92,.62,leafLite,false)+plant(642,520,104,.72,leafC,true,false)+plant(702,524,94,.64,leafLite,true,true)+plant(900,522,98,.68,leafC,true,false)+plant(958,526,86,.58,leafLite,false);
+  // front clusters — the hero plants
   s+= plant(250,540,150,1.05,leafC,true,false)+plant(206,548,110,.8,leafLite,false)+plant(300,546,126,.85,leafC,true,true);
   s+= plant(560,556,168,1.14,leafC,true,true)+plant(516,556,122,.86,leafC,true,false)+plant(606,552,130,.9,leafLite,false);
   s+= plant(820,548,150,1.02,leafC,true,false)+plant(872,552,112,.8,leafLite,true,true)+plant(778,552,120,.84,leafC,false);
+  // fillers between the beams so it reads as a packed grow
+  s+= plant(400,550,112,.76,leafC,true,false)+plant(690,552,118,.8,leafLite,true,true)+plant(940,550,104,.72,leafC,true,false)+plant(456,548,98,.66,leafLite,false);
   s+='</g>';
 
   // ══ NEAR parallax layer — foreground ferns + a watering can + the gecko ══
