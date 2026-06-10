@@ -9,8 +9,8 @@
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;background:#070f0a;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#eef3ee;overflow:hidden}
-  #scene{position:fixed;inset:0}
-  #scene svg{width:100%;height:100%;display:block}
+  #scene{position:fixed;inset:0;overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch;display:flex}
+  #scene svg{height:100%;width:auto;min-width:100%;flex:0 0 auto;margin:auto;display:block}
   #cap{position:fixed;left:0;right:0;bottom:14px;text-align:center;font-size:13px;color:rgba(238,243,238,.82);
     text-shadow:0 2px 8px #000;padding:0 18px;z-index:5;pointer-events:none;font-weight:600}
   #back{position:fixed;top:12px;left:12px;z-index:6;background:rgba(10,18,12,.72);backdrop-filter:blur(7px);-webkit-backdrop-filter:blur(7px);
@@ -82,40 +82,55 @@ function build(){
 
   // cannabis fan leaf — 7 broad serrated leaflets
   // a slim, sharp-pointed, serrated cannabis leaflet (teeth angle toward the tip)
-  function leaflet(L,W){ const teeth=6; const prof=t=> t<0.24 ? (0.3+0.7*t/0.24) : Math.pow((1-t)/0.76,0.6);
-    const pts=[[0,0]];
-    for(let i=0;i<teeth;i++){ const tt=(i+0.66)/teeth, tn=(i+1)/teeth; pts.push([W*prof(tt),-L*tt]); pts.push([W*prof(tn)*0.3,-L*tn]); }
-    pts.push([0,-L]);
-    let p='M '+pts.map(([x,y])=>`${F(-x)} ${F(y)}`).join(' L ');
-    for(let i=pts.length-2;i>=1;i--) p+=` L ${F(pts[i][0])} ${F(pts[i][1])}`;
-    return p+' Z'; }
-  function leaf(x,y,sc,rot,c){ const angs=[-84,-56,-28,0,28,56,84], lens=[34,58,76,92,76,58,34]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`; angs.forEach((a,i)=>{ g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*0.19)}" fill="${c}"/><path d="M 0 -3 L 0 ${F(-lens[i]+5)}" stroke="${vein}" stroke-width="1.1" opacity=".5"/></g>`; }); return g+'</g>'; }
-  // flowering bud / cola — lumpy calyx cluster + amber pistil hairs + frosty trichomes
-  // a realistic flowering cola: green + purple-tinged calyxes, amber pistils, heavy white frost (trichomes)
-  function cola(cx,base,len,wid,purple){ let g=`<g>`; const n=Math.max(5,Math.round(len/7));
-    for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.56)+2.4;
-      const pp = purple ? (i%3!==1) : (i%3===0);      // purple strains: mostly purple; green: a few purple flecks
-      const bc=pp?purpC:budC, bl=pp?purpLite:budLite;
-      g+=`<circle cx="${F(cx)}" cy="${F(yy)}" r="${F(w)}" fill="${bc}"/><circle cx="${F(cx-w*.55)}" cy="${F(yy+1)}" r="${F(w*.72)}" fill="${bc}"/><circle cx="${F(cx+w*.55)}" cy="${F(yy+1)}" r="${F(w*.66)}" fill="${pp?purpC:budC}"/><circle cx="${F(cx-w*.2)}" cy="${F(yy-w*.42)}" r="${F(w*.4)}" fill="${bl}"/>`; }
-    // amber pistil hairs curling out
-    g+=`<g stroke="${pistil}" stroke-width="1.2" opacity=".85" stroke-linecap="round">`; for(let i=0;i<n*2.2;i++){ const t=i/(n*2.2), yy=base-len*t, side=i%2?1:-1, w=wid*(1-t*0.5)+2; g+=`<path d="M ${F(cx+side*w*.5)} ${F(yy)} q ${side*4} -5 ${side*8} -4"/>`; } g+='</g>';
-    // frosty white trichome coat — dense glitter
-    g+=`<g fill="${frostW}">`; for(let i=0;i<n*4;i++){ const t=(i*0.41)%1, yy=base-len*t, side=((i*7)%5-2)/2.2, w=wid*(1-t*0.5); g+=`<circle cx="${F(cx+side*w)}" cy="${F(yy)}" r="${(0.8+(i%3)*0.5).toFixed(1)}" opacity="${(0.5+(i%3)*0.2).toFixed(2)}"/>`; } g+='</g>';
+  function leaflet(L,W){ const seg=7; const prof=t=> t<0.2 ? (0.42+0.58*t/0.2) : Math.pow((1-t)/0.8,0.62);
+    // solid lanceolate blade with SMALL marginal teeth that rake toward the tip
+    const R=[];
+    for(let i=0;i<=seg;i++){ const t=i/seg, w=W*prof(t); R.push([w,-L*t]);
+      if(i<seg){ const tn=(i+0.62)/seg; R.push([W*prof(tn)*0.84,-L*tn]); } }
+    let p='M 0 0 ';
+    R.forEach(([x,y])=>p+=`L ${F(x)} ${F(y)} `);
+    p+=`L 0 ${F(-L)} `;
+    for(let i=R.length-1;i>=0;i--) p+=`L ${F(-R[i][0])} ${F(R[i][1])} `;
+    return p+'Z'; }
+  function leaf(x,y,sc,rot,c){ const angs=[-76,-49,-23,0,23,49,76], lens=[40,68,88,102,88,68,40]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`;
+    g+=`<path d="M 0 0 L 0 7" stroke="${vein}" stroke-width="2" stroke-linecap="round"/>`;
+    angs.forEach((a,i)=>{ const wr=0.27-Math.abs(a)/76*0.05; g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*wr)}" fill="${c}" stroke="${vein}" stroke-width="1.1" stroke-linejoin="round"/><path d="M 0 -3 L 0 ${F(-lens[i]+6)}" stroke="${vein}" stroke-width="1" opacity=".55"/></g>`; }); return g+'</g>'; }
+  // realistic flowering cola — sugar leaves poking out of a dense calyx bud, amber pistils, frost
+  function cola(cx,base,len,wid,purple){ let g=`<g>`; const n=Math.max(6,Math.round(len/6));
+    // sugar leaves fanning out from inside the bud (small frosted leaflets)
+    for(let i=1;i<n;i+=2){ const t=i/n, yy=base-len*t, side=(i%4<2?-1:1), slsc=(wid*1.4)*(1-t*0.45)/40;
+      g+=`<g transform="translate(${F(cx)} ${F(yy)}) rotate(${(side*(46-t*24)).toFixed(0)}) scale(${slsc.toFixed(3)})"><path d="${leaflet(40,7.6)}" fill="${purple?purpC:budC}"/><g fill="${frostW}" opacity=".55"><circle cx="0" cy="-16" r="1.6"/><circle cx="-2" cy="-26" r="1.3"/></g></g>`; }
+    // dense calyx nuggets (the bud mass) — green + purple tinged
+    for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.5)+2.4;
+      const pp = purple ? (i%3!==1) : (i%4===0); const bc=pp?purpC:budC, bl=pp?purpLite:budLite;
+      g+=`<circle cx="${F(cx)}" cy="${F(yy)}" r="${F(w)}" fill="${bc}"/><circle cx="${F(cx-w*.5)}" cy="${F(yy+1)}" r="${F(w*.7)}" fill="${bc}"/><circle cx="${F(cx+w*.5)}" cy="${F(yy+1)}" r="${F(w*.64)}" fill="${pp?purpLite:budC}"/><circle cx="${F(cx-w*.22)}" cy="${F(yy-w*.42)}" r="${F(w*.38)}" fill="${bl}"/>`; }
+    // amber pistil hairs
+    g+=`<g stroke="${pistil}" stroke-width="1.1" opacity=".85" stroke-linecap="round">`; for(let i=0;i<n*2.4;i++){ const t=i/(n*2.4), yy=base-len*t, side=i%2?1:-1, w=wid*(1-t*0.5)+2; g+=`<path d="M ${F(cx+side*w*.5)} ${F(yy)} q ${side*4} -5 ${side*8} -4"/>`; } g+='</g>';
+    // frosty trichome glitter
+    g+=`<g fill="${frostW}">`; for(let i=0;i<n*4.5;i++){ const t=(i*0.39)%1, yy=base-len*t, side=((i*7)%5-2)/2.2, w=wid*(1-t*0.5); g+=`<circle cx="${F(cx+side*w)}" cy="${F(yy)}" r="${(0.7+(i%3)*0.5).toFixed(1)}" opacity="${(0.5+(i%3)*0.2).toFixed(2)}"/>`; } g+='</g>';
     return g+'</g>'; }
-  // plant — leafy by default; flower=true grows a top cola + side buds (in flower)
-  function plant(x,base,h,sc,c,flower,purple){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s"><path d="M ${F(x)} ${F(base)} Q ${F(x-4)} ${F(base-h*.5)} ${F(x)} ${F(base-h)}" stroke="#3f6b30" stroke-width="${F(4*sc)}" fill="none" stroke-linecap="round"/>`;
-    for(let k=0;k<4;k++){ const ly=base-h*(0.3+k*0.2), ls=sc*(0.5+k*0.12), side=k%2?1:-1; g+=leaf(x+side*4, ly, ls, side*32, c); }
-    if(flower){ g+=cola(x, base-h+8, 46*sc, 7.5*sc, purple)+cola(x-15*sc, base-h*0.62, 26*sc, 5*sc, purple)+cola(x+15*sc, base-h*0.68, 24*sc, 4.6*sc, purple)+leaf(x, base-h-30*sc, sc*0.6, 0, c); }
-    else { g+=leaf(x, base-h+2, sc*0.92, 0, c)+`<ellipse cx="${F(x)}" cy="${F(base-h+3)}" rx="${F(5*sc)}" ry="${F(10*sc)}" fill="${leafLite}"/>`; }
+  // realistic cannabis plant — conical: a stem with node-pairs of fan leaves (big→small), branch colas + an apex cola
+  function plant(x,base,h,sc,c,flower,purple){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s">`;
+    g+=`<path d="M ${F(x)} ${F(base)} Q ${F(x-3)} ${F(base-h*.5)} ${F(x)} ${F(base-h)}" stroke="#3a5f2a" stroke-width="${F(5*sc)}" fill="none" stroke-linecap="round"/>`;
+    const nodes=5;
+    for(let k=0;k<nodes;k++){ const t=k/(nodes-1), ny=base-h*(0.12+t*0.8), lsc=sc*(1.4-t*0.74), ang=98-t*60;
+      g+=leaf(x-2*sc, ny, lsc, -ang, c)+leaf(x+2*sc, ny, lsc, ang, c); }
+    if(flower){
+      const by1=base-h*0.6, by2=base-h*0.72;
+      g+=`<path d="M ${F(x)} ${F(by1)} L ${F(x-20*sc)} ${F(by1-12*sc)}" stroke="#3a5f2a" stroke-width="${F(3*sc)}" fill="none" stroke-linecap="round"/>`+cola(x-20*sc, by1-12*sc, 30*sc, 5.4*sc, purple);
+      g+=`<path d="M ${F(x)} ${F(by2)} L ${F(x+20*sc)} ${F(by2-12*sc)}" stroke="#3a5f2a" stroke-width="${F(3*sc)}" fill="none" stroke-linecap="round"/>`+cola(x+20*sc, by2-12*sc, 28*sc, 5*sc, purple);
+      g+=cola(x, base-h+4, 54*sc, 8.5*sc, purple);
+    }
     return g+'</g>'; }
 
-  let s=`<svg id="btf-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs>
+  let s=`<svg id="btf-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><defs>
     <radialGradient id="caveBg" cx="46%" cy="40%" r="78%"><stop offset="0" stop-color="${cv1}"/><stop offset=".55" stop-color="${N?'#0d1a12':'#122318'}"/><stop offset="1" stop-color="${cv2}"/></radialGradient>
     <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${rk1}"/><stop offset="1" stop-color="${rk2}"/></linearGradient>
     <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#bcd6ee':'#dff3ff'}" stop-opacity=".85"/><stop offset="1" stop-color="${N?'#7fa6c8':'#9fc7e0'}" stop-opacity=".6"/></linearGradient>
     <radialGradient id="daylight" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${dl1}"/><stop offset="1" stop-color="${dl2}" stop-opacity="0"/></radialGradient>
     <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${beamC}" stop-opacity="${beamO}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></linearGradient>
     <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${N?'#6fa6b6':'#bfe6f2'}"/><stop offset="1" stop-color="${N?'#234852':'#3a6e72'}"/></radialGradient>
+    <radialGradient id="glowpool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${beamC}" stop-opacity="${N?'.18':'.5'}"/><stop offset=".6" stop-color="${beamC}" stop-opacity="${N?'.06':'.18'}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></radialGradient>
     <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity="${N?'.74':'.66'}"/></radialGradient></defs>
     <rect width="1000" height="600" fill="url(#caveBg)"/>`;
   const holes=[[250,300],[560,470],[820,360]];
@@ -148,6 +163,9 @@ function build(){
   // grow-crates
   s+=`<g fill="#5a4326" stroke="#3a2c18" stroke-width="2">${[[330,548],[560,556],[820,548]].map(([x,y])=>`<path d="M ${x-34} ${y} L ${x+34} ${y} L ${x+28} ${y+22} L ${x-28} ${y+22} Z"/>`).join('')}</g>`;
 
+  // pools of daylight landing on the crop where each beam reaches the floor
+  s+=`<g>${holes.map(([hx])=>`<ellipse cx="${hx}" cy="528" rx="118" ry="40" fill="url(#glowpool)"/>`).join('')}</g>`;
+
   // ══ MID parallax layer — the crop (mix of flowering + leafy) ══
   s+='<g class="lkL" data-px=".32">';
   // back row — smaller/further, fills the grow out
@@ -178,6 +196,8 @@ function build(){
   s+=`<rect width="1000" height="600" fill="url(#vig)"/></svg>`;
   document.getElementById('scene').innerHTML=s;
   startParallax();
+  // centre the horizontal scroll so the grow is framed; pan left/right to see the whole room
+  const scN=document.getElementById('scene'); requestAnimationFrame(()=>{ scN.scrollLeft=(scN.scrollWidth-scN.clientWidth)/2; });
 }
 </script>
 </body></html>
