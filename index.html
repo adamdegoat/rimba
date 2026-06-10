@@ -3767,6 +3767,12 @@ loadVote();
   @keyframes iwFlit{0%{transform:translate(0,0)}25%{transform:translate(16px,-12px)}50%{transform:translate(30px,5px)}75%{transform:translate(12px,14px)}100%{transform:translate(0,0)}}
   .iw-twinkle{animation:iwTwinkle 3.2s ease-in-out infinite}
   @keyframes iwTwinkle{0%,100%{opacity:.45}50%{opacity:1}}
+  .iw-smoke{transform-box:fill-box;transform-origin:50% 100%;animation:iwSmoke 5s ease-in-out infinite}
+  @keyframes iwSmoke{0%{opacity:0;transform:translateY(8px) scaleY(.85)}30%{opacity:.45}100%{opacity:0;transform:translateY(-14px) scaleY(1.18)}}
+  .iw-glow{animation:iwGlow 2.6s ease-in-out infinite}
+  @keyframes iwGlow{0%,100%{opacity:.42}50%{opacity:.78}}
+  .iw-shimmer{animation:iwShimmer 4.5s ease-in-out infinite}
+  @keyframes iwShimmer{0%,100%{opacity:.25}50%{opacity:.5}}
   .iw-steam{transform-box:fill-box;transform-origin:bottom center;animation:iwSteam 3.4s ease-in-out infinite}
   @keyframes iwSteam{0%{opacity:0;transform:translateY(0) scaleX(1)}30%{opacity:.5}100%{opacity:0;transform:translateY(-22px) scaleX(1.5)}}
   .iw-breathe{transform-box:fill-box;transform-origin:50% 100%;animation:iwBreathe 4.6s ease-in-out infinite}
@@ -3828,7 +3834,10 @@ function windowSky(){
   const storm=/storm|thunder|monsoon|squall|gale|deluge|lightning|tempest/.test(wx);
   const M={ morning:{top:'#a6cfe6',bot:'#e3eede',canopy:'#2f5536'}, midday:{top:'#74b6d8',bot:'#c7e6cf',canopy:'#2b4f31'},
             evening:{top:'#ec8f54',bot:'#f5cf94',canopy:'#3a2c20'}, night:{top:'#14223a',bot:'#243b58',canopy:'#16291d'} };
-  const m=M[cyc]||M.midday; return {...m, rain, storm, night:cyc==='night'};
+  const m=M[cyc]||M.midday;
+  const fireLit = !!(S.world && S.world.fire && S.world.fire.lit);
+  const fuel = (S.world && S.world.fire && typeof S.world.fire.fuel==='number') ? S.world.fire.fuel : (fireLit?8:0);
+  return {...m, rain, storm, night:cyc==='night', cycle:cyc, day:(S.world&&S.world.day)||1, fireLit, fuel};
 }
 function _appr(cid){ return (S.chars[cid]&&S.chars[cid].appearance)||{}; }
 // ── the live jungle seen through a shelter opening: layered depth, sky, weather, life ──
@@ -3918,6 +3927,17 @@ function jungleView(x,y,w,h,win,opt){
   else { for(let i=0;i<9;i++){ const mx=x+(i*113+50)%w, my=y+h*0.3+(i*67)%(h*0.5); s+=`<circle class="iw-mote" style="animation-delay:${(i*1.1).toFixed(1)}s" cx="${F(mx)}" cy="${F(my)}" r="2" fill="#fff7d6"/>`; }
     [[0.34,0.42,'#f2b134'],[0.64,0.54,'#e98aa8']].forEach(([bx,by,bc],i)=>{ const px=x+w*bx, py=y+h*by;
       s+=`<g class="iw-flit" style="animation-delay:${i*2.5}s"><g transform="translate(${F(px)} ${F(py)})"><ellipse cx="-5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="5.5" cy="-3.5" rx="6.5" ry="5" fill="${bc}"/><ellipse cx="-4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><ellipse cx="4.5" cy="4" rx="5" ry="4" fill="${bc}" opacity=".88"/><line x1="0" y1="-6" x2="0" y2="7" stroke="#2a2418" stroke-width="1.6"/></g></g>`; }); }
+  // a glint of the river winding through the mid-distance (subtle shimmer)
+  { const ry=horizon+h*0.12; s+=`<path class="iw-shimmer" d="M ${x} ${F(ry)} Q ${F(x+w*.3)} ${F(ry-8)} ${F(x+w*.55)} ${F(ry+4)} Q ${F(x+w*.8)} ${F(ry-6)} ${x+w} ${F(ry+2)}" stroke="${win.night?'#7fa6c8':'#bfe0ee'}" stroke-width="5" fill="none" opacity=".3" stroke-linecap="round"/>`; }
+  // the CAMP campfire seen from above (tent view only) — smoke + night firelight, tied to the real fire
+  if(opt.campSmoke){ const cfx=x+w*0.42, cfb=y+h-22;
+    if(win.fireLit){
+      s+=`<ellipse cx="${F(cfx)}" cy="${F(cfb)}" rx="${F(w*0.13)}" ry="${F(h*0.09)}" fill="#ff7a18" opacity="${win.night?'.34':'.1'}"/>`;
+      s+=`<g class="iw-smoke"><path d="M ${F(cfx)} ${F(cfb)} q -16 ${F(-h*0.13)} 4 ${F(-h*0.26)} q 18 ${F(-h*0.13)} -2 ${F(-h*0.38)}" stroke="${win.night?'#5c6b73':'#c7d2cb'}" stroke-width="9" fill="none" opacity=".34" stroke-linecap="round"/></g>`;
+    } else {
+      s+=`<g class="iw-smoke" style="animation-delay:1s"><path d="M ${F(cfx)} ${F(cfb)} q -9 ${F(-h*0.1)} 2 ${F(-h*0.2)}" stroke="#8a958c" stroke-width="5" fill="none" opacity=".24" stroke-linecap="round"/></g>`;
+    }
+  }
   // rain
   if(win.rain){ let r='<g class="iwin-rain">'; for(let i=0;i<52;i++){ const rx=x+(i*43)%w, ry=y+(i*29)%h; r+=`<line x1="${F(rx)}" y1="${F(ry)}" x2="${F(rx-6)}" y2="${F(ry+18)}" stroke="#cfe2f0" stroke-width="1.3" opacity=".5"/>`; } s+=r+'</g>'; }
   s+=`<rect x="${x}" y="${F(y+h-12)}" width="${w}" height="16" fill="${G[4]}"/>`;
@@ -3936,6 +3956,16 @@ function campfire(cx,cy,scale){ scale=scale||1;
     <path class="iw-fire" d="M 0 -4 C -16 -22 -11 -38 0 -52 C 11 -38 17 -24 0 -4 Z" fill="#ff8a2c"/>
     <path class="iw-fire" style="animation-delay:.12s" d="M 0 -6 C -8 -20 -6 -32 0 -42 C 7 -31 11 -20 0 -6 Z" fill="#ffd24a"/>
     <circle class="iw-ember" cx="-6" cy="-30" r="1.6" fill="#ffd24a"/><circle class="iw-ember" style="animation-delay:.8s" cx="8" cy="-26" r="1.3" fill="#ffb04a"/><circle class="iw-ember" style="animation-delay:1.6s" cx="0" cy="-34" r="1.4" fill="#ffd24a"/>
+  </g>`;
+}
+// a DEAD/cold fire — charred logs, ash bed, a couple of fading embers + a thin dying smoke wisp
+function coldCampfire(cx,cy,scale){ scale=scale||1;
+  return `<g transform="translate(${cx} ${cy}) scale(${scale})">
+    <ellipse cx="0" cy="4" rx="26" ry="8" fill="#15110a"/>
+    <path d="M -28 7 L 28 -5" stroke="#241910" stroke-width="8" stroke-linecap="round"/><path d="M -28 -5 L 28 7" stroke="#2e2316" stroke-width="8" stroke-linecap="round"/>
+    <g fill="#3a2a18" opacity=".8"><circle cx="-12" cy="2" r="3"/><circle cx="10" cy="0" r="2.6"/><circle cx="0" cy="4" r="3.2"/></g>
+    <circle cx="-5" cy="1" r="1.8" fill="#6e2a16" opacity=".55"/><circle cx="7" cy="-1" r="1.4" fill="#7a3318" opacity=".45"/>
+    <path class="iw-steam" d="M 2 -4 q -8 -11 0 -22 q 7 -9 0 -18" stroke="#9aa6a0" stroke-width="2" fill="none" opacity=".3"/>
   </g>`;
 }
 // ── first-person legs: sitting upright, legs extended toward the view, own boots ──
@@ -4035,7 +4065,7 @@ function tentSVG(){
   <g stroke="#3a2f1d" stroke-width="2" opacity=".2">${[...Array(9)].map((_,i)=>`<line x1="${110+i*100}" y1="0" x2="${110+i*100}" y2="600"/>`).join('')}</g>
   <rect width="180" height="600" fill="#000" opacity=".14"/><rect x="820" width="180" height="600" fill="#000" opacity=".14"/>
   <!-- elevated canopy view through the unzipped door -->
-  <g clip-path="url(#tdoor)">${jungleView(300,60,400,460,win,{high:true})}</g>
+  <g clip-path="url(#tdoor)">${jungleView(300,60,400,460,win,{high:true,campSmoke:true})}</g>
   <!-- canvas flaps closing to a triangular doorway -->
   <path d="M -20 -20 L 520 64 L 354 520 L -20 520 Z" fill="url(#twall)"/>
   <path d="M 1020 -20 L 480 64 L 646 520 L 1020 520 Z" fill="url(#twall)"/>
@@ -4109,13 +4139,15 @@ function leantoSVG(){
   <g stroke="#5a4a2e" stroke-width="1.5" opacity=".45">${[...Array(10)].map((_,i)=>`<line x1="${180+i*72}" y1="492" x2="${180+i*72}" y2="582"/>`).join('')}</g>
   <!-- hung lantern (left) casting a soft warm glow -->
   <g transform="translate(386 150)"><line x1="0" y1="-58" x2="0" y2="-30" stroke="#2a2012" stroke-width="2"/><ellipse cx="0" cy="-6" rx="34" ry="30" fill="#ffd98a" opacity=".22"/><rect x="-3" y="-38" width="6" height="9" rx="2" fill="#2a2418"/><rect x="-10" y="-30" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="-26" width="14" height="20" rx="3" fill="#ffe6ad"/></g>
-  <!-- campfire just outside, warm glow into the shelter -->
-  <ellipse cx="700" cy="486" rx="230" ry="96" fill="url(#lfire)" opacity=".6"/>
-  ${campfire(700,492,1.1)}
-  <!-- kettle warming at the fire -->
-  <g transform="translate(776 506)"><ellipse cx="0" cy="8" rx="22" ry="6" fill="#000" opacity=".3"/><path class="iw-steam" d="M -2 -22 q 7 -9 0 -17" stroke="#fff" stroke-width="2.4" fill="none" opacity=".4"/><path d="M -18 6 Q -21 -16 0 -16 Q 21 -16 18 6 Z" fill="#241d14"/><rect x="-7" y="-25" width="14" height="8" rx="2" fill="#241d14"/><path d="M 15 -7 q 15 3 12 14" stroke="#241d14" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="12" ry="3" fill="#3a2e1e"/></g>
-  <!-- cozy warm light wash (fire + lantern) -->
-  <rect width="1000" height="600" fill="url(#lwarm)"/>
+  <!-- campfire just outside — LIT or DEAD, mirrors the real camp fire (S.world.fire.lit) -->
+  ${win.fireLit
+    ? `<ellipse cx="700" cy="486" rx="230" ry="96" fill="url(#lfire)" opacity=".6"/>${campfire(700,492,1.1)}`
+    : coldCampfire(700,498,1.1)}
+  <!-- kettle (steams only when the fire's lit) -->
+  <g transform="translate(776 506)"><ellipse cx="0" cy="8" rx="22" ry="6" fill="#000" opacity=".3"/>${win.fireLit?`<path class="iw-steam" d="M -2 -22 q 7 -9 0 -17" stroke="#fff" stroke-width="2.4" fill="none" opacity=".4"/>`:''}<path d="M -18 6 Q -21 -16 0 -16 Q 21 -16 18 6 Z" fill="#241d14"/><rect x="-7" y="-25" width="14" height="8" rx="2" fill="#241d14"/><path d="M 15 -7 q 15 3 12 14" stroke="#241d14" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="12" ry="3" fill="#3a2e1e"/></g>
+  <!-- warm wash: full when the fire's lit, dim (lantern-only) when it's gone cold -->
+  <rect width="1000" height="600" fill="url(#lwarm)" opacity="${win.fireLit?1:0.26}"/>
+  ${win.fireLit?'':`<rect width="1000" height="600" fill="#1d2c3e" opacity=".2"/>`}
   <!-- soft daylight shafts spilling in through the open front onto the mat -->
   ${!win.night?`<g class="iw-ray">${[0,1,2].map(i=>{const ox=300+i*150;return `<polygon points="${ox},120 ${ox+70},120 ${ox+220},566 ${ox+30},566" fill="#fff6da" opacity=".09"/>`;}).join('')}</g>`:''}
   <!-- POV: your own crossed legs / the cat / empty mat -->
