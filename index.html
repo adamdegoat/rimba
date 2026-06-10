@@ -3714,9 +3714,18 @@ loadVote();
     font:700 9px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.2px;padding:3px 7px;border-radius:999px;
     box-shadow:0 2px 7px rgba(0,0,0,.45);display:none;align-items:center;gap:3px}
   .hotspot .hs-badge .em{font-size:9px}
+  .hotspot .hs-badge.struct{display:inline-flex}            /* the place name is always shown */
+  .hotspot:not(.occupied) .hs-badge.struct{opacity:.82;background:rgba(12,18,14,.74);border-color:rgba(255,255,255,.2);color:#eef2e8}
   .hotspot.occupied .hs-badge{display:inline-flex}
   .hotspot.vacant .hs-badge{display:inline-flex;opacity:.6;background:rgba(12,18,14,.66);border-color:rgba(255,255,255,.16);color:#dfe6ea}
   .hotspot.vacant .hs-badge .em{opacity:.55;filter:grayscale(.5)}
+  /* small clickable "Name · activity" cue floating just below a character at their shelter */
+  .actcue{position:absolute;transform:translate(-50%,-50%);z-index:16;pointer-events:auto;cursor:pointer;white-space:nowrap;
+    background:rgba(10,16,12,.84);border:1px solid rgba(255,255,255,.22);color:#eaf3ea;
+    font:700 8px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.2px;padding:3px 7px;border-radius:999px;box-shadow:0 2px 7px rgba(0,0,0,.45)}
+  .actcue .ac-do{opacity:.62;font-weight:600;font-style:italic}
+  .actcue::after{content:'';position:absolute;left:50%;bottom:100%;transform:translateX(-50%);border:4px solid transparent;border-bottom-color:rgba(10,16,12,.84)}
+  @media (max-width:640px){.actcue{font-size:7px;padding:2px 6px}}
   @media (max-width:640px){
     .hotspot .hs-badge{font-size:7.5px;padding:2px 6px;top:-15px;gap:2px;letter-spacing:0}
     .hotspot .hs-badge .em{font-size:8px}
@@ -3810,13 +3819,22 @@ loadVote();
 })();
 
 const INTERIORS = {
-  tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], hx:384, hy:398, name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", pov:"Your view from inside · looking out" },
-  leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'],               hx:660, hy:404, name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", pov:"Peeking into the shelter" },
+  tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], hx:384, hy:398, tag:"Rooftop Tent", name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", badge:"⛺", pov:"Your view from inside · looking out" },
+  leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'],               hx:660, hy:404, tag:"Lean-To", name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", badge:"🛖", pov:"Peeking into the shelter" },
 };
 // who's PHYSICALLY here this cycle (live location), vs who this shelter BELONGS to (static).
 function _present(key){ const w=INTERIORS[key].wps; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&w.indexOf((S.chars[c].location||{}).waypoint)>=0); }
 function _owners(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
 function _fname(cid){ const n=(S.chars[cid]&&S.chars[cid].name)||cid; return n.split(' ')[0]; }
+// a short, honest activity word for the cue near a character at their shelter
+function _activity(cid){
+  const c=S.chars[cid]||{}, cyc=((S.world&&S.world.cycle)||'').toLowerCase();
+  const st=c.interaction&&c.interaction.state;
+  const map={talking:'talking', sitting_together:'hanging out', holding_hands:'close', comforting:'comforting', back_to_back:'cooling off'};
+  if(st&&map[st]) return map[st];
+  if(cyc==='night') return 'asleep';
+  return cyc==='evening'?'winding down':'resting';
+}
 function _whereLabel(cid){
   const wp=((S.chars[cid]&&S.chars[cid].location)||{}).waypoint||'';
   if(/campfire|camp_mid/.test(wp)) return 'at the fire';
@@ -4206,22 +4224,47 @@ function enterInterior(key){
 }
 function exitInterior(){ document.getElementById('interior').classList.remove('show'); }
 function renderInteriorHotspots(){
-  const layer=document.getElementById('hotspots'); if(!layer) return;
-  layer.innerHTML='';
+  const layer=document.getElementById('hotspots'); if(!layer) return; layer.innerHTML='';
+  const H=stageH();
+  // restore any nametags a previous pass hid (the activity cue replaces the tag at a shelter)
+  document.querySelectorAll('#world .char .nametag').forEach(n=>n.style.removeProperty('visibility'));
   Object.keys(INTERIORS).forEach(key=>{
-    const I=INTERIORS[key]; const {left,top}=svgToViewport(I.hx,I.hy);
-    const present=_present(key).map(_fname), owners=_owners(key).map(_fname);
-    let txt, cls;
-    if(present.length){ txt = present.length===1?present[0]+' inside' : present.length===2?present.join(' & ')+' inside' : present.length+' inside'; cls=' occupied'; }
-    else if(owners.length){ txt = (owners.length<=2?owners.join(' & '):owners.length+' of them')+'’s spot'; cls=' vacant'; }
-    else { txt=''; cls=''; }
-    const d=document.createElement('div'); d.className='hotspot'+cls;
-    d.style.left=left; d.style.top=top;
-    d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge"><span class="em">🪔</span>${txt}</div><div class="hs-tap">tap to look inside</div>
-      <div style="width:80px;height:64px"></div>`;
+    const I=INTERIORS[key]; const {top}=svgToViewport(I.hx,I.hy);
+    // svgToViewport's horizontal basis divides by innerWidth (wrong on mobile, where #hotspots
+    // spans the full world width). world-svg maps viewBox-x linearly, so left = hx/10 % of #world.
+    const left=(I.hx/10)+'%';
+    const present=_present(key); const humans=present.filter(c=>!_isCat(c));
+    // ── the shelter's OWN name (not the owner's) — anyone may use it ──
+    const d=document.createElement('div'); d.className='hotspot'+(present.length?' occupied':''); d.style.left=left; d.style.top=top;
+    d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge struct" data-base="50%"><span class="em">${I.badge||'🪔'}</span>${I.tag||I.name}</div><div class="hs-tap">tap to look inside</div><div style="width:80px;height:64px"></div>`;
     d.onclick=()=>enterInterior(key);
     layer.appendChild(d);
+    // ── a small "<Name> <activity>" cue on whoever's actually there (people only) ──
+    humans.forEach(cid=>{
+      const cel=document.getElementById('char-'+cid); if(!cel) return;
+      const cl=parseFloat(cel.style.left)||0, ct=parseFloat(cel.style.top)||0;
+      const ntag=cel.querySelector('.nametag'); if(ntag) ntag.style.visibility='hidden';
+      const a=document.createElement('div'); a.className='actcue';
+      const baseLeft=cl+'%'; a.style.left=baseLeft; a.style.top=(ct+(13/H*100))+'%'; a.dataset.base=baseLeft;
+      a.innerHTML=`<span class="ac-name">${_fname(cid)}</span> <span class="ac-do">${_activity(cid)}</span>`;
+      a.onclick=(e)=>{ e.stopPropagation(); enterInterior(key); };
+      layer.appendChild(a);
+    });
   });
+  // keep every label clear of bubbles / narrator / each other; cues move freely, names stay planted
+  requestAnimationFrame(()=>{ try{
+    const obst=[...document.querySelectorAll('#world .bubble')].filter(b=>b.offsetParent!==null && getComputedStyle(b).opacity!=='0');
+    const pulse=document.getElementById('pulse'); if(pulse&&pulse.textContent.trim()&&pulse.offsetParent!==null) obst.push(pulse);
+    const labels=[...layer.querySelectorAll('.actcue'), ...layer.querySelectorAll('.hs-badge.struct')];
+    labels.forEach(el=>{ if(getComputedStyle(el).display==='none') return;
+      const base=el.dataset.base||'50%', cap=el.classList.contains('struct')?22:9999; let shift=0;
+      for(let pass=0; pass<4; pass++){ const br=el.getBoundingClientRect(); let worst=0;
+        obst.forEach(o=>{ if(o===el) return; const r=o.getBoundingClientRect();
+          const ovX=Math.min(br.right,r.right)-Math.max(br.left,r.left), ovY=Math.min(br.bottom,r.bottom)-Math.max(br.top,r.top);
+          if(ovX>0&&ovY>0){ const dir=(br.left+br.right)/2<=(r.left+r.right)/2?-1:1, need=dir*(ovX+8); if(Math.abs(need)>Math.abs(worst)) worst=need; } });
+        if(!worst) break; shift=Math.max(-cap,Math.min(cap,shift+worst)); el.style.left=`calc(${base} + ${Math.round(shift)}px)`; if(Math.abs(shift)>=cap) break; }
+      obst.push(el); });
+  }catch(e){} });
 }
 </script>
 </body>
