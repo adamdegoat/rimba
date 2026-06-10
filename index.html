@@ -4153,12 +4153,12 @@ function leantoSVG(){
   <g stroke="#5a4a2e" stroke-width="1.5" opacity=".45">${[...Array(10)].map((_,i)=>`<line x1="${180+i*72}" y1="492" x2="${180+i*72}" y2="582"/>`).join('')}</g>
   <!-- hung lantern (left) casting a soft warm glow -->
   <g transform="translate(386 150)"><line x1="0" y1="-58" x2="0" y2="-30" stroke="#2a2012" stroke-width="2"/><ellipse cx="0" cy="-6" rx="34" ry="30" fill="#ffd98a" opacity=".22"/><rect x="-3" y="-38" width="6" height="9" rx="2" fill="#2a2418"/><rect x="-10" y="-30" width="20" height="28" rx="5" fill="#2a2418"/><rect x="-7" y="-26" width="14" height="20" rx="3" fill="#ffe6ad"/></g>
-  <!-- campfire just outside — LIT or DEAD, mirrors the real camp fire (S.world.fire.lit) -->
+  <!-- THE main camp fire, just outside the open front — LIT or DEAD, mirrors S.world.fire.lit -->
   ${win.fireLit
-    ? `<ellipse cx="700" cy="486" rx="230" ry="96" fill="url(#lfire)" opacity=".6"/>${campfire(700,492,1.1)}`
-    : coldCampfire(700,498,1.1)}
-  <!-- kettle (steams only when the fire's lit) -->
-  <g transform="translate(776 506)"><ellipse cx="0" cy="8" rx="22" ry="6" fill="#000" opacity=".3"/>${win.fireLit?`<path class="iw-steam" d="M -2 -22 q 7 -9 0 -17" stroke="#fff" stroke-width="2.4" fill="none" opacity=".4"/>`:''}<path d="M -18 6 Q -21 -16 0 -16 Q 21 -16 18 6 Z" fill="#241d14"/><rect x="-7" y="-25" width="14" height="8" rx="2" fill="#241d14"/><path d="M 15 -7 q 15 3 12 14" stroke="#241d14" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="12" ry="3" fill="#3a2e1e"/></g>
+    ? `<ellipse cx="694" cy="498" rx="310" ry="138" fill="url(#lfire)" opacity=".62"/>${campfire(694,508,1.7)}`
+    : coldCampfire(694,512,1.7)}
+  <!-- kettle warming at the fire's edge (steams only when lit) -->
+  <g transform="translate(812 518)"><ellipse cx="0" cy="8" rx="22" ry="6" fill="#000" opacity=".3"/>${win.fireLit?`<path class="iw-steam" d="M -2 -22 q 7 -9 0 -17" stroke="#fff" stroke-width="2.4" fill="none" opacity=".4"/>`:''}<path d="M -18 6 Q -21 -16 0 -16 Q 21 -16 18 6 Z" fill="#241d14"/><rect x="-7" y="-25" width="14" height="8" rx="2" fill="#241d14"/><path d="M 15 -7 q 15 3 12 14" stroke="#241d14" stroke-width="3" fill="none"/><ellipse cx="0" cy="-15" rx="12" ry="3" fill="#3a2e1e"/></g>
   <!-- warm wash: full when the fire's lit, dim (lantern-only) when it's gone cold -->
   <rect width="1000" height="600" fill="url(#lwarm)" opacity="${win.fireLit?1:0.26}"/>
   ${win.fireLit?'':`<rect width="1000" height="600" fill="#1d2c3e" opacity=".2"/>`}
