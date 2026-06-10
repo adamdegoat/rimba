@@ -3854,9 +3854,10 @@ loadVote();
 const INTERIORS = {
   tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], hx:384, hy:398, tag:"Rooftop Tent", name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", badge:"⛺", pov:"Your view from inside · looking out" },
   leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'],               hx:660, hy:404, tag:"Lean-To", name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", badge:"🛖", pov:"Peeking into the shelter" },
+  lookout:{ scenery:true, hx:403, hy:248, tag:"Waterfall Lookout", name:"waterfall lookout", look:"the whole camp and its waterfall laid out below", icon:"🌊", badge:"🌊", pov:"A high overlook above the camp & falls", lead:"From the overlook", tapHint:"tap for the view" },
 };
 // who's PHYSICALLY here this cycle (live location), vs who this shelter BELONGS to (static).
-function _present(key){ const w=INTERIORS[key].wps; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&w.indexOf((S.chars[c].location||{}).waypoint)>=0); }
+function _present(key){ const w=INTERIORS[key].wps; if(!w) return []; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&w.indexOf((S.chars[c].location||{}).waypoint)>=0); }
 function _owners(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
 function _fname(cid){ const n=(S.chars[cid]&&S.chars[cid].name)||cid; return n.split(' ')[0]; }
 // a short, honest activity word for the cue near a character at their shelter
@@ -4261,25 +4262,113 @@ function renderInteriorOccupants(key){
   // so the old standing-avatar overlay is no longer used.
   const box=document.getElementById('interior-chars'); if(box) box.innerHTML='';
 }
+// ── WATERFALL LOOKOUT — a scenic overlook from the top of the falls (read-only; never touches the story) ──
+function _hsh(cid){ let h=0; for(const c of (cid||'')) h=(h*31+c.charCodeAt(0))>>>0; return h; }
+function _miniFig(cid, x, y){
+  const a=_appr(cid), shirt=a.outfit||getCharColor(cid), skin=a.skin||'#d9a066', hair=(a.hair&&a.hair.color)||'#241a12';
+  if(_isCat(cid)) return `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="3" rx="7" ry="2.5" fill="#000" opacity=".2"/><ellipse cx="1" cy="0" rx="7" ry="4" fill="${getCharColor(cid)}"/><circle cx="-6" cy="-1" r="3" fill="${getCharColor(cid)}"/><path d="M 7 -1 q 5 -3 3 -8" stroke="${getCharColor(cid)}" stroke-width="2.4" fill="none"/></g>`;
+  return `<g transform="translate(${x} ${y})"><ellipse cx="0" cy="4" rx="6" ry="2.2" fill="#000" opacity=".22"/><path d="M -4.5 2 Q -5 -9 0 -9 Q 5 -9 4.5 2 Z" fill="${shirt}"/><circle cx="0" cy="-11" r="3.6" fill="${skin}"/><path d="M -3.4 -12.6 Q 0 -16 3.4 -12.6 Q 2 -14.4 0 -14 Q -2 -14.4 -3.4 -12.6 Z" fill="${hair}"/></g>`;
+}
+function _campSpot(cid){
+  // positions on the camp's valley floor as seen from the overlook across the way
+  const wp=((S.chars[cid]&&S.chars[cid].location)||{}).waypoint||'', o=_hsh(cid);
+  if(/campfire|camp_mid/.test(wp)) return [640+(o%3-1)*24, 414-(o%2)*5];
+  if(/cayenne/.test(wp))           return [524+(o%3-1)*14, 400];
+  if(/shelter/.test(wp))           return [756+(o%3-1)*15, 398];
+  if(/river|shallow|log_cross|crossing/.test(wp)) return [360+(o%4-1.5)*28, 458];
+  if(/jungle|forest|canopy|trail/.test(wp))       return [860+(o%3)*32, 382];
+  return [600+(o%6)*40, 432+(o%2)*12];
+}
+function lookoutSVG(){
+  // I'm standing on the rock at the TOP of the falls, looking out and down across the camp basin.
+  // Foreground = the clifftop ledge under my feet. Lower-LEFT = the river tips over the lip beside
+  // me and plunges into misty depths. Ahead & slightly below = the whole camp spread out.
+  const win=windowSky(), N=win.night, F=n=>(+n).toFixed(1);
+  const ridgeA=N?'#1f3550':'#8aa1b3', ridgeB=N?'#21384a':'#6f8a82', water=N?'#cfe0f0':'#f0fbff';
+  const chars=Object.keys(S.chars||{}).filter(c=>S.chars[c]&&(S.chars[c].name||S.chars[c].species));
+  let s=`<svg viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg"><defs>
+    <linearGradient id="lksky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient>
+    <radialGradient id="lksun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${N?'#e6ecff':'#fffae6'}"/><stop offset=".42" stop-color="${N?'#cdd6f0':'#fff1b8'}" stop-opacity=".82"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <linearGradient id="lkbasin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#2f2616':'#6e5230'}"/><stop offset="1" stop-color="${N?'#241c10':'#5a4127'}"/></linearGradient>
+    <linearGradient id="lkriver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#3a5e80':'#86cfe2'}"/><stop offset="1" stop-color="${N?'#26415e':'#a9ddd6'}"/></linearGradient>
+    <linearGradient id="lkfall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#aebfd8':'#eaf6ff'}"/><stop offset="1" stop-color="${N?'#7d93b4':'#bfe0ef'}"/></linearGradient>
+    <radialGradient id="lkmist" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${N?'#9fb0c8':'#ffffff'}" stop-opacity=".5"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
+    <radialGradient id="lkvoid" cx="60%" cy="14%" r="96%"><stop offset="0" stop-color="${N?'#243042':'#5f7488'}" stop-opacity="0"/><stop offset="1" stop-color="${N?'#0b1018':'#2c3a44'}" stop-opacity=".9"/></radialGradient>
+    <linearGradient id="lkledge" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#3a3526':'#6b5836'}"/><stop offset="1" stop-color="${N?'#16140d':'#352812'}"/></linearGradient>
+    <radialGradient id="lkvig" cx="50%" cy="40%" r="74%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".66" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#0a1410" stop-opacity="${N?'.52':'.34'}"/></radialGradient></defs>
+  <rect width="1000" height="600" fill="url(#lksky)"/>`;
+  // sun / moon / stars / clouds (high sky band)
+  if(N){ s+=`<circle cx="772" cy="90" r="46" fill="url(#lksun)" opacity=".5"/><circle cx="772" cy="90" r="21" fill="#eef2ff"/><circle cx="781" cy="84" r="18" fill="${win.top}"/>`;
+    for(let i=0;i<26;i++) s+=`<circle cx="${F((i*149+40)%1000)}" cy="${F((i*53)%150+6)}" r="${i%3?'.8':'1.4'}" fill="#fff" opacity="${(.3+(i%4)*.15).toFixed(2)}"/>`;
+  } else { s+=`<circle cx="772" cy="86" r="76" fill="url(#lksun)"/><circle cx="772" cy="86" r="26" fill="#fffdf0"/>`;
+    s+=`<g class="cl1" fill="#fff" opacity=".82"><ellipse cx="540" cy="56" rx="46" ry="13"/><ellipse cx="500" cy="66" rx="32" ry="10"/></g><g class="cl2" fill="#fff" opacity=".6"><ellipse cx="300" cy="74" rx="40" ry="11"/><ellipse cx="350" cy="64" rx="28" ry="8"/></g>`; }
+  s+=`<g class="iw-bird" stroke="${N?'#9aa6b8':'#54646c'}" stroke-width="2" fill="none" opacity=".5">${[[500,120],[542,134],[586,122]].map(([x,y])=>`<path d="M ${x} ${y} q 7 -6 14 0 q 7 -6 14 0"/>`).join('')}</g>`;
+  // far ridges + canopy wall ringing the valley
+  s+=`<path d="M 0 196 Q 240 140 470 184 Q 690 138 900 180 Q 956 166 1000 184 L 1000 270 L 0 270 Z" fill="${ridgeA}" opacity=".5"/>`;
+  s+=`<path d="M 0 220 Q 300 174 560 212 Q 780 182 1000 218 L 1000 296 L 0 296 Z" fill="${ridgeB}" opacity=".6"/>`;
+  for(let r=0;r<3;r++){ const cyr=250+r*22;
+    s+=`<g fill="${win.canopy}" opacity="${(.5+r*.16).toFixed(2)}">`+[...Array(10)].map((_,i)=>`<ellipse cx="${F(i*118-30+r*46)}" cy="${F(cyr)}" rx="80" ry="${28+r*5}"/>`).join('')+`</g>`; }
+  // ── the camp's valley floor, spread out below me ──
+  s+=`<ellipse cx="600" cy="440" rx="470" ry="98" fill="url(#lkbasin)"/><ellipse cx="612" cy="428" rx="408" ry="76" fill="${N?'#352a18':'#6e5230'}" opacity=".7"/>`;
+  // ── the waterfall pouring down the far-left valley wall into its pool ──
+  s+=`<path d="M 0 238 L 252 260 Q 264 360 238 456 L 0 456 Z" fill="${N?'#28302a':'#41513a'}"/>`;
+  s+=`<path d="M 0 238 L 252 260 Q 206 300 146 300 Q 68 300 0 286 Z" fill="${N?'#1e2620':'#36452f'}" opacity=".55"/>`;
+  s+=`<path d="M 96 290 Q 132 284 168 290 L 160 432 Q 132 442 104 432 Z" fill="url(#lkfall)" opacity=".95"/>`;
+  s+=`<ellipse cx="132" cy="290" rx="38" ry="8" fill="#fff" opacity=".55"/>`;
+  s+=`<g fill="${N?'#d7e4f4':'#ffffff'}" opacity=".7">${[0,1,2,3,4].map(i=>`<rect class="${i%2?'fall1':'fall2'}" x="${102+i*14}" y="294" width="${7-(i%2)*2}" height="138" rx="3"/>`).join('')}</g>`;
+  s+=`<ellipse cx="132" cy="442" rx="66" ry="18" fill="${N?'#3a5e80':'#86cfe2'}"/>`;
+  s+=`<g fill="#fff" opacity=".5">${[[110,434],[132,429],[154,434],[120,439],[146,439]].map(([x,y])=>`<ellipse class="iw-twinkle" cx="${x}" cy="${y}" rx="8" ry="4"/>`).join('')}</g>`;
+  s+=`<ellipse cx="128" cy="426" rx="64" ry="26" fill="url(#lkmist)" opacity=".75"/><ellipse class="iw-twinkle" cx="150" cy="412" rx="40" ry="16" fill="url(#lkmist)" opacity=".6"/>`;
+  // ── the river runs from the pool across the valley floor, past the camp ──
+  s+=`<path d="M 120 448 Q 320 464 520 458 Q 740 452 1010 468 L 1010 496 Q 740 482 520 488 Q 320 494 120 472 Z" fill="url(#lkriver)" opacity=".9"/>`;
+  s+=`<path d="M 150 460 Q 400 474 700 468 Q 860 464 1000 476" stroke="${water}" stroke-width="2" fill="none" opacity=".4"/>`;
+  // car
+  s+=`<g transform="translate(560 404)"><ellipse cx="0" cy="14" rx="30" ry="6" fill="#000" opacity=".22"/><rect x="-25" y="-4" width="50" height="16" rx="4" fill="${N?'#6a7480':'#c4ccd4'}"/><rect x="-17" y="-11" width="34" height="8" rx="3" fill="${N?'#5a646e':'#aab2bb'}"/><path d="M -15 -11 L 15 -11 L 11 -21 L -11 -21 Z" fill="${N?'#6a5c44':'#cdb992'}"/><circle cx="-16" cy="12" r="5.5" fill="#15110a"/><circle cx="16" cy="12" r="5.5" fill="#15110a"/></g>`;
+  // lean-to shelter
+  s+=`<g transform="translate(776 400)"><ellipse cx="0" cy="12" rx="23" ry="5" fill="#000" opacity=".22"/><path d="M -21 12 L 17 -10 L 24 -1 L -14 21 Z" fill="${N?'#3a2c18':'#5c4327'}"/><line x1="17" y1="-10" x2="17" y2="14" stroke="${N?'#2a2012':'#3a2c18'}" stroke-width="3"/><line x1="-19" y1="12" x2="-19" y2="18" stroke="${N?'#2a2012':'#3a2c18'}" stroke-width="3"/></g>`;
+  // campfire
+  s+= win.fireLit
+    ? `<ellipse cx="666" cy="418" rx="40" ry="15" fill="#ff7a18" opacity="${N?'.55':'.22'}"/>${campfire(666,418,.56)}<path class="iw-smoke" d="M 666 404 q -9 -18 2 -34 q 10 -14 -2 -30" stroke="${N?'#5c6b73':'#cdd6cf'}" stroke-width="3" fill="none" opacity=".3"/>`
+    : coldCampfire(666,420,.56);
+  // tiny cast figures down on the valley floor
+  s+= chars.map(cid=>_miniFig(cid, ..._campSpot(cid))).join('');
+  if(N) s+=`<g fill="#fde68a">${[[520,428],[700,408],[800,436],[600,452],[744,420]].map(([x,y],i)=>`<circle class="iw-twinkle" style="animation-delay:${(i*.5).toFixed(1)}s" cx="${x}" cy="${y}" r="1.6"/>`).join('')}</g>`;
+  s+=`<ellipse cx="560" cy="486" rx="220" ry="16" fill="url(#lkmist)" opacity=".18"/>`;
+  // ── the rock rim under my feet (foreground — I'm up high looking out over it) ──
+  s+=`<path d="M 0 600 L 0 524 Q 260 502 560 512 Q 800 520 1000 506 L 1000 600 Z" fill="url(#lkledge)"/>`;
+  s+=`<path d="M 0 526 Q 260 504 560 514 Q 800 522 1000 508" stroke="${N?'#4a4330':'#7a6240'}" stroke-width="3" fill="none" opacity=".5"/>`;
+  s+=`<g stroke="${N?'#2f5a40':'#3f7a4a'}" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".9">`+[90,300,470,720,910].map(fx=>`<path d="M ${fx} 580 q -9 -28 -20 -44 M ${fx+9} 580 q 0 -32 0 -50 M ${fx+18} 580 q 9 -28 20 -44"/>`).join('')+`</g>`;
+  if(win.rain) s+=`<g>${[...Array(18)].map((_,i)=>`<line x1="${F(i*58+8)}" y1="${F((i*37)%120)}" x2="${F(i*58-8)}" y2="${F((i*37)%120+34)}" stroke="${N?'#9fb6cc':'#cfe2f0'}" stroke-width="1.4" opacity=".5"/>`).join('')}</g>`;
+  if(win.storm) s+=`<rect width="1000" height="600" fill="#1a2238" opacity=".22"/>`;
+  s+=`<rect width="1000" height="600" fill="url(#lkvig)"/>`;
+  return s+`</svg>`;
+}
 function enterInterior(key){
   const I=INTERIORS[key]; if(!I) return;
   const scene=document.getElementById('interior-scene');
-  scene.innerHTML = key==='tent'?tentSVG():leantoSVG();
-  // the scene fills the height and overflows the width on narrow screens — centre it
-  // on the door so the view + occupant show first, with room to pan left/right.
-  requestAnimationFrame(()=>{ try{ scene.scrollLeft=(scene.scrollWidth-scene.clientWidth)/2;
+  scene.innerHTML = key==='lookout'?lookoutSVG():(key==='tent'?tentSVG():leantoSVG());
+  // the scene fills the height and overflows the width on narrow screens — frame it so the
+  // subject shows first, with room to pan left/right. shelters centre on the door; the
+  // waterfall lookout opens on the falls (viewBox ~x130) with the camp trailing to the right.
+  requestAnimationFrame(()=>{ try{
+    scene.scrollLeft = I.scenery ? Math.min(scene.scrollWidth-scene.clientWidth, (130/1000)*scene.scrollWidth)
+                                 : (scene.scrollWidth-scene.clientWidth)/2;
     const hint=document.getElementById('interior-hint'); if(hint){ hint.classList.remove('show'); void hint.offsetWidth;
       if(scene.scrollWidth-scene.clientWidth>40) hint.classList.add('show'); } }catch(e){} });
   document.querySelector('#interior-title .it-ico').textContent = I.icon||'';
   document.querySelector('#interior-title .it-main').textContent = I.name;
   document.querySelector('#interior-title .it-sub').textContent = I.pov||'';
   renderInteriorOccupants(key);
-  const present=_present(key), owners=_owners(key);
-  let who;
-  if(present.length){ const ns=present.map(_fname); who=(ns.length<=2?ns.join(' & '):ns.length+' of them')+' sheltering here'; }
-  else if(owners.length){ const ns=owners.map(_fname); who=(ns.length<=2?ns.join(' & '):'they')+(ns.length===1?' bunks here':' bunk here')+' — '+_whereLabel(owners[0])+' right now'; }
-  else who='no one here right now';
-  document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
+  if(I.scenery){
+    document.getElementById('interior-cap').textContent = `${I.lead||('At the '+I.name)} — ${I.look}.`;
+  } else {
+    const present=_present(key), owners=_owners(key);
+    let who;
+    if(present.length){ const ns=present.map(_fname); who=(ns.length<=2?ns.join(' & '):ns.length+' of them')+' sheltering here'; }
+    else if(owners.length){ const ns=owners.map(_fname); who=(ns.length<=2?ns.join(' & '):'they')+(ns.length===1?' bunks here':' bunk here')+' — '+_whereLabel(owners[0])+' right now'; }
+    else who='no one here right now';
+    document.getElementById('interior-cap').textContent = `Inside the ${I.name} — ${I.look}. ${who}.`;
+  }
   document.getElementById('interior').classList.add('show');
 }
 function exitInterior(){ document.getElementById('interior').classList.remove('show'); }
@@ -4296,7 +4385,7 @@ function renderInteriorHotspots(){
     const present=_present(key); const humans=present.filter(c=>!_isCat(c));
     // ── the shelter's OWN name (not the owner's) — anyone may use it ──
     const d=document.createElement('div'); d.className='hotspot'+(present.length?' occupied':''); d.style.left=left; d.style.top=top;
-    d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge struct" data-base="50%"><span class="em">${I.badge||'🪔'}</span>${I.tag||I.name}</div><div class="hs-tap">tap to look inside</div><div style="width:80px;height:64px"></div>`;
+    d.innerHTML=`<div class="hs-glow"></div><div class="hs-badge struct" data-base="50%"><span class="em">${I.badge||'🪔'}</span>${I.tag||I.name}</div><div class="hs-tap">${I.tapHint||'tap to look inside'}</div><div style="width:80px;height:64px"></div>`;
     d.onclick=()=>enterInterior(key);
     layer.appendChild(d);
     // ── a small "<Name> <activity>" cue on whoever's actually there (people only) ──
