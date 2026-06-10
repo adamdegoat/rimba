@@ -4292,6 +4292,7 @@ function lookoutSVG(){
     <linearGradient id="lksky" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${win.top}"/><stop offset="1" stop-color="${win.bot}"/></linearGradient>
     <radialGradient id="lksun" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${N?'#e6ecff':'#fffae6'}"/><stop offset=".42" stop-color="${N?'#cdd6f0':'#fff1b8'}" stop-opacity=".82"/><stop offset="1" stop-color="#fff" stop-opacity="0"/></radialGradient>
     <linearGradient id="lkbasin" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#2f2616':'#6e5230'}"/><stop offset="1" stop-color="${N?'#241c10':'#5a4127'}"/></linearGradient>
+    <linearGradient id="lkgrass" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#26381f':'#5f8438'}"/><stop offset="1" stop-color="${N?'#172310':'#426126'}"/></linearGradient>
     <linearGradient id="lkriver" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#3a5e80':'#86cfe2'}"/><stop offset="1" stop-color="${N?'#26415e':'#a9ddd6'}"/></linearGradient>
     <linearGradient id="lkfall" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#aebfd8':'#eaf6ff'}"/><stop offset="1" stop-color="${N?'#7d93b4':'#bfe0ef'}"/></linearGradient>
     <linearGradient id="lkcliff" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="${N?'#3b3f34':'#73715a'}"/><stop offset=".55" stop-color="${N?'#2a2e25':'#56543f'}"/><stop offset="1" stop-color="${N?'#181c15':'#3b3a2b'}"/></linearGradient>
@@ -4310,8 +4311,21 @@ function lookoutSVG(){
   s+=`<path d="M 0 220 Q 300 174 560 212 Q 780 182 1000 218 L 1000 296 L 0 296 Z" fill="${ridgeB}" opacity=".6"/>`;
   for(let r=0;r<3;r++){ const cyr=250+r*22;
     s+=`<g fill="${win.canopy}" opacity="${(.5+r*.16).toFixed(2)}">`+[...Array(10)].map((_,i)=>`<ellipse cx="${F(i*118-30+r*46)}" cy="${F(cyr)}" rx="80" ry="${28+r*5}"/>`).join('')+`</g>`; }
-  // ── the camp's valley floor, spread out below me ──
-  s+=`<ellipse cx="600" cy="440" rx="470" ry="98" fill="url(#lkbasin)"/><ellipse cx="612" cy="428" rx="408" ry="76" fill="${N?'#352a18':'#6e5230'}" opacity=".7"/>`;
+  // canopy volume — sunlit up-light on the treetops, shadow tucked beneath
+  s+=`<g fill="${N?'#9fb6a0':'#cfe6a0'}" opacity="${N?'.08':'.2'}">${[...Array(9)].map((_,i)=>`<ellipse cx="${F(i*128+24)}" cy="284" rx="56" ry="12"/>`).join('')}</g>`;
+  s+=`<g fill="#0a160c" opacity=".18">${[...Array(9)].map((_,i)=>`<ellipse cx="${F(i*128+70)}" cy="304" rx="52" ry="10"/>`).join('')}</g>`;
+  // ── the camp's valley floor — a lush green clearing, spread out below me ──
+  s+=`<ellipse cx="600" cy="442" rx="486" ry="106" fill="url(#lkgrass)"/><ellipse cx="606" cy="430" rx="424" ry="82" fill="${N?'#2c4022':'#6c9240'}" opacity=".55"/>`;
+  // grassy tufts dappling the floor
+  s+=`<g stroke="${N?'#2f5a3a':'#508f3c'}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".5">${[...Array(26)].map((_,i)=>{const x=130+i*34, y=398+((i*47)%72); return `<path d="M ${x} ${y} q -3 -8 -6 -13 M ${x+3} ${y} q 0 -10 0 -15 M ${x+6} ${y} q 3 -8 6 -13"/>`;}).join('')}</g>`;
+  // ── lush jungle planting ringing the clearing (kept off the campsite) ──
+  const _palm=(x,y,sc,dir)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})"><path d="M 0 0 Q ${dir*5} -36 ${dir*2} -64" stroke="${N?'#26331c':'#5a4a2c'}" stroke-width="5" fill="none"/>`;for(let k=0;k<7;k++){const a=(-160+k*30)*Math.PI/180,ex=Math.cos(a)*54,ey=Math.sin(a)*26-64;g+=`<path d="M ${dir*2} -64 Q ${ex*.45} ${-64+(ey+64)*.45-8} ${ex} ${ey}" stroke="${win.canopy}" stroke-width="5.5" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
+  const _fern=(x,y,sc)=>{let g=`<g transform="translate(${x} ${y}) scale(${sc})">`;for(let k=0;k<9;k++){const a=(-170+k*22.5)*Math.PI/180,ex=Math.cos(a)*30,ey=Math.sin(a)*18-6;g+=`<path d="M 0 0 Q ${ex*.5} ${ey*.5-6} ${ex} ${ey}" stroke="${N?'#2f5a3a':'#3f8048'}" stroke-width="3" fill="none" stroke-linecap="round"/>`;}return g+`</g>`;};
+  s+=`<g>${[262,330,704,772,840,910].map((x,i)=>`<g fill="${win.canopy}"><ellipse cx="${x}" cy="${400-i%2*5}" rx="${26+i%3*5}" ry="${15+i%2*4}"/><ellipse cx="${x+17}" cy="403" rx="19" ry="12"/><ellipse cx="${x-15}" cy="403" rx="17" ry="11"/></g>`).join('')}</g>`;
+  s+= _palm(296,438,1,-1)+_palm(950,448,1.15,1)+_palm(892,434,.82,1)+_palm(330,420,.7,-1);
+  s+= _fern(276,454,1.1)+_fern(922,462,1.2)+_fern(706,452,.9)+_fern(360,452,.82);
+  s+=`<g transform="translate(862 454)">${[-1,1,0,-1].map((d,i)=>`<path d="M ${d*6} 0 Q ${d*26} ${-26-i*4} ${d*22} ${-52-i*7}" stroke="${win.canopy}" stroke-width="12" fill="none" stroke-linecap="round"/>`).join('')}</g>`;
+  if(!N) s+=`<g>${[[268,476,'#e8643c'],[706,470,'#f2a23a'],[300,478,'#e85c8a'],[940,478,'#f2c23a']].map(([x,y,c])=>`<g fill="${c}"><circle cx="${x}" cy="${y}" r="3.4"/><circle cx="${x-4}" cy="${y-2}" r="2.4"/><circle cx="${x+4}" cy="${y-2}" r="2.4"/><circle cx="${x}" cy="${y+4}" r="2.4"/></g>`).join('')}</g>`;
   // ── a lush jungle waterfall down the far-left valley wall, into its pool ──
   // mossy rock cliff (textured, not a flat slab)
   s+=`<path d="M 0 224 Q 130 238 214 262 Q 258 276 256 326 Q 260 394 234 454 Q 226 470 196 466 L 0 462 Z" fill="url(#lkcliff)"/>`;
@@ -4331,19 +4345,27 @@ function lookoutSVG(){
   s+=`<g fill="${N?'#d7e4f4':'#ffffff'}" opacity=".7">${[0,1,2,3,4].map(i=>`<rect class="${i%2?'fall1':'fall2'}" x="${102+i*14}" y="294" width="${7-(i%2)*2}" height="138" rx="3"/>`).join('')}</g>`;
   s+=`<ellipse cx="132" cy="442" rx="66" ry="18" fill="${N?'#3a5e80':'#86cfe2'}"/>`;
   s+=`<g fill="#fff" opacity=".5">${[[110,434],[132,429],[154,434],[120,439],[146,439]].map(([x,y])=>`<ellipse class="iw-twinkle" cx="${x}" cy="${y}" rx="8" ry="4"/>`).join('')}</g>`;
+  // fine spray kicking up where the water lands
+  s+=`<g fill="#fff">${[[118,424],[132,418],[148,424],[126,430],[140,430]].map(([x,y],i)=>`<circle class="iw-twinkle" style="animation-delay:${(i*.3).toFixed(1)}s" cx="${x}" cy="${y}" r="${2-i%2*.6}" opacity=".7"/>`).join('')}</g>`;
   s+=`<ellipse cx="128" cy="426" rx="64" ry="26" fill="url(#lkmist)" opacity=".75"/><ellipse class="iw-twinkle" cx="150" cy="412" rx="40" ry="16" fill="url(#lkmist)" opacity=".6"/>`;
   // wet boulders + lily pads at the pool
   s+=`<ellipse cx="70" cy="450" rx="22" ry="12" fill="${N?'#23271e':'#56533f'}"/><ellipse cx="70" cy="445" rx="22" ry="8" fill="${N?'#30342a':'#6e6a52'}"/><ellipse cx="63" cy="442" rx="8" ry="3" fill="#fff" opacity=".18"/>`;
   s+=`<g fill="${N?'#2c4a32':'#3f7a4a'}" opacity=".92">${[[180,440,12],[206,448,9],[150,452,8]].map(([x,y,r])=>`<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.5}"/>`).join('')}</g>`;
-  // ── the river runs from the pool across the valley floor, past the camp ──
-  s+=`<path d="M 120 448 Q 320 464 520 458 Q 740 452 1010 468 L 1010 496 Q 740 482 520 488 Q 320 494 120 472 Z" fill="url(#lkriver)" opacity=".9"/>`;
-  s+=`<path d="M 150 460 Q 400 474 700 468 Q 860 464 1000 476" stroke="${water}" stroke-width="2" fill="none" opacity=".4"/>`;
+  // ── the pool spills down a short channel to the river running along the FRONT of the clearing
+  //    (the camp sits set BACK on the bank, like the real camp) ──
+  s+=`<path d="M 116 448 Q 134 486 176 508 L 214 518 Q 168 496 138 458 Q 126 450 116 448 Z" fill="url(#lkriver)" opacity=".85"/>`;
+  s+=`<path d="M 0 508 Q 250 524 480 516 Q 730 508 1000 522 L 1000 556 Q 730 544 480 552 Q 250 560 0 546 Z" fill="url(#lkriver)" opacity=".9"/>`;
+  s+=`<path d="M 28 518 Q 260 532 480 526 Q 730 518 982 530" stroke="${water}" stroke-width="2" fill="none" opacity=".4"/>`;
+  // lush reeds at the waterline
+  s+=`<g stroke="${N?'#2c5236':'#3f7a44'}" stroke-width="2.4" fill="none" stroke-linecap="round" opacity=".85">${[150,250,360,470,640,760,880].map((x,i)=>`<path d="M ${x} ${508+i%2*4} q -3 -16 -8 -26 M ${x+5} ${508+i%2*4} q 0 -20 1 -30 M ${x+10} ${508+i%2*4} q 4 -16 9 -24"/>`).join('')}</g>`;
   // ── the camp cluster: lean-to + fire + Cayenne grouped together like a real campsite ──
   // a worn, trodden clearing the camp sits on
-  s+=`<ellipse cx="516" cy="446" rx="210" ry="50" fill="${N?'#3a2d1a':'#7a5a34'}" opacity=".5"/><ellipse cx="516" cy="448" rx="170" ry="38" fill="${N?'#2f2415':'#6b4f2c'}" opacity=".4"/>`;
+  s+=`<ellipse cx="514" cy="448" rx="158" ry="46" fill="${N?'#3a2d1a':'#7a5a34'}" opacity=".62"/><ellipse cx="514" cy="450" rx="120" ry="34" fill="${N?'#2f2415':'#6b4f2c'}" opacity=".5"/>`;
   // trodden paths linking the camp + tyre ruts from the bogged car
   s+=`<g stroke="${N?'#241a10':'#5e4326'}" stroke-width="6" fill="none" opacity=".4" stroke-linecap="round"><path d="M 516 454 Q 462 446 412 438"/><path d="M 516 454 Q 582 446 636 438"/><path d="M 516 458 Q 506 480 466 494"/></g>`;
   s+=`<g stroke="${N?'#201710':'#4a3420'}" stroke-width="3" fill="none" opacity=".5"><path d="M 612 446 Q 662 450 714 454"/><path d="M 618 452 Q 668 456 718 460"/></g>`;
+  // muddy puddles glinting on the trodden ground
+  s+=`<g>${[[442,470,16,5],[566,478,13,4],[600,458,10,3.5]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}" fill="${N?'#2a3a44':'#86a3a6'}" opacity=".55"/>`).join('')}</g>`;
   // lean-to (LEFT, near the fire)
   s+=`<g transform="translate(392 432)"><ellipse cx="0" cy="12" rx="23" ry="5" fill="#000" opacity=".22"/><path d="M -21 12 L 17 -10 L 24 -1 L -14 21 Z" fill="${N?'#3a2c18':'#5c4327'}"/><line x1="17" y1="-10" x2="17" y2="14" stroke="${N?'#2a2012':'#3a2c18'}" stroke-width="3"/><line x1="-19" y1="12" x2="-19" y2="18" stroke="${N?'#2a2012':'#3a2c18'}" stroke-width="3"/></g>`;
   // Cayenne (RIGHT, near the fire) — bogged in the mud
@@ -4375,9 +4397,9 @@ function lookoutSVG(){
   // a butterfly drifting by the pool (day)
   if(!N) s+=`<g class="iw-twinkle" opacity=".95"><ellipse cx="208" cy="372" rx="5" ry="3.4" transform="rotate(-22 208 372)" fill="#f4a93a"/><ellipse cx="218" cy="372" rx="5" ry="3.4" transform="rotate(22 218 372)" fill="#e8852a"/></g>`;
   // ── the rock rim under my feet (foreground — I'm up high looking out over it) ──
-  s+=`<path d="M 0 600 L 0 524 Q 260 502 560 512 Q 800 520 1000 506 L 1000 600 Z" fill="url(#lkledge)"/>`;
-  s+=`<path d="M 0 526 Q 260 504 560 514 Q 800 522 1000 508" stroke="${N?'#4a4330':'#7a6240'}" stroke-width="3" fill="none" opacity=".5"/>`;
-  s+=`<g stroke="${N?'#2f5a40':'#3f7a4a'}" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".9">`+[90,300,470,720,910].map(fx=>`<path d="M ${fx} 580 q -9 -28 -20 -44 M ${fx+9} 580 q 0 -32 0 -50 M ${fx+18} 580 q 9 -28 20 -44"/>`).join('')+`</g>`;
+  s+=`<path d="M 0 600 L 0 556 Q 260 540 560 548 Q 800 554 1000 544 L 1000 600 Z" fill="url(#lkledge)"/>`;
+  s+=`<path d="M 0 558 Q 260 542 560 550 Q 800 556 1000 546" stroke="${N?'#4a4330':'#7a6240'}" stroke-width="3" fill="none" opacity=".5"/>`;
+  s+=`<g stroke="${N?'#2f5a40':'#3f7a4a'}" stroke-width="3.4" fill="none" stroke-linecap="round" opacity=".9">`+[80,250,430,600,780,930].map(fx=>`<path d="M ${fx} 596 q -9 -28 -20 -44 M ${fx+9} 596 q 0 -32 0 -50 M ${fx+18} 596 q 9 -28 20 -44"/>`).join('')+`</g>`;
   if(win.rain) s+=`<g>${[...Array(18)].map((_,i)=>`<line x1="${F(i*58+8)}" y1="${F((i*37)%120)}" x2="${F(i*58-8)}" y2="${F((i*37)%120+34)}" stroke="${N?'#9fb6cc':'#cfe2f0'}" stroke-width="1.4" opacity=".5"/>`).join('')}</g>`;
   if(win.storm) s+=`<rect width="1000" height="600" fill="#1a2238" opacity=".22"/>`;
   s+=`<rect width="1000" height="600" fill="url(#lkvig)"/>`;
