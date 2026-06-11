@@ -3328,6 +3328,22 @@ function updateWorld() {
   separateChars(positions)
   settleHomeChars(positions)   // home characters lounge AT their shelter, not standing in the open
 
+  // keep characters OFF the lit campfire flames (the fire sits at viewBox x≈564, band ~538–590).
+  // slide any occupant out to sit beside the nearest neighbour on its side of the fire.
+  if(S.world && S.world.fire && S.world.fire.lit){
+    positions.forEach(p=>{
+      if(p.indoors) return
+      const vx = p.px/W*1000
+      if(vx<=538 || vx>=590) return
+      const left = vx < 564
+      const others = positions.filter(q=>q!==p && !q.indoors).map(q=>q.px/W*1000)
+      let tgt
+      if(left){ const ls=others.filter(x=>x>=440 && x<538); tgt=ls.length?Math.min(...ls)-28:528 }   // beside the nearest left neighbour
+      else    { const rs=others.filter(x=>x>590 && x<=690); tgt=rs.length?Math.max(...rs)+28:600 }
+      p.px = tgt/1000*W
+    })
+  }
+
   positions.forEach(p=>{
     const el=document.getElementById('char-'+p.id); if(!el) return
     el.style.left=(p.px/W*100)+'%'
