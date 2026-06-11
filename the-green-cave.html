@@ -124,6 +124,23 @@ function person(o){ const {x,y,sc=1,skin='#e3b68e',hair='#2c2018',hairstyle='sho
   if(hold) g+=hold;
   return g+'</g>'; }
 
+// ── varied plants (so it's not all the same leaf) ──
+function succulent(x,y,sc,c){ let g=`<g transform="translate(${F(x)} ${F(y)}) scale(${sc})">`;
+  g+=`<path d="M -12 0 L 12 0 L 9 14 L -9 14 Z" fill="#b9824a"/><ellipse cx="0" cy="0" rx="12" ry="2.6" fill="#9c6a34"/>`;
+  const c2=c||'#7fae6a'; [-72,-43,-15,15,43,72].forEach(a=>{ g+=`<g transform="rotate(${a})"><path d="M 0 -2 Q -7 -15 0 -28 Q 7 -15 0 -2 Z" fill="${c2}"/><path d="M 0 -6 L 0 -24" stroke="#5e8a4a" stroke-width="1" opacity=".45"/></g>`; });
+  g+=`<ellipse cx="0" cy="-3" rx="5" ry="3.4" fill="#a6d68f"/>`; return g+'</g>'; }
+function snakePlant(x,y,sc){ let g=`<g transform="translate(${F(x)} ${F(y)}) scale(${sc})">`;
+  g+=`<path d="M -22 0 L 22 0 L 17 24 L -17 24 Z" fill="#6b4e2e"/><ellipse cx="0" cy="0" rx="22" ry="3.4" fill="#4d3620"/>`;
+  [[-15,84,-7],[-7,116,-3],[2,126,2],[11,104,7],[18,76,12]].forEach(([lx,lh,bend])=>{ g+=`<path d="M ${lx} 0 Q ${lx+bend} ${F(-lh*0.5)} ${lx+bend*1.6} ${-lh} Q ${lx+bend*2+3} ${F(-lh*0.5)} ${lx+5} 0 Z" fill="#3f7a44"/><path d="M ${lx+2} -4 Q ${lx+bend} ${F(-lh*0.5)} ${lx+bend*1.6} ${-lh+5}" stroke="#cdb24e" stroke-width="1.5" fill="none" opacity=".6"/>`; });
+  return g+'</g>'; }
+function cactus(x,y,sc){ let g=`<g transform="translate(${F(x)} ${F(y)}) scale(${sc})">`;
+  g+=`<path d="M -11 0 L 11 0 L 8 13 L -8 13 Z" fill="#caa46a"/>`;
+  g+=`<rect x="-7" y="-30" width="14" height="32" rx="7" fill="#5a8a4a"/><path d="M -7 -15 Q -17 -17 -17 -7 L -12 -7 Q -12 -13 -7 -11 Z" fill="#5a8a4a"/><path d="M 7 -21 Q 17 -23 17 -13 L 12 -13 Q 12 -19 7 -17 Z" fill="#5a8a4a"/>`;
+  g+=`<g stroke="#3f6a34" stroke-width="0.7" opacity=".5"><line x1="-3" y1="-27" x2="-3" y2="-2"/><line x1="3" y1="-27" x2="3" y2="-2"/></g><circle cx="0" cy="-31" r="3" fill="#e88aa8"/>`;
+  return g+'</g>'; }
+// a neon sign: {x,y,scale,col,glow,draw} — draw is the SVG path/text content (stroke-only, lit)
+function neon(x,y,col,glow,inner){ return `<g transform="translate(${F(x)} ${F(y)})" class="gc-neon"><g fill="none" stroke="${col}" stroke-linecap="round" stroke-linejoin="round" style="filter:drop-shadow(0 0 3px ${col}) drop-shadow(0 0 8px ${glow})">${inner}</g></g>`; }
+
 function build(){
   if(document.getElementById('gc-svg')) return;
   const hr=new Date().getHours(); const N=(hr<6||hr>=19), DUSK=(hr>=17&&hr<19);
@@ -169,7 +186,9 @@ function build(){
   // backlit wall niches with jars + a small plant
   s+=`<g>${[[170,150],[1090,160],[1250,150]].map(([nx,ny])=>`<rect x="${nx-44}" y="${ny-46}" width="88" height="92" rx="8" fill="${N?'#2a2014':'#7a6444'}"/><rect x="${nx-44}" y="${ny-46}" width="88" height="92" rx="8" fill="url(#gclamp)"/><line x1="${nx-40}" y1="${ny}" x2="${nx+40}" y2="${ny}" stroke="${woodD}" stroke-width="4"/>${jar(nx-22,ny,1,greenD)}${jar(nx,ny,1,'#7c5a32')}${jar(nx+22,ny,1,greenD)}<g transform="translate(${nx-10} ${ny-46})">${frond(0,0,0.5,0,green)}</g>`).join('')}</g>`;
   // ROUND 3 — back-wall decor: framed botanical prints, a woven hanging, a living plant-wall accent
-  s+=`<g>${[[440,150],[940,150]].map(([fx,fy])=>`<rect x="${fx-30}" y="${fy-38}" width="60" height="76" rx="3" fill="${N?'#241a10':'#5e4a30'}" stroke="${brass}" stroke-width="2"/><rect x="${fx-24}" y="${fy-32}" width="48" height="64" fill="${N?'#3a4a30':'#cfd8b8'}"/><g transform="translate(${fx} ${fy+18}) scale(.7)">${frond(0,0,1,0,green)}</g>`).join('')}</g>`;
+  // varied framed wall art — a sunset-mountains print + a retro sunburst (not more leaves)
+  s+=`<g transform="translate(440 150)"><rect x="-30" y="-38" width="60" height="76" rx="3" fill="${N?'#241a10':'#5e4a30'}" stroke="${brass}" stroke-width="2"/><rect x="-24" y="-32" width="48" height="64" fill="${N?'#2a3550':'#e8a86a'}"/><circle cx="0" cy="-8" r="9" fill="${N?'#cfe0f0':'#fff0c0'}"/><path d="M -24 12 L -9 -3 L 3 9 L 15 -5 L 24 6 L 24 32 L -24 32 Z" fill="${N?'#1a2438':'#6e4f7a'}"/></g>`;
+  s+=`<g transform="translate(940 150)"><rect x="-30" y="-38" width="60" height="76" rx="3" fill="${N?'#241a10':'#5e4a30'}" stroke="${brass}" stroke-width="2"/><rect x="-24" y="-32" width="48" height="64" fill="${N?'#3a2a1a':'#d8a85a'}"/><g stroke="#d8703a" stroke-width="2.2">${[...Array(12)].map((_,k)=>{const a=k/12*6.283;return `<line x1="${F(Math.cos(a)*12)}" y1="${F(Math.sin(a)*12)}" x2="${F(Math.cos(a)*22)}" y2="${F(Math.sin(a)*22)}"/>`;}).join('')}</g><circle cx="0" cy="0" r="9" fill="#e8884a"/></g>`;
   s+=`<g transform="translate(700 298)"><circle r="32" fill="none" stroke="${N?'#7a5a32':'#caa46a'}" stroke-width="3"/><g stroke="${N?'#7a5a32':'#b9824a'}" stroke-width="1.3" opacity=".7">${[...Array(8)].map((_,i)=>{const a=i/8*3.14159;return `<line x1="${F(Math.cos(a)*32)}" y1="${F(Math.sin(a)*32)}" x2="${F(-Math.cos(a)*32)}" y2="${F(-Math.sin(a)*32)}"/>`;}).join('')}</g><g stroke="${N?'#7a5a32':'#caa46a'}" stroke-width="2"><line x1="-8" y1="32" x2="-12" y2="48"/><line x1="0" y1="32" x2="0" y2="52"/><line x1="8" y1="32" x2="12" y2="48"/></g></g>`;
   s+=`<g transform="translate(1292 232)"><rect x="-34" y="-110" width="68" height="220" rx="6" fill="${N?'#16280f':'#1f3a16'}" opacity=".5"/>${[...Array(7)].map((_,i)=>`<g transform="translate(${i%2?14:-14} ${-92+i*30})">${frond(0,0,0.6, i%2?42:-42, i%2?green:greenL)}</g>`).join('')}</g>`;
   s+='</g>';
@@ -211,6 +230,9 @@ function build(){
   s+=`<g transform="translate(120 300)"><rect x="-26" y="-40" width="52" height="80" rx="4" fill="#2a2620" stroke="${wood}" stroke-width="3"/><g stroke="${greenL}" stroke-width="1.6" opacity=".7"><line x1="-18" y1="-26" x2="14" y2="-26"/><line x1="-18" y1="-14" x2="8" y2="-14"/><line x1="-18" y1="-2" x2="16" y2="-2"/><line x1="-18" y1="10" x2="6" y2="10"/><line x1="-18" y1="22" x2="12" y2="22"/></g></g>`;
   // a 420 neon sign glowing on the back wall (right of the counter, clear space)
   s+=`<g transform="translate(1018 432)"><ellipse cx="0" cy="-8" rx="64" ry="36" fill="#39d353" opacity=".18" class="gc-glow"/><text class="gc-neon" x="0" y="8" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="52" fill="none" stroke="#6cee86" stroke-width="2.8" style="filter:drop-shadow(0 0 6px #39d353)">420</text></g>`;
+  // more neon signs, varied colour + design: a pink coffee cup (left) + a cyan smoke cloud (right)
+  s+=neon(176,262,'#ff8ec2','#ff2a8a',`<path d="M -12 -6 L 12 -6 L 10 11 Q 0 17 -10 11 Z" stroke-width="2.4"/><path d="M 12 -2 Q 23 -2 23 6 Q 23 13 13 13" stroke-width="2.4"/><path d="M -6 -13 q -4 -5 0 -10 M 1 -13 q -4 -5 0 -10 M 8 -13 q -4 -5 0 -10" stroke-width="1.8"/>`);
+  s+=neon(1196,300,'#74ecec','#1fb0c0',`<path d="M -22 7 Q -29 7 -26 -2 Q -30 -11 -19 -11 Q -17 -22 -4 -17 Q 5 -26 15 -15 Q 28 -17 25 -4 Q 32 5 21 7 Z" stroke-width="2.4"/><path d="M 16 -1 q 9 -3 7 -12" stroke-width="1.6"/>`);
   // a lit glass shelf of bongs on the backbar (head-shop display)
   s+=`<g><rect x="884" y="248" width="118" height="4" rx="2" fill="${brass}" opacity=".7"/><rect x="884" y="200" width="118" height="52" fill="url(#gclamp)" opacity=".5"/></g>`;
   s+=bong(910,248,0.5)+bong(948,248,0.44)+bong(982,248,0.4);
@@ -242,10 +264,13 @@ function build(){
     s+=`<g transform="translate(${tx+18} ${ty-2})"><path d="M -7 0 q -1 8 7 8 q 8 0 7 -8 Z" fill="${cream}"/><path d="M 7 1 q 6 0 6 5 q 0 5 -6 5" fill="none" stroke="${cream}" stroke-width="2"/>${i===0?'<g class="gc-steam"><ellipse cx="0" cy="-2" rx="4" ry="8" fill="#fff" opacity=".35"/></g>':''}</g>`; });
   // a stone water basin with shimmer (left)
   s+=`<g transform="translate(110 520)"><ellipse cx="0" cy="20" rx="48" ry="16" fill="${woodD}"/><ellipse cx="0" cy="14" rx="42" ry="13" fill="${N?'#2a4a52':'#5a9aa6'}"/><ellipse class="gc-shim" cx="-6" cy="12" rx="22" ry="5" fill="#dff1f6" opacity=".5"/><g transform="translate(0 -20)">${frond(0,0,0.6,0,green)}</g></g>`;
-  // floor plants — monstera + palms + a potted cannabis
+  // floor plants — a VARIED mix: monstera (left), a tall snake plant (right), a small potted palm
   s+=monstera(180,540,1.15,green,greenD);
-  s+=monstera(1260,548,1.0,green,greenD);
+  s+=snakePlant(1262,556,1.05);
   s+=`<g transform="translate(980 556)"><path d="M -22 0 L 22 0 L 17 26 L -17 26 Z" fill="${N?'#7a5a36':'#b07a3e'}"/>${frond(-8,-4,0.9,-20,green)}${frond(8,-4,0.9,18,greenL)}${frond(0,-8,1.0,0,green)}</g>`;
+  // a succulent + a little cactus on the counter ends (variety, not more leaves)
+  s+=succulent(252,358,0.72);
+  s+=cactus(920,356,0.72);
   // a lit glass cabinet of bongs — the head-shop centrepiece
   s+=`<g transform="translate(742 498)"><rect x="-44" y="-114" width="88" height="114" rx="5" fill="${N?'#3a2c1a':'#6b4e2e'}"/><rect x="-37" y="-108" width="74" height="102" rx="3" fill="${N?'#16240f':'#22341a'}"/><rect x="-37" y="-108" width="74" height="102" rx="3" fill="url(#gclamp)" opacity=".75"/><line x1="-37" y1="-58" x2="37" y2="-58" stroke="${brass}" stroke-width="2" opacity=".6"/></g>`;
   s+=bong(726,440,0.5)+bong(760,440,0.46)+bong(742,496,0.58);
