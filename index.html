@@ -1924,12 +1924,12 @@ const WAYPOINTS = {
   // ── bogged Porsche Cayenne (hero prop, near camp) — grounded on the mud AROUND the car,
   //    not on the bodywork, so the cat (and anyone) stands on the ground, never floating ──
   cayenne_door:   {sx:352,sy:496}, cayenne_hood:  {sx:224,sy:472},
-  cayenne_rear:   {sx:482,sy:462},
+  cayenne_rear:   {sx:482,sy:462}, cayenne_inside: {sx:300,sy:500},
   // ── campfire + clearing ──
   campfire_left:  {sx:534,sy:448}, campfire_right:{sx:596,sy:448},
   campfire_front: {sx:564,sy:462}, camp_mid:      {sx:480,sy:430},
   // ── lean-to shelter ──
-  shelter_mouth:  {sx:642,sy:420}, shelter_side:  {sx:678,sy:412},
+  shelter_mouth:  {sx:642,sy:420}, shelter_side:  {sx:678,sy:412}, shelter_inside: {sx:652,sy:420},
   // ── river ──
   river_bank:     {sx:300,sy:500}, river_rocks:   {sx:430,sy:530},
   river_bend:     {sx:660,sy:512}, shallows:      {sx:520,sy:512},
@@ -1993,11 +1993,12 @@ function toPos(x, y, waypoint) {
 // sx/sy are camp-svg FEET coords; left maps straight from the viewBox (hx/10 %) so it
 // lands on the structure on desktop AND mobile (svgToViewport's top is correct).
 const SETTLE = {
-  lean_to: { sx:652, sy:420, wps:['shelter_mouth','shelter_side'], recline:-24 },
-  cayenne: { sx:300, sy:500, wps:['cayenne_door','cayenne_hood','cayenne_rear'], recline:-12, enterable:true },
+  lean_to: { sx:652, sy:420, wps:['shelter_mouth','shelter_side','shelter_inside'], recline:-24, enterable:true },
+  cayenne: { sx:300, sy:500, wps:['cayenne_door','cayenne_hood','cayenne_rear','cayenne_inside'], recline:-12, enterable:true },
 }
-// at NIGHT, anyone asleep INSIDE an enter-able shelter (the Cayenne) is hidden from the camp,
-// shown as a 💤 + warm glow on the structure (they still appear in the interior peek).
+// Anyone INDOORS (see _isIndoors) is hidden from the camp and shown only in the interior peek —
+// a glow stands in: 💤 when asleep at night, a "X inside" pill by day. Daytime loungers at their
+// OWN shelter still settle (recline) at the structure, visible on the map.
 let _indoorShelters = {}
 function settleHomeChars(positions){
   const W=isMobile()?getWorldWidth():window.innerWidth, H=stageH()
@@ -2005,12 +2006,11 @@ function settleHomeChars(positions){
   _indoorShelters = {}
   const byShelter={}
   positions.forEach(p=>{ const c=S.chars[p.id]; if(!c) return
-    if(_isCat(p.id)) return                                  // pets keep their own roaming pose
+    if(((c.species)||'human')!=='human') return              // animals (cat, panther…) keep their own roaming pose
     const wp=(c.location||{}).waypoint
     let atSh=null; for(const sh in SETTLE){ if(SETTLE[sh].wps.indexOf(wp)>=0){ atSh=sh; break } }
     if(!atSh) return
-    const S2=SETTLE[atSh], interacting = c.interaction && c.interaction.with
-    const indoors = !!(S2.enterable && night && !interacting)
+    const indoors = !!_isIndoors(p.id)
     if(c.shelter!==atSh && !indoors) return   // a daytime visitor at a shelter stays standing
     p._atSh=atSh; p._indoors=indoors
     ;(byShelter[atSh]=byShelter[atSh]||[]).push(p) })
@@ -2020,7 +2020,7 @@ function settleHomeChars(positions){
       p.py = parseFloat(svgToViewport(sx,sy).top)/100*H
       p.settled = sh; p.recline = S2.recline||0
       if(p._indoors){ p.indoors=true; const c=S.chars[p.id]
-        const e=_indoorShelters[sh]||(_indoorShelters[sh]={sx:S2.sx,sy:S2.sy,names:[]})
+        const e=_indoorShelters[sh]||(_indoorShelters[sh]={sx:S2.sx,sy:S2.sy,names:[],night})
         e.names.push((((c&&c.name)||'').split(' ')[0])) } }) })
 }
 function renderSleepCues(){
@@ -2030,7 +2030,8 @@ function renderSleepCues(){
   Object.keys(_indoorShelters||{}).forEach(sh=>{ const s=_indoorShelters[sh]
     const left=(s.sx/10)+'%', top=svgToViewport(s.sx, s.sy-34).top
     const d=document.createElement('div'); d.className='sleepcue'; d.style.left=left; d.style.top=top
-    d.innerHTML=`<div class="sc-glow"></div><div class="sc-z">💤</div>`
+    const who=(s.names||[]).filter(Boolean); const lbl=who.length<=2?who.join(' & '):who.length+' inside'
+    d.innerHTML=`<div class="sc-glow"></div>`+(s.night?`<div class="sc-z">💤</div>`:(who.length?`<div class="sc-in">⛺ ${lbl}${who.length<=2?' inside':''}</div>`:''))
     layer.appendChild(d) })
 }
 // poses applied AFTER renderInteractions (which clears char-svg transforms each cycle)
@@ -3147,16 +3148,19 @@ function makeGenericCharSVG(cid, color, skin) {
 // colours are data-driven from appearance{coat,belly,stripe,eye}.
 function makeAnimalSVG(cid){
   const ap = (S.chars && S.chars[cid] && S.chars[cid].appearance) || {}
-  const coat=ap.coat||'#d98a4a', belly=ap.belly||'#f2c89a', stripe=ap.stripe||'#a8612a',
-        eye=ap.eye||'#5fa86b', nose='#b9696b'
-  return `<svg class="char-svg dog-svg" id="svg-${cid}" width="15" height="23" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
+  const sp=(S.chars&&S.chars[cid]&&S.chars[cid].species)||'cat', leo=sp==='leopard'
+  const coat=ap.coat||(leo?'#1b1b22':'#d98a4a'), belly=ap.belly||(leo?'#2c2c34':'#f2c89a'),
+        stripe=ap.stripe||(leo?'#3b3b46':'#a8612a'), eye=ap.eye||(leo?'#e0a83a':'#5fa86b'),
+        nose=leo?'#26262b':'#b9696b'
+  const _w=leo?20:15, _h=leo?31:23
+  return `<svg class="char-svg dog-svg" id="svg-${cid}" width="${_w}" height="${_h}" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
     <g id="tail-${cid}" class="dog-tail" style="transform-box:view-box;transform-origin:11px -8px">
       <path d="M 10 -8 Q 22 -10 24 -24 Q 25 -34 19 -39" stroke="${coat}" stroke-width="6.5" fill="none" stroke-linecap="round"/>
       <path d="M 22 -16 Q 24.5 -22 23 -30 M 17 -10 Q 21 -12 23 -18" stroke="${stripe}" stroke-width="2" fill="none" stroke-linecap="round" opacity=".7"/>
     </g>
     <path d="M -12 -4 C -15 -22 -11 -44 0 -44 C 11 -44 15 -22 12 -4 C 11 -1 7 -1 0 -1 C -7 -1 -11 -1 -12 -4 Z" fill="${coat}"/>
     <ellipse cx="0" cy="-19" rx="7" ry="14" fill="${belly}" opacity=".55"/>
-    <path d="M -11 -32 Q 0 -35 11 -32 M -11 -24 Q 0 -27 11 -24 M -10 -16 Q 0 -19 10 -16" stroke="${stripe}" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".55"/>
+    ${leo?`<g fill="none" stroke="${stripe}" stroke-width="1.05" opacity=".5" stroke-linecap="round"><path d="M -8 -36 q 2.4 -1.8 4.6 -.3 q .3 2.4 -2.3 2.6 q -2.6 0 -2.3 -2.3"/><path d="M 1 -39 q 2.4 -1.8 4.6 -.3 q .3 2.4 -2.3 2.6 q -2.6 0 -2.3 -2.3"/><path d="M -9 -26 q 2.4 -1.8 4.6 -.3 q .3 2.4 -2.3 2.6 q -2.6 0 -2.3 -2.3"/><path d="M 3 -28 q 2.4 -1.8 4.6 -.3 q .3 2.4 -2.3 2.6 q -2.6 0 -2.3 -2.3"/><path d="M -7 -16 q 2.2 -1.6 4.2 -.3 q .3 2.2 -2.1 2.4 q -2.4 0 -2.1 -2.1"/><path d="M 3 -18 q 2.2 -1.6 4.2 -.3 q .3 2.2 -2.1 2.4 q -2.4 0 -2.1 -2.1"/></g>`:`<path d="M -11 -32 Q 0 -35 11 -32 M -11 -24 Q 0 -27 11 -24 M -10 -16 Q 0 -19 10 -16" stroke="${stripe}" stroke-width="1.7" fill="none" stroke-linecap="round" opacity=".55"/>`}
     <rect x="-6" y="-22" width="5" height="21" rx="2.5" fill="${coat}"/>
     <rect x="1" y="-22" width="5" height="21" rx="2.5" fill="${coat}"/>
     <ellipse cx="-3.5" cy="-1" rx="4.6" ry="2.6" fill="${belly}"/>
@@ -3170,8 +3174,8 @@ function makeAnimalSVG(cid){
       <path d="M 10 -80 L 4.5 -79 L 8.5 -87 Z" fill="${nose}" opacity=".55"/>
     </g>
     <ellipse cx="0" cy="-70" rx="13" ry="11.5" fill="${coat}"/>
-    <path d="M -4 -80 L -3 -74 M 0 -81 L 0 -75 M 4 -80 L 3 -74" stroke="${stripe}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".75"/>
-    <path d="M -13 -72 L -9 -71 M -13 -69 L -9.5 -68.5 M 13 -72 L 9 -71 M 13 -69 L 9.5 -68.5" stroke="${stripe}" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/>
+    ${leo?`<g fill="none" stroke="${stripe}" stroke-width=".9" opacity=".45" stroke-linecap="round"><path d="M -6 -79 q 1.8 -1.3 3.4 -.2"/><path d="M 3 -79 q 1.8 -1.3 3.4 -.2"/><path d="M -1.5 -83 q 1.8 -1.3 3.4 -.2"/></g>`:`<path d="M -4 -80 L -3 -74 M 0 -81 L 0 -75 M 4 -80 L 3 -74" stroke="${stripe}" stroke-width="1.5" fill="none" stroke-linecap="round" opacity=".75"/>
+    <path d="M -13 -72 L -9 -71 M -13 -69 L -9.5 -68.5 M 13 -72 L 9 -71 M 13 -69 L 9.5 -68.5" stroke="${stripe}" stroke-width="1.4" fill="none" stroke-linecap="round" opacity=".6"/>`}
     <ellipse cx="0" cy="-62.5" rx="8" ry="6" fill="${belly}"/>
     <path d="M -3 -64 L -15 -66 M -3 -62.2 L -14 -60.5 M 3 -64 L 15 -66 M 3 -62.2 L 14 -60.5" stroke="#ffffffb0" stroke-width=".8" fill="none" stroke-linecap="round"/>
     <path d="M -2.4 -67 L 2.4 -67 L 0 -64.4 Z" fill="${nose}"/>
@@ -3783,6 +3787,8 @@ loadVote();
   .sleepcue .sc-z{position:absolute;left:62%;top:-52px;transform:translateX(-50%);font-size:17px;opacity:.92;
     text-shadow:0 1px 4px rgba(0,0,0,.6);animation:scZ 3.6s ease-in-out infinite}
   @keyframes scZ{0%,100%{opacity:.45;transform:translateX(-50%) translateY(2px)}50%{opacity:1;transform:translateX(-50%) translateY(-5px)}}
+  .sleepcue .sc-in{position:absolute;left:50%;top:-30px;transform:translateX(-50%);white-space:nowrap;background:rgba(12,18,14,.74);border:1px solid rgba(255,206,128,.4);color:#ffe6c2;font:700 9px/1 'Plus Jakarta Sans',sans-serif;letter-spacing:.2px;padding:3px 7px;border-radius:999px;box-shadow:0 2px 7px rgba(0,0,0,.4)}
+  @media (max-width:640px){.sleepcue .sc-in{font-size:7.5px;padding:2px 6px;top:-22px}}
   .hotspot{position:absolute;transform:translate(-50%,-50%);pointer-events:auto;cursor:pointer}
   .hotspot .hs-glow{position:absolute;left:50%;top:50%;width:70px;height:52px;transform:translate(-50%,-50%);border-radius:50%;
     background:radial-gradient(closest-side,rgba(255,201,110,.32),transparent);opacity:0;transition:opacity .35s;pointer-events:none}
@@ -3898,12 +3904,27 @@ loadVote();
 })();
 
 const INTERIORS = {
-  tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], hx:384, hy:398, tag:"Rooftop Tent", name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", badge:"⛺", pov:"Your view from inside · looking out" },
-  leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'],               hx:660, hy:404, tag:"Lean-To", name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", badge:"🛖", pov:"Peeking into the shelter" },
+  tent:   { shelter:'cayenne', wps:['cayenne_door','cayenne_hood','cayenne_rear'], insideWps:['cayenne_inside'], hx:384, hy:398, tag:"Rooftop Tent", name:"rooftop tent", look:"looking out over the canopy", icon:"⛺", badge:"⛺", pov:"Your view from inside · looking out" },
+  leanto: { shelter:'lean_to', wps:['shelter_mouth','shelter_side'], insideWps:['shelter_inside'], hx:660, hy:404, tag:"Lean-To", name:"lean-to",      look:"the jungle just beyond the tarp", icon:"🛖", badge:"🛖", pov:"Peeking into the shelter" },
   lookout:{ scenery:true, hx:403, hy:248, tag:"Waterfall Lookout", name:"waterfall lookout", look:"the whole camp and its waterfall laid out below", icon:"🌊", badge:"🌊", pov:"A high overlook above the camp & falls", lead:"From the overlook", tapHint:"tap for the view" },
 };
 // who's PHYSICALLY here this cycle (live location), vs who this shelter BELONGS to (static).
-function _present(key){ const w=INTERIORS[key].wps; if(!w) return []; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&w.indexOf((S.chars[c].location||{}).waypoint)>=0); }
+// SINGLE source of truth for "who is indoors right now" — read by BOTH the camp map
+// (hides the avatar) and the interior peek (shows them), so a character is NEVER in two places.
+// Indoors = literally inside (an *_inside waypoint, any cycle) OR asleep inside at night
+// (at a shelter's approach waypoint, not mid-conversation). Standing outside it = NOT indoors.
+function _isIndoors(cid){
+  const c=S.chars[cid]; if(!c) return null
+  if(((c.species)||'human')!=='human') return null   // animals roam — never hidden "indoors"
+  const wp=(c.location||{}).waypoint
+  const night=!!(S.world && S.world.cycle==='night')
+  const interacting=!!(c.interaction && c.interaction.with)
+  for(const key in INTERIORS){ const I=INTERIORS[key]; if(I.scenery) continue
+    if((I.insideWps||[]).indexOf(wp)>=0) return key
+    if(night && (I.wps||[]).indexOf(wp)>=0 && !interacting) return key }
+  return null
+}
+function _present(key){ return Object.keys(S.chars||{}).filter(c=>S.chars[c] && _isIndoors(c)===key); }
 function _owners(key){ const sh=INTERIORS[key].shelter; return Object.keys(S.chars||{}).filter(c=>S.chars[c]&&S.chars[c].shelter===sh); }
 function _fname(cid){ const n=(S.chars[cid]&&S.chars[cid].name)||cid; return n.split(' ')[0]; }
 // a short, honest activity word for the cue near a character at their shelter

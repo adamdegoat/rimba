@@ -34,7 +34,7 @@
         "attraction": 0
       }
     },
-    "bio": "37, a former gym owner who closed his gym four years ago to live on the road. He overlands the region out of his Porsche Cayenne with his cat Mutu — and a one-wheel electric skateboard strapped to the roof rack that he rides for fun. Climbs trees on a whim, just to sit up in the canopy and think. He preaches that nature heals the mind and that self-sustainable living is the cure for modern life. Calm, fit, genuinely capable in the wild — and endlessly optimistic, which the jungle is about to test.",
+    "bio": "37, a former gym owner who closed his gym four years ago to live on the road. He overlands the region out of his Porsche Cayenne with his cat Mutu \u2014 and a one-wheel electric skateboard strapped to the roof rack that he rides for fun. Climbs trees on a whim, just to sit up in the canopy and think. He preaches that nature heals the mind and that self-sustainable living is the cure for modern life. Calm, fit, genuinely capable in the wild \u2014 and endlessly optimistic, which the jungle is about to test.",
     "appearance": {
       "skin": "#c08a5a",
       "hair": {
@@ -165,7 +165,7 @@
         "attraction": 0
       }
     },
-    "bio": "27, raised in Singapore's pressure-cooker — top schools, the scholarship track, a finance job — with wealthy parents and almost no time outdoors. He came on this trip only because his family was weighing whether to fund Chills' eco-retreat. Soft hands, anxious, fussy about discomfort — but genuinely book-smart (water chemistry, rationing, first aid). The jungle terrifies him; his mind is the only tool he trusts.",
+    "bio": "27, raised in Singapore's pressure-cooker \u2014 top schools, the scholarship track, a finance job \u2014 with wealthy parents and almost no time outdoors. He came on this trip only because his family was weighing whether to fund Chills' eco-retreat. Soft hands, anxious, fussy about discomfort \u2014 but genuinely book-smart (water chemistry, rationing, first aid). The jungle terrifies him; his mind is the only tool he trusts.",
     "appearance": {
       "skin": "#e8c9a8",
       "hair": {
@@ -293,14 +293,69 @@
         "closeness": 28,
         "tension": 0,
         "attraction": 0
+      },
+      "panther": {
+        "closeness": 28,
+        "tension": 6,
+        "attraction": 0
       }
     },
-    "bio": "Chills' ginger tabby — green-eyed, road-hardened from years of overlanding, and utterly unbothered. Independent and quietly devoted to Chills, a sly little hunter who senses the weather turning long before the humans do.",
+    "bio": "Chills' ginger tabby \u2014 green-eyed, road-hardened from years of overlanding, and utterly unbothered. Independent and quietly devoted to Chills, a sly little hunter who senses the weather turning long before the humans do.",
     "appearance": {
       "coat": "#d98a4a",
       "belly": "#f2c89a",
       "stripe": "#a8612a",
       "eye": "#5fa86b"
+    },
+    "interaction": null
+  },
+  "panther": {
+    "name": "",
+    "species": "leopard",
+    "age": 1,
+    "archetype": "wary stray",
+    "color": "#1b1b22",
+    "scores": {
+      "trust": 10,
+      "openness": 15,
+      "ambition": 0,
+      "loneliness": 60,
+      "resilience": 75,
+      "hunger": 68,
+      "thirst": 55,
+      "energy": 72,
+      "health": 78
+    },
+    "mood": "guarded",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "relationships": {
+      "chills": {
+        "closeness": 4,
+        "tension": 40,
+        "attraction": 0
+      },
+      "wesley": {
+        "closeness": 2,
+        "tension": 55,
+        "attraction": 0
+      },
+      "mutu": {
+        "closeness": 28,
+        "tension": 6,
+        "attraction": 0
+      }
+    },
+    "bio": "A young melanistic leopard \u2014 a black panther barely past cubhood, ribs showing, likely orphaned or pushed from its mother's range. It haunts the camp's edges, terrified of the men yet inexplicably drawn to Mutu, who shows it no fear at all. Wild, not tame \u2014 trust will come slowly, if at all.",
+    "appearance": {
+      "coat": "#1b1b22",
+      "belly": "#2c2c34",
+      "stripe": "#3b3b46",
+      "eye": "#e0a83a"
     },
     "interaction": null
   }
