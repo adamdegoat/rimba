@@ -7,17 +7,17 @@
     "scores": {
       "trust": 76,
       "openness": 77,
-      "ambition": 55,
+      "ambition": 54,
       "loneliness": 0,
       "resilience": 94,
       "health": 100,
-      "hunger": 38,
+      "hunger": 36,
       "thirst": 53,
-      "energy": 46
+      "energy": 39
     },
     "mood": "steady",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 56,
-        "tension": 0,
+        "tension": 3,
         "attraction": 0
       },
       "mutu": {
@@ -34,7 +34,7 @@
         "attraction": 0
       }
     },
-    "bio": "37, a former gym owner who closed his gym four years ago to live on the road. He overlands the region out of his Porsche Cayenne with his cat Mutu \u2014 and a one-wheel electric skateboard strapped to the roof rack that he rides for fun. Climbs trees on a whim, just to sit up in the canopy and think. He preaches that nature heals the mind and that self-sustainable living is the cure for modern life. Calm, fit, genuinely capable in the wild \u2014 and endlessly optimistic, which the jungle is about to test.",
+    "bio": "37, a former gym owner who closed his gym four years ago to live on the road. He overlands the region out of his Porsche Cayenne with his cat Mutu — and a one-wheel electric skateboard strapped to the roof rack that he rides for fun. Climbs trees on a whim, just to sit up in the canopy and think. He preaches that nature heals the mind and that self-sustainable living is the cure for modern life. Calm, fit, genuinely capable in the wild — and endlessly optimistic, which the jungle is about to test.",
     "appearance": {
       "skin": "#c08a5a",
       "hair": {
@@ -58,11 +58,6 @@
       "state": "talking"
     },
     "memories": [
-      {
-        "day": 1,
-        "text": "Wesley panicked and wasted water, but he's here and learning. That's enough.",
-        "weight": 1
-      },
       {
         "day": 1,
         "text": "Wesley admitted he couldn't start the fire and asked for help instead of quitting.",
@@ -95,18 +90,8 @@
       },
       {
         "day": 3,
-        "text": "Wesley's learning: patience wins in the jungle.",
-        "weight": 1
-      },
-      {
-        "day": 3,
         "text": "Wesley's trusting the slower way now. Real progress.",
         "weight": 2
-      },
-      {
-        "day": 3,
-        "text": "Wesley's learning to wait instead of force things.",
-        "weight": 1
       },
       {
         "day": 3,
@@ -119,6 +104,16 @@
         "weight": 2
       },
       {
+        "day": 3,
+        "text": "Wesley's learning: patience wins in the jungle.",
+        "weight": 1
+      },
+      {
+        "day": 3,
+        "text": "Wesley's learning to wait instead of force things.",
+        "weight": 1
+      },
+      {
         "day": 4,
         "text": "Wesley's accepting his limits without spiraling. That's real.",
         "weight": 2
@@ -126,6 +121,11 @@
       {
         "day": 4,
         "text": "Wesley stopped fighting his limits. He's learning patience is real survival.",
+        "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "He found a way to matter without his hands. Real shift.",
         "weight": 2
       }
     ]
@@ -136,13 +136,13 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 73,
-      "openness": 66,
+      "trust": 74,
+      "openness": 67,
       "ambition": 75,
-      "loneliness": 4,
-      "resilience": 39,
+      "loneliness": 2,
+      "resilience": 40,
       "health": 100,
-      "hunger": 38,
+      "hunger": 36,
       "thirst": 53,
       "energy": 0
     },
@@ -156,16 +156,16 @@
     "relationships": {
       "chills": {
         "closeness": 52,
-        "tension": 2,
+        "tension": 5,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 26,
+        "closeness": 27,
         "tension": 0,
         "attraction": 0
       }
     },
-    "bio": "27, raised in Singapore's pressure-cooker \u2014 top schools, the scholarship track, a finance job \u2014 with wealthy parents and almost no time outdoors. He came on this trip only because his family was weighing whether to fund Chills' eco-retreat. Soft hands, anxious, fussy about discomfort \u2014 but genuinely book-smart (water chemistry, rationing, first aid). The jungle terrifies him; his mind is the only tool he trusts.",
+    "bio": "27, raised in Singapore's pressure-cooker — top schools, the scholarship track, a finance job — with wealthy parents and almost no time outdoors. He came on this trip only because his family was weighing whether to fund Chills' eco-retreat. Soft hands, anxious, fussy about discomfort — but genuinely book-smart (water chemistry, rationing, first aid). The jungle terrifies him; his mind is the only tool he trusts.",
     "appearance": {
       "skin": "#e8c9a8",
       "hair": {
@@ -199,11 +199,6 @@
       {
         "day": 1,
         "text": "Chills showed me dry heartwood without blame when I'd already quit.",
-        "weight": 2
-      },
-      {
-        "day": 1,
-        "text": "The fire caught. He wasn't preaching. He was saving us.",
         "weight": 2
       },
       {
@@ -255,6 +250,11 @@
         "day": 4,
         "text": "He calls rest the work. Not shame. Just... survival.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "Scouting counts. Chills made me believe that. Finally.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -269,38 +269,38 @@
       "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 20,
+      "loneliness": 22,
       "resilience": 85,
-      "hunger": 38,
+      "hunger": 36,
       "thirst": 53,
-      "energy": 50,
+      "energy": 43,
       "health": 100
     },
-    "mood": "satisfied",
+    "mood": "calm",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_right",
       "x": 80,
       "y": 30
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 90,
-        "tension": 0,
+        "closeness": 89,
+        "tension": 3,
         "attraction": 0
       },
       "wesley": {
         "closeness": 28,
-        "tension": 0,
+        "tension": 3,
         "attraction": 0
       },
       "panther": {
-        "closeness": 28,
-        "tension": 6,
+        "closeness": 29,
+        "tension": 5,
         "attraction": 0
       }
     },
-    "bio": "Chills' ginger tabby \u2014 green-eyed, road-hardened from years of overlanding, and utterly unbothered. Independent and quietly devoted to Chills, a sly little hunter who senses the weather turning long before the humans do.",
+    "bio": "Chills' ginger tabby — green-eyed, road-hardened from years of overlanding, and utterly unbothered. Independent and quietly devoted to Chills, a sly little hunter who senses the weather turning long before the humans do.",
     "appearance": {
       "coat": "#d98a4a",
       "belly": "#f2c89a",
@@ -319,14 +319,14 @@
       "trust": 10,
       "openness": 15,
       "ambition": 0,
-      "loneliness": 60,
+      "loneliness": 62,
       "resilience": 75,
-      "hunger": 68,
-      "thirst": 55,
-      "energy": 72,
-      "health": 78
+      "hunger": 57,
+      "thirst": 53,
+      "energy": 65,
+      "health": 83
     },
-    "mood": "guarded",
+    "mood": "curious",
     "location": {
       "waypoint": "forest_edge",
       "x": 50,
@@ -335,22 +335,22 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 4,
-        "tension": 40,
+        "closeness": 3,
+        "tension": 43,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 2,
-        "tension": 55,
+        "closeness": 1,
+        "tension": 59,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 28,
-        "tension": 6,
+        "closeness": 29,
+        "tension": 5,
         "attraction": 0
       }
     },
-    "bio": "A young melanistic leopard \u2014 a black panther barely past cubhood, ribs showing, likely orphaned or pushed from its mother's range. It haunts the camp's edges, terrified of the men yet inexplicably drawn to Mutu, who shows it no fear at all. Wild, not tame \u2014 trust will come slowly, if at all.",
+    "bio": "A young melanistic leopard — a black panther barely past cubhood, ribs showing, likely orphaned or pushed from its mother's range. It haunts the camp's edges, terrified of the men yet inexplicably drawn to Mutu, who shows it no fear at all. Wild, not tame — trust will come slowly, if at all.",
     "appearance": {
       "coat": "#1b1b22",
       "belly": "#2c2c34",

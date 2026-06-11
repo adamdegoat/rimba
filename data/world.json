@@ -1,16 +1,16 @@
 {
   "day": 4,
-  "cycle": "afternoon",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-11",
-  "pulse": "Wesley's learning that patience is survival; Chills is holding steady enough for both of them.",
-  "scene": "Wesley rested his swollen hands at the fire, accepting rest as part of the work. Chills gathered dry wood at the forest edge while Mutu moved quietly between them.",
+  "pulse": "Chills faces the gathering work alone, but Wesley's learning to count in other ways.",
+  "scene": "Chills counts the depleting wood while Wesley tests his swollen hands by the fire at midday. From the forest edge, the black panther edges closer, drawn by Mutu's fearless calm.",
   "resources_prev": {
     "food": 0,
     "water": 89,
-    "wood": 38,
+    "wood": 44,
     "medicine": 13
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 52,
+      "condition": 48,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 89,
-    "wood": 44,
+    "water": 86,
+    "wood": 47,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
-  "camp_climate": "steady",
+  "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-11:afternoon",
+  "last_cycle_key": "2026-06-11:midday",
   "cayenne": {
     "stripped": []
   },

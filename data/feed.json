@@ -1454,5 +1454,110 @@
       }
     ],
     "timestamp": "2026-06-11T15:02:19.503994"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Sits by the fire counting the dwindling wood pile, calculating how long it will sustain them if carefully rationed.",
+    "thought": "Six days, maybe seven if we're careful.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "steady",
+    "timestamp": "2026-06-11T17:15:03.149932"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Flexes his swollen hands against the warmth of the fire, testing whether anything has improved since morning.",
+    "thought": "Still useless. Still completely useless.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resigned",
+    "timestamp": "2026-06-11T17:15:03.149932"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Rests in the smoke-shade beside Wesley, eyes half-closed and alert, occasionally glancing toward the forest rim.",
+    "thought": "The scared one's out there. Getting closer now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-11T17:15:03.149932"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Edges closer through the ferns at the camp's rim, drawn by Mutu's fearless presence and the ghost-scent of morning kill.",
+    "thought": "Small one holds still. The tall ones bolt.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "curious",
+    "timestamp": "2026-06-11T17:15:03.149932"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the fire at midday, Chills counts the depleting wood while Wesley tests his swollen hands; from the forest edge, the black panther edges closer, drawn by Mutu's fearless calm.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Still swollen. Can't grip anything."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're doing rest-work. It matters."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Doesn't help the wood shortage though."
+      },
+      {
+        "speaker": "chills",
+        "line": "Gathering tomorrow, first light. You can scout."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Scout for what? I don't know what's good."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're faster spotting. Trust your eyes."
+      },
+      {
+        "speaker": "wesley",
+        "line": "My eyes can spot. Nothing else works."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's enough. Scout, point, I'll cut."
+      }
+    ],
+    "timestamp": "2026-06-11T17:15:03.149932"
   }
 ]
