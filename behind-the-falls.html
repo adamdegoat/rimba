@@ -63,9 +63,10 @@ function unlock(){ gate.classList.add('hidden'); setTimeout(()=>gate.style.displ
 function tryPw(){ if(pw.value.trim()===PW){ unlock(); } else { err.textContent='The rock stays shut. (think… a certain number)'; pw.value=''; } }
 document.getElementById('go').onclick=tryPw;
 pw.addEventListener('keydown',e=>{ if(e.key==='Enter') tryPw(); });
-// always require the number — no session memory; the room re-locks on every visit
-try{ sessionStorage.removeItem('btf'); }catch(e){}
-setTimeout(()=>pw.focus(),300);
+// always require the number — no session memory; the room re-locks on every visit.
+// EXCEPTION: arriving back from The Green Cave (?g=1) skips the gate — you were already inside.
+if(new URLSearchParams(location.search).get('g')==='1'){ gate.style.display='none'; setTimeout(build,0); }
+else { try{ sessionStorage.removeItem('btf'); }catch(e){} setTimeout(()=>pw.focus(),300); }
 
 let _raf=null;
 function startParallax(){ if(_raf) cancelAnimationFrame(_raf);
@@ -131,7 +132,7 @@ function build(){
     }
     return g+'</g>'; }
 
-  let s=`<svg id="btf-svg" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><defs>
+  let s=`<svg id="btf-svg" viewBox="0 0 1340 600" preserveAspectRatio="xMidYMid meet" xmlns="http://www.w3.org/2000/svg"><defs>
     <radialGradient id="caveBg" cx="46%" cy="40%" r="78%"><stop offset="0" stop-color="${cv1}"/><stop offset=".55" stop-color="${N?'#0d1a12':'#122318'}"/><stop offset="1" stop-color="${cv2}"/></radialGradient>
     <linearGradient id="rock" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${rk1}"/><stop offset="1" stop-color="${rk2}"/></linearGradient>
     <linearGradient id="curtain" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${N?'#bcd6ee':'#dff3ff'}" stop-opacity=".85"/><stop offset="1" stop-color="${N?'#7fa6c8':'#9fc7e0'}" stop-opacity=".6"/></linearGradient>
@@ -141,16 +142,16 @@ function build(){
     <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${N?'#6fa6b6':'#bfe6f2'}"/><stop offset="1" stop-color="${N?'#234852':'#3a6e72'}"/></radialGradient>
     <radialGradient id="glowpool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${beamC}" stop-opacity="${N?'.18':'.5'}"/><stop offset=".6" stop-color="${beamC}" stop-opacity="${N?'.06':'.18'}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></radialGradient>
     <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity="${N?'.74':'.66'}"/></radialGradient></defs>
-    <rect width="1000" height="600" fill="url(#caveBg)"/>`;
+    <rect width="1340" height="600" fill="url(#caveBg)"/>`;
   const holes=[[250,300],[560,470],[820,360]];
   // ── daylight holes + beams stabbing down ──
   holes.forEach(([hx,r])=>{ s+=`<ellipse cx="${hx}" cy="46" rx="${r/9}" ry="14" fill="${dl1}"/><ellipse cx="${hx}" cy="46" rx="${r/6}" ry="22" fill="url(#daylight)"/>`;
     s+=`<path d="M ${hx-26} 50 L ${hx+26} 50 L ${hx+r*.18} 560 L ${hx-r*.18} 560 Z" fill="url(#beam)"/>`; });
   // ── cave roof rock + stalactites ──
-  s+=`<path d="M 0 0 L 1000 0 L 1000 70 Q 940 96 900 70 Q 880 130 850 78 Q 700 104 560 80 Q 540 150 510 84 Q 360 108 230 82 Q 210 140 184 86 Q 90 104 0 80 Z" fill="url(#rock)"/>`;
+  s+=`<path d="M 0 0 L 1340 0 L 1340 70 Q 1280 96 1240 74 Q 1120 100 1000 72 Q 940 96 900 70 Q 880 130 850 78 Q 700 104 560 80 Q 540 150 510 84 Q 360 108 230 82 Q 210 140 184 86 Q 90 104 0 80 Z" fill="url(#rock)"/>`;
   s+=`<g fill="#0e0c08" opacity=".5">${[120,330,640,760,940].map(x=>`<path d="M ${x} 70 l 10 40 l 10 -40 Z"/>`).join('')}</g>`;
   s+=`<path d="M 0 0 L 0 600 L 70 600 Q 40 360 90 120 Q 30 60 0 70 Z" fill="url(#rock)"/>`;
-  s+=`<path d="M 1000 0 L 1000 600 L 930 600 Q 966 360 916 120 Q 978 60 1000 70 Z" fill="url(#rock)"/>`;
+  s+=`<path d="M 1340 0 L 1340 600 L 1270 600 Q 1306 360 1256 120 Q 1318 60 1340 70 Z" fill="url(#rock)"/>`;
   // textured wet rock — striations + sheen so the walls aren't flat slabs
   s+=`<g stroke="#0c0a07" stroke-width="2" fill="none" opacity=".4">${[[18,160,40],[34,300,50],[12,440,46],[966,180,44],[982,320,50],[958,460,40]].map(([x,y,l])=>`<path d="M ${x} ${y} q 18 ${l*.5} 8 ${l}"/>`).join('')}</g>`;
   s+=`<g fill="#fff" opacity="${N?'.03':'.06'}">${[[44,200,14,40],[956,260,12,44]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
@@ -181,7 +182,7 @@ function build(){
   s+=`<g fill="${N?'#aecad4':'#e8f6fb'}">${[[100,524,9],[134,520,12],[166,524,10],[150,514,8],[118,522,7]].map(([x,y,r],i)=>`<circle class="rise" style="animation-duration:${(2.6+(i%3)*0.7).toFixed(1)}s;animation-delay:${(i*0.5).toFixed(1)}s" cx="${x}" cy="${y}" r="${r}" opacity=".5"/>`).join('')}</g>`;
   s+=`<g fill="${N?'#bcd6ee':'#ffffff'}" opacity=".38">${[[108,544,30,3],[150,548,22,2.4]].map(([x,y,rx,ry])=>`<ellipse cx="${x}" cy="${y}" rx="${rx}" ry="${ry}"/>`).join('')}</g>`;
   // ── cave floor ──
-  s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 L 1000 600 L 0 600 Z" fill="${N?'#120d08':'#1a140d'}"/>`;
+  s+=`<path d="M 0 520 Q 300 502 560 516 Q 800 526 1000 510 Q 1170 504 1340 514 L 1340 600 L 0 600 Z" fill="${N?'#120d08':'#1a140d'}"/>`;
   s+=`<g fill="${N?'#1f1610':'#2a1f12'}">${holes.map(([hx])=>`<ellipse cx="${hx}" cy="540" rx="90" ry="24"/>`).join('')}</g>`;
   // dense moss + fern carpet on the floor (lush — no flat dirt gaps)
   s+=`<g fill="${mossC}" opacity=".7">${[...Array(20)].map((_,i)=>{const x=20+i*50, y=524+((i*37)%30), r=14+((i*13)%4)*5; return `<ellipse cx="${x}" cy="${y}" rx="${r}" ry="${r*.55}"/>`;}).join('')}</g>`;
@@ -219,11 +220,37 @@ function build(){
   if(N) s+=`<g fill="#bdf5a0">${[[180,470],[470,500],[760,460],[330,520],[640,512]].map(([x,y],i)=>`<circle class="mote" style="animation-delay:${(i*.9).toFixed(1)}s" cx="${x}" cy="${y}" r="2.2"/>`).join('')}</g>`;
   // water drips off the cave roof
   s+=`<g stroke="${N?'#9fc2cc':'#cfe7ff'}" stroke-width="1.6" opacity=".5" stroke-linecap="round">${[130,330,650,760,930].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.4).toFixed(1)}s" x1="${x}" y1="106" x2="${x}" y2="120"/>`).join('')}</g>`;
-  s+=`<rect width="1000" height="600" fill="url(#vig)"/></svg>`;
+  // ══ a subtly-elegant door set into the right cave wall → The Green Cave (warm light bleeds around it) ══
+  s+=`<ellipse cx="1150" cy="486" rx="128" ry="92" fill="${N?'#ffce7a':'#ffe0a0'}" opacity="${N?'.2':'.12'}"/>`;
+  s+=`<path d="M 1084 532 L 1084 410 Q 1084 346 1150 346 Q 1216 346 1216 410 L 1216 532 Z" fill="${N?'#241d12':'#352b1e'}"/>`;
+  s+=`<path d="M 1084 532 L 1084 410 Q 1084 346 1150 346 Q 1216 346 1216 410 L 1216 532 Z" fill="none" stroke="${N?'#5a4a30':'#7c6038'}" stroke-width="5"/>`;
+  s+=`<path d="M 1095 530 L 1095 412 Q 1095 358 1150 358 Q 1205 358 1205 412 L 1205 530 Z" fill="${N?'#33240f':'#54391f'}"/>`;
+  s+=`<g stroke="${N?'#1f1408':'#3a2812'}" stroke-width="2.5" opacity=".6"><line x1="1123" y1="370" x2="1123" y2="528"/><line x1="1150" y1="360" x2="1150" y2="528"/><line x1="1177" y1="370" x2="1177" y2="528"/></g>`;
+  s+=`<g fill="#caa44e"><circle cx="1192" cy="452" r="4.5"/><rect x="1189" y="448" width="6" height="20" rx="3"/></g>`;
+  // warm light leaking around the door edges = the hint of the boutique beyond
+  s+=`<g stroke="${N?'#ffd98a':'#ffe6b0'}" stroke-width="2.4" opacity="${N?'.7':'.5'}" stroke-linecap="round" class="iw-glow"><path d="M 1096 412 Q 1096 360 1150 359 Q 1204 360 1204 412"/><line x1="1097" y1="529" x2="1203" y2="529"/></g>`;
+  // a small carved leaf emblem above the door + two potted plants flanking (a quiet tease)
+  s+=`<g transform="translate(1150 330)"><ellipse cx="0" cy="0" rx="15" ry="11" fill="${N?'#1f1810':'#3e3220'}"/><g transform="scale(.42)">${leaf(0,6,1,0,'#7fb56a')}</g></g>`;
+  s+=`<g fill="${N?'#4a3venturi'.replace('venturi','320'):'#7a5430'}">${[1062,1238].map(px=>`<path d="M ${px-16} 532 l 32 0 l -4 20 l -24 0 Z"/>`).join('')}</g>`;
+  [1062,1238].forEach(px=>{ s+=`<g transform="translate(${px} 530)">${leaf(0,0,0.5,0,leafC)}${leaf(-6,2,0.4,-30,leafLite)}${leaf(6,2,0.4,30,leafLite)}</g>`; });
+  // warm glow pool spilling onto the floor from under the door
+  s+=`<ellipse cx="1150" cy="544" rx="92" ry="22" fill="${N?'#ffce7a':'#ffdca0'}" opacity="${N?'.26':'.18'}"/>`;
+  // the clickable hotspot
+  s+=`<rect class="gc-door" x="1078" y="344" width="144" height="206" fill="#fff" opacity="0" style="cursor:pointer" pointer-events="all"/>`;
+  s+=`<rect width="1340" height="600" fill="url(#vig)" pointer-events="none"/></svg>`;
   document.getElementById('scene').innerHTML=s;
   startParallax();
-  // centre the horizontal scroll so the grow is framed; pan left/right to see the whole room
-  const scN=document.getElementById('scene'); requestAnimationFrame(()=>{ scN.scrollLeft=(scN.scrollWidth-scN.clientWidth)/2; });
+  // frame the GROW (the door stays hidden off to the right until you scroll over to find it)
+  const scN=document.getElementById('scene'); requestAnimationFrame(()=>{ scN.scrollLeft=Math.max(0,(520/1340)*scN.scrollWidth - scN.clientWidth/2); });
+  // wire the secret door → The Green Cave (tap-vs-scroll guard so panning never mis-fires)
+  const _door=scN.querySelector('.gc-door');
+  if(_door){ const _go=()=>{ window.location.href='the-green-cave.html'; };
+    let _dx=0,_dy=0,_moved=false;
+    _door.addEventListener('pointerdown',e=>{ _dx=e.clientX; _dy=e.clientY; _moved=false; });
+    _door.addEventListener('pointermove',e=>{ if(Math.abs(e.clientX-_dx)>12||Math.abs(e.clientY-_dy)>12) _moved=true; });
+    _door.addEventListener('pointerup',()=>{ if(!_moved) _go(); });
+    _door.addEventListener('click', _go);
+    _door.addEventListener('touchend',e=>{ if(!_moved){ e.preventDefault(); _go(); } }, {passive:false}); }
 }
 </script>
 </body></html>
