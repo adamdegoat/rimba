@@ -161,8 +161,11 @@ function build(){
   s+=`<g stroke="${woodD}" stroke-width="2.5" fill="none" opacity=".22">${[120,210,300,150,260].map((y,i)=>`<path d="M ${i*300} ${y} q 200 ${i%2?14:-14} 420 0 q 200 ${i%2?-14:14} 420 0"/>`).join('')}</g>`;
   // skylight cave opening (top-centre) with daylight + jungle leaves spilling in
   s+=`<path d="M 560 -10 Q 700 -10 840 -10 Q 880 70 820 120 Q 700 150 580 120 Q 520 70 560 -10 Z" fill="url(#gcsky)"/>`;
-  s+=`<path d="M 700 96 L 600 480 L 800 480 Z" fill="url(#gcshaft)"/>`;
-  s+=`<g fill="${greenD}">${[[560,40,-30],[840,40,40],[600,90,-12],[800,96,18],[700,120,0]].map(([lx,ly,lr])=>`<g transform="translate(${lx} ${ly}) rotate(${lr})">${frond(0,0,0.7,0,greenD)}</g>`).join('')}</g>`;
+  // a broad shaft + 3 distinct god-ray bands spilling from the cave opening
+  s+=`<path d="M 700 96 L 596 480 L 804 480 Z" fill="url(#gcshaft)"/>`;
+  s+=`<g>${[[-46,-34],[-6,2],[40,30]].map(([o1,o2])=>`<path d="M ${700+o2} 100 L ${648+o1} 480 L ${684+o1} 480 Z" fill="url(#gcshaft)" opacity=".55"/>`).join('')}</g>`;
+  // more jungle leaves silhouetted around the opening (backlit)
+  s+=`<g fill="${greenD}">${[[560,40,-30],[840,40,40],[600,90,-12],[800,96,18],[700,120,0],[640,30,-50],[770,28,46],[700,-4,4]].map(([lx,ly,lr])=>`<g transform="translate(${lx} ${ly}) rotate(${lr})">${frond(0,0,0.72,0,greenD)}</g>`).join('')}</g>`;
   // backlit wall niches with jars + a small plant
   s+=`<g>${[[170,150],[1090,160],[1250,150]].map(([nx,ny])=>`<rect x="${nx-44}" y="${ny-46}" width="88" height="92" rx="8" fill="${N?'#2a2014':'#7a6444'}"/><rect x="${nx-44}" y="${ny-46}" width="88" height="92" rx="8" fill="url(#gclamp)"/><line x1="${nx-40}" y1="${ny}" x2="${nx+40}" y2="${ny}" stroke="${woodD}" stroke-width="4"/>${jar(nx-22,ny,1,greenD)}${jar(nx,ny,1,'#7c5a32')}${jar(nx+22,ny,1,greenD)}<g transform="translate(${nx-10} ${ny-46})">${frond(0,0,0.5,0,green)}</g>`).join('')}</g>`;
   // ROUND 3 — back-wall decor: framed botanical prints, a woven hanging, a living plant-wall accent
@@ -215,6 +218,10 @@ function build(){
   s+=bong(268,360,0.6);
   s+=`<g transform="translate(560 360)"><rect x="-13" y="-30" width="26" height="30" rx="4" fill="#cfe0e8" opacity=".28"/><rect x="-13" y="-30" width="26" height="30" rx="4" fill="none" stroke="#eafffb" stroke-width="1.3" opacity=".7"/>${[-7,-2,3,8].map(px=>`<rect x="${px-1.4}" y="-46" width="2.8" height="20" rx="1.4" fill="#efe6cf"/><circle cx="${px}" cy="-46" r="2" fill="#e0913a"/>`).join('')}</g>`;
   s+=`<g transform="translate(700 360)"><path d="M -12 0 q -4 -7 4 -8 l 16 -2 q 7 2 2 6 Z" fill="#8a4a96" opacity=".8"/><ellipse cx="-10" cy="-4" rx="4" ry="3" fill="#6a3a76"/><rect x="-12" y="-2" width="2" height="3" fill="#7a4a86"/></g>`;
+  // ATMOSPHERE: warm light cones from each pendant + a glowing pool where each lands on the counter
+  s+=`<g pointer-events="none">${[360,560,760,960].map(px=>`<path d="M ${px-9} 158 L ${px-50} 362 L ${px+50} 362 L ${px+9} 158 Z" fill="${lamp}" opacity="${N?'.12':'.07'}"/><ellipse cx="${px}" cy="362" rx="54" ry="11" fill="${lamp}" opacity="${N?'.22':'.13'}"/>`).join('')}</g>`;
+  // a soft warm rim-light catching the barista from the pendant above
+  s+=`<ellipse cx="600" cy="340" rx="40" ry="46" fill="${lamp}" opacity="${N?'.18':'.1'}" pointer-events="none"/>`;
   s+='</g>';
 
   // ══ Layer C: lounge — rug, tables, plants, seated customers, water basin ══
@@ -262,7 +269,11 @@ function build(){
   s+='</g>';
 
   // dust motes drifting in the skylight shaft
-  s+=`<g fill="#fff">${[...Array(10)].map((_,i)=>`<circle class="gc-mote" style="animation-delay:${(i*1.1).toFixed(1)}s" cx="${640+((i*23)%160)}" cy="${200+i*30}" r="1.6" opacity=".5"/>`).join('')}</g>`;
+  s+=`<g fill="#fff">${[...Array(12)].map((_,i)=>`<circle class="gc-mote" style="animation-delay:${(i*1.0).toFixed(1)}s" cx="${640+((i*27)%170)}" cy="${180+i*26}" r="1.6" opacity=".55"/>`).join('')}</g>`;
+  // ATMOSPHERE: a soft drifting smoke haze hanging in the lounge air (it IS a cannabis café)
+  s+=`<g fill="${N?'#cfd6cf':'#e6ece6'}" pointer-events="none">${[[300,430,60,16,0],[520,400,80,20,2.4],[760,440,70,18,1.2],[1080,420,66,17,3.4],[420,360,54,14,4.6]].map(([hx,hy,rx,ry,d])=>`<ellipse class="gc-smoke" style="animation-duration:11s;animation-delay:${d}s" cx="${hx}" cy="${hy}" rx="${rx}" ry="${ry}" opacity="${N?'.07':'.05'}"/>`).join('')}</g>`;
+  // an incense holder on the left table, a thin thread of fragrant smoke
+  s+=`<g transform="translate(338 510)"><ellipse cx="0" cy="0" rx="9" ry="3" fill="${N?'#5a4226':'#7a5430'}"/><line x1="0" y1="-1" x2="4" y2="-22" stroke="#6b4e2e" stroke-width="1.2"/><circle cx="4" cy="-22" r="1.4" fill="#ff7a3c" class="gc-ember"/><g class="gc-smoke" style="animation-duration:6s"><ellipse cx="4" cy="-26" rx="2.4" ry="7" fill="#e6ece6" opacity=".3"/></g><g class="gc-smoke" style="animation-duration:6s;animation-delay:3s"><ellipse cx="6" cy="-26" rx="2" ry="6" fill="#e6ece6" opacity=".24"/></g></g>`;
   // a lounging cat on the rug
   s+=`<g transform="translate(470 566)"><ellipse cx="0" cy="4" rx="34" ry="13" fill="${N?'#5a4632':'#7a5c3e'}"/><ellipse cx="-26" cy="-4" rx="13" ry="11" fill="${N?'#5a4632':'#7a5c3e'}"/><path d="M -34 -10 l 3 -8 l 5 6 Z M -22 -12 l 5 -7 l 3 8 Z" fill="${N?'#5a4632':'#7a5c3e'}"/><g class="gc-tail"><path d="M 30 0 q 20 -2 22 -18" stroke="${N?'#5a4632':'#7a5c3e'}" stroke-width="7" fill="none" stroke-linecap="round"/></g><circle cx="-30" cy="-5" r="1.5" fill="#1c1408"/></g>`;
   // warm golden glow pooling over the counter + a soft amber wash for that boutique-café warmth
