@@ -1268,5 +1268,100 @@
       }
     ],
     "timestamp": "2026-06-11T07:02:34.306848"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Chills makes two trips to the river bend to gather the deadwood Mutu found, stacking each armload by the fire with practiced efficiency.",
+    "thought": "Wood's still not enough, but it buys time.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "attentive",
+    "timestamp": "2026-06-11T11:32:21.758706"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Wesley sits by the fire with his swollen hands resting in his lap, tending the small lizard Mutu brought until it's cooked through.",
+    "thought": "Keep the fire steady. That's enough.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resigned",
+    "timestamp": "2026-06-11T11:32:21.758706"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Mutu prowls the camp edges in the heat, then presses close to Chills' leg as he stacks the gathered wood, purring softly.",
+    "thought": "He's working hard. I'm staying close.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "satisfied",
+    "timestamp": "2026-06-11T11:32:21.758706"
+  },
+  {
+    "day": 4,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley",
+      "mutu"
+    ],
+    "description": "By the fire at midday, Chills counts the gathered wood while Wesley wrestles with the weight of rest—whether it truly counts as work.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How much did you get?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Three armloads. Mutu found a solid deadfall."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not much."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. But it's what we've got."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I should be helping. These hands—"
+      },
+      {
+        "speaker": "chills",
+        "line": "Your hands are healing. This is your work."
+      },
+      {
+        "speaker": "mutu",
+        "line": "Presses against Chills' leg, purring softly."
+      },
+      {
+        "speaker": "chills",
+        "line": "Even Mutu knows. Stay close, keep the fire. That's the job."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Okay."
+      }
+    ],
+    "timestamp": "2026-06-11T11:32:21.758706"
   }
 ]

@@ -1,16 +1,16 @@
 {
   "day": 4,
-  "cycle": "morning",
-  "weather": "clear",
+  "cycle": "midday",
+  "weather": "humid",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-11",
-  "pulse": "Wesley's stopped panicking, but the empty food and low wood say this peace is borrowed.",
-  "scene": "Wesley tests his swollen hands at the fire while Chills checks the depleted wood pile, and Mutu stretches on the Cayenne hood—a quiet morning, but resource scarcity pressing in.",
+  "pulse": "Wesley's learned to rest without guilt, but Chills watches the wood shrink and knows the pace can't hold forever.",
+  "scene": "Chills gathered deadwood twice, widening the wood pile, while Wesley tended the cooked lizard by the fire. By midday they sat together—Wesley's hands at rest, Mutu purring close to Chills.",
   "resources_prev": {
     "food": 0,
-    "water": 82,
-    "wood": 37,
+    "water": 86,
+    "wood": 36,
     "medicine": 13
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 60,
+      "condition": 56,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 86,
-    "wood": 36,
+    "water": 89,
+    "wood": 38,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 8
+    "fuel": 12
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-11:morning",
+  "last_cycle_key": "2026-06-11:midday",
   "cayenne": {
     "stripped": []
   },

@@ -6,14 +6,14 @@
     "color": "#6a994e",
     "scores": {
       "trust": 76,
-      "openness": 75,
+      "openness": 76,
       "ambition": 55,
       "loneliness": 0,
       "resilience": 93,
       "health": 100,
-      "hunger": 41,
+      "hunger": 40,
       "thirst": 53,
-      "energy": 67
+      "energy": 53
     },
     "mood": "attentive",
     "location": {
@@ -24,12 +24,12 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 51,
+        "closeness": 53,
         "tension": 0,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 83,
+        "closeness": 84,
         "tension": 0,
         "attraction": 0
       }
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -117,6 +117,11 @@
         "day": 3,
         "text": "Wesley finally accepted his limits without panic or blame.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "Wesley's accepting his limits without spiraling. That's real.",
+        "weight": 2
       }
     ]
   },
@@ -126,15 +131,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 69,
-      "openness": 65,
-      "ambition": 76,
-      "loneliness": 8,
-      "resilience": 36,
+      "trust": 71,
+      "openness": 66,
+      "ambition": 75,
+      "loneliness": 6,
+      "resilience": 38,
       "health": 100,
-      "hunger": 41,
+      "hunger": 40,
       "thirst": 53,
-      "energy": 20
+      "energy": 6
     },
     "mood": "resigned",
     "location": {
@@ -145,12 +150,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 47,
+        "closeness": 49,
         "tension": 2,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 23,
+        "closeness": 24,
         "tension": 0,
         "attraction": 0
       }
@@ -173,7 +178,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -240,6 +245,11 @@
         "day": 3,
         "text": "Chills didn't dismiss my pain. He said rest is the work.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "Chills framed rest as the work I'm doing today. I'm starting to believe it.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -254,28 +264,28 @@
       "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 24,
+      "loneliness": 22,
       "resilience": 85,
-      "hunger": 41,
+      "hunger": 40,
       "thirst": 53,
-      "energy": 71,
+      "energy": 57,
       "health": 100
     },
     "mood": "satisfied",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 89,
+        "closeness": 90,
         "tension": 0,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 25,
+        "closeness": 26,
         "tension": 0,
         "attraction": 0
       }
@@ -287,6 +297,9 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null
+    "interaction": {
+      "with": "chills",
+      "state": "sitting_together"
+    }
   }
 }
