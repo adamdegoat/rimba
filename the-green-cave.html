@@ -43,6 +43,14 @@
   @keyframes gcBreathe{0%,100%{transform:scaleY(1)}50%{transform:scaleY(1.04)}}
   .gc-tail{transform-box:fill-box;transform-origin:0% 100%;animation:gcTail 3.8s ease-in-out infinite}
   @keyframes gcTail{0%,100%{transform:rotate(3deg)}50%{transform:rotate(-8deg)}}
+  .gc-bub{transform-box:fill-box;transform-origin:center;animation:gcBub 1.9s ease-in infinite}
+  @keyframes gcBub{0%{transform:translateY(0);opacity:0}30%{opacity:.85}100%{transform:translateY(-13px);opacity:0}}
+  .gc-smoke{transform-box:fill-box;transform-origin:bottom center;animation:gcSmoke 5.5s ease-in-out infinite}
+  @keyframes gcSmoke{0%{opacity:0;transform:translateY(0) translateX(0) scale(.6)}24%{opacity:.42}100%{opacity:0;transform:translateY(-48px) translateX(12px) scale(1.7)}}
+  .gc-neon{animation:gcNeon 5s ease-in-out infinite}
+  @keyframes gcNeon{0%,100%{opacity:.9}47%{opacity:.9}49%{opacity:.45}51%{opacity:.95}53%{opacity:.7}55%{opacity:.95}}
+  .gc-ember{animation:gcEmber 2.4s ease-in-out infinite}
+  @keyframes gcEmber{0%,100%{opacity:.55}50%{opacity:1}}
 </style></head>
 <body>
 <div id="scene"></div>
@@ -77,6 +85,18 @@ function monstera(x,y,sc,c,c2){ let g=`<g transform="translate(${F(x)} ${F(y)}) 
   return g+'</g></g>'; }
 // apothecary jar of cannabis on a shelf
 function jar(x,y,sc,bud){ const s=sc; return `<g transform="translate(${F(x)} ${F(y)}) scale(${s})"><rect x="-9" y="-22" width="18" height="24" rx="4" fill="#caa46a" opacity=".34"/><rect x="-9" y="-22" width="18" height="24" rx="4" fill="none" stroke="#e8d6a8" stroke-width="1.2" opacity=".6"/><rect x="-10" y="-26" width="20" height="6" rx="2" fill="#8a6a3a"/><g fill="${bud}">${[[-4,-4],[3,-3],[-1,-8],[5,-7],[-6,-9]].map(([bx,by])=>`<circle cx="${bx}" cy="${by}" r="3.4"/>`).join('')}</g></g>`; }
+// a glass water-pipe (bong) — translucent glass, water + rising bubbles, side bowl, highlight
+function bong(x,y,sc,tint){ const gl=tint||'#bfe6e0';
+  let g=`<g transform="translate(${F(x)} ${F(y)}) scale(${sc})">`;
+  g+=`<path d="M -16 0 Q -18 -4 -14 -8 L -8 -34 L 8 -34 L 14 -8 Q 18 -4 16 0 Z" fill="${gl}" opacity=".3"/>`;       // beaker base glass
+  g+=`<path d="M -13 -7 L 13 -7 L 9 -24 L -9 -24 Z" fill="#6fbfb6" opacity=".5"/>`;                                 // water
+  g+=`<g fill="#fff" opacity=".8"><circle class="gc-bub" cx="-3" cy="-11" r="1.4"/><circle class="gc-bub" style="animation-delay:.7s" cx="3" cy="-9" r="1.1"/><circle class="gc-bub" style="animation-delay:1.2s" cx="0" cy="-15" r="1.2"/></g>`;
+  g+=`<rect x="-6" y="-74" width="12" height="42" rx="2" fill="${gl}" opacity=".28"/>`;                              // tube
+  g+=`<path d="M -8 -74 L 8 -74 L 6 -80 L -6 -80 Z" fill="${gl}" opacity=".4"/>`;                                   // mouthpiece flare
+  g+=`<line x1="7" y1="-28" x2="19" y2="-38" stroke="#dff3ef" stroke-width="3" opacity=".7"/><ellipse cx="21" cy="-40" rx="5" ry="3.5" fill="#5a3a1f"/>`; // downstem + bowl
+  g+=`<g fill="none" stroke="#eafffb" stroke-width="1.3" opacity=".7"><path d="M -16 0 Q -18 -4 -14 -8 L -8 -34"/><path d="M 14 -8 L 8 -34"/><rect x="-6" y="-74" width="12" height="42" rx="2"/></g>`; // glass outlines
+  g+=`<rect x="-4" y="-70" width="2.4" height="58" rx="1" fill="#fff" opacity=".5"/>`;                              // highlight streak
+  return g+'</g>'; }
 // a stylised person: {x,y,sc,skin,hair,hairstyle:short|long|bun,shirt,apron,pants,pose:stand|sit|counter,hold}
 function person(o){ const {x,y,sc=1,skin='#e3b68e',hair='#2c2018',hairstyle='short',shirt='#7a8a52',apron,pants='#3a2c1a',pose='stand',hold}=o;
   let g=`<g transform="translate(${F(x)} ${F(y)}) scale(${sc})">`, hcy=-36;
@@ -186,6 +206,15 @@ function build(){
   s+=`<g transform="translate(880 332)"><ellipse cx="0" cy="2" rx="22" ry="6" fill="${woodD}"/><path d="M -20 2 A 20 16 0 0 1 20 2 Z" fill="#cfe0e8" opacity=".5"/><path d="M -20 2 A 20 16 0 0 1 20 2" fill="none" stroke="${brass}" stroke-width="1.5"/><g fill="#c98a4a">${[[-9,0],[0,-2],[9,0]].map(([px,py])=>`<circle cx="${px}" cy="${py}" r="4"/>`).join('')}</g></g>`;
   // a small chalk menu board
   s+=`<g transform="translate(120 300)"><rect x="-26" y="-40" width="52" height="80" rx="4" fill="#2a2620" stroke="${wood}" stroke-width="3"/><g stroke="${greenL}" stroke-width="1.6" opacity=".7"><line x1="-18" y1="-26" x2="14" y2="-26"/><line x1="-18" y1="-14" x2="8" y2="-14"/><line x1="-18" y1="-2" x2="16" y2="-2"/><line x1="-18" y1="10" x2="6" y2="10"/><line x1="-18" y1="22" x2="12" y2="22"/></g></g>`;
+  // a 420 neon sign glowing on the back wall (right of the counter, clear space)
+  s+=`<g transform="translate(1018 432)"><ellipse cx="0" cy="-8" rx="64" ry="36" fill="#39d353" opacity=".18" class="gc-glow"/><text class="gc-neon" x="0" y="8" text-anchor="middle" font-family="Cormorant Garamond, serif" font-weight="700" font-size="52" fill="none" stroke="#6cee86" stroke-width="2.8" style="filter:drop-shadow(0 0 6px #39d353)">420</text></g>`;
+  // a lit glass shelf of bongs on the backbar (head-shop display)
+  s+=`<g><rect x="884" y="248" width="118" height="4" rx="2" fill="${brass}" opacity=".7"/><rect x="884" y="200" width="118" height="52" fill="url(#gclamp)" opacity=".5"/></g>`;
+  s+=bong(910,248,0.5)+bong(948,248,0.44)+bong(982,248,0.4);
+  // glassware ON the counter — a bong, a jar of pre-rolls, a glass hand-pipe
+  s+=bong(268,360,0.6);
+  s+=`<g transform="translate(560 360)"><rect x="-13" y="-30" width="26" height="30" rx="4" fill="#cfe0e8" opacity=".28"/><rect x="-13" y="-30" width="26" height="30" rx="4" fill="none" stroke="#eafffb" stroke-width="1.3" opacity=".7"/>${[-7,-2,3,8].map(px=>`<rect x="${px-1.4}" y="-46" width="2.8" height="20" rx="1.4" fill="#efe6cf"/><circle cx="${px}" cy="-46" r="2" fill="#e0913a"/>`).join('')}</g>`;
+  s+=`<g transform="translate(700 360)"><path d="M -12 0 q -4 -7 4 -8 l 16 -2 q 7 2 2 6 Z" fill="#8a4a96" opacity=".8"/><ellipse cx="-10" cy="-4" rx="4" ry="3" fill="#6a3a76"/><rect x="-12" y="-2" width="2" height="3" fill="#7a4a86"/></g>`;
   s+='</g>';
 
   // ══ Layer C: lounge — rug, tables, plants, seated customers, water basin ══
@@ -210,12 +239,19 @@ function build(){
   s+=monstera(180,540,1.15,green,greenD);
   s+=monstera(1260,548,1.0,green,greenD);
   s+=`<g transform="translate(980 556)"><path d="M -22 0 L 22 0 L 17 26 L -17 26 Z" fill="${N?'#7a5a36':'#b07a3e'}"/>${frond(-8,-4,0.9,-20,green)}${frond(8,-4,0.9,18,greenL)}${frond(0,-8,1.0,0,green)}</g>`;
+  // a lit glass cabinet of bongs — the head-shop centrepiece
+  s+=`<g transform="translate(742 498)"><rect x="-44" y="-114" width="88" height="114" rx="5" fill="${N?'#3a2c1a':'#6b4e2e'}"/><rect x="-37" y="-108" width="74" height="102" rx="3" fill="${N?'#16240f':'#22341a'}"/><rect x="-37" y="-108" width="74" height="102" rx="3" fill="url(#gclamp)" opacity=".75"/><line x1="-37" y1="-58" x2="37" y2="-58" stroke="${brass}" stroke-width="2" opacity=".6"/></g>`;
+  s+=bong(726,440,0.5)+bong(760,440,0.46)+bong(742,496,0.58);
+  s+=`<g transform="translate(742 498)"><rect x="-37" y="-108" width="74" height="102" rx="3" fill="url(#gcglass)"/><rect x="-44" y="-114" width="88" height="114" rx="5" fill="none" stroke="${brass}" stroke-width="2.5"/><rect x="-3" y="-114" width="6" height="114" fill="${N?'#2a2014':'#5a4226'}"/></g>`;
   // hanging trailing plants (pothos) from the ceiling — several, varied
   [[1050,70,1,'gc-sway2'],[300,86,0.8,'gc-sway'],[820,78,0.9,'gc-sway2'],[1230,92,0.7,'gc-sway']].forEach(([hx0,hy0,hs,cl])=>{
     s+=`<g class="${cl}" transform="translate(${hx0} ${hy0}) scale(${hs})"><ellipse cx="0" cy="0" rx="22" ry="9" fill="${N?'#5a4632':'#8a6a44'}"/><ellipse cx="0" cy="-4" rx="20" ry="6" fill="${greenD}"/><g stroke="${green}" stroke-width="3" fill="none" stroke-linecap="round">${[-15,-7,1,9,15].map(hx=>`<path d="M ${hx} 2 q ${hx<0?-7:7} ${50+Math.abs(hx)} ${hx<0?-3:3} ${90+Math.abs(hx)*2}"/>`).join('')}</g><g fill="${greenL}">${[...Array(11)].map((_,i)=>`<ellipse cx="${-15+(i%5)*6}" cy="${18+i*9}" rx="5.5" ry="3.2"/>`).join('')}</g></g>`; });
-  // THE TWO CUSTOMERS — one sipping coffee, one browsing a jar, seated
-  s+=person({x:302,y:508,sc:1.16,skin:'#e8c49a',hair:'#3a2418',hairstyle:'long',shirt:'#9c6b4a',pants:'#3a3a44',pose:'sit'});
+  // THE TWO CUSTOMERS — one chilling with a joint, one with a coffee, seated
+  s+=person({x:302,y:508,sc:1.16,skin:'#e8c49a',hair:'#3a2418',hairstyle:'long',shirt:'#9c6b4a',pants:'#3a3a44',pose:'sit',
+    hold:`<g><path d="M -13 -14 Q -23 -25 -15 -33" stroke="#9c6b4a" stroke-width="8" fill="none" stroke-linecap="round"/><circle cx="-15" cy="-33" r="4.5" fill="#e8c49a"/><line x1="-15" y1="-34" x2="-30" y2="-39" stroke="#efe6cf" stroke-width="2.6" stroke-linecap="round"/><circle cx="-31" cy="-39" r="2.1" fill="#ff6a2c" class="gc-ember"/><g class="gc-smoke"><ellipse cx="-31" cy="-44" rx="3" ry="7" fill="#e6ece6" opacity=".42"/></g><g class="gc-smoke" style="animation-delay:2.6s"><ellipse cx="-27" cy="-44" rx="2.4" ry="6" fill="#e6ece6" opacity=".34"/></g></g>`});
   s+=person({x:1130,y:506,sc:1.16,skin:'#cf9a6a',hair:'#1c1410',hairstyle:'short',shirt:'#5a7a86',pants:'#403428',pose:'sit'});
+  // an ashtray with a resting joint + a wisp of smoke on the right table
+  s+=`<g transform="translate(1148 510)"><ellipse cx="0" cy="0" rx="11" ry="4" fill="${N?'#2a2620':'#4a4640'}"/><ellipse cx="0" cy="-1.5" rx="8" ry="2.6" fill="${N?'#1a1814':'#33302a'}"/><line x1="-4" y1="-1" x2="10" y2="-4" stroke="#efe6cf" stroke-width="2.4" stroke-linecap="round"/><circle cx="11" cy="-4" r="1.8" fill="#ff6a2c" class="gc-ember"/><g class="gc-smoke" style="animation-delay:1.3s"><ellipse cx="11" cy="-8" rx="2.4" ry="6" fill="#e6ece6" opacity=".32"/></g></g>`;
   s+='</g>';
 
   // ══ Layer D: foreground framing — hanging vine, a near plant, bokeh ──
