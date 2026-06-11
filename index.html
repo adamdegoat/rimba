@@ -3152,7 +3152,7 @@ function makeAnimalSVG(cid){
   const coat=ap.coat||(leo?'#1b1b22':'#d98a4a'), belly=ap.belly||(leo?'#2c2c34':'#f2c89a'),
         stripe=ap.stripe||(leo?'#3b3b46':'#a8612a'), eye=ap.eye||(leo?'#e0a83a':'#5fa86b'),
         nose=leo?'#26262b':'#b9696b'
-  const _w=leo?20:15, _h=leo?31:23
+  const _w=leo?40:15, _h=leo?62:23
   return `<svg class="char-svg dog-svg" id="svg-${cid}" width="${_w}" height="${_h}" viewBox="-20 -92 40 96" xmlns="http://www.w3.org/2000/svg">
     <g id="tail-${cid}" class="dog-tail" style="transform-box:view-box;transform-origin:11px -8px">
       <path d="M 10 -8 Q 22 -10 24 -24 Q 25 -34 19 -39" stroke="${coat}" stroke-width="6.5" fill="none" stroke-linecap="round"/>
