@@ -104,19 +104,22 @@ function build(){
   function leaf(x,y,sc,rot,c){ const angs=[-76,-49,-23,0,23,49,76], lens=[40,68,88,102,88,68,40]; let g=`<g transform="translate(${F(x)} ${F(y)}) rotate(${rot}) scale(${sc})">`;
     g+=`<path d="M 0 0 L 0 7" stroke="${vein}" stroke-width="2" stroke-linecap="round"/>`;
     angs.forEach((a,i)=>{ const wr=0.27-Math.abs(a)/76*0.05; g+=`<g transform="rotate(${a})"><path d="${leaflet(lens[i],lens[i]*wr)}" fill="${c}" stroke="${vein}" stroke-width="1.1" stroke-linejoin="round"/><path d="M 0 -3 L 0 ${F(-lens[i]+6)}" stroke="${vein}" stroke-width="1" opacity=".55"/></g>`; }); return g+'</g>'; }
-  // realistic flowering cola — sugar leaves poking out of a dense calyx bud, amber pistils, frost
-  function cola(cx,base,len,wid,purple){ let g=`<g>`; const n=Math.max(6,Math.round(len/6));
-    // sugar leaves fanning out from inside the bud (small frosted leaflets)
-    for(let i=1;i<n;i+=2){ const t=i/n, yy=base-len*t, side=(i%4<2?-1:1), slsc=(wid*1.4)*(1-t*0.45)/40;
-      g+=`<g transform="translate(${F(cx)} ${F(yy)}) rotate(${(side*(46-t*24)).toFixed(0)}) scale(${slsc.toFixed(3)})"><path d="${leaflet(40,7.6)}" fill="${purple?purpC:budC}"/><g fill="${frostW}" opacity=".55"><circle cx="0" cy="-16" r="1.6"/><circle cx="-2" cy="-26" r="1.3"/></g></g>`; }
-    // dense calyx nuggets (the bud mass) — green + purple tinged
-    for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.5)+2.4;
-      const pp = purple ? (i%3!==1) : (i%4===0); const bc=pp?purpC:budC, bl=pp?purpLite:budLite;
-      g+=`<circle cx="${F(cx)}" cy="${F(yy)}" r="${F(w)}" fill="${bc}"/><circle cx="${F(cx-w*.5)}" cy="${F(yy+1)}" r="${F(w*.7)}" fill="${bc}"/><circle cx="${F(cx+w*.5)}" cy="${F(yy+1)}" r="${F(w*.64)}" fill="${pp?purpLite:budC}"/><circle cx="${F(cx-w*.22)}" cy="${F(yy-w*.42)}" r="${F(w*.38)}" fill="${bl}"/>`; }
-    // amber pistil hairs
-    g+=`<g stroke="${pistil}" stroke-width="1.1" opacity=".85" stroke-linecap="round">`; for(let i=0;i<n*2.4;i++){ const t=i/(n*2.4), yy=base-len*t, side=i%2?1:-1, w=wid*(1-t*0.5)+2; g+=`<path d="M ${F(cx+side*w*.5)} ${F(yy)} q ${side*4} -5 ${side*8} -4"/>`; } g+='</g>';
-    // frosty trichome glitter
-    g+=`<g fill="${frostW}">`; for(let i=0;i<n*4.5;i++){ const t=(i*0.39)%1, yy=base-len*t, side=((i*7)%5-2)/2.2, w=wid*(1-t*0.5); g+=`<circle cx="${F(cx+side*w)}" cy="${F(yy)}" r="${(0.7+(i%3)*0.5).toFixed(1)}" opacity="${(0.5+(i%3)*0.2).toFixed(2)}"/>`; } g+='</g>';
+  // realistic flowering cola — calyx scales stacked like a pinecone, dense orange+white pistils, frost
+  function cola(cx,base,len,wid,purple){ let g=`<g>`; const n=Math.max(7,Math.round(len/5));
+    // sugar leaves poking out of the bud (small frosted serrated leaflets)
+    for(let i=1;i<n;i+=2){ const t=i/n, yy=base-len*t, side=(i%4<2?-1:1), slsc=(wid*1.5)*(1-t*0.4)/40;
+      g+=`<g transform="translate(${F(cx)} ${F(yy)}) rotate(${(side*(50-t*26)).toFixed(0)}) scale(${slsc.toFixed(3)})"><path d="${leaflet(40,8.2)}" fill="${purple?purpC:budC}" opacity=".95"/><circle cx="0" cy="-16" r="1.5" fill="${frostW}" opacity=".5"/></g>`; }
+    // calyx scales stacked like a pinecone — offset rows in a tapering cone, each shaded
+    for(let i=0;i<n;i++){ const t=i/n, yy=base-len*t, w=wid*(1-t*0.55)+2.4;
+      const offs = (i%2? [-0.5,0.3] : [-0.3,0.5]); if(t<0.42) offs.push(i%2?0.96:-0.96);
+      offs.forEach((ox,j)=>{ const cxx=cx+ox*w, cyy=yy+(j%2?1.4:0);
+        const pp = purple ? ((i+j)%3!==1) : ((i*2+j)%5===0); const bc=pp?purpC:budC, bl=pp?purpLite:budLite;
+        g+=`<ellipse cx="${F(cxx)}" cy="${F(cyy)}" rx="${F(w*0.62)}" ry="${F(w*0.92)}" fill="${bc}"/><ellipse cx="${F(cxx-w*0.18)}" cy="${F(cyy-w*0.34)}" rx="${F(w*0.34)}" ry="${F(w*0.5)}" fill="${bl}" opacity=".75"/>`; }); }
+    // dense pistil hairs — fine curly V-pairs sticking out everywhere, ~70% orange (mature) + white
+    for(let i=0;i<n*3.4;i++){ const t=(i*0.29)%1, yy=base-len*t, side=i%2?1:-1, w=wid*(1-t*0.5)+2, col=(i%10<7)?pistil:frostW;
+      g+=`<path d="M ${F(cx+side*w*0.35)} ${F(yy)} q ${side*5} -6 ${(side*2+((i%3)-1)*3).toFixed(0)} -11" stroke="${col}" stroke-width="${(0.8+(i%2)*0.4).toFixed(1)}" fill="none" opacity="${(0.55+(i%3)*0.14).toFixed(2)}" stroke-linecap="round"/>`; }
+    // frosty trichome sheen
+    g+=`<g fill="${frostW}">`; for(let i=0;i<n*4;i++){ const t=(i*0.39)%1, yy=base-len*t, side=((i*7)%5-2)/2.0, w=wid*(1-t*0.5); g+=`<circle cx="${F(cx+side*w)}" cy="${F(yy)}" r="${(0.6+(i%3)*0.45).toFixed(1)}" opacity="${(0.45+(i%3)*0.18).toFixed(2)}"/>`; } g+='</g>';
     return g+'</g>'; }
   // realistic cannabis plant — conical: a stem with node-pairs of fan leaves (big→small), branch colas + an apex cola
   function plant(x,base,h,sc,c,flower,purple){ let g=`<g class="sway" style="animation-delay:${(x%5)*-0.7}s">`;
