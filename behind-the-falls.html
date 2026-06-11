@@ -5,7 +5,7 @@
 <meta name="robots" content="noindex,nofollow">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Pacifico&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
 <style>
   *{box-sizing:border-box}
   html,body{margin:0;height:100%;background:#070f0a;font-family:'Plus Jakarta Sans',system-ui,sans-serif;color:#eef3ee;overflow:hidden}
@@ -35,9 +35,13 @@
   @keyframes stream{to{stroke-dashoffset:-260}}
   @keyframes rise{0%{opacity:0;transform:translateY(0) scale(.6)}35%{opacity:.5}100%{opacity:0;transform:translateY(-48px) scale(1.5)}}
   @keyframes ripple{0%{transform:scale(.3);opacity:.5}100%{transform:scale(1.55);opacity:0}}
+  @keyframes neon{0%,100%{opacity:.92}45%{opacity:.92}47%{opacity:.5}49%{opacity:.98}51%{opacity:.66}53%{opacity:.98}}
+  @keyframes glowpulse{0%,100%{opacity:.4}50%{opacity:.72}}
   .fall{animation:drip 1s linear infinite alternate}
   .mote{animation:mote 7s ease-in-out infinite}
   .sway{transform-box:fill-box;transform-origin:50% 100%;animation:sway 5.5s ease-in-out infinite}
+  .iw-glow{animation:glowpulse 2.8s ease-in-out infinite}
+  .neon{animation:neon 5s ease-in-out infinite}
   .stream{animation:stream 1.1s linear infinite}
   .rise{transform-box:fill-box;transform-origin:center;animation:rise 3s ease-out infinite}
   .ripple{transform-box:fill-box;transform-origin:center;animation:ripple 2.6s ease-out infinite}
@@ -144,7 +148,8 @@ function build(){
     <linearGradient id="beam" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="${beamC}" stop-opacity="${beamO}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></linearGradient>
     <radialGradient id="pool" cx="50%" cy="40%" r="60%"><stop offset="0" stop-color="${N?'#6fa6b6':'#bfe6f2'}"/><stop offset="1" stop-color="${N?'#234852':'#3a6e72'}"/></radialGradient>
     <radialGradient id="glowpool" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="${beamC}" stop-opacity="${N?'.18':'.5'}"/><stop offset=".6" stop-color="${beamC}" stop-opacity="${N?'.06':'.18'}"/><stop offset="1" stop-color="${beamC}" stop-opacity="0"/></radialGradient>
-    <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity="${N?'.74':'.66'}"/></radialGradient></defs>
+    <radialGradient id="vig" cx="50%" cy="42%" r="72%"><stop offset="0" stop-color="#000" stop-opacity="0"/><stop offset=".58" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#040a06" stop-opacity="${N?'.74':'.66'}"/></radialGradient>
+    <radialGradient id="neonG" cx="50%" cy="50%" r="50%"><stop offset="0" stop-color="#6cff86" stop-opacity="${N?'.5':'.4'}"/><stop offset=".45" stop-color="#39d353" stop-opacity="${N?'.22':'.16'}"/><stop offset="1" stop-color="#39d353" stop-opacity="0"/></radialGradient></defs>
     <rect width="1340" height="600" fill="url(#caveBg)"/>`;
   const holes=[[250,300],[560,470],[820,360]];
   // ── daylight holes + beams stabbing down ──
@@ -196,6 +201,12 @@ function build(){
   // pools of daylight landing on the crop where each beam reaches the floor
   s+=`<g>${holes.map(([hx])=>`<ellipse cx="${hx}" cy="528" rx="118" ry="40" fill="url(#glowpool)"/>`).join('')}</g>`;
 
+  // ── a drying line of harvested colas hanging upside-down (a harvest in progress) ──
+  s+=`<line x1="250" y1="206" x2="470" y2="196" stroke="#9c7a44" stroke-width="3"/>`;
+  s+=`<g>${[280,322,364,406,448].map((dx,i)=>{const dy=206-(dx-250)/220*10; return `<line x1="${dx}" y1="${dy}" x2="${dx}" y2="${dy+10}" stroke="#6b5028" stroke-width="1.6"/><g transform="translate(${dx} ${dy+12}) rotate(180)">${cola(0,0,42+(i%2)*8,6.2,i%2===0)}</g>`;}).join('')}</g>`;
+  // a hygrometer / temp gauge clipped to the rock wall (grow monitoring)
+  s+=`<g transform="translate(998 286)"><circle r="16" fill="#15120c" stroke="#5a4326" stroke-width="2"/><circle r="13" fill="#d6deca"/><g stroke="#7a8a6a" stroke-width="0.8">${[...Array(8)].map((_,i)=>{const a=i/8*6.2832;return `<line x1="${F(Math.cos(a)*10)}" y1="${F(Math.sin(a)*10)}" x2="${F(Math.cos(a)*12.5)}" y2="${F(Math.sin(a)*12.5)}"/>`;}).join('')}</g><line x1="0" y1="0" x2="6" y2="-8" stroke="#c4452c" stroke-width="1.6" stroke-linecap="round"/><circle r="1.8" fill="#2a2114"/></g>`;
+
   // ══ MID parallax layer — the crop (mix of flowering + leafy) ══
   s+='<g class="lkL" data-px=".32">';
   // back row — smaller/further, fills the grow out
@@ -215,12 +226,15 @@ function build(){
   s+=`<g transform="translate(900 560)" fill="${N?'#2a3a24':'#4a6b32'}"><ellipse cx="0" cy="0" rx="16" ry="5"/><path d="M 14 0 q 14 1 22 5" stroke="${N?'#2a3a24':'#4a6b32'}" stroke-width="3" fill="none" stroke-linecap="round"/><circle cx="-14" cy="-1" r="3.4"/></g>`;
   s+='</g>';
 
-  // hanging lantern / grow-lamp (brighter at night)
-  s+=`<g><line x1="700" y1="0" x2="700" y2="118" stroke="#3a2c18" stroke-width="2"/><rect x="688" y="118" width="24" height="30" rx="5" fill="#2a2114"/><ellipse cx="700" cy="133" rx="7" ry="10" fill="#ffd98a"/><ellipse cx="700" cy="133" rx="${N?28:16}" ry="${N?34:20}" fill="#ffd98a" opacity="${N?'.34':'.22'}"/></g>`;
-  // a moth circling the lamp + glowing motes in the beams + fireflies (night)
-  s+=`<g class="mote" fill="#e8e2cc" opacity=".8"><ellipse cx="724" cy="128" rx="5" ry="3.4"/><ellipse cx="732" cy="128" rx="5" ry="3.4"/></g>`;
+  // ── a row of hanging GROW-LAMPS with reflector hoods + warm cones pooling on the canopy ──
+  s+=`<g>${[300,540,780,1020].map(lx=>`<line x1="${lx}" y1="0" x2="${lx}" y2="92" stroke="#2a2114" stroke-width="2.4"/><path d="M ${lx-30} 92 L ${lx+30} 92 L ${lx+18} 120 L ${lx-18} 120 Z" fill="#6e665a"/><path d="M ${lx-26} 96 L ${lx+26} 96 L ${lx+18} 116 L ${lx-18} 116 Z" fill="#8a8276"/><path d="M ${lx-30} 92 L ${lx+30} 92 L ${lx+27} 98 L ${lx-27} 98 Z" fill="#4a443a"/><ellipse cx="${lx}" cy="118" rx="11" ry="7" fill="#fff3d0"/><ellipse cx="${lx}" cy="120" rx="${N?44:30}" ry="${N?38:24}" fill="#ffe6a0" class="iw-glow" opacity="${N?'.55':'.34'}"/>`).join('')}</g>`;
+  s+=`<g pointer-events="none">${[300,540,780,1020].map(lx=>`<path d="M ${lx-16} 124 L ${lx-64} 522 L ${lx+64} 522 L ${lx+16} 124 Z" fill="#ffe6a0" opacity="${N?'.16':'.085'}"/><ellipse cx="${lx}" cy="524" rx="86" ry="34" fill="#ffe6a0" opacity="${N?'.26':'.15'}"/>`).join('')}</g>`;
+  // a moth circling a lamp + glowing motes in the beams + fireflies (night)
+  s+=`<g class="mote" fill="#e8e2cc" opacity=".8"><ellipse cx="804" cy="110" rx="5" ry="3.4"/><ellipse cx="812" cy="110" rx="5" ry="3.4"/></g>`;
   s+=`<g fill="${beamC}">${holes.flatMap(([hx],j)=>[0,1,2,3].map(i=>`<circle class="mote" style="animation-delay:${(j*1.4+i*1.6).toFixed(1)}s" cx="${hx-20+i*12}" cy="${260+i*60}" r="2"/>`)).join('')}</g>`;
   if(N) s+=`<g fill="#bdf5a0">${[[180,470],[470,500],[760,460],[330,520],[640,512]].map(([x,y],i)=>`<circle class="mote" style="animation-delay:${(i*.9).toFixed(1)}s" cx="${x}" cy="${y}" r="2.2"/>`).join('')}</g>`;
+  // humid haze hanging in the cave-grow air (a damp, living grow)
+  s+=`<g fill="${N?'#8fb89a':'#cfe0d0'}" pointer-events="none">${[[260,448,86,18],[560,468,104,22],[860,448,88,18],[400,506,74,15],[1010,470,76,16]].map(([hx,hy,rx,ry],i)=>`<ellipse class="mote" style="animation-delay:${(i*1.5).toFixed(1)}s" cx="${hx}" cy="${hy}" rx="${rx}" ry="${ry}" opacity="${N?'.06':'.045'}"/>`).join('')}</g>`;
   // water drips off the cave roof
   s+=`<g stroke="${N?'#9fc2cc':'#cfe7ff'}" stroke-width="1.6" opacity=".5" stroke-linecap="round">${[130,330,650,760,930].map((x,i)=>`<line class="fall" style="animation-delay:${(i*0.4).toFixed(1)}s" x1="${x}" y1="106" x2="${x}" y2="120"/>`).join('')}</g>`;
   // ══ a subtly-elegant door set into the right cave wall → The Green Cave (warm light bleeds around it) ══
@@ -232,8 +246,8 @@ function build(){
   s+=`<g fill="#caa44e"><circle cx="1192" cy="452" r="4.5"/><rect x="1189" y="448" width="6" height="20" rx="3"/></g>`;
   // warm light leaking around the door edges = the hint of the boutique beyond
   s+=`<g stroke="${N?'#ffd98a':'#ffe6b0'}" stroke-width="2.4" opacity="${N?'.7':'.5'}" stroke-linecap="round" class="iw-glow"><path d="M 1096 412 Q 1096 360 1150 359 Q 1204 360 1204 412"/><line x1="1097" y1="529" x2="1203" y2="529"/></g>`;
-  // a small carved leaf emblem above the door + two potted plants flanking (a quiet tease)
-  s+=`<g transform="translate(1150 330)"><ellipse cx="0" cy="0" rx="15" ry="11" fill="${N?'#1f1810':'#3e3220'}"/><g transform="scale(.42)">${leaf(0,6,1,0,'#7fb56a')}</g></g>`;
+  // an aesthetic neon "420" in cursive glowing above the door (the quiet tease)
+  s+=`<g transform="translate(1150 318)"><ellipse cx="0" cy="6" rx="64" ry="40" fill="url(#neonG)" class="neon"/><text class="neon" x="0" y="15" text-anchor="middle" font-family="Pacifico, cursive" font-size="44" fill="none" stroke="#8dffa6" stroke-width="1.8" style="filter:drop-shadow(0 0 3px #6cff86) drop-shadow(0 0 8px #39d353) drop-shadow(0 0 14px #2fbf48)">420</text></g>`;
   s+=`<g fill="${N?'#4a3venturi'.replace('venturi','320'):'#7a5430'}">${[1062,1238].map(px=>`<path d="M ${px-16} 532 l 32 0 l -4 20 l -24 0 Z"/>`).join('')}</g>`;
   [1062,1238].forEach(px=>{ s+=`<g transform="translate(${px} 530)">${leaf(0,0,0.5,0,leafC)}${leaf(-6,2,0.4,-30,leafLite)}${leaf(6,2,0.4,30,leafLite)}</g>`; });
   // warm glow pool spilling onto the floor from under the door
