@@ -1,16 +1,16 @@
 {
   "day": 4,
-  "cycle": "midday",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-11",
-  "pulse": "Chills faces the gathering work alone, but Wesley's learning to count in other ways.",
-  "scene": "Chills counts the depleting wood while Wesley tests his swollen hands by the fire at midday. From the forest edge, the black panther edges closer, drawn by Mutu's fearless calm.",
+  "pulse": "For the first time, Wesley leans into Chills' steady pace instead of fighting it, hunger and fear beginning to soften into trust.",
+  "scene": "Mutu brought a bird; it roasted at the fire while Wesley watched the panther from the ferns. Both men sat together by the flames as dark fell, fear and hunger still real but no longer driving panic.",
   "resources_prev": {
     "food": 0,
-    "water": 89,
-    "wood": 44,
+    "water": 86,
+    "wood": 47,
     "medicine": 13
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 48,
+      "condition": 44,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 86,
-    "wood": 47,
+    "water": 85,
+    "wood": 43,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 2
+    "fuel": 6
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-11:midday",
+  "last_cycle_key": "2026-06-11:evening",
   "cayenne": {
     "stripped": []
   },

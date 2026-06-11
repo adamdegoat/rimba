@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 94,
       "health": 100,
-      "hunger": 36,
+      "hunger": 35,
       "thirst": 53,
-      "energy": 39
+      "energy": 25
     },
     "mood": "steady",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 56,
-        "tension": 3,
+        "tension": 5,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -136,17 +136,17 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 74,
+      "trust": 75,
       "openness": 67,
       "ambition": 75,
-      "loneliness": 2,
-      "resilience": 40,
+      "loneliness": 0,
+      "resilience": 41,
       "health": 100,
-      "hunger": 36,
+      "hunger": 35,
       "thirst": 53,
       "energy": 0
     },
-    "mood": "resigned",
+    "mood": "wary",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -156,7 +156,7 @@
     "relationships": {
       "chills": {
         "closeness": 52,
-        "tension": 5,
+        "tension": 7,
         "attraction": 0
       },
       "mutu": {
@@ -183,7 +183,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -194,11 +194,6 @@
       {
         "day": 1,
         "text": "Chills didn't blame me. He just said I'm learning. I want to believe that.",
-        "weight": 2
-      },
-      {
-        "day": 1,
-        "text": "Chills showed me dry heartwood without blame when I'd already quit.",
         "weight": 2
       },
       {
@@ -255,6 +250,11 @@
         "day": 4,
         "text": "Scouting counts. Chills made me believe that. Finally.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "Chills turned my fear into work. Just eat what's here.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -269,33 +269,33 @@
       "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 22,
+      "loneliness": 25,
       "resilience": 85,
-      "hunger": 36,
+      "hunger": 35,
       "thirst": 53,
-      "energy": 43,
+      "energy": 29,
       "health": 100
     },
     "mood": "calm",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 89,
-        "tension": 3,
+        "closeness": 88,
+        "tension": 6,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 28,
-        "tension": 3,
+        "closeness": 27,
+        "tension": 6,
         "attraction": 0
       },
       "panther": {
-        "closeness": 29,
+        "closeness": 31,
         "tension": 5,
         "attraction": 0
       }
@@ -317,35 +317,35 @@
     "color": "#1b1b22",
     "scores": {
       "trust": 10,
-      "openness": 15,
+      "openness": 16,
       "ambition": 0,
-      "loneliness": 62,
+      "loneliness": 63,
       "resilience": 75,
-      "hunger": 57,
+      "hunger": 46,
       "thirst": 53,
-      "energy": 65,
-      "health": 83
+      "energy": 51,
+      "health": 88
     },
-    "mood": "curious",
+    "mood": "wary",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 3,
-        "tension": 43,
+        "closeness": 2,
+        "tension": 46,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 1,
-        "tension": 59,
+        "closeness": 0,
+        "tension": 63,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 29,
+        "closeness": 31,
         "tension": 5,
         "attraction": 0
       }
