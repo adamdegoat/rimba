@@ -3663,7 +3663,8 @@ function setHudVar(){
   const sb = Math.max(0, Math.round(window.innerHeight - top))
   if(sb) document.documentElement.style.setProperty('--stage-bottom', sb+'px')
 }
-window.addEventListener('resize', ()=>{ setHudVar(); if(S && Object.keys(S.chars||{}).length) updateWorld() })
+window.addEventListener('resize', ()=>{ setHudVar(); if(S && Object.keys(S.chars||{}).length) updateWorld()
+  const intr=document.getElementById('interior'); if(intr && intr.classList.contains('show')) fitInteriorScene() })
 
 // ── ZOOM-AWARE RE-SYNC (mobile pinch-zoom) ──────────────────────────────────
 // Mobile browsers (esp. iOS Safari) let users pinch-zoom even though our viewport asks them
@@ -4628,6 +4629,21 @@ function stopLookoutParallax(){
   const scene=document.getElementById('interior-scene');
   if(scene) scene.querySelectorAll('.lkL').forEach(g=>g.removeAttribute('transform'));
 }
+// Make the interior panorama always COVER the viewport — no black gaps. On narrow screens it
+// fills the height and overflows the width (pan left/right, as before); on wide desktops where the
+// panorama would be narrower than the screen, it fills the WIDTH instead and centres vertically.
+function fitInteriorScene(){
+  const sc=document.getElementById('interior-scene'); if(!sc) return;
+  const svg=sc.querySelector('svg'); if(!svg) return;
+  let aspect=0;
+  try{ const vb=svg.viewBox.baseVal; if(vb&&vb.width&&vb.height) aspect=vb.width/vb.height; }catch(e){}
+  if(!aspect){ const a=(svg.getAttribute('viewBox')||'').split(/[ ,]+/); if(a.length===4&&+a[3]) aspect=(+a[2])/(+a[3]); }
+  if(!aspect) return;
+  const H=sc.clientHeight, W=sc.clientWidth;
+  let w=H*aspect, h=H, mt=0;
+  if(w < W-0.5){ w=W; h=W/aspect; mt=(H-h)/2; }   // would gap → fill width (cover), centre vertically
+  svg.style.width=w+'px'; svg.style.height=h+'px'; svg.style.marginTop=mt+'px';
+}
 function enterInterior(key){
   const I=INTERIORS[key]; if(!I) return;
   const scene=document.getElementById('interior-scene');
@@ -4635,7 +4651,9 @@ function enterInterior(key){
   // the scene fills the height and overflows the width on narrow screens — frame it so the
   // subject shows first, with room to pan left/right. shelters centre on the door; the
   // waterfall lookout opens on the falls (viewBox ~x130) with the camp trailing to the right.
+  setTimeout(fitInteriorScene, 60)   // safety: re-fit after the open transition settles
   requestAnimationFrame(()=>{ try{
+    fitInteriorScene();
     scene.scrollLeft = I.scenery ? Math.min(scene.scrollWidth-scene.clientWidth, (48/1000)*scene.scrollWidth)
                                  : (scene.scrollWidth-scene.clientWidth)/2;
     const hint=document.getElementById('interior-hint'); if(hint){ hint.classList.remove('show'); void hint.offsetWidth;
