@@ -1664,5 +1664,110 @@
       }
     ],
     "timestamp": "2026-06-11T18:32:13.110496"
+  },
+  {
+    "day": 4,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Feeds dry wood to the fire slowly, watching the panther edge from the ferns with steady curiosity, unafraid.",
+    "thought": "The dark brings out what the light conceals.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-11T22:32:05.999010"
+  },
+  {
+    "day": 4,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Sits by the fire fighting his eyelids, exhaustion finally winning as the panther crept closer to Mutu's quiet form.",
+    "thought": "Can't keep my eyes open much longer now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-11T22:32:05.999010"
+  },
+  {
+    "day": 4,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Lies by the fire unbothered as the panther edges closer, calm enough that the wild thing's hunger starts to soften.",
+    "thought": "Fearless one draws close. No threat here.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-11T22:32:05.999010"
+  },
+  {
+    "day": 4,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Creeps from the ferns in the darkness, drawn by Mutu's fearless presence, hunger and loneliness finally outweighing the terror of the men.",
+    "thought": "Warm place. Small fierce one. Safe distance.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-11T22:32:05.999010"
+  },
+  {
+    "day": 4,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "panther"
+    ],
+    "description": "The panther finally edges into the firelight, drawn to Mutu's fearless calm, while Wesley's exhaustion overwhelms his terror and Chills holds the line.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's right at the edge now. Much closer than last night."
+      },
+      {
+        "speaker": "panther",
+        "line": "Eyes catch firelight. Hunger outweighs fear. One careful step closer."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Chills. It's watching Mutu."
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu's not prey. Mutu doesn't flinch."
+      },
+      {
+        "speaker": "wesley",
+        "line": "If it attacks—"
+      },
+      {
+        "speaker": "panther",
+        "line": "Small fierce one holds still. Calm like the fire. Draw closer."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We should be ready to—I don't know. Something."
+      },
+      {
+        "speaker": "chills",
+        "line": "Fear invites attack. Calm holds the line."
+      }
+    ],
+    "timestamp": "2026-06-11T22:32:05.999010"
   }
 ]

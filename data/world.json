@@ -1,16 +1,16 @@
 {
   "day": 4,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-11",
-  "pulse": "For the first time, Wesley leans into Chills' steady pace instead of fighting it, hunger and fear beginning to soften into trust.",
-  "scene": "Mutu brought a bird; it roasted at the fire while Wesley watched the panther from the ferns. Both men sat together by the flames as dark fell, fear and hunger still real but no longer driving panic.",
+  "pulse": "Wesley's terror meets exhaustion at the fire's edge—and Chills' unshakeable calm is becoming something Wesley leans on even in the dark.",
+  "scene": "By the fire late into the night, Wesley fought sleep while the panther inched from the ferns, drawn to Mutu's fearless calm; Chills tended the flames with steady hands.",
   "resources_prev": {
     "food": 0,
-    "water": 86,
-    "wood": 47,
+    "water": 85,
+    "wood": 43,
     "medicine": 13
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 44,
+      "condition": 40,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 85,
-    "wood": 43,
+    "water": 90,
+    "wood": 42,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
-  "camp_climate": "strained",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-11:evening",
+  "last_cycle_key": "2026-06-11:night",
   "cayenne": {
     "stripped": []
   },
@@ -49,7 +49,8 @@
   "day_summaries": {
     "1": "Day 1 broke Wesley and tested Chills: the Cayenne bogged, Wesley's panic fouled the water, then he failed at fire. By nightfall Chills had coaxed a flame from dry heartwood with patient hands, and Wesley's shame cracked open — he saw it wasn't preaching but simple survival, and he believed. They ate warm. The jungle night was hard, but they would live it.",
     "2": "Day 2 was Wesley's breakthrough—he came forward wanting to work and pushed through salvaging the Cayenne without breaking. By nightfall his hands were shredded but his fear was gone, and Mutu, sensing the shift, showed him affection for the first time. The city scholar had become a survivor.",
-    "3": "Day 3 began with Wesley's raw hands giving out after two days of steady work. Chills shifted to fishing while Wesley rested—a lesson in patience over progress. By nightfall the two had settled into an unexpected rhythm: cooked fish, the fire steady, Mutu held Wesley close, and rest became work."
+    "3": "Day 3 began with Wesley's raw hands giving out after two days of steady work. Chills shifted to fishing while Wesley rested—a lesson in patience over progress. By nightfall the two had settled into an unexpected rhythm: cooked fish, the fire steady, Mutu held Wesley close, and rest became work.",
+    "4": "Day 4 ended with Wesley finally accepting rest as survival—resting while Chills gathered wood, both of them shifting. By nightfall the panther inched from the ferns, drawn to Mutu's fearless calm, and Wesley began to believe that Chills' unshakeable steadiness might be enough to hold the dark at bay. The camp found peace, uneasy and real."
   },
   "lean": {
     "id": "hold_camp",
