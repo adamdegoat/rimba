@@ -1769,5 +1769,110 @@
       }
     ],
     "timestamp": "2026-06-11T22:32:05.999010"
+  },
+  {
+    "day": 5,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Tends the fire at dawn, feeding dry branches while measuring the wood pile's dwindling height.",
+    "thought": "Fire holds. Wesley's learning. We have time.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-12T07:02:18.658680"
+  },
+  {
+    "day": 5,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Wakes stiff and careful, moving to the fire with swollen hands that won't quite flex.",
+    "thought": "Another day. At least I can breathe.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-12T07:02:18.658680"
+  },
+  {
+    "day": 5,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Pads through the camp perimeter with tail high, drawn toward the forest edge by something watching.",
+    "thought": "Not afraid. The dark one follows.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-12T07:02:18.658680"
+  },
+  {
+    "day": 5,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Edges closer from the ferns, pulled by Mutu's fearless movement, then bolts back into shadow at Wesley's glance.",
+    "thought": "Small fierce one. Safe. Others... no.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-12T07:02:18.658680"
+  },
+  {
+    "day": 5,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Wesley wakes stiff as Chills tends the fire at dawn; beyond the camp, Mutu's fearlessness draws the watching panther closer still.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands still won't flex properly."
+      },
+      {
+        "speaker": "chills",
+        "line": "Swelling means healing. Rest's the work."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We burning through the wood okay?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Steady. We're good for days if we're smart."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That thing came to the fire again last night."
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu wasn't afraid. That's all the safety we need."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I still don't feel safe around it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Eat, rest, don't watch the shadows. That's enough."
+      }
+    ],
+    "timestamp": "2026-06-12T07:02:18.658680"
   }
 ]
