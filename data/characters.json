@@ -6,25 +6,25 @@
     "color": "#6a994e",
     "scores": {
       "trust": 76,
-      "openness": 76,
+      "openness": 77,
       "ambition": 55,
       "loneliness": 0,
-      "resilience": 93,
+      "resilience": 94,
       "health": 100,
-      "hunger": 40,
+      "hunger": 38,
       "thirst": 53,
-      "energy": 53
+      "energy": 46
     },
-    "mood": "attentive",
+    "mood": "steady",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "forest_edge",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 53,
+        "closeness": 56,
         "tension": 0,
         "attraction": 0
       },
@@ -122,6 +122,11 @@
         "day": 4,
         "text": "Wesley's accepting his limits without spiraling. That's real.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "Wesley stopped fighting his limits. He's learning patience is real survival.",
+        "weight": 2
       }
     ]
   },
@@ -131,15 +136,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 71,
+      "trust": 73,
       "openness": 66,
       "ambition": 75,
-      "loneliness": 6,
-      "resilience": 38,
+      "loneliness": 4,
+      "resilience": 39,
       "health": 100,
-      "hunger": 40,
+      "hunger": 38,
       "thirst": 53,
-      "energy": 6
+      "energy": 0
     },
     "mood": "resigned",
     "location": {
@@ -150,12 +155,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 49,
+        "closeness": 52,
         "tension": 2,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 24,
+        "closeness": 26,
         "tension": 0,
         "attraction": 0
       }
@@ -203,6 +208,11 @@
       },
       {
         "day": 2,
+        "text": "I worked all day without panicking. Chills saw it. That matters.",
+        "weight": 3
+      },
+      {
+        "day": 2,
         "text": "He didn't blame me like I feared. He just showed up ready.",
         "weight": 2
       },
@@ -215,16 +225,6 @@
         "day": 2,
         "text": "Made it through a full day of work without breaking. Chills just noticed.",
         "weight": 2
-      },
-      {
-        "day": 2,
-        "text": "I worked all day without panicking. Chills saw it. That matters.",
-        "weight": 3
-      },
-      {
-        "day": 3,
-        "text": "Slow heals faster than pushing through pain.",
-        "weight": 1
       },
       {
         "day": 3,
@@ -250,6 +250,11 @@
         "day": 4,
         "text": "Chills framed rest as the work I'm doing today. I'm starting to believe it.",
         "weight": 2
+      },
+      {
+        "day": 4,
+        "text": "He calls rest the work. Not shame. Just... survival.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -264,16 +269,16 @@
       "trust": 65,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 22,
+      "loneliness": 20,
       "resilience": 85,
-      "hunger": 40,
+      "hunger": 38,
       "thirst": 53,
-      "energy": 57,
+      "energy": 50,
       "health": 100
     },
     "mood": "satisfied",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
@@ -285,7 +290,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 26,
+        "closeness": 28,
         "tension": 0,
         "attraction": 0
       }
@@ -297,9 +302,6 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "chills",
-      "state": "sitting_together"
-    }
+    "interaction": null
   }
 }

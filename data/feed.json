@@ -1363,5 +1363,96 @@
       }
     ],
     "timestamp": "2026-06-11T11:32:21.758706"
+  },
+  {
+    "day": 4,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Gathering dry wood from the forest edge, moving steady between dark trunks and camp fire, hands sure and practiced with each piece selected and carried back.",
+    "thought": "He's learning to be still now.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "steady",
+    "timestamp": "2026-06-11T15:02:19.503994"
+  },
+  {
+    "day": 4,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Resting on his back near the fire, palms up on a broad leaf, letting the heat ease the deep ache spreading through his swollen hands.",
+    "thought": "Resting might be my only work here.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resigned",
+    "timestamp": "2026-06-11T15:02:19.503994"
+  },
+  {
+    "day": 4,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Padding between Chills and Wesley, threading past ankles, sometimes curling close to Wesley's side as if to anchor him to the quiet afternoon.",
+    "thought": "Wesley hurts still. I stay close.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "satisfied",
+    "timestamp": "2026-06-11T15:02:19.503994"
+  },
+  {
+    "day": 4,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley",
+      "mutu"
+    ],
+    "description": "Wesley finally accepted his exhaustion and rested by the fire; Chills gathered dry wood while Mutu moved quietly between them, holding the space together.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Still can't use my hands."
+      },
+      {
+        "speaker": "chills",
+        "line": "So you rest. That's your work today."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Doesn't feel like work."
+      },
+      {
+        "speaker": "chills",
+        "line": "Because you haven't learned to sit yet."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Sit how?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Just like this. Present. Not moving."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And that's... survival?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Sometimes it's the whole thing."
+      }
+    ],
+    "timestamp": "2026-06-11T15:02:19.503994"
   }
 ]
