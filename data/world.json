@@ -1,16 +1,16 @@
 {
   "day": 5,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-12",
-  "pulse": "Wesley eases into rest as Chills steadies him; the panther inches closer, drawn only to Mutu's fearlessness.",
-  "scene": "The fire held through the night. Wesley woke stiff to Chills at the campfire while Mutu prowled the forest edge and the panther watched from the ferns.",
+  "pulse": "Chills makes the hard call: Wesley rests while he fishes alone—and Wesley, for once, accepts it without fighting.",
+  "scene": "Chills fishes the river shallows while Wesley guards the dying fire at camp, too exhausted to follow. Mutu hunts in the ferns; the panther watches from the forest edge.",
   "resources_prev": {
     "food": 0,
-    "water": 90,
-    "wood": 42,
+    "water": 85,
+    "wood": 37,
     "medicine": 13
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 36,
+      "condition": 32,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -30,16 +30,16 @@
   "resources": {
     "food": 0,
     "water": 85,
-    "wood": 37,
+    "wood": 36,
     "medicine": 13
   },
   "fire": {
     "lit": true,
-    "fuel": 14
+    "fuel": 18
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-12:morning",
+  "last_cycle_key": "2026-06-12:midday",
   "cayenne": {
     "stripped": []
   },
