@@ -1,24 +1,24 @@
 {
   "day": 5,
-  "cycle": "afternoon",
-  "weather": "clear and hot",
+  "cycle": "evening",
+  "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-12",
-  "pulse": "Wesley's fear spikes as the panther emerges; Chills' steady voice becomes the only ground that matters.",
-  "scene": "Wesley spots the panther watching from the forest edge and spirals; Chills returns from the shallows with a small catch and quietly talks him back to calm.",
+  "pulse": "Wesley stops fighting his broken legs; Chills shoulders the work; the panther edges closer each night and Wesley's fear is becoming acceptance.",
+  "scene": "Chills returns from the shallows with four shiners and cooks them while Wesley rests his useless legs. As darkness falls, the panther's eyes appear at the fern's edge, closer and bolder than before.",
   "resources_prev": {
     "food": 0,
-    "water": 85,
-    "wood": 36,
-    "medicine": 13
+    "water": 82,
+    "wood": 37,
+    "medicine": 12
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 28,
+      "condition": 24,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -29,17 +29,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 82,
-    "wood": 37,
-    "medicine": 12
+    "water": 80,
+    "wood": 33,
+    "medicine": 11
   },
   "fire": {
     "lit": true,
-    "fuel": 4
+    "fuel": 8
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-12:afternoon",
+  "last_cycle_key": "2026-06-12:evening",
   "cayenne": {
     "stripped": []
   },
