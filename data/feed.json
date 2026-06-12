@@ -2189,5 +2189,110 @@
       }
     ],
     "timestamp": "2026-06-12T18:32:48.063546"
+  },
+  {
+    "day": 5,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Chills tends the fire as darkness deepens, catching the panther's amber eyes in the ferns, inching closer to where Mutu sleeps unbothered.",
+    "thought": "He's scared. Mutu trusts him. That matters.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "steady",
+    "timestamp": "2026-06-12T22:31:37.720815"
+  },
+  {
+    "day": 5,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Wesley stiffens as movement flickers in the ferns, and the realization hits—those glowing eyes belong to the panther, far too close now.",
+    "thought": "It's here. Too close. I can't breathe.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-12T22:31:37.720815"
+  },
+  {
+    "day": 5,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Mutu sleeps curled in the fire's warmth, her breathing steady and slow, utterly indifferent to the eyes tracking her from the jungle darkness.",
+    "thought": "Fire warm. All is still and good.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-12T22:31:37.720815"
+  },
+  {
+    "day": 5,
+    "cycle": "night",
+    "character": "panther",
+    "action": "The young panther moves one slow paw forward from the fern line, then freezes, torn between hunger and an older fear as the humans remain stone-still.",
+    "thought": "She sleeps fearless. I cannot stay away now.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-12T22:31:37.720815"
+  },
+  {
+    "day": 5,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "panther"
+    ],
+    "description": "Night deepens and the panther's eyes glow in the ferns creeping closer to Mutu's sleeping form; Wesley spots it and his breath catches in terror, but Chills' steady presence at the fire becomes his anchor.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Chills. Eyes. There, in the ferns."
+      },
+      {
+        "speaker": "chills",
+        "line": "I see him. Young panther. Scared like we are."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Scared? It's a predator a few meters from us."
+      },
+      {
+        "speaker": "chills",
+        "line": "It is. And so is everything here. Watch Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "She's... sleeping. Right there."
+      },
+      {
+        "speaker": "chills",
+        "line": "She trusts it more than we do. That means something."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What do we do?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We don't move. We let him choose."
+      }
+    ],
+    "timestamp": "2026-06-12T22:31:37.720815"
   }
 ]
