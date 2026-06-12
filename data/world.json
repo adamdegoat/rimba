@@ -1,24 +1,24 @@
 {
-  "day": 5,
-  "cycle": "night",
+  "day": 6,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-12",
-  "pulse": "Wesley's panic at the panther becomes a test—Chills' steady voice the only ground between him and terror.",
-  "scene": "Night deepens and the panther creeps closer to where Mutu sleeps by the fire; Wesley spots the eyes and spirals, but Chills' calm voice pulls him back from the edge.",
+  "last_run_date": "2026-06-13",
+  "pulse": "Wesley's pushing through pain to contribute. Chills holds steady. But hunger's beginning to gnaw at both of them.",
+  "scene": "By mid-morning they were wading into the shallows despite sickness and injury. Mutu hunted the ferns nearby, and the young panther watched from the forest edge, keeping its distance.",
   "resources_prev": {
     "food": 0,
-    "water": 80,
-    "wood": 33,
-    "medicine": 11
+    "water": 85,
+    "wood": 29,
+    "medicine": 10
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 20,
+      "condition": 16,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -30,16 +30,16 @@
   "resources": {
     "food": 0,
     "water": 85,
-    "wood": 29,
-    "medicine": 10
+    "wood": 25,
+    "medicine": 8
   },
   "fire": {
     "lit": true,
-    "fuel": 12
+    "fuel": 16
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-12:night",
+  "last_cycle_key": "2026-06-13:morning",
   "cayenne": {
     "stripped": []
   },
@@ -54,8 +54,8 @@
     "5": "Day 5 tested patience: Wesley's legs gave out, so he held the fire while Chills fished and they ate. By night, the black panther had crossed invisibly closer, drawn to Mutu's fearlessness, while Wesley's terror and Chills' calm stood like bookends around the flames."
   },
   "lean": {
-    "id": "stay_camp",
-    "label": "Stay and rest",
-    "desc": "Let Wesley heal, keep the jungle's rhythm, wait for strength"
+    "id": "trust_mutu",
+    "label": "Trust Mutu's instinct",
+    "desc": "She knows the panther. Chills holds steady."
   }
 }

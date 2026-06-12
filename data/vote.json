@@ -1,35 +1,33 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-12",
+    "id": "2026-06-13",
     "closes": "tonight",
-    "question": "The panther's in the firelight now. Mutu won't flinch. Does Chills trust her instinct—or pull Wesley and Mutu back to camp?",
+    "question": "Wesley sees the panther's eyes at the fern's edge near sleeping Mutu. Should he wake Chills to share the night watch, stand guard alone, or trust Mutu's fearlessness and ",
     "options": [
       {
+        "id": "wake_chills",
+        "label": "Wake him. Share it.",
+        "desc": "Chills steadied you. Let him in. The bond holds the line tonight."
+      },
+      {
+        "id": "solo_vigil",
+        "label": "Guard alone. All night.",
+        "desc": "Be the anchor Wesley is becoming. Prove you're steady. Stand your watch."
+      },
+      {
         "id": "trust_mutu",
-        "label": "Trust Mutu's instinct",
-        "desc": "She knows the panther. Chills holds steady."
-      },
-      {
-        "id": "retreat_camp",
-        "label": "Retreat to camp",
-        "desc": "Wesley's terrified and exhausted. Move them now."
-      },
-      {
-        "id": "feed_panther",
-        "label": "Feed the beast",
-        "desc": "Offer the kill. Establish respect. Test Mutu's fearlessness."
+        "label": "Trust Mutu. Sleep.",
+        "desc": "The small fierce one refuses to fear. Maybe she knows something you don't."
       }
     ]
   },
   "in_play": {
-    "id": "stay_camp",
-    "label": "Stay and rest",
-    "desc": "Let Wesley heal, keep the jungle's rhythm, wait for strength",
-    "decided": "2026-06-12",
-    "votes": 1,
-    "tally": {
-      "stay_camp": 1
-    }
+    "id": "trust_mutu",
+    "label": "Trust Mutu's instinct",
+    "desc": "She knows the panther. Chills holds steady.",
+    "decided": "2026-06-13",
+    "votes": 0,
+    "tally": {}
   }
 }
