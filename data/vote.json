@@ -1,32 +1,27 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-13",
+    "id": "2026-06-14",
     "closes": "tonight",
-    "question": "Wesley sees the panther's eyes at the fern's edge near sleeping Mutu. Should he wake Chills to share the night watch, stand guard alone, or trust Mutu's fearlessness and ",
+    "question": "The panther draws closer each night, drawn to Mutu's stillness. Chills burns with fever. At dawn, does Wesley push for the river crossing—or do they hold the camp and let",
     "options": [
       {
-        "id": "wake_chills",
-        "label": "Wake him. Share it.",
-        "desc": "Chills steadied you. Let him in. The bond holds the line tonight."
+        "id": "cross_dawn",
+        "label": "Cross at dawn",
+        "desc": "Wesley's call: move now, distance is safety."
       },
       {
-        "id": "solo_vigil",
-        "label": "Guard alone. All night.",
-        "desc": "Be the anchor Wesley is becoming. Prove you're steady. Stand your watch."
-      },
-      {
-        "id": "trust_mutu",
-        "label": "Trust Mutu. Sleep.",
-        "desc": "The small fierce one refuses to fear. Maybe she knows something you don't."
+        "id": "hold_camp",
+        "label": "Hold the camp",
+        "desc": "Mutu doesn't fear the panther. Her stillness might be protecting you."
       }
     ]
   },
   "in_play": {
-    "id": "trust_mutu",
-    "label": "Trust Mutu's instinct",
-    "desc": "She knows the panther. Chills holds steady.",
-    "decided": "2026-06-13",
+    "id": "wake_chills",
+    "label": "Wake him. Share it.",
+    "desc": "Chills steadied you. Let him in. The bond holds the line tonight.",
+    "decided": "2026-06-14",
     "votes": 0,
     "tally": {}
   }

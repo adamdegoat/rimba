@@ -2835,5 +2835,110 @@
       }
     ],
     "timestamp": "2026-06-13T22:32:44.752276"
+  },
+  {
+    "day": 7,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes in the lean-to to find the fireframe destroyed and immediately begins salvaging usable wood, fever burning through him but his mind set on rebuilding.",
+    "thought": "Fire's gone. We rebuild it all.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-14T07:03:00.696266"
+  },
+  {
+    "day": 7,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Emerges from the Cayenne into grey dawn to see Chills already moving in the wreckage, and exhaustion transforms into focus.",
+    "thought": "He's fevering and working. I have to follow.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-14T07:03:00.696266"
+  },
+  {
+    "day": 7,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Rests on a sun-warmed rock between the Cayenne and the collapsed fire, watching both men work with the steady patience of something that has seen worse.",
+    "thought": "They move as one now. Good.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T07:03:00.696266"
+  },
+  {
+    "day": 7,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Slinks closer from the bamboo stand toward the fern hollow, drawn by Mutu's unafraid stillness and the men's urgent work, edging nearer than daylight usually permits.",
+    "thought": "Orange one rests still. I move closer.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "curious",
+    "timestamp": "2026-06-14T07:03:00.696266"
+  },
+  {
+    "day": 7,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "The fireframe lies collapsed in grey dawn; Chills works it despite his fever while Wesley gathers wood, and for the first time they move as one without hesitation.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "The storm... it took the fire down."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Happened fast. But I salvaged some dry wood."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How are you even standing?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Not thinking about it. Here — drink some of this."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I don't feel thirsty."
+      },
+      {
+        "speaker": "chills",
+        "line": "Drink it anyway. We rebuild after."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Okay. I'll come with you."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's what I need."
+      }
+    ],
+    "timestamp": "2026-06-14T07:03:00.696266"
   }
 ]
