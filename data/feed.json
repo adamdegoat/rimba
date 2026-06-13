@@ -2730,5 +2730,110 @@
       }
     ],
     "timestamp": "2026-06-13T18:32:14.238464"
+  },
+  {
+    "day": 6,
+    "cycle": "night",
+    "character": "chills",
+    "action": "After hours of fishing in burning fever, Chills settles at the fire and feeds dry wood into the flames, his movements careful and measured.",
+    "thought": "Fever burns but the work holds.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-13T22:32:44.752276"
+  },
+  {
+    "day": 6,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Wesley limps back to the fire and sinks onto a log, every muscle burning with exhaustion after a day spent wading and working through pain.",
+    "thought": "I held on. That has to count.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "exhausted",
+    "timestamp": "2026-06-13T22:32:44.752276"
+  },
+  {
+    "day": 6,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Mutu settles on a rock near the fire, utterly calm and unbothered, her green eyes tracking the panther in the ferns.",
+    "thought": "The dark one circles still.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-13T22:32:44.752276"
+  },
+  {
+    "day": 6,
+    "cycle": "night",
+    "character": "panther",
+    "action": "The young panther edges closer to the camp's edge than any previous night, watching Mutu's stillness from the ferns, drawn and wary.",
+    "thought": "The orange one doesn't flee.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "curious",
+    "timestamp": "2026-06-13T22:32:44.752276"
+  },
+  {
+    "day": 6,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Night has found them exhausted at the fire after hours of fishing in fever and pain; the panther watches from the ferns, closer than any previous night, drawn to Mutu's stillness.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "That's the panther. Right there at the edge."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. He's been trailing us since the river."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We should drive it off. Too close now."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. He's just watching. Mutu calms him."
+      },
+      {
+        "speaker": "wesley",
+        "line": "This isn't about Mutu. It's a predator."
+      },
+      {
+        "speaker": "chills",
+        "line": "So are we. And Mutu trusts him, it seems."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Trust doesn't mean he won't kill us."
+      },
+      {
+        "speaker": "chills",
+        "line": "True. But it means he hasn't yet."
+      }
+    ],
+    "timestamp": "2026-06-13T22:32:44.752276"
   }
 ]

@@ -1,28 +1,30 @@
 {
   "day": 6,
-  "cycle": "evening",
-  "weather": "warm",
-  "pending_events": [],
+  "cycle": "night",
+  "weather": "clear",
+  "pending_events": [
+    "Campfire collapsed from neglect/weather."
+  ],
   "started": "2026-06-08",
   "last_run_date": "2026-06-13",
-  "pulse": "Chills is fever-burning but steady; Wesley stops fighting and leans in; the panther is learning to trust Mutu's calm.",
-  "scene": "They sat at the fire eating the day's small catch, both fever-burned and nearly silent. Mutu lay calm on the stones; the panther watched from the ferns, closer than before, drawn by her steady presence.",
+  "pulse": "The panther creeps closer each night; Wesley tenses, Chills stays calm, and Mutu is unmoved.",
+  "scene": "The day's fishing left them burned out at the fire; Mutu rests nearby, unbothered, while the panther edges closer from the ferns than he's ever been before.",
   "resources_prev": {
     "food": 0,
-    "water": 89,
-    "wood": 27,
-    "medicine": 6
+    "water": 90,
+    "wood": 24,
+    "medicine": 5
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 4,
+      "condition": 100,
       "x": 50,
-      "y": 62,
-      "builder": "chills",
-      "day": 1,
+      "y": 55,
+      "builder": null,
+      "day": 6,
       "label": "Campfire",
       "baked": true
     }
@@ -30,16 +32,16 @@
   "resources": {
     "food": 0,
     "water": 90,
-    "wood": 24,
+    "wood": 27,
     "medicine": 5
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 30
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-13:evening",
+  "last_cycle_key": "2026-06-13:night",
   "cayenne": {
     "stripped": []
   },
@@ -51,7 +53,8 @@
     "2": "Day 2 was Wesley's breakthrough—he came forward wanting to work and pushed through salvaging the Cayenne without breaking. By nightfall his hands were shredded but his fear was gone, and Mutu, sensing the shift, showed him affection for the first time. The city scholar had become a survivor.",
     "3": "Day 3 began with Wesley's raw hands giving out after two days of steady work. Chills shifted to fishing while Wesley rested—a lesson in patience over progress. By nightfall the two had settled into an unexpected rhythm: cooked fish, the fire steady, Mutu held Wesley close, and rest became work.",
     "4": "Day 4 ended with Wesley finally accepting rest as survival—resting while Chills gathered wood, both of them shifting. By nightfall the panther inched from the ferns, drawn to Mutu's fearless calm, and Wesley began to believe that Chills' unshakeable steadiness might be enough to hold the dark at bay. The camp found peace, uneasy and real.",
-    "5": "Day 5 tested patience: Wesley's legs gave out, so he held the fire while Chills fished and they ate. By night, the black panther had crossed invisibly closer, drawn to Mutu's fearlessness, while Wesley's terror and Chills' calm stood like bookends around the flames."
+    "5": "Day 5 tested patience: Wesley's legs gave out, so he held the fire while Chills fished and they ate. By night, the black panther had crossed invisibly closer, drawn to Mutu's fearlessness, while Wesley's terror and Chills' calm stood like bookends around the flames.",
+    "6": "Day 6 was fever and endurance — Chills and Wesley fished the warm shallows all day despite burning pain, pulling in a meager catch they ate at the fire in near-silence. The panther came closer than before, drawn to Mutu's stillness while the men sat exhausted and wary, holding on."
   },
   "lean": {
     "id": "trust_mutu",

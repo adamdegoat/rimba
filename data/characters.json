@@ -5,17 +5,17 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 82,
+      "trust": 83,
       "openness": 79,
       "ambition": 54,
       "loneliness": 0,
       "resilience": 100,
-      "health": 28,
-      "hunger": 9,
+      "health": 20,
+      "hunger": 4,
       "thirst": 53,
-      "energy": 0
+      "energy": 24
     },
-    "mood": "determined",
+    "mood": "weary",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 66,
-        "tension": 24,
+        "tension": 26,
         "attraction": 0
       },
       "mutu": {
@@ -142,12 +142,12 @@
       "ambition": 73,
       "loneliness": 0,
       "resilience": 50,
-      "health": 28,
-      "hunger": 9,
+      "health": 20,
+      "hunger": 4,
       "thirst": 53,
-      "energy": 0
+      "energy": 24
     },
-    "mood": "weary",
+    "mood": "exhausted",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 62,
-        "tension": 26,
+        "tension": 28,
         "attraction": 0
       },
       "mutu": {
@@ -191,11 +191,6 @@
         "day": 2,
         "text": "I worked all day without panicking. Chills saw it. That matters.",
         "weight": 3
-      },
-      {
-        "day": 3,
-        "text": "Patience isn't laziness. Chills was right. It's survival.",
-        "weight": 2
       },
       {
         "day": 4,
@@ -256,6 +251,11 @@
         "day": 6,
         "text": "Chills' fever didn't slow him. That's something beyond strength.",
         "weight": 2
+      },
+      {
+        "day": 6,
+        "text": "Chills' calm held when panther crept in. His steady keeps me breathing.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -270,12 +270,12 @@
       "trust": 67,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 46,
+      "loneliness": 49,
       "resilience": 85,
-      "hunger": 9,
+      "hunger": 4,
       "thirst": 53,
-      "energy": 0,
-      "health": 28
+      "energy": 24,
+      "health": 20
     },
     "mood": "calm",
     "location": {
@@ -286,17 +286,17 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 80,
-        "tension": 33,
+        "closeness": 79,
+        "tension": 36,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 21,
-        "tension": 32,
+        "closeness": 20,
+        "tension": 35,
         "attraction": 0
       },
       "panther": {
-        "closeness": 46,
+        "closeness": 48,
         "tension": 3,
         "attraction": 0
       }
@@ -318,16 +318,16 @@
     "color": "#1b1b22",
     "scores": {
       "trust": 13,
-      "openness": 19,
+      "openness": 20,
       "ambition": 0,
-      "loneliness": 72,
+      "loneliness": 74,
       "resilience": 75,
-      "hunger": 17,
+      "hunger": 10,
       "thirst": 53,
-      "energy": 0,
-      "health": 48
+      "energy": 24,
+      "health": 40
     },
-    "mood": "wary",
+    "mood": "curious",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -337,16 +337,16 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 71,
+        "tension": 74,
         "attraction": 0
       },
       "wesley": {
         "closeness": 0,
-        "tension": 94,
+        "tension": 98,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 46,
+        "closeness": 48,
         "tension": 3,
         "attraction": 0
       }
@@ -364,6 +364,11 @@
         "day": 6,
         "text": "The orange one's stillness quiets what burns in me.",
         "weight": 1
+      },
+      {
+        "day": 6,
+        "text": "Orange one's stillness draws me closer each night. I am not alone.",
+        "weight": 2
       }
     ]
   }
