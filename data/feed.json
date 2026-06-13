@@ -2399,5 +2399,126 @@
       }
     ],
     "timestamp": "2026-06-13T07:03:54.998249"
+  },
+  {
+    "day": 6,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Wades into the shallows despite his fever burning through him, moving with practiced rhythm to find fish in the deep pools.",
+    "thought": "Fever burns but hunger burns louder.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-13T11:32:15.076268"
+  },
+  {
+    "day": 6,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Limps into the river beside Chills despite shooting pain in his leg, pushing through discomfort to spot fish and position himself to help.",
+    "thought": "Pain is here but so is he.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "determined",
+    "timestamp": "2026-06-13T11:32:15.076268"
+  },
+  {
+    "day": 6,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Settles on a smooth river rock, watching the men fish with feline indifference while his green eyes track movement in the water.",
+    "thought": "These fearless ones hunt poorly. I wait.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-13T11:32:15.076268"
+  },
+  {
+    "day": 6,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Crouches low in the fern margin at the forest's edge, watching Mutu on the rocks with singular focus while the two men move in the water below.",
+    "thought": "The fearless one is there. Cannot leave.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-13T11:32:15.076268"
+  },
+  {
+    "day": 6,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the river shallows, Chills and Wesley wade into water burning with fever and pain to fish; Mutu settles on a rock while the panther watches from the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Your fever's gotten worse. You shouldn't be in the water."
+      },
+      {
+        "speaker": "chills",
+        "line": "Hungry is worse than fever. We fish today."
+      },
+      {
+        "speaker": "wesley",
+        "line": "This could drop you completely."
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we'll handle it. Watch that pool—something moved there."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Movement at your one o'clock. Something large underneath."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Stay on it. You've got the eyes for this."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Ferns shifted at the tree line."
+      },
+      {
+        "speaker": "chills",
+        "line": "The panther. It's been there since dawn."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How can you be calm about that watching us?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu isn't afraid of it. That tells me everything I need."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The cat logic thing again?"
+      },
+      {
+        "speaker": "chills",
+        "line": "The cat knows what matters. So I trust the cat."
+      }
+    ],
+    "timestamp": "2026-06-13T11:32:15.076268"
   }
 ]

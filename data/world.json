@@ -1,24 +1,24 @@
 {
   "day": 6,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-13",
-  "pulse": "Wesley's pushing through pain to contribute. Chills holds steady. But hunger's beginning to gnaw at both of them.",
-  "scene": "By mid-morning they were wading into the shallows despite sickness and injury. Mutu hunted the ferns nearby, and the young panther watched from the forest edge, keeping its distance.",
+  "pulse": "Both are breaking down, but neither will quit; Wesley learns pain is just a fact, and Chills' calm stops his panic.",
+  "scene": "Chills and Wesley waded into the shallows at midday despite fever and pain to fish; they're there now with a growing catch. Mutu's on the rocks; the panther watches from the ferns.",
   "resources_prev": {
     "food": 0,
     "water": 85,
-    "wood": 29,
-    "medicine": 10
+    "wood": 25,
+    "medicine": 8
   },
   "structures": [
     {
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 16,
+      "condition": 12,
       "x": 50,
       "y": 62,
       "builder": "chills",
@@ -30,16 +30,16 @@
   "resources": {
     "food": 0,
     "water": 85,
-    "wood": 25,
-    "medicine": 8
+    "wood": 28,
+    "medicine": 7
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-13:morning",
+  "last_cycle_key": "2026-06-13:midday",
   "cayenne": {
     "stripped": []
   },
