@@ -2625,5 +2625,110 @@
       }
     ],
     "timestamp": "2026-06-13T15:01:54.771130"
+  },
+  {
+    "day": 6,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "He ate slowly at the fire, fever burning through his body, shoulders heavy with the day's effort.",
+    "thought": "Fever burns but the work holds.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-13T18:32:14.238464"
+  },
+  {
+    "day": 6,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "He sat at the fire's edge with the small fish warming his hands, too tired to think past the next breath.",
+    "thought": "I held on. That has to count.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "weary",
+    "timestamp": "2026-06-13T18:32:14.238464"
+  },
+  {
+    "day": 6,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "She lay on the warm stones near the fire, utterly at ease, her green eyes calm as she watched the dark forest margin.",
+    "thought": "They hold on. The dark knows I'm here.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-13T18:32:14.238464"
+  },
+  {
+    "day": 6,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "The young panther crept from the ferns' edge, drawn by the golden cat's presence, its hunger and fear easier to carry when she was near.",
+    "thought": "The orange one doesn't flee. Why stay?",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-13T18:32:14.238464"
+  },
+  {
+    "day": 6,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the fire after hours of fishing in fever and pain, Chills and Wesley eat the day's small catch in near-silence while Mutu rests calm nearby and the panther watches her from the ferns, closer than any previous night.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I'm not sure I can do that again."
+      },
+      {
+        "speaker": "chills",
+        "line": "You did it today. That's the only day that counts."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Today I could barely feel my legs."
+      },
+      {
+        "speaker": "chills",
+        "line": "Today I couldn't feel anything but fire. Still here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yeah. Still here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Is the panther always this close at night?"
+      },
+      {
+        "speaker": "chills",
+        "line": "She brings him calm. The rest we leave alone."
+      },
+      {
+        "speaker": "chills",
+        "line": "Rest now. Tomorrow's its own day."
+      }
+    ],
+    "timestamp": "2026-06-13T18:32:14.238464"
   }
 ]
