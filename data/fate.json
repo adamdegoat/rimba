@@ -1,10 +1,10 @@
 {
-  "day": 5,
-  "text": "Wesley finally admits his fear of dying out here, and Chills simply nods—understands.",
-  "flavor": "a quiet mercy",
-  "cycle": "evening",
-  "happens_at": "6pm",
+  "day": 6,
+  "text": "A sudden monsoon floods the ravine, forcing Chills to guide Wesley through rising water.",
+  "flavor": "the weather turns",
+  "cycle": "midday",
+  "happens_at": "12:30pm",
   "status": "upcoming",
-  "revealed_at": "2026-06-13T00:00:46.539114",
+  "revealed_at": "2026-06-14T00:00:25.504933",
   "activated_at": null
 }
