@@ -2520,5 +2520,110 @@
       }
     ],
     "timestamp": "2026-06-13T11:32:15.076268"
+  },
+  {
+    "day": 6,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "He wades in the warm shallows despite fever, guiding Wesley's casts as the afternoon light slants across the water.",
+    "thought": "He's learning. That matters more than fish.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-13T15:01:54.771130"
+  },
+  {
+    "day": 6,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "He lands three small fish with steady hands despite pain, hunger overriding the fear of the panther watching from the ferns.",
+    "thought": "Hunger and his calm voice. Hunger wins.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "determined",
+    "timestamp": "2026-06-13T15:01:54.771130"
+  },
+  {
+    "day": 6,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "She settles on a river rock, ears alert and body relaxed, watching the humans with absolute calm while the panther mirrors her from the ferns.",
+    "thought": "Two humans learn. One stays calm.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "cayenne",
+    "mood": "calm",
+    "timestamp": "2026-06-13T15:01:54.771130"
+  },
+  {
+    "day": 6,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "She lies in the ferns watching Mutu on the rocks, eyes never leaving the calm cat while the men fish the shallows.",
+    "thought": "Orange rests. Men work. I watch and wait.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-13T15:01:54.771130"
+  },
+  {
+    "day": 6,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Late afternoon at the river shallows: Chills and Wesley pull the last small fish from the warm water, while Mutu rests calm on a rock and the panther's eyes glow faintly in the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Chills... the black one's back."
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu's not worried. Neither should we be."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's easy for Mutu. He's not prey."
+      },
+      {
+        "speaker": "chills",
+        "line": "You landed three. That's your proof right here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Three isn't nine."
+      },
+      {
+        "speaker": "chills",
+        "line": "Three keeps us another day."
+      },
+      {
+        "speaker": "wesley",
+        "line": "When did you get so sure of everything?"
+      },
+      {
+        "speaker": "chills",
+        "line": "About an hour ago. I'm just hiding it well."
+      }
+    ],
+    "timestamp": "2026-06-13T15:01:54.771130"
   }
 ]

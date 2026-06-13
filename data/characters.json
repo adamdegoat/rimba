@@ -5,12 +5,12 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 80,
-      "openness": 78,
+      "trust": 81,
+      "openness": 79,
       "ambition": 54,
       "loneliness": 0,
-      "resilience": 98,
-      "health": 44,
+      "resilience": 99,
+      "health": 36,
       "hunger": 9,
       "thirst": 53,
       "energy": 0
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 62,
-        "tension": 21,
+        "closeness": 63,
+        "tension": 23,
         "attraction": 0
       },
       "mutu": {
@@ -58,11 +58,6 @@
       "state": "working_together"
     },
     "memories": [
-      {
-        "day": 2,
-        "text": "He came forward wanting to work. That's the shift. That's real.",
-        "weight": 2
-      },
       {
         "day": 3,
         "text": "Wesley's trusting the slower way now. Real progress.",
@@ -127,10 +122,15 @@
         "day": 6,
         "text": "Wesley's pain didn't break him. He came anyway, worked anyway.",
         "weight": 2
+      },
+      {
+        "day": 6,
+        "text": "Wesley pulled three fish with that panther watching. He's hardening.",
+        "weight": 2
       }
     ],
     "condition": "sick",
-    "recovery": 3
+    "recovery": 1
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -138,12 +138,12 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 86,
+      "trust": 88,
       "openness": 71,
       "ambition": 73,
       "loneliness": 0,
-      "resilience": 47,
-      "health": 44,
+      "resilience": 49,
+      "health": 36,
       "hunger": 9,
       "thirst": 53,
       "energy": 0
@@ -157,12 +157,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 58,
-        "tension": 23,
+        "closeness": 59,
+        "tension": 25,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 28,
+        "closeness": 29,
         "tension": 0,
         "attraction": 0
       }
@@ -201,11 +201,6 @@
       {
         "day": 3,
         "text": "Resting is work too. Chills taught me that.",
-        "weight": 2
-      },
-      {
-        "day": 3,
-        "text": "Chills didn't blame me for being broken. He just said tomorrow.",
         "weight": 2
       },
       {
@@ -257,6 +252,11 @@
         "day": 6,
         "text": "He waded burning with fever. Never stopped working. That's strength.",
         "weight": 2
+      },
+      {
+        "day": 6,
+        "text": "Chills joked when I was scared. It kept me fishing.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -268,15 +268,15 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 65,
+      "trust": 66,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 42,
+      "loneliness": 44,
       "resilience": 85,
       "hunger": 9,
       "thirst": 53,
       "energy": 0,
-      "health": 44
+      "health": 36
     },
     "mood": "calm",
     "location": {
@@ -287,17 +287,17 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 81,
-        "tension": 27,
+        "closeness": 80,
+        "tension": 30,
         "attraction": 0
       },
       "wesley": {
         "closeness": 21,
-        "tension": 27,
+        "tension": 29,
         "attraction": 0
       },
       "panther": {
-        "closeness": 43,
+        "closeness": 44,
         "tension": 4,
         "attraction": 0
       }
@@ -321,12 +321,12 @@
       "trust": 12,
       "openness": 19,
       "ambition": 0,
-      "loneliness": 67,
+      "loneliness": 70,
       "resilience": 75,
-      "hunger": 21,
+      "hunger": 19,
       "thirst": 53,
-      "energy": 12,
-      "health": 64
+      "energy": 0,
+      "health": 56
     },
     "mood": "wary",
     "location": {
@@ -338,16 +338,16 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 65,
+        "tension": 68,
         "attraction": 0
       },
       "wesley": {
         "closeness": 0,
-        "tension": 87,
+        "tension": 91,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 43,
+        "closeness": 44,
         "tension": 4,
         "attraction": 0
       }
