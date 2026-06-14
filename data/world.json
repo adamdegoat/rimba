@@ -1,16 +1,16 @@
 {
   "day": 7,
-  "cycle": "morning",
-  "weather": "grey",
+  "cycle": "midday",
+  "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-14",
-  "pulse": "Chills pushes through fever; Wesley trusts him without hesitation; but hunger and exhaustion are gnawing at the edges of their fragile hold.",
-  "scene": "They work through the grey morning to salvage and rebuild the fire frame; Chills lashes the supports while Wesley gathers wet wood, steady and determined. Mutu watches calm from the Cayenne, and the panther glints from the fern hollow.",
+  "pulse": "Chills' fever is fading, but pain lingers; at the river, he stops pretending strength and lets Wesley guide—a shift neither expected.",
+  "scene": "Chills and Wesley fish at the river's edge, Chills moving slower from yesterday's fever while Wesley scouts the shallows; by the fire, Mutu dozes calm and the panther edges closer through the daytime heat.",
   "resources_prev": {
     "food": 0,
     "water": 90,
-    "wood": 27,
+    "wood": 19,
     "medicine": 5
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 96,
+      "condition": 92,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 90,
-    "wood": 19,
+    "water": 85,
+    "wood": 23,
     "medicine": 5
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-14:morning",
+  "last_cycle_key": "2026-06-14:midday",
   "cayenne": {
     "stripped": []
   },

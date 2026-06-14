@@ -5,27 +5,27 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 84,
-      "openness": 79,
+      "trust": 85,
+      "openness": 81,
       "ambition": 54,
       "loneliness": 0,
       "resilience": 100,
-      "health": 12,
-      "hunger": 7,
+      "health": 4,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 7
+      "energy": 0
     },
     "mood": "determined",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "river_rocks",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 66,
-        "tension": 28,
+        "closeness": 67,
+        "tension": 30,
         "attraction": 0
       },
       "mutu": {
@@ -58,11 +58,6 @@
       "state": "working_together"
     },
     "memories": [
-      {
-        "day": 3,
-        "text": "Wesley's trusting the slower way now. Real progress.",
-        "weight": 2
-      },
       {
         "day": 4,
         "text": "Wesley's accepting his limits without spiraling. That's real.",
@@ -127,9 +122,15 @@
         "day": 7,
         "text": "Wesley didn't freeze when the fire died. He just worked.",
         "weight": 2
+      },
+      {
+        "day": 7,
+        "text": "He read the water and I followed his call. That's new.",
+        "weight": 2
       }
     ],
-    "condition": "healthy"
+    "condition": "injured",
+    "recovery": 7
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -137,27 +138,27 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 90,
-      "openness": 72,
+      "trust": 92,
+      "openness": 73,
       "ambition": 73,
       "loneliness": 0,
-      "resilience": 51,
-      "health": 12,
-      "hunger": 7,
+      "resilience": 52,
+      "health": 4,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 7
+      "energy": 0
     },
     "mood": "focused",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "river_bank",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 62,
-        "tension": 30,
+        "closeness": 63,
+        "tension": 32,
         "attraction": 0
       },
       "mutu": {
@@ -208,11 +209,6 @@
         "weight": 2
       },
       {
-        "day": 4,
-        "text": "Chills turned my fear into work. Just eat what's here.",
-        "weight": 2
-      },
-      {
         "day": 5,
         "text": "Chills kept me steady when the leopard appeared. I'm learning his calm.",
         "weight": 2
@@ -256,6 +252,11 @@
         "day": 7,
         "text": "Chills was fevering and moving. I followed him without question.",
         "weight": 2
+      },
+      {
+        "day": 7,
+        "text": "Chills admitted his shoulder was shot. Asked me to guide him.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -267,36 +268,36 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 67,
+      "trust": 68,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 52,
+      "loneliness": 55,
       "resilience": 85,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 7,
-      "health": 12
+      "energy": 0,
+      "health": 4
     },
     "mood": "calm",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 78,
-        "tension": 39,
+        "closeness": 77,
+        "tension": 42,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 19,
-        "tension": 38,
+        "closeness": 18,
+        "tension": 41,
         "attraction": 0
       },
       "panther": {
-        "closeness": 48,
+        "closeness": 50,
         "tension": 3,
         "attraction": 0
       }
@@ -317,19 +318,19 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 13,
-      "openness": 20,
+      "trust": 14,
+      "openness": 22,
       "ambition": 0,
-      "loneliness": 77,
+      "loneliness": 80,
       "resilience": 75,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 7,
-      "health": 32
+      "energy": 0,
+      "health": 24
     },
     "mood": "curious",
     "location": {
-      "waypoint": "fern_hollow",
+      "waypoint": "bamboo_stand",
       "x": 50,
       "y": 38
     },
@@ -337,7 +338,7 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 77,
+        "tension": 80,
         "attraction": 0
       },
       "wesley": {
@@ -346,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 48,
+        "closeness": 50,
         "tension": 3,
         "attraction": 0
       }

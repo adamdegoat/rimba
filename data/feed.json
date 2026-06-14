@@ -2940,5 +2940,110 @@
       }
     ],
     "timestamp": "2026-06-14T07:03:00.696266"
+  },
+  {
+    "day": 7,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "He wades knee-deep at the river's edge, spear held low, moving with careful deliberation; his right shoulder throbs from yesterday's fever, but his focus is steady on the water.",
+    "thought": "Pain doesn't stop the work. Just changes how.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-14T11:31:58.383007"
+  },
+  {
+    "day": 7,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "He crouches on the rocks upstream, eyes sharp on the shallows, calling out depth and current; for the first time, he's guiding instead of following, and it steadies him.",
+    "thought": "He's listening to me. This is real.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-14T11:31:58.383007"
+  },
+  {
+    "day": 7,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "The cat dozes at the fire's edge, one ear cocked toward the forest; he's calm but watchful, sensing something drawing closer through the heat.",
+    "thought": "The dark one moves near. Still learning.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T11:31:58.383007"
+  },
+  {
+    "day": 7,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "It lingers at the bamboo stand's edge, belly low in the long grass, yellow eyes tracking Mutu across the camp; for the first time it ventures close in daylight, drawn by something it doesn't understand.",
+    "thought": "Orange one near. I come closer too.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "curious",
+    "timestamp": "2026-06-14T11:31:58.383007"
+  },
+  {
+    "day": 7,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the river's midday shallows, Chills wades behind Wesley, moving carefully; Wesley reads the water and calls directions, and for the first time Chills simply trusts him—no negotiation, just need.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You're taking smaller steps."
+      },
+      {
+        "speaker": "chills",
+        "line": "Shoulder's still sore. Your eyes are better upstream."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I can handle the deeper water if—"
+      },
+      {
+        "speaker": "chills",
+        "line": "No. Stay where you are. Tell me what you see."
+      },
+      {
+        "speaker": "wesley",
+        "line": "There's a school moving under those rocks. Left side."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. I'm moving there now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're actually trusting my read."
+      },
+      {
+        "speaker": "chills",
+        "line": "You've been right every time. Why wouldn't I?"
+      }
+    ],
+    "timestamp": "2026-06-14T11:31:58.383007"
   }
 ]
