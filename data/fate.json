@@ -1,10 +1,10 @@
 {
-  "day": 6,
-  "text": "A sudden monsoon floods the ravine, forcing Chills to guide Wesley through rising water.",
-  "flavor": "the weather turns",
+  "day": 7,
+  "text": "Wesley pushes to gut the Cayenne for supplies; Chills sees only their fortress.",
+  "flavor": "the Cayenne calls",
   "cycle": "midday",
   "happens_at": "12:30pm",
   "status": "upcoming",
-  "revealed_at": "2026-06-14T00:00:25.504933",
+  "revealed_at": "2026-06-15T00:00:16.626702",
   "activated_at": null
 }
