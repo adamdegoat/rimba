@@ -3150,5 +3150,110 @@
       }
     ],
     "timestamp": "2026-06-14T15:01:57.878885"
+  },
+  {
+    "day": 7,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Sits by the fire as evening cools, fever-broken but hollow, watching Wesley and the panther with the last threads of his attention.",
+    "thought": "He's steadier now. That counts.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "drained",
+    "timestamp": "2026-06-14T18:42:13.575645"
+  },
+  {
+    "day": 7,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Moves toward the fire's edge as darkness settles, speaking to the panther that circles Mutu with less fear each night.",
+    "thought": "He's not running. Neither are we.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "alert",
+    "timestamp": "2026-06-14T18:42:13.575645"
+  },
+  {
+    "day": 7,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Settles by Chills' side at the fire, unbothered by the panther's approach, a still point between the wild and the camp.",
+    "thought": "The dark one is learning calm.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T18:42:13.575645"
+  },
+  {
+    "day": 7,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "Edges closer to Mutu at the fire's margin, ears forward, watching Wesley without the full tension of before, drawn by the orange cat's stillness.",
+    "thought": "Orange one is safe. Still learning.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T18:42:13.575645"
+  },
+  {
+    "day": 7,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "panther"
+    ],
+    "description": "Wesley speaks to the panther for the first time as Chills sits fever-broken by the fire; the panther inches closer to Mutu, no longer hiding.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You're always here when Mutu settles down."
+      },
+      {
+        "speaker": "panther",
+        "line": "Steps beside the cat, ears forward, watching Wesley without fear."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Why don't you run? You've learned we won't hurt you."
+      },
+      {
+        "speaker": "panther",
+        "line": "Presses against Mutu, a rumble that sounds almost like answer."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You understand something we don't. Mutu knows."
+      },
+      {
+        "speaker": "panther",
+        "line": "Turns fully toward Wesley, no longer skulking at the camp's edge."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Then maybe we're learning the same thing. How to stay."
+      },
+      {
+        "speaker": "panther",
+        "line": "Settles beside Mutu, close enough now to almost touch the fire."
+      }
+    ],
+    "timestamp": "2026-06-14T18:42:13.575645"
   }
 ]
