@@ -3255,5 +3255,110 @@
       }
     ],
     "timestamp": "2026-06-14T18:42:13.575645"
+  },
+  {
+    "day": 7,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Sits by the fire with the hollow exhaustion of fever-break, watching Wesley return with a quiet respect that goes unspoken.",
+    "thought": "He carried it alone. We might survive this.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-14T22:32:27.016542"
+  },
+  {
+    "day": 7,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Returns from checking the firewood and settles opposite Chills, carrying the weight of the day's solo work in every careful movement.",
+    "thought": "I did it. He sees it. That matters.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "alert",
+    "timestamp": "2026-06-14T22:32:27.016542"
+  },
+  {
+    "day": 7,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Curls between them by the fire, purring softly, offering the small steadiness of presence to Chills' emptied state.",
+    "thought": "He needs quiet now. I am here.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "affectionate",
+    "timestamp": "2026-06-14T22:32:27.016542"
+  },
+  {
+    "day": 7,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Edges closer from the bamboo stand, drawn to Mutu's calm, watching the firelit camp from the forest dark.",
+    "thought": "Orange one is still. I am calmer.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "curious",
+    "timestamp": "2026-06-14T22:32:27.016542"
+  },
+  {
+    "day": 7,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "By nightfall, Wesley joins Chills at the fire; exhausted and emptied by fever, they sit in a quiet recognition of who carried what today, while Mutu settles between them and the panther watches from the bamboo edge, inching closer to Mutu's calm.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You should eat more than me tomorrow."
+      },
+      {
+        "speaker": "chills",
+        "line": "Won't happen. You're the one working."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You walked through fever like it wasn't there."
+      },
+      {
+        "speaker": "chills",
+        "line": "I stopped fighting it. Took the path of least resistance."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'm learning that from you."
+      },
+      {
+        "speaker": "chills",
+        "line": "It's only six days in, Wesley."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I know. But I see it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we're alright, then. We'll make it."
+      }
+    ],
+    "timestamp": "2026-06-14T22:32:27.016542"
   }
 ]
