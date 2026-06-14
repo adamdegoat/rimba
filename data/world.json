@@ -1,24 +1,24 @@
 {
-  "day": 7,
-  "cycle": "night",
+  "day": 8,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-14",
-  "pulse": "Chills' fever broke into emptiness; Wesley discovered he could carry them both, and by night they sat in a recognition that neither would fail the other.",
-  "scene": "By nightfall, Wesley and Chills sit at the fire, both burned out but holding the line together; Mutu curls between them as the panther watches from the forest edge, inching closer to the cat's calm warmth.",
+  "last_run_date": "2026-06-15",
+  "pulse": "Wesley pushes to move as the camp's reserves collapse; Chills admits he cannot, and both must accept a fragile compromise.",
+  "scene": "By mid-morning, they had settled on one more day before moving on. Wesley was gathering wood in the forest; Chills rested by the lean-to with Mutu nearby, fever-broken and waiting.",
   "resources_prev": {
     "food": 0,
-    "water": 83,
-    "wood": 19,
-    "medicine": 3
+    "water": 88,
+    "wood": 18,
+    "medicine": 2
   },
   "structures": [
     {
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 80,
+      "condition": 76,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 88,
+    "water": 85,
     "wood": 18,
-    "medicine": 2
+    "medicine": 1
   },
   "fire": {
     "lit": true,
-    "fuel": 14
+    "fuel": 18
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-14:night",
+  "last_cycle_key": "2026-06-15:morning",
   "cayenne": {
     "stripped": []
   },
@@ -55,8 +55,8 @@
     "7": "Day 7 brought the fever's breaking but left Chills hollowed out; Wesley stepped up entirely—fishing, working, reading the river's flow—and by nightfall the two sat in a quiet recognition of what the other now held, while the panther edged closer to Mutu's unafraid warmth."
   },
   "lean": {
-    "id": "wake_chills",
-    "label": "Wake him. Share it.",
-    "desc": "Chills steadied you. Let him in. The bond holds the line tonight."
+    "id": "cross_dawn",
+    "label": "Cross at dawn",
+    "desc": "Wesley's call: move now, distance is safety."
   }
 }

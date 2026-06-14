@@ -1,27 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-14",
+    "id": "2026-06-15",
     "closes": "tonight",
-    "question": "The panther draws closer each night, drawn to Mutu's stillness. Chills burns with fever. At dawn, does Wesley push for the river crossing—or do they hold the camp and let",
+    "question": "Wesley steadied himself today. Chills is fever-broken by the fire. Tomorrow: hold camp and heal, or push for the trail while momentum holds?",
     "options": [
       {
-        "id": "cross_dawn",
-        "label": "Cross at dawn",
-        "desc": "Wesley's call: move now, distance is safety."
+        "id": "hold_camp",
+        "label": "Hold camp",
+        "desc": "One more day of quiet. Chills heals fully. The three of them stronger together."
       },
       {
-        "id": "hold_camp",
-        "label": "Hold the camp",
-        "desc": "Mutu doesn't fear the panther. Her stillness might be protecting you."
+        "id": "push_trail",
+        "label": "Push the trail",
+        "desc": "Strike while momentum holds. Wesley is steady now. They move—slowly, but they move."
+      },
+      {
+        "id": "wesley_scouts",
+        "label": "Wesley scouts ahead",
+        "desc": "Wesley pushes forward at dawn, returns by dark. Chills rests. Progress without breaking the group."
       }
     ]
   },
   "in_play": {
-    "id": "wake_chills",
-    "label": "Wake him. Share it.",
-    "desc": "Chills steadied you. Let him in. The bond holds the line tonight.",
-    "decided": "2026-06-14",
+    "id": "cross_dawn",
+    "label": "Cross at dawn",
+    "desc": "Wesley's call: move now, distance is safety.",
+    "decided": "2026-06-15",
     "votes": 0,
     "tally": {}
   }

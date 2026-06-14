@@ -3360,5 +3360,110 @@
       }
     ],
     "timestamp": "2026-06-14T22:32:27.016542"
+  },
+  {
+    "day": 8,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "He rests against the lean-to's edge, shoulder wrapped and fever still burning, watching Wesley move into the forest with a complicated gratitude.",
+    "thought": "He's stronger than I thought.",
+    "location": {
+      "waypoint": "shelter_side",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-15T07:03:20.825492"
+  },
+  {
+    "day": 8,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "He moves into the forest's edge with urgent purpose, gathering fallen branches and scanning the undergrowth — working the single day they've been granted as if it might vanish.",
+    "thought": "One day. I can push that hard.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "determined",
+    "timestamp": "2026-06-15T07:03:20.825492"
+  },
+  {
+    "day": 8,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "He settles near Chills at the lean-to, purring quietly in the morning heat — offering the stillness that the fever-sick man cannot find on his own.",
+    "thought": "He needs my calm now.",
+    "location": {
+      "waypoint": "shelter_side",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-15T07:03:20.825492"
+  },
+  {
+    "day": 8,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "From the bamboo stand's edge, the panther watches the camp separate — the tension between the men sending it further back even as Mutu's presence draws it forward.",
+    "thought": "Stillness is safer than their noise.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-15T07:03:20.825492"
+  },
+  {
+    "day": 8,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At dawn, the fire burned to embers and the wood pile lay bare — Wesley finds Chills fever-broken at the lean-to and speaks what both have known since nightfall: they must move.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "The fire's almost gone. We have no food left."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The river's lower now. We could cross today."
+      },
+      {
+        "speaker": "chills",
+        "line": "Look at me. I can barely lift my arm."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we wait here until what? Until we're too weak to move?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We wait one day. We gather, we rest, then we move with a chance."
+      },
+      {
+        "speaker": "wesley",
+        "line": "One day. That's all we can spare."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's how we survive this."
+      }
+    ],
+    "timestamp": "2026-06-15T07:03:20.825492"
   }
 ]
