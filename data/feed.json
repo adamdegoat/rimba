@@ -3045,5 +3045,110 @@
       }
     ],
     "timestamp": "2026-06-14T11:31:58.383007"
+  },
+  {
+    "day": 7,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Sits at the fire's edge, feeding it bark and small wood with a tremor in his hands, trying not to show how the morning's fever-work has hollowed him.",
+    "thought": "The fever breaks. But I'm empty now.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "drained",
+    "timestamp": "2026-06-14T15:01:57.878885"
+  },
+  {
+    "day": 7,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Settles next to Chills at the fire with the water jug, watches him shake for a moment, then stands to prepare for the afternoon's fishing run.",
+    "thought": "He's completely exhausted. So someone needs to push here.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "alert",
+    "timestamp": "2026-06-14T15:01:57.878885"
+  },
+  {
+    "day": 7,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Presses into Chills' side at the fire, purring, eyes half-closed and ears pricked toward the forest beyond the clearing.",
+    "thought": "His weakness reaches me. The dark one watches outside.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T15:01:57.878885"
+  },
+  {
+    "day": 7,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Lies in the bamboo fringe, watching Mutu's stillness by the fire, close enough now to see the cat's breathing and smell the warmth of the coals.",
+    "thought": "The orange one sits quiet. I sit quiet. We are the same.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-14T15:01:57.878885"
+  },
+  {
+    "day": 7,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "As afternoon heat settles, Wesley returns from the Cayenne to find Chills barely holding the fire—and sits to tell him a truth: the fishing is on Wesley now.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You're shaking. We need to eat."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. I'll come help fish—"
+      },
+      {
+        "speaker": "wesley",
+        "line": "No. You rest."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're exhausted."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Less than you are hurt. You taught me the water."
+      },
+      {
+        "speaker": "chills",
+        "line": "It's not the same twice—"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Then I'll read it again. Stay here."
+      },
+      {
+        "speaker": "chills",
+        "line": "Alright."
+      }
+    ],
+    "timestamp": "2026-06-14T15:01:57.878885"
   }
 ]
