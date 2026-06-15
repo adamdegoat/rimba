@@ -3893,5 +3893,110 @@
       }
     ],
     "timestamp": "2026-06-15T22:33:16.198010"
+  },
+  {
+    "day": 9,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes to aching joints and heat behind his eyes, lies still on the shelter mat taking inventory of his body, then emerges pale and unsteady.",
+    "thought": "Every part of me is burning.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "grave",
+    "timestamp": "2026-06-16T07:02:15.694564"
+  },
+  {
+    "day": 9,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Rolls out of the Cayenne at first light and strides toward the pack, already mentally running through supplies for the dawn move, then stops as his head swims.",
+    "thought": "Fever's bad. We need to go now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-16T07:02:15.694564"
+  },
+  {
+    "day": 9,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Drops a small dead mouse by the cold fire pit, then paces between the shelter and the Cayenne, ears alert and restless.",
+    "thought": "The orange one is closer today.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-16T07:02:15.694564"
+  },
+  {
+    "day": 9,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Edges from the bamboo at first light, watching Mutu drop the kill; half-hidden in the fern hollow, still terrified but pulled closer by the cat's stillness.",
+    "thought": "For the orange one I am brave.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-16T07:02:15.694564"
+  },
+  {
+    "day": 9,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Wesley strides toward the Cayenne to pack for the dawn move while Chills emerges from the lean-to shaking and pale—the plan is unraveling before they even begin.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "We move in an hour. You said dawn."
+      },
+      {
+        "speaker": "chills",
+        "line": "I'm not moving today, Wes."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What? You said that last night."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. My body won't let me listen."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we just sit here? We're running out of time."
+      },
+      {
+        "speaker": "chills",
+        "line": "One more day won't kill us. Moving will."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You don't know that."
+      },
+      {
+        "speaker": "chills",
+        "line": "I do. And if you're honest, so do you."
+      }
+    ],
+    "timestamp": "2026-06-16T07:02:15.694564"
   }
 ]

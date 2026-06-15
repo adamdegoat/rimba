@@ -1,32 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-15",
+    "id": "2026-06-16",
     "closes": "tonight",
-    "question": "Wesley steadied himself today. Chills is fever-broken by the fire. Tomorrow: hold camp and heal, or push for the trail while momentum holds?",
+    "question": "The panther edges toward Mutu. Wesley freezes in terror. Chills whispers steady. Does he hold that calm—or break it to go to Wesley?",
     "options": [
       {
-        "id": "hold_camp",
-        "label": "Hold camp",
-        "desc": "One more day of quiet. Chills heals fully. The three of them stronger together."
+        "id": "hold_steady",
+        "label": "Hold the calm",
+        "desc": "Chills doesn't move. Wesley finds his courage."
       },
       {
-        "id": "push_trail",
-        "label": "Push the trail",
-        "desc": "Strike while momentum holds. Wesley is steady now. They move—slowly, but they move."
+        "id": "go_to_wesley",
+        "label": "Go to Wesley",
+        "desc": "Chills breaks the vigil and goes to his brother."
       },
       {
-        "id": "wesley_scouts",
-        "label": "Wesley scouts ahead",
-        "desc": "Wesley pushes forward at dawn, returns by dark. Chills rests. Progress without breaking the group."
+        "id": "move_now",
+        "label": "Move now",
+        "desc": "The panther forces the choice. They abandon dawn and go."
       }
     ]
   },
   "in_play": {
-    "id": "cross_dawn",
-    "label": "Cross at dawn",
-    "desc": "Wesley's call: move now, distance is safety.",
-    "decided": "2026-06-15",
+    "id": "hold_camp",
+    "label": "Hold camp",
+    "desc": "One more day of quiet. Chills heals fully. The three of them stronger together.",
+    "decided": "2026-06-16",
     "votes": 0,
     "tally": {}
   }

@@ -1,16 +1,16 @@
 {
-  "day": 8,
-  "cycle": "night",
-  "weather": "clear",
+  "day": 9,
+  "cycle": "morning",
+  "weather": "overcast",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-15",
-  "pulse": "Chills admits his terror but doesn't break; Wesley leans on that strength as the panther edges closer to Mutu.",
-  "scene": "Wesley spots the panther edging toward Mutu and nearly spirals; Chills' steady voice cuts through his fear. Now Chills tends the fire through the night, Wesley waits anxious in the Cayenne, Mutu rests on the hood, and the panther watches from the forest edge.",
+  "last_run_date": "2026-06-16",
+  "pulse": "Wesley pushes to move at dawn, fevered; Chills refuses, body broken—and the silence after is the hardest thing said.",
+  "scene": "Both wake fevered. Wesley packs to move at dawn; Chills emerges from the shelter shaking and refuses—the plan collapses before noon. By light they sit apart at the dying fire, argument suspended.",
   "resources_prev": {
     "food": 0,
-    "water": 83,
-    "wood": 11,
+    "water": 88,
+    "wood": 10,
     "medicine": 0
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 60,
+      "condition": 56,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 88,
-    "wood": 10,
+    "water": 90,
+    "wood": 13,
     "medicine": 0
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-15:night",
+  "last_cycle_key": "2026-06-16:morning",
   "cayenne": {
     "stripped": []
   },
@@ -56,8 +56,8 @@
     "8": "Day 8 was the breaking point: Chills' fever broke, but hunger and exhaustion pushed them both to their limits. By afternoon Wesley wanted to flee that night, but Chills held firm on dawn. As evening fell and the panther drew closer to Mutu, both men accepted the dawn departure—terrified but committed."
   },
   "lean": {
-    "id": "cross_dawn",
-    "label": "Cross at dawn",
-    "desc": "Wesley's call: move now, distance is safety."
+    "id": "hold_camp",
+    "label": "Hold camp",
+    "desc": "One more day of quiet. Chills heals fully. The three of them stronger together."
   }
 }

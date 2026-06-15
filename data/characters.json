@@ -5,15 +5,15 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 92,
-      "openness": 85,
-      "ambition": 55,
+      "trust": 93,
+      "openness": 86,
+      "ambition": 54,
       "loneliness": 0,
       "resilience": 98,
       "health": 0,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 12
+      "energy": 0
     },
     "mood": "grave",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 76,
-        "tension": 44,
+        "tension": 49,
         "attraction": 0
       },
       "mutu": {
@@ -130,7 +130,7 @@
       }
     ],
     "condition": "sick",
-    "recovery": 3
+    "recovery": 2
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -138,15 +138,15 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 97,
-      "openness": 78,
-      "ambition": 76,
+      "trust": 98,
+      "openness": 79,
+      "ambition": 77,
       "loneliness": 0,
-      "resilience": 58,
+      "resilience": 56,
       "health": 0,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 12
+      "energy": 0
     },
     "mood": "anxious",
     "location": {
@@ -158,11 +158,11 @@
     "relationships": {
       "chills": {
         "closeness": 72,
-        "tension": 46,
+        "tension": 51,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 32,
+        "closeness": 33,
         "tension": 0,
         "attraction": 0
       }
@@ -260,7 +260,7 @@
       }
     ],
     "condition": "sick",
-    "recovery": 5
+    "recovery": 4
   },
   "mutu": {
     "name": "Mutu",
@@ -272,33 +272,33 @@
       "trust": 68,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 54,
+      "loneliness": 57,
       "resilience": 85,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 24,
+      "energy": 0,
       "health": 0
     },
-    "mood": "calm",
+    "mood": "restless",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 72,
-        "tension": 66,
+        "closeness": 71,
+        "tension": 69,
         "attraction": 0
       },
       "wesley": {
         "closeness": 12,
-        "tension": 65,
+        "tension": 67,
         "attraction": 0
       },
       "panther": {
-        "closeness": 60,
+        "closeness": 62,
         "tension": 1,
         "attraction": 0
       }
@@ -319,19 +319,19 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 18,
+      "trust": 19,
       "openness": 27,
       "ambition": 0,
-      "loneliness": 94,
+      "loneliness": 97,
       "resilience": 75,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 24,
+      "energy": 0,
       "health": 0
     },
-    "mood": "calm",
+    "mood": "wary",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
@@ -348,7 +348,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 60,
+        "closeness": 62,
         "tension": 1,
         "attraction": 0
       }
