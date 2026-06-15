@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 75,
-        "tension": 40,
+        "tension": 42,
         "attraction": 0
       },
       "mutu": {
@@ -55,17 +55,12 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
         "day": 5,
         "text": "Wesley stopped fighting his limits. He just rested. Real shift.",
-        "weight": 2
-      },
-      {
-        "day": 5,
-        "text": "Wesley panicked at the panther, but my voice grounded him. That works.",
         "weight": 2
       },
       {
@@ -127,10 +122,15 @@
         "day": 8,
         "text": "Wesley's terrified but he's going. That's what real strength looks like out here.",
         "weight": 2
+      },
+      {
+        "day": 8,
+        "text": "Wesley sat by the fire and chose to follow me. Really chose.",
+        "weight": 2
       }
     ],
     "condition": "sick",
-    "recovery": 5
+    "recovery": 4
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -142,7 +142,7 @@
       "openness": 78,
       "ambition": 76,
       "loneliness": 0,
-      "resilience": 58,
+      "resilience": 59,
       "health": 0,
       "hunger": 7,
       "thirst": 53,
@@ -158,7 +158,7 @@
     "relationships": {
       "chills": {
         "closeness": 71,
-        "tension": 42,
+        "tension": 44,
         "attraction": 0
       },
       "mutu": {
@@ -185,7 +185,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -206,11 +206,6 @@
       {
         "day": 6,
         "text": "Chills joked when I was scared. It kept me fishing.",
-        "weight": 2
-      },
-      {
-        "day": 6,
-        "text": "Chills' fever didn't slow him. That's something beyond strength.",
         "weight": 2
       },
       {
@@ -245,6 +240,11 @@
       },
       {
         "day": 8,
+        "text": "Chills said I'm stronger than I think. I need to prove it.",
+        "weight": 3
+      },
+      {
+        "day": 8,
         "text": "Chills admitted his shoulder was done. Trusted me to hear it.",
         "weight": 2
       },
@@ -260,7 +260,7 @@
       }
     ],
     "condition": "sick",
-    "recovery": 7
+    "recovery": 6
   },
   "mutu": {
     "name": "Mutu",
@@ -272,7 +272,7 @@
       "trust": 68,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 49,
+      "loneliness": 51,
       "resilience": 85,
       "hunger": 7,
       "thirst": 53,
@@ -288,17 +288,17 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 73,
-        "tension": 60,
+        "closeness": 72,
+        "tension": 63,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 13,
-        "tension": 59,
+        "closeness": 12,
+        "tension": 62,
         "attraction": 0
       },
       "panther": {
-        "closeness": 57,
+        "closeness": 58,
         "tension": 1,
         "attraction": 0
       }
@@ -322,7 +322,7 @@
       "trust": 17,
       "openness": 26,
       "ambition": 0,
-      "loneliness": 88,
+      "loneliness": 91,
       "resilience": 75,
       "hunger": 7,
       "thirst": 53,
@@ -339,7 +339,7 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 98,
+        "tension": 100,
         "attraction": 0
       },
       "wesley": {
@@ -348,7 +348,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 57,
+        "closeness": 58,
         "tension": 1,
         "attraction": 0
       }
