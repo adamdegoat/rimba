@@ -1,24 +1,24 @@
 {
   "day": 8,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-15",
-  "pulse": "Wesley pushes to move as the camp's reserves collapse; Chills admits he cannot, and both must accept a fragile compromise.",
-  "scene": "By mid-morning, they had settled on one more day before moving on. Wesley was gathering wood in the forest; Chills rested by the lean-to with Mutu nearby, fever-broken and waiting.",
+  "pulse": "Chills wants to move deeper; Wesley's trust runs deeper than his exhaustion.",
+  "scene": "They decided: move at dawn for distance over supplies. Chills checks the fire and gear; Wesley sits at the fire's right, Mutu close, while the panther watches from the bamboo.",
   "resources_prev": {
     "food": 0,
-    "water": 88,
+    "water": 85,
     "wood": 18,
-    "medicine": 2
+    "medicine": 1
   },
   "structures": [
     {
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 76,
+      "condition": 72,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 85,
-    "wood": 18,
+    "water": 83,
+    "wood": 20,
     "medicine": 1
   },
   "fire": {
     "lit": true,
-    "fuel": 18
+    "fuel": 4
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-15:morning",
+  "last_cycle_key": "2026-06-15:midday",
   "cayenne": {
     "stripped": []
   },

@@ -5,9 +5,9 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 91,
+      "trust": 92,
       "openness": 84,
-      "ambition": 53,
+      "ambition": 54,
       "loneliness": 0,
       "resilience": 97,
       "health": 0,
@@ -15,17 +15,17 @@
       "thirst": 53,
       "energy": 0
     },
-    "mood": "weary",
+    "mood": "determined",
     "location": {
-      "waypoint": "shelter_side",
+      "waypoint": "camp_mid",
       "x": 42,
       "y": 50
     },
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 74,
-        "tension": 36,
+        "closeness": 75,
+        "tension": 37,
         "attraction": 0
       },
       "mutu": {
@@ -53,7 +53,10 @@
       ],
       "beard": true
     },
-    "interaction": null,
+    "interaction": {
+      "with": "wesley",
+      "state": "talking"
+    },
     "memories": [
       {
         "day": 5,
@@ -68,11 +71,6 @@
       {
         "day": 5,
         "text": "Wesley panicked at the panther and my voice brought him back. I can steady him. That works.",
-        "weight": 2
-      },
-      {
-        "day": 5,
-        "text": "Wesley's learning to trust the calm instead of panic. Real progress.",
         "weight": 2
       },
       {
@@ -124,9 +122,15 @@
         "day": 8,
         "text": "Wesley pushed to move, but listened when I said no.",
         "weight": 2
+      },
+      {
+        "day": 8,
+        "text": "Wesley chose to move deeper despite the fear. Trusts my call.",
+        "weight": 2
       }
     ],
-    "condition": "healthy"
+    "condition": "sick",
+    "recovery": 7
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -138,23 +142,23 @@
       "openness": 77,
       "ambition": 76,
       "loneliness": 0,
-      "resilience": 56,
+      "resilience": 58,
       "health": 0,
       "hunger": 7,
       "thirst": 53,
-      "energy": 7
+      "energy": 0
     },
-    "mood": "determined",
+    "mood": "anxious",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 70,
-        "tension": 38,
+        "closeness": 71,
+        "tension": 39,
         "attraction": 0
       },
       "mutu": {
@@ -179,17 +183,15 @@
       ],
       "beard": true
     },
-    "interaction": null,
+    "interaction": {
+      "with": "chills",
+      "state": "talking"
+    },
     "memories": [
       {
         "day": 2,
         "text": "I worked all day without panicking. Chills saw it. That matters.",
         "weight": 3
-      },
-      {
-        "day": 5,
-        "text": "Chills kept me steady when the leopard appeared. I'm learning his calm.",
-        "weight": 2
       },
       {
         "day": 6,
@@ -250,6 +252,11 @@
         "day": 8,
         "text": "Chills admitted his shoulder was done. Trusted me to hear it.",
         "weight": 2
+      },
+      {
+        "day": 8,
+        "text": "Chills is certain about tomorrow. I'm going to follow him.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -264,29 +271,29 @@
       "trust": 68,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 48,
+      "loneliness": 46,
       "resilience": 85,
       "hunger": 7,
       "thirst": 53,
-      "energy": 7,
+      "energy": 0,
       "health": 0
     },
     "mood": "calm",
     "location": {
-      "waypoint": "shelter_side",
+      "waypoint": "campfire_right",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 75,
-        "tension": 54,
+        "closeness": 74,
+        "tension": 57,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 15,
-        "tension": 53,
+        "closeness": 14,
+        "tension": 56,
         "attraction": 0
       },
       "panther": {
@@ -303,7 +310,7 @@
       "eye": "#5fa86b"
     },
     "interaction": {
-      "with": "chills",
+      "with": "wesley",
       "state": "sitting_together"
     }
   },
@@ -317,11 +324,11 @@
       "trust": 17,
       "openness": 26,
       "ambition": 0,
-      "loneliness": 82,
+      "loneliness": 85,
       "resilience": 75,
       "hunger": 7,
       "thirst": 53,
-      "energy": 7,
+      "energy": 0,
       "health": 0
     },
     "mood": "wary",
@@ -334,7 +341,7 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 92,
+        "tension": 95,
         "attraction": 0
       },
       "wesley": {

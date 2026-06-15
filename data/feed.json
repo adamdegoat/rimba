@@ -3465,5 +3465,110 @@
       }
     ],
     "timestamp": "2026-06-15T07:03:20.825492"
+  },
+  {
+    "day": 8,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "He moves through camp with new purpose, checking the fire and assessing their gear, already planning what to carry and what to abandon.",
+    "thought": "It's time. We're ready to move.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-15T11:32:19.660471"
+  },
+  {
+    "day": 8,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "He sits by the fire's right side, watching Chills move about, his mind running through distances and the weight of his own hollow frame.",
+    "thought": "He means it. I have to trust him.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-15T11:32:19.660471"
+  },
+  {
+    "day": 8,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "The ginger cat settles beside Wesley, pressing warm against his leg, indifferent to the men's planning.",
+    "thought": "He's scared but he'll keep going.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-15T11:32:19.660471"
+  },
+  {
+    "day": 8,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "From the bamboo edge, the young leopard watches the camp's activity, drawn by Mutu's stillness, unnerved by the men's restless energy.",
+    "thought": "Orange one is calm. Others bring fear.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-15T11:32:19.660471"
+  },
+  {
+    "day": 8,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By midday, with the fire dwindling and their bellies empty, Chills pushes to leave at dawn — and Wesley, running on fumes, accepts.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "If we leave at dawn, we're really committing to this?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Yes. Distance and the river. Both."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We have no food. And you were fever-broken yesterday."
+      },
+      {
+        "speaker": "chills",
+        "line": "Fever's gone. Jungle feeds those who know where to look."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I barely slept, Chills. I'm not sure I can push hard for kilometers."
+      },
+      {
+        "speaker": "chills",
+        "line": "You pushed yesterday. And you did it alone."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That was different."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. It's exactly what happens next. But longer."
+      }
+    ],
+    "timestamp": "2026-06-15T11:32:19.660471"
   }
 ]
