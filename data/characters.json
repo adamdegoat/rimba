@@ -7,7 +7,7 @@
     "scores": {
       "trust": 92,
       "openness": 84,
-      "ambition": 54,
+      "ambition": 55,
       "loneliness": 0,
       "resilience": 97,
       "health": 0,
@@ -17,7 +17,7 @@
     },
     "mood": "determined",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 75,
-        "tension": 37,
+        "tension": 40,
         "attraction": 0
       },
       "mutu": {
@@ -66,11 +66,6 @@
       {
         "day": 5,
         "text": "Wesley panicked at the panther, but my voice grounded him. That works.",
-        "weight": 2
-      },
-      {
-        "day": 5,
-        "text": "Wesley panicked at the panther and my voice brought him back. I can steady him. That works.",
         "weight": 2
       },
       {
@@ -127,10 +122,15 @@
         "day": 8,
         "text": "Wesley chose to move deeper despite the fear. Trusts my call.",
         "weight": 2
+      },
+      {
+        "day": 8,
+        "text": "Wesley's terrified but he's going. That's what real strength looks like out here.",
+        "weight": 2
       }
     ],
     "condition": "sick",
-    "recovery": 7
+    "recovery": 5
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -139,7 +139,7 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 97,
-      "openness": 77,
+      "openness": 78,
       "ambition": 76,
       "loneliness": 0,
       "resilience": 58,
@@ -158,7 +158,7 @@
     "relationships": {
       "chills": {
         "closeness": 71,
-        "tension": 39,
+        "tension": 42,
         "attraction": 0
       },
       "mutu": {
@@ -214,11 +214,6 @@
         "weight": 2
       },
       {
-        "day": 6,
-        "text": "Chills' calm held when panther crept in. His steady keeps me breathing.",
-        "weight": 2
-      },
-      {
         "day": 7,
         "text": "Chills admitted he couldn't do it. Trusted me to handle the river alone.",
         "weight": 3
@@ -257,9 +252,15 @@
         "day": 8,
         "text": "Chills is certain about tomorrow. I'm going to follow him.",
         "weight": 2
+      },
+      {
+        "day": 8,
+        "text": "He held the line when I broke. Just said we move at dawn.",
+        "weight": 2
       }
     ],
-    "condition": "healthy"
+    "condition": "sick",
+    "recovery": 7
   },
   "mutu": {
     "name": "Mutu",
@@ -271,33 +272,33 @@
       "trust": 68,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 46,
+      "loneliness": 49,
       "resilience": 85,
       "hunger": 7,
       "thirst": 53,
       "energy": 0,
       "health": 0
     },
-    "mood": "calm",
+    "mood": "restless",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 74,
-        "tension": 57,
+        "closeness": 73,
+        "tension": 60,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 14,
-        "tension": 56,
+        "closeness": 13,
+        "tension": 59,
         "attraction": 0
       },
       "panther": {
-        "closeness": 56,
+        "closeness": 57,
         "tension": 1,
         "attraction": 0
       }
@@ -309,10 +310,7 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "wesley",
-      "state": "sitting_together"
-    }
+    "interaction": null
   },
   "panther": {
     "name": "",
@@ -324,7 +322,7 @@
       "trust": 17,
       "openness": 26,
       "ambition": 0,
-      "loneliness": 85,
+      "loneliness": 88,
       "resilience": 75,
       "hunger": 7,
       "thirst": 53,
@@ -341,7 +339,7 @@
     "relationships": {
       "chills": {
         "closeness": 0,
-        "tension": 95,
+        "tension": 98,
         "attraction": 0
       },
       "wesley": {
@@ -350,7 +348,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 56,
+        "closeness": 57,
         "tension": 1,
         "attraction": 0
       }

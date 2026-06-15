@@ -3570,5 +3570,110 @@
       }
     ],
     "timestamp": "2026-06-15T11:32:19.660471"
+  },
+  {
+    "day": 8,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "He moves through camp checking rope and supplies, steady despite lingering weakness from the fever.",
+    "thought": "Fever's broken. We move as planned.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "determined",
+    "timestamp": "2026-06-15T15:02:24.725767"
+  },
+  {
+    "day": 8,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "He stacks their few possessions at the fire, hands moving quickly, restlessly—packing and repacking the same things.",
+    "thought": "I can't do this again. I can't.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-15T15:02:24.725767"
+  },
+  {
+    "day": 8,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "The cat moves between them at the camp, alert to the tension, not settling at the fire as usual.",
+    "thought": "Something is changing in them today.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-15T15:02:24.725767"
+  },
+  {
+    "day": 8,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "From the bamboo stand at the forest's edge, the panther watches Mutu move between the men, inching closer to the cat.",
+    "thought": "The orange one is calm. I am calm.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-15T15:02:24.725767"
+  },
+  {
+    "day": 8,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "As they pack at the camp, Wesley's fear pushes him to flee tonight, but Chills won't yield on dawn—and the panther watches Mutu, drawn to steady in the chaos.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "We should leave now. Tonight."
+      },
+      {
+        "speaker": "chills",
+        "line": "It's afternoon. We go at first light."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Why wait? You're better. We're ready."
+      },
+      {
+        "speaker": "chills",
+        "line": "We prepare tonight, we move at dawn. That's solid."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Every hour here, something could go wrong."
+      },
+      {
+        "speaker": "chills",
+        "line": "And every hour on the move does too. Better rested."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Rested? Neither of us is resting."
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we start at first light instead of the dark. Decision's made."
+      }
+    ],
+    "timestamp": "2026-06-15T15:02:24.725767"
   }
 ]
