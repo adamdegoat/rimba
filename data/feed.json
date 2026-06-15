@@ -3788,5 +3788,110 @@
       }
     ],
     "timestamp": "2026-06-15T18:32:18.575485"
+  },
+  {
+    "day": 8,
+    "cycle": "night",
+    "character": "chills",
+    "action": "He tends the fire through the darkness, adding wood with methodical precision, exhausted but focused on keeping the flames alive for warmth and water-boiling come morning.",
+    "thought": "Fear's real. So is the dawn.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "grave",
+    "timestamp": "2026-06-15T22:33:16.198010"
+  },
+  {
+    "day": 8,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "He sits near the fire, initially trying to return to the Cayenne but lingering to talk with Chills about the panther, unable to shake his fear even as darkness deepens.",
+    "thought": "Fear fades when he's steady like that.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-15T22:33:16.198010"
+  },
+  {
+    "day": 8,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Mutu lies on the Cayenne hood, warm and still, his stillness drawing the panther closer with each passing hour, unbothered by the humans' tension.",
+    "thought": "The dark one brings peace here.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-15T22:33:16.198010"
+  },
+  {
+    "day": 8,
+    "cycle": "night",
+    "character": "panther",
+    "action": "The panther edges from the bamboo toward the Cayenne hood, overcoming its terror of the two men for the sake of Mutu's stillness, moving in small brave increments through the firelit darkness.",
+    "thought": "I am brave for the orange one.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-15T22:33:16.198010"
+  },
+  {
+    "day": 8,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "As night deepens, the panther edges toward Mutu on the hood; Wesley sees it and freezes in terror, while Chills keeps his voice low and steady.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Chills. Do you see it?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Aren't you afraid?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Terrified. But it won't matter."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's—"
+      },
+      {
+        "speaker": "chills",
+        "line": "We move at dawn. That's the plan."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What if it attacks?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we deal with it. For now, we sleep."
+      }
+    ],
+    "timestamp": "2026-06-15T22:33:16.198010"
   }
 ]
