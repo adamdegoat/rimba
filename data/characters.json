@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 77,
-        "tension": 52,
+        "tension": 54,
         "attraction": 0
       },
       "mutu": {
@@ -61,11 +61,6 @@
       {
         "day": 6,
         "text": "Wesley's working with what he has now, not fighting it. That's where real strength comes from.",
-        "weight": 2
-      },
-      {
-        "day": 6,
-        "text": "Wesley's pain didn't break him. He came anyway, worked anyway.",
         "weight": 2
       },
       {
@@ -120,6 +115,11 @@
       },
       {
         "day": 9,
+        "text": "Wesley stepped up without judgment when I admitted defeat.",
+        "weight": 3
+      },
+      {
+        "day": 9,
         "text": "Wesley held firm about staying. Didn't force me onward.",
         "weight": 2
       },
@@ -139,7 +139,7 @@
     "scores": {
       "trust": 99,
       "openness": 80,
-      "ambition": 78,
+      "ambition": 79,
       "loneliness": 0,
       "resilience": 58,
       "health": 0,
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 73,
-        "tension": 54,
+        "tension": 56,
         "attraction": 0
       },
       "mutu": {
@@ -218,11 +218,6 @@
         "weight": 2
       },
       {
-        "day": 7,
-        "text": "Chills was fever-broken and empty but still sat there awake.",
-        "weight": 2
-      },
-      {
         "day": 8,
         "text": "Chills said I'm stronger than I think. I need to prove it.",
         "weight": 3
@@ -249,6 +244,11 @@
       },
       {
         "day": 9,
+        "text": "He trusted me to carry it when he couldn't.",
+        "weight": 3
+      },
+      {
+        "day": 9,
         "text": "Chills admitted he was too sick. Trusted my judgment to call it.",
         "weight": 2
       },
@@ -259,7 +259,7 @@
       }
     ],
     "condition": "sick",
-    "recovery": 2
+    "recovery": 1
   },
   "mutu": {
     "name": "Mutu",
@@ -268,10 +268,10 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 68,
+      "trust": 69,
       "openness": 41,
       "ambition": 0,
-      "loneliness": 63,
+      "loneliness": 65,
       "resilience": 85,
       "hunger": 7,
       "thirst": 53,
@@ -280,24 +280,24 @@
     },
     "mood": "restless",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 70,
-        "tension": 75,
+        "closeness": 69,
+        "tension": 78,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 11,
-        "tension": 73,
+        "closeness": 10,
+        "tension": 76,
         "attraction": 0
       },
       "panther": {
-        "closeness": 65,
+        "closeness": 66,
         "tension": 0,
         "attraction": 0
       }
@@ -318,8 +318,8 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 20,
-      "openness": 27,
+      "trust": 21,
+      "openness": 28,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 75,
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 65,
+        "closeness": 66,
         "tension": 0,
         "attraction": 0
       }

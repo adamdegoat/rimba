@@ -4212,5 +4212,110 @@
       }
     ],
     "timestamp": "2026-06-16T15:02:13.571188"
+  },
+  {
+    "day": 9,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Sits by the fire, shaking slightly despite the heat, watching Wesley work.",
+    "thought": "My body's betraying me out here.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-16T18:32:30.620144"
+  },
+  {
+    "day": 9,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Pushes a piece of wood deeper into the coals, the firelight hard on his face.",
+    "thought": "He can't walk. It's on me now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-16T18:32:30.620144"
+  },
+  {
+    "day": 9,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Rests by the fire's warmth, watching the forest edge with an unusual calm.",
+    "thought": "The dark one is near. Safe.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-16T18:32:30.620144"
+  },
+  {
+    "day": 9,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "Crouches at the fern hollow's edge, ears flattened but still drawn toward Mutu's calm rest.",
+    "thought": "The orange one gives me courage.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-16T18:32:30.620144"
+  },
+  {
+    "day": 9,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Evening by the fire: Wesley tended the coals all day while Chills sat fevered and immobile; by dusk the panther was close enough for Mutu to sense it at the forest edge.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You need to eat something."
+      },
+      {
+        "speaker": "chills",
+        "line": "Not hungry. Just thirsty."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You need the calories. You're burning through nothing."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. Tomorrow. Right now... just need to not move."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Wood's low. We forage at first light."
+      },
+      {
+        "speaker": "chills",
+        "line": "If I can walk."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Right. If."
+      },
+      {
+        "speaker": "chills",
+        "line": "Wesley. Thank you. For today."
+      }
+    ],
+    "timestamp": "2026-06-16T18:32:30.620144"
   }
 ]

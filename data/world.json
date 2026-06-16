@@ -1,16 +1,16 @@
 {
   "day": 9,
-  "cycle": "afternoon",
-  "weather": "overcast",
+  "cycle": "evening",
+  "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-16",
-  "pulse": "With Chills laid low, Wesley is learning to lead, and Chills is learning to trust him with it.",
-  "scene": "Chills rested feverish in the lean-to while Wesley tended the fire and gathered water. By afternoon they sat together at the campfire, the morning's tension softening into pragmatic quiet.",
+  "pulse": "Chills is too weak to walk; Wesley carries it all — but by the fire, the weight of dependence feels oddly like trust.",
+  "scene": "Wesley tended the coals all day while Chills sat fevered by the fire; by dusk the panther was close enough for Mutu to sense it at the forest edge.",
   "resources_prev": {
     "food": 0,
-    "water": 85,
-    "wood": 12,
+    "water": 87,
+    "wood": 9,
     "medicine": 0
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 48,
+      "condition": 44,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 87,
-    "wood": 9,
+    "water": 85,
+    "wood": 8,
     "medicine": 0
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 14
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-16:afternoon",
+  "last_cycle_key": "2026-06-16:evening",
   "cayenne": {
     "stripped": []
   },
