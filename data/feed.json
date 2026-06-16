@@ -4103,5 +4103,114 @@
       }
     ],
     "timestamp": "2026-06-16T11:32:36.976330"
+  },
+  {
+    "day": 9,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "He emerged from the lean-to in the afternoon, feverish and weak, and moved slowly to the fire's edge to sit with Wesley.",
+    "thought": "Every part of me burns still.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-16T15:02:13.571188"
+  },
+  {
+    "day": 9,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "He kept the fire alive through the afternoon, boiled water for Chills, and gathered what wood he could find before sitting down at the fire's edge.",
+    "thought": "He needs me to be strong.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-16T15:02:13.571188"
+  },
+  {
+    "day": 9,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Mutu paced restlessly around the camp, circling back to Chills, then drawn repeatedly toward the forest edge where shadow moved behind the ferns.",
+    "thought": "Dark one pulls closer each sun.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-16T15:02:13.571188"
+  },
+  {
+    "day": 9,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "The young leopard edged from the fern hollow toward the forest margin, watching Mutu with bold, terrified eyes, keeping just beyond the firelight.",
+    "thought": "For the orange one, I am brave.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-16T15:02:13.571188"
+  },
+  {
+    "day": 9,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the fire's edge, Chills and Wesley settled into quiet work — boiling water, tending coals — while a black shape watched from the forest, edging steadily closer to Mutu.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You look like hell. How's the fever?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Peaks and valleys. I'm managing."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're not managing if you can barely stand."
+      },
+      {
+        "speaker": "chills",
+        "line": "Wesley, I know what—"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Look, I've got the water and the fire. The wood can wait. You rest."
+      },
+      {
+        "speaker": "chills",
+        "line": "The wood's running low. You should—"
+      },
+      {
+        "speaker": "wesley",
+        "line": "I know. I saw it. One thing at a time, yeah?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Okay."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And you drink that water."
+      }
+    ],
+    "timestamp": "2026-06-16T15:02:13.571188"
   }
 ]

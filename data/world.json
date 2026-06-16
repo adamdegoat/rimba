@@ -1,16 +1,16 @@
 {
   "day": 9,
-  "cycle": "midday",
-  "weather": "clear",
+  "cycle": "afternoon",
+  "weather": "overcast",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-16",
-  "pulse": "Chills admits the fever won; Wesley refuses to push him onward. For the first time Chills surrenders without shame, and something like partnership begins to form between them.",
-  "scene": "The fever killed the dawn plan. By midday Wesley had held firm about staying — Chills in the lean-to resting, Wesley by the fire gathering wood, both fevered and stranded, at least one more day together.",
+  "pulse": "With Chills laid low, Wesley is learning to lead, and Chills is learning to trust him with it.",
+  "scene": "Chills rested feverish in the lean-to while Wesley tended the fire and gathered water. By afternoon they sat together at the campfire, the morning's tension softening into pragmatic quiet.",
   "resources_prev": {
     "food": 0,
-    "water": 90,
-    "wood": 13,
+    "water": 85,
+    "wood": 12,
     "medicine": 0
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 52,
+      "condition": 48,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 85,
-    "wood": 12,
+    "water": 87,
+    "wood": 9,
     "medicine": 0
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-16:midday",
+  "last_cycle_key": "2026-06-16:afternoon",
   "cayenne": {
     "stripped": []
   },
