@@ -3998,5 +3998,110 @@
       }
     ],
     "timestamp": "2026-06-16T07:02:15.694564"
+  },
+  {
+    "day": 9,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Stumbles out of the lean-to shaking, grips the Cayenne to steady himself, then retreats back inside to collapse onto the palm fronds.",
+    "thought": "Can't move like this. Not today.",
+    "location": {
+      "waypoint": "shelter_inside",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-16T11:32:36.976330"
+  },
+  {
+    "day": 9,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Stands firm by the fire pit through the argument, then gathers deadwood from the forest's edge once Chills retreats, hands steady for the first time in days.",
+    "thought": "He finally admitted it. We stay.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-16T11:32:36.976330"
+  },
+  {
+    "day": 9,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Prowls the space between Cayenne and fern_hollow all through midday, ears alert, green eyes tracking faint movement in the undergrowth.",
+    "thought": "The dark one edges ever closer.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-16T11:32:36.976330"
+  },
+  {
+    "day": 9,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Edges steadily closer through the ferny margins at the camp's edge, ribs trembling with hunger and longing, eyes never leaving Mutu's orange stillness.",
+    "thought": "The orange one draws me near.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-16T11:32:36.976330"
+  },
+  {
+    "day": 9,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By midday Chills emerges from the lean-to fevered and pale; Wesley confronts him at the Cayenne door, and they settle the question of moving — the fever has broken the plan, and for the first time, Chills admits he cannot walk.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "We don't move today. Your fever's worse."
+      },
+      {
+        "speaker": "chills",
+        "line": "I'm fine. Just need water and rest."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're not fine. And we have no food, no medicine. We need to stay."
+      },
+      {
+        "speaker": "chills",
+        "line": "Staying means going hungry. You know this."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Moving means you collapse on the trail. I'd rather stay."
+      },
+      {
+        "speaker": "chills",
+        "line": "Figure what out? There's nothing left to eat."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Then we hunt, trap, forage — today we heal. Tomorrow we move."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're right. Just... hard to admit it."
+      }
+    ],
+    "timestamp": "2026-06-16T11:32:36.976330"
   }
 ]

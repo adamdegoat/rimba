@@ -1,16 +1,16 @@
 {
   "day": 9,
-  "cycle": "morning",
-  "weather": "overcast",
+  "cycle": "midday",
+  "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-16",
-  "pulse": "Wesley pushes to move at dawn, fevered; Chills refuses, body broken—and the silence after is the hardest thing said.",
-  "scene": "Both wake fevered. Wesley packs to move at dawn; Chills emerges from the shelter shaking and refuses—the plan collapses before noon. By light they sit apart at the dying fire, argument suspended.",
+  "pulse": "Chills admits the fever won; Wesley refuses to push him onward. For the first time Chills surrenders without shame, and something like partnership begins to form between them.",
+  "scene": "The fever killed the dawn plan. By midday Wesley had held firm about staying — Chills in the lean-to resting, Wesley by the fire gathering wood, both fevered and stranded, at least one more day together.",
   "resources_prev": {
     "food": 0,
-    "water": 88,
-    "wood": 10,
+    "water": 90,
+    "wood": 13,
     "medicine": 0
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 56,
+      "condition": 52,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -28,17 +28,17 @@
   ],
   "resources": {
     "food": 0,
-    "water": 90,
-    "wood": 13,
+    "water": 85,
+    "wood": 12,
     "medicine": 0
   },
   "fire": {
     "lit": true,
-    "fuel": 2
+    "fuel": 6
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-16:morning",
+  "last_cycle_key": "2026-06-16:midday",
   "cayenne": {
     "stripped": []
   },
