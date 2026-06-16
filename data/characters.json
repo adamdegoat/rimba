@@ -6,14 +6,14 @@
     "color": "#6a994e",
     "scores": {
       "trust": 96,
-      "openness": 89,
+      "openness": 90,
       "ambition": 50,
       "loneliness": 0,
       "resilience": 96,
       "health": 0,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 24
+      "energy": 0
     },
     "mood": "weary",
     "location": {
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 79,
-        "tension": 56,
+        "closeness": 80,
+        "tension": 58,
         "attraction": 0
       },
       "mutu": {
@@ -79,11 +79,6 @@
         "weight": 2
       },
       {
-        "day": 7,
-        "text": "Wesley knew what the river needed without asking. That's worth trusting.",
-        "weight": 2
-      },
-      {
         "day": 8,
         "text": "Wesley pushed to move, but listened when I said no.",
         "weight": 2
@@ -127,10 +122,15 @@
         "day": 9,
         "text": "Wesley stepped in without being asked. Didn't need my direction.",
         "weight": 2
+      },
+      {
+        "day": 10,
+        "text": "Wesley carried everything alone. Didn't ask, didn't falter, didn't panic.",
+        "weight": 3
       }
     ],
     "condition": "sick",
-    "recovery": 7
+    "recovery": 6
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -139,14 +139,14 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 99,
-      "openness": 79,
+      "openness": 80,
       "ambition": 81,
       "loneliness": 0,
-      "resilience": 60,
+      "resilience": 62,
       "health": 0,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 12
+      "energy": 0
     },
     "mood": "resolved",
     "location": {
@@ -157,8 +157,8 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 75,
-        "tension": 58,
+        "closeness": 76,
+        "tension": 60,
         "attraction": 0
       },
       "mutu": {
@@ -209,11 +209,6 @@
         "weight": 3
       },
       {
-        "day": 7,
-        "text": "Chills was fevering and moving. I followed him without question.",
-        "weight": 2
-      },
-      {
         "day": 8,
         "text": "Chills said I'm stronger than I think. I need to prove it.",
         "weight": 3
@@ -257,6 +252,11 @@
         "day": 9,
         "text": "He didn't fight me taking over. Just let me have it.",
         "weight": 2
+      },
+      {
+        "day": 10,
+        "text": "I kept the fire, water, shelter. I actually could do this.",
+        "weight": 3
       }
     ],
     "condition": "healthy"
@@ -271,33 +271,33 @@
       "trust": 69,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 68,
+      "loneliness": 71,
       "resilience": 86,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 24,
+      "energy": 0,
       "health": 0
     },
-    "mood": "restless",
+    "mood": "calm",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "forest_edge",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 68,
-        "tension": 81,
+        "closeness": 67,
+        "tension": 84,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 10,
-        "tension": 79,
+        "closeness": 9,
+        "tension": 82,
         "attraction": 0
       },
       "panther": {
-        "closeness": 69,
+        "closeness": 70,
         "tension": 0,
         "attraction": 0
       }
@@ -323,14 +323,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 76,
-      "hunger": 7,
+      "hunger": 8,
       "thirst": 53,
-      "energy": 24,
+      "energy": 0,
       "health": 0
     },
     "mood": "wary",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 69,
+        "closeness": 70,
         "tension": 0,
         "attraction": 0
       }

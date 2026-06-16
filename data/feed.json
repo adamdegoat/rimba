@@ -4426,5 +4426,110 @@
       }
     ],
     "timestamp": "2026-06-16T22:32:52.522220"
+  },
+  {
+    "day": 10,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes by the fire with the fever finally broken, weak but clear-headed, and lets Wesley hand him water and foraged fruit.",
+    "thought": "I'm still here. My body came back.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-17T07:03:10.114706"
+  },
+  {
+    "day": 10,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Hands Chills a cup of boiled water and settles across the fire, visibly hollowed but steady after keeping the camp running alone.",
+    "thought": "He's going to recover. I held the line.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolved",
+    "timestamp": "2026-06-17T07:03:10.114706"
+  },
+  {
+    "day": 10,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stretches in the morning sun near the fire, then slinks toward the forest edge where the panther watches from the ferns.",
+    "thought": "The dark one is close. I feel safe.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T07:03:10.114706"
+  },
+  {
+    "day": 10,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Watches Mutu from deep in the ferns, edging slightly closer as the men move slowly and speak low by the fire.",
+    "thought": "The orange one is still. I watch.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-17T07:03:10.114706"
+  },
+  {
+    "day": 10,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Chills wakes fever-broken and weak; Wesley sits across the fire, handing over boiled water and fruit after keeping the camp running alone all night.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Fever broke. You're actually awake."
+      },
+      {
+        "speaker": "chills",
+        "line": "How long was I out?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "All yesterday. I had the fire, water, shelter."
+      },
+      {
+        "speaker": "chills",
+        "line": "You did that alone?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "You were burning up. Someone had to."
+      },
+      {
+        "speaker": "chills",
+        "line": "We're not moving today. I need rest."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yeah. You need it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Stop looking shocked you can do this."
+      }
+    ],
+    "timestamp": "2026-06-17T07:03:10.114706"
   }
 ]
