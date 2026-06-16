@@ -5,15 +5,15 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 94,
-      "openness": 88,
-      "ambition": 51,
+      "trust": 96,
+      "openness": 89,
+      "ambition": 50,
       "loneliness": 0,
-      "resilience": 97,
+      "resilience": 96,
       "health": 0,
       "hunger": 7,
       "thirst": 53,
-      "energy": 0
+      "energy": 24
     },
     "mood": "weary",
     "location": {
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 77,
-        "tension": 54,
+        "closeness": 79,
+        "tension": 56,
         "attraction": 0
       },
       "mutu": {
@@ -58,11 +58,6 @@
       "state": "sitting_together"
     },
     "memories": [
-      {
-        "day": 6,
-        "text": "Wesley's working with what he has now, not fighting it. That's where real strength comes from.",
-        "weight": 2
-      },
       {
         "day": 7,
         "text": "He didn't run when I was empty. He stayed.",
@@ -120,6 +115,11 @@
       },
       {
         "day": 9,
+        "text": "He carried everything when I fell apart. Fever broke me. He held it.",
+        "weight": 3
+      },
+      {
+        "day": 9,
         "text": "Wesley held firm about staying. Didn't force me onward.",
         "weight": 2
       },
@@ -129,7 +129,8 @@
         "weight": 2
       }
     ],
-    "condition": "healthy"
+    "condition": "sick",
+    "recovery": 7
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -138,16 +139,16 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 99,
-      "openness": 80,
-      "ambition": 79,
+      "openness": 79,
+      "ambition": 81,
       "loneliness": 0,
-      "resilience": 58,
+      "resilience": 60,
       "health": 0,
       "hunger": 7,
       "thirst": 53,
-      "energy": 0
+      "energy": 12
     },
-    "mood": "focused",
+    "mood": "resolved",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -156,12 +157,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 73,
-        "tension": 56,
+        "closeness": 75,
+        "tension": 58,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 34,
+        "closeness": 35,
         "tension": 0,
         "attraction": 0
       }
@@ -213,11 +214,6 @@
         "weight": 2
       },
       {
-        "day": 7,
-        "text": "Chills admitted his shoulder was shot. Asked me to guide him.",
-        "weight": 2
-      },
-      {
         "day": 8,
         "text": "Chills said I'm stronger than I think. I need to prove it.",
         "weight": 3
@@ -249,6 +245,11 @@
       },
       {
         "day": 9,
+        "text": "Carried the camp alone when Chills collapsed. Fire, water, shelter. I could do it.",
+        "weight": 3
+      },
+      {
+        "day": 9,
         "text": "Chills admitted he was too sick. Trusted my judgment to call it.",
         "weight": 2
       },
@@ -258,8 +259,7 @@
         "weight": 2
       }
     ],
-    "condition": "sick",
-    "recovery": 1
+    "condition": "healthy"
   },
   "mutu": {
     "name": "Mutu",
@@ -269,13 +269,13 @@
     "color": "#d98a4a",
     "scores": {
       "trust": 69,
-      "openness": 41,
+      "openness": 42,
       "ambition": 0,
-      "loneliness": 65,
-      "resilience": 85,
+      "loneliness": 68,
+      "resilience": 86,
       "hunger": 7,
       "thirst": 53,
-      "energy": 0,
+      "energy": 24,
       "health": 0
     },
     "mood": "restless",
@@ -287,17 +287,17 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 69,
-        "tension": 78,
+        "closeness": 68,
+        "tension": 81,
         "attraction": 0
       },
       "wesley": {
         "closeness": 10,
-        "tension": 76,
+        "tension": 79,
         "attraction": 0
       },
       "panther": {
-        "closeness": 66,
+        "closeness": 69,
         "tension": 0,
         "attraction": 0
       }
@@ -318,19 +318,19 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 21,
-      "openness": 28,
+      "trust": 23,
+      "openness": 29,
       "ambition": 0,
       "loneliness": 100,
-      "resilience": 75,
+      "resilience": 76,
       "hunger": 7,
       "thirst": 53,
-      "energy": 0,
+      "energy": 24,
       "health": 0
     },
     "mood": "wary",
     "location": {
-      "waypoint": "fern_hollow",
+      "waypoint": "forest_edge",
       "x": 50,
       "y": 38
     },
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 66,
+        "closeness": 69,
         "tension": 0,
         "attraction": 0
       }

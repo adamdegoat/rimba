@@ -4317,5 +4317,114 @@
       }
     ],
     "timestamp": "2026-06-16T18:32:30.620144"
+  },
+  {
+    "day": 9,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Rests by the fire, the fever finally easing, body still aching but clearer than this morning.",
+    "thought": "Fever's breaking. Wesley held the whole line.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-16T22:32:52.522220"
+  },
+  {
+    "day": 9,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Sits across from Chills by the coals, jaw tight with exhaustion but steady, the fire held through the long day.",
+    "thought": "I didn't break. I actually carried it.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolved",
+    "timestamp": "2026-06-16T22:32:52.522220"
+  },
+  {
+    "day": 9,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Alert in the camp's edge, ears tracking the dark shape at the forest boundary, unfraid and oddly calm.",
+    "thought": "The dark one is close. Safe.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "restless",
+    "timestamp": "2026-06-16T22:32:52.522220"
+  },
+  {
+    "day": 9,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Edges incrementally closer from the fern hollow, drawn by Mutu's stillness, ribs showing in the moonlight as it settles low in the undergrowth.",
+    "thought": "The orange one is still. I am safe.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-16T22:32:52.522220"
+  },
+  {
+    "day": 9,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "By the fire at night, Chills' fever finally breaking, Wesley and he sit in exhausted relief — the first real quiet between them, while Mutu senses the panther at the forest edge.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How's the fever?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Breaking. Still feel like hell though."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You rest. I've got the fire."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're exhausted."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Doesn't matter right now."
+      },
+      {
+        "speaker": "chills",
+        "line": "You did good today."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Just did what needed doing."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. You led when I couldn't."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Panther's getting bolder."
+      }
+    ],
+    "timestamp": "2026-06-16T22:32:52.522220"
   }
 ]
