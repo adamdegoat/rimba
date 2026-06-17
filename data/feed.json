@@ -4636,5 +4636,110 @@
       }
     ],
     "timestamp": "2026-06-17T11:36:20.658490"
+  },
+  {
+    "day": 10,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Rests by the fire, watching Wesley return from the river with the day's first real catch.",
+    "thought": "He's stronger than he knows. I can rest.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-17T15:03:06.275375"
+  },
+  {
+    "day": 10,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Returns from the river with three fish, kneels to clean them while Chills watches from the fire.",
+    "thought": "I actually caught them. I can do this.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolute",
+    "timestamp": "2026-06-17T15:03:06.275375"
+  },
+  {
+    "day": 10,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Trails Wesley back from the river, settles by the fire where Chills sits, ears pricked toward the forest edge.",
+    "thought": "He brings food. The hidden one is close.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T15:03:06.275375"
+  },
+  {
+    "day": 10,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Watches from the fern hollow at the forest's edge, eyes fixed on Mutu by the fire, too afraid of the men to move closer.",
+    "thought": "The orange one is still. Safe. I wait.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-17T15:03:06.275375"
+  },
+  {
+    "day": 10,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Wesley cleans three fish by the fire as Chills rests without worry; from the forest edge, a young panther watches only Mutu, drawn by the cat's unshakeable calm.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I caught three. Finally got it right."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah? How'd you manage it?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Just... stopped overthinking. Stood still and waited."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's the whole thing, isn't it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You should eat first. You've lost weight."
+      },
+      {
+        "speaker": "chills",
+        "line": "We eat together."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Always?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Always."
+      }
+    ],
+    "timestamp": "2026-06-17T15:03:06.275375"
   }
 ]
