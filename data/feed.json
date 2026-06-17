@@ -4943,5 +4943,112 @@
       }
     ],
     "timestamp": "2026-06-17T22:36:28.878705"
+  },
+  {
+    "day": 11,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes in the lean-to with clear head for the first time in days, fever finally broken, and sees the fire still burning at the camp.",
+    "thought": "He held it all night alone.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "peaceful",
+    "timestamp": "2026-06-18T07:02:48.231857"
+  },
+  {
+    "day": 11,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Sits by the rebuilt fire as dawn breaks, dark circles under his eyes, the flames still burning steady from hours of patient tending.",
+    "thought": "I kept it alive all night long.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "exhausted",
+    "timestamp": "2026-06-18T07:02:48.231857"
+  },
+  {
+    "day": 11,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stretched out on the Cayenne hood, watching the morning sun warm the mist rising from the clearing, unbothered and at ease.",
+    "thought": "Sun is warm. All is still.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T07:02:48.231857"
+  },
+  {
+    "day": 11,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Pressed low in the ferns at the forest edge, watching Mutu on the hood with unblinking golden eyes, inching closer than before.",
+    "thought": "The orange one waits. Safe and still.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "watchful",
+    "timestamp": "2026-06-18T07:02:48.231857"
+  },
+  {
+    "day": 11,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley",
+      "mutu",
+      "panther"
+    ],
+    "description": "At dawn by the burning fire, Chills emerged to find Wesley dead-eyed from keeping watch all night alone—and for the first time, stepped forward to receive the care he'd given.",
+    "dialogue": [
+      {
+        "speaker": "chills",
+        "line": "You've been up all night."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Fire didn't go out. You needed sleep."
+      },
+      {
+        "speaker": "chills",
+        "line": "I should have been here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You were sick. I could do it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. I see that now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Come sit. There's water and fish."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're dead on your feet."
+      },
+      {
+        "speaker": "wesley",
+        "line": "For the first time, it's okay."
+      }
+    ],
+    "timestamp": "2026-06-18T07:02:48.231857"
   }
 ]

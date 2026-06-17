@@ -1,24 +1,24 @@
 {
-  "day": 10,
-  "cycle": "night",
+  "day": 11,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-17",
-  "pulse": "Chills surrenders to rest at last; Wesley finds his feet; from the darkness, the panther creeps toward Mutu's unshakeable calm.",
-  "scene": "As fever finally breaks, Chills rests fully in the shelter while Wesley tends the fire and night watch alone. From the forest edge, the young panther draws closer to the clearing, watching only Mutu—drawn by her stillness.",
+  "last_run_date": "2026-06-18",
+  "pulse": "Wesley has proven he can hold the camp alone; Chills is learning to let him carry what matters.",
+  "scene": "Chills woke fever-free and found Wesley had held the fire all night alone, exhausted by dawn. They sat together by the flames, and the weight of that care was finally spoken.",
   "resources_prev": {
-    "food": 50,
-    "water": 50,
-    "wood": 40,
-    "medicine": 14
+    "food": 64,
+    "water": 76,
+    "wood": 43,
+    "medicine": 13
   },
   "structures": [
     {
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 20,
+      "condition": 16,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -27,18 +27,18 @@
     }
   ],
   "resources": {
-    "food": 64,
-    "water": 76,
-    "wood": 43,
-    "medicine": 13
+    "food": 71,
+    "water": 100,
+    "wood": 42,
+    "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 2
+    "fuel": 6
   },
   "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-17:night",
+  "last_cycle_key": "2026-06-18:morning",
   "cayenne": {
     "stripped": []
   },
@@ -58,8 +58,8 @@
     "10": "Day 10 marked the moment Wesley truly believed he could do this—he caught three fish, kept the fire steady, and by nightfall Chills finally surrendered to complete rest, fever broken, trusting him fully. The panther edged closer too, drawn wordlessly to Mutu's unshakeable calm, finding its own strange peace at the clearing's edge."
   },
   "lean": {
-    "id": "hold_steady",
-    "label": "Hold the calm",
-    "desc": "Chills doesn't move. Wesley finds his courage."
+    "id": "hunker",
+    "label": "Hunker down",
+    "desc": "The fire's your anchor. Fortify it. Rest and recover here."
   }
 }

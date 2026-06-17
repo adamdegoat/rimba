@@ -1,27 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-17",
+    "id": "2026-06-18",
     "closes": "tonight",
-    "question": "Fever's broken. Wesley won't let the fire die. The dark one circles closer. Do they hunker down, or move before dawn?",
+    "question": "Wesley carries the night alone while Chills rests and Mutu keeps the panther at bay. Does this balance hold? Or does something shift tonight?",
     "options": [
       {
-        "id": "hunker",
-        "label": "Hunker down",
-        "desc": "The fire's your anchor. Fortify it. Rest and recover here."
+        "id": "trust_balance",
+        "label": "Keep the balance",
+        "desc": "Wesley works, Chills rests, Mutu watches. It's working. Let it."
       },
       {
-        "id": "move_dawn",
-        "label": "Move before dawn",
-        "desc": "Pack quiet. Use first light to put distance between you."
+        "id": "rotate_watch",
+        "label": "Rotate the watch",
+        "desc": "Chills wakes. Wesley rests. You share the burden of night."
+      },
+      {
+        "id": "face_together",
+        "label": "Face it together",
+        "desc": "Pull Mutu in. Stay awake as three. The panther meets all of you."
       }
     ]
   },
   "in_play": {
-    "id": "hold_steady",
-    "label": "Hold the calm",
-    "desc": "Chills doesn't move. Wesley finds his courage.",
-    "decided": "2026-06-17",
+    "id": "hunker",
+    "label": "Hunker down",
+    "desc": "The fire's your anchor. Fortify it. Rest and recover here.",
+    "decided": "2026-06-18",
     "votes": 0,
     "tally": {}
   }
