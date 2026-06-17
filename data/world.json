@@ -1,16 +1,16 @@
 {
   "day": 10,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-17",
-  "pulse": "Wesley's stepping into his strength while Chills learns to rest; trust finally settling between them.",
-  "scene": "Chills wakes fever-broken; Wesley sits with him by the fire. Mutu senses the panther watching from the forest edge.",
+  "pulse": "Wesley pushes forward while Chills rests — trust building as they both wear thin.",
+  "scene": "Fever broken, Chills stays by the fire while Wesley heads to the river rocks to fish for their empty bellies.",
   "resources_prev": {
     "food": 0,
     "water": 84,
-    "wood": 4,
+    "wood": 7,
     "medicine": 0
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 36,
+      "condition": 32,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -34,11 +34,11 @@
   },
   "fire": {
     "lit": true,
-    "fuel": 4
+    "fuel": 8
   },
   "camp_climate": "strained",
   "discoveries": [],
-  "last_cycle_key": "2026-06-17:morning",
+  "last_cycle_key": "2026-06-17:midday",
   "cayenne": {
     "stripped": []
   },

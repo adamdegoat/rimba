@@ -4531,5 +4531,110 @@
       }
     ],
     "timestamp": "2026-06-17T07:03:10.114706"
+  },
+  {
+    "day": 10,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Sits by the fire, fever finally broken, watching Wesley prepare the line and hooks.",
+    "thought": "He's got it now. I just need rest.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "weary",
+    "timestamp": "2026-06-17T11:36:20.658490"
+  },
+  {
+    "day": 10,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Gathers line and hook, preparing to fish downstream where the current runs faster.",
+    "thought": "I know what I'm doing. Keep moving.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolved",
+    "timestamp": "2026-06-17T11:36:20.658490"
+  },
+  {
+    "day": 10,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Prowls the forest edge near the fern hollow, ears alert to a familiar scent on the breeze.",
+    "thought": "The dark one is close. I'm not alone.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T11:36:20.658490"
+  },
+  {
+    "day": 10,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Watches from the fern hollow, eyes fixed on Mutu's movement, drawn closer but still afraid of the camp.",
+    "thought": "The orange one waits. I can wait too.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-17T11:36:20.658490"
+  },
+  {
+    "day": 10,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Chills, fever-broken, watches Wesley prepare to fish while the camp hungers for food.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I'm heading to the rocks."
+      },
+      {
+        "speaker": "chills",
+        "line": "You're running on fumes."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So are you. But someone has to move."
+      },
+      {
+        "speaker": "chills",
+        "line": "Don't burn yourself out."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I won't. Just doing what needs doing."
+      },
+      {
+        "speaker": "chills",
+        "line": "Okay. Be back before dark, yeah?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "I will. I've got this."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know you do."
+      }
+    ],
+    "timestamp": "2026-06-17T11:36:20.658490"
   }
 ]

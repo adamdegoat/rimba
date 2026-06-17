@@ -5,8 +5,8 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 96,
-      "openness": 90,
+      "trust": 97,
+      "openness": 91,
       "ambition": 50,
       "loneliness": 0,
       "resilience": 96,
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 80,
-        "tension": 58,
+        "tension": 60,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -71,11 +71,6 @@
       {
         "day": 7,
         "text": "He read the water and I followed his call. That's new.",
-        "weight": 2
-      },
-      {
-        "day": 7,
-        "text": "Wesley didn't ask permission. Just saw I was empty and stepped in.",
         "weight": 2
       },
       {
@@ -127,10 +122,15 @@
         "day": 10,
         "text": "Wesley carried everything alone. Didn't ask, didn't falter, didn't panic.",
         "weight": 3
+      },
+      {
+        "day": 10,
+        "text": "Wesley goes out alone now. I trust him completely.",
+        "weight": 2
       }
     ],
     "condition": "sick",
-    "recovery": 6
+    "recovery": 5
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -138,11 +138,11 @@
     "archetype": "city scholar",
     "color": "#6ba3e0",
     "scores": {
-      "trust": 99,
-      "openness": 80,
-      "ambition": 81,
+      "trust": 100,
+      "openness": 81,
+      "ambition": 82,
       "loneliness": 0,
-      "resilience": 62,
+      "resilience": 63,
       "health": 0,
       "hunger": 8,
       "thirst": 53,
@@ -150,7 +150,7 @@
     },
     "mood": "resolved",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "river_rocks",
       "x": 70,
       "y": 40
     },
@@ -158,11 +158,11 @@
     "relationships": {
       "chills": {
         "closeness": 76,
-        "tension": 60,
+        "tension": 62,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 35,
+        "closeness": 36,
         "tension": 0,
         "attraction": 0
       }
@@ -185,7 +185,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -229,11 +229,6 @@
         "weight": 2
       },
       {
-        "day": 8,
-        "text": "Chills is terrified too, but he won't break. I can follow that.",
-        "weight": 2
-      },
-      {
         "day": 9,
         "text": "He trusted me to carry it when he couldn't.",
         "weight": 3
@@ -257,6 +252,11 @@
         "day": 10,
         "text": "I kept the fire, water, shelter. I actually could do this.",
         "weight": 3
+      },
+      {
+        "day": 10,
+        "text": "Chills believes I can do this. I won't let him down.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -271,7 +271,7 @@
       "trust": 69,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 71,
+      "loneliness": 73,
       "resilience": 86,
       "hunger": 8,
       "thirst": 53,
@@ -287,17 +287,17 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 67,
-        "tension": 84,
+        "closeness": 66,
+        "tension": 87,
         "attraction": 0
       },
       "wesley": {
         "closeness": 9,
-        "tension": 82,
+        "tension": 85,
         "attraction": 0
       },
       "panther": {
-        "closeness": 70,
+        "closeness": 71,
         "tension": 0,
         "attraction": 0
       }
@@ -318,7 +318,7 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 23,
+      "trust": 24,
       "openness": 29,
       "ambition": 0,
       "loneliness": 100,
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 70,
+        "closeness": 71,
         "tension": 0,
         "attraction": 0
       }
