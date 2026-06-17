@@ -4846,5 +4846,102 @@
       }
     ],
     "timestamp": "2026-06-17T18:32:37.197560"
+  },
+  {
+    "day": 10,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Settles into the lean-to shelter for the night, fever finally broken, body heavy with earned rest",
+    "thought": "He's carrying it now. I can rest.",
+    "location": {
+      "waypoint": "shelter_inside",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "peaceful",
+    "timestamp": "2026-06-17T22:36:28.878705"
+  },
+  {
+    "day": 10,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Tends the fire as full darkness falls, adding wood methodically, handling the night watch alone",
+    "thought": "The night is mine to keep now.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-17T22:36:28.878705"
+  },
+  {
+    "day": 10,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Settles by the fire's edge with quiet certainty, unafraid of the eyes watching from the dark",
+    "thought": "The hidden one waits close still.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T22:36:28.878705"
+  },
+  {
+    "day": 10,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Edges from the fern hollow to the forest margin, drawn by Mutu's steadiness, yellow eyes fixed on the fire's glow",
+    "thought": "The orange one stays. I move closer now.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "watchful",
+    "timestamp": "2026-06-17T22:36:28.878705"
+  },
+  {
+    "day": 10,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "As Chills finally settles fully into the shelter, Wesley tends the fire alone into the deepening night; from the ferns beyond, two yellow eyes watch Mutu's unshakeable calm, drawing closer than ever before.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You need proper rest. I can handle the fire."
+      },
+      {
+        "speaker": "chills",
+        "line": "Already heading there, mate. You've got this now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's weird to say—but I think I actually do."
+      },
+      {
+        "speaker": "chills",
+        "line": "No thinking. You kept us alive today."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Just don't want to mess it up."
+      },
+      {
+        "speaker": "chills",
+        "line": "You won't. Fire's burning, water's ready, Mutu's calm."
+      }
+    ],
+    "timestamp": "2026-06-17T22:36:28.878705"
   }
 ]
