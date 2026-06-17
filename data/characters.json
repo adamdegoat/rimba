@@ -5,19 +5,19 @@
     "archetype": "naturalist",
     "color": "#6a994e",
     "scores": {
-      "trust": 97,
-      "openness": 91,
-      "ambition": 50,
+      "trust": 98,
+      "openness": 92,
+      "ambition": 49,
       "loneliness": 0,
       "resilience": 96,
       "health": 0,
-      "hunger": 8,
+      "hunger": 7,
       "thirst": 53,
       "energy": 0
     },
-    "mood": "calm",
+    "mood": "resigned",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
@@ -25,11 +25,11 @@
     "relationships": {
       "wesley": {
         "closeness": 80,
-        "tension": 62,
+        "tension": 64,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 89,
+        "closeness": 90,
         "tension": 0,
         "attraction": 0
       }
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "working_together"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -66,11 +66,6 @@
       {
         "day": 7,
         "text": "Wesley didn't freeze when the fire died. He just worked.",
-        "weight": 2
-      },
-      {
-        "day": 7,
-        "text": "He read the water and I followed his call. That's new.",
         "weight": 2
       },
       {
@@ -127,10 +122,15 @@
         "day": 10,
         "text": "Wesley goes out alone now. I trust him completely.",
         "weight": 2
+      },
+      {
+        "day": 10,
+        "text": "Wesley didn't push me to move. Just accepted I need rest.",
+        "weight": 2
       }
     ],
     "condition": "sick",
-    "recovery": 4
+    "recovery": 3
   },
   "wesley": {
     "name": "Wesley Koh",
@@ -140,17 +140,17 @@
     "scores": {
       "trust": 100,
       "openness": 82,
-      "ambition": 82,
+      "ambition": 83,
       "loneliness": 0,
-      "resilience": 65,
+      "resilience": 66,
       "health": 0,
-      "hunger": 8,
+      "hunger": 7,
       "thirst": 53,
       "energy": 0
     },
-    "mood": "resolute",
+    "mood": "focused",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
@@ -158,7 +158,7 @@
     "relationships": {
       "chills": {
         "closeness": 76,
-        "tension": 64,
+        "tension": 66,
         "attraction": 0
       },
       "mutu": {
@@ -185,7 +185,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "working_together"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -224,11 +224,6 @@
         "weight": 2
       },
       {
-        "day": 8,
-        "text": "He held the line when I broke. Just said we move at dawn.",
-        "weight": 2
-      },
-      {
         "day": 9,
         "text": "He trusted me to carry it when he couldn't.",
         "weight": 3
@@ -257,6 +252,11 @@
         "day": 10,
         "text": "Chills believes I can do this. I won't let him down.",
         "weight": 2
+      },
+      {
+        "day": 10,
+        "text": "I held it all alone and kept us steady.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -271,9 +271,9 @@
       "trust": 70,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 74,
+      "loneliness": 76,
       "resilience": 86,
-      "hunger": 8,
+      "hunger": 7,
       "thirst": 53,
       "energy": 0,
       "health": 0
@@ -288,16 +288,16 @@
     "relationships": {
       "chills": {
         "closeness": 65,
-        "tension": 90,
+        "tension": 93,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 9,
-        "tension": 88,
+        "closeness": 8,
+        "tension": 91,
         "attraction": 0
       },
       "panther": {
-        "closeness": 72,
+        "closeness": 73,
         "tension": 0,
         "attraction": 0
       }
@@ -318,17 +318,17 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 25,
+      "trust": 26,
       "openness": 29,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 76,
-      "hunger": 8,
+      "hunger": 7,
       "thirst": 53,
       "energy": 0,
       "health": 0
     },
-    "mood": "wary",
+    "mood": "calm",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 72,
+        "closeness": 73,
         "tension": 0,
         "attraction": 0
       }

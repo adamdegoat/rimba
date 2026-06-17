@@ -4741,5 +4741,110 @@
       }
     ],
     "timestamp": "2026-06-17T15:03:06.275375"
+  },
+  {
+    "day": 10,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "He settles back against the fire-side stones, hands wrapped around a bowl of boiled fish, fever-broken but too weak to move from the camp.",
+    "thought": "I have to let him carry this.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "resigned",
+    "timestamp": "2026-06-17T18:32:37.197560"
+  },
+  {
+    "day": 10,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "He portions the last of the fish onto palm leaves with steady hands, placing a careful share before Chills, then settling across the fire with his own.",
+    "thought": "I can actually keep us alive.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-17T18:32:37.197560"
+  },
+  {
+    "day": 10,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "He curls into Chills' lap, purring low and unbothered, his green eyes tracking the dark forest beyond the firelight.",
+    "thought": "He's resting. I keep him safe.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T18:32:37.197560"
+  },
+  {
+    "day": 10,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "It edges a paw closer through the ferns, black as the night and barely visible, eyes fixed on the orange cat by the fire.",
+    "thought": "The orange one is still. Not alone.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-17T18:32:37.197560"
+  },
+  {
+    "day": 10,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the fire as night falls, Wesley portions the last boiled fish while Chills settles back to eat; from the ferns beyond, two yellow eyes watch the flames.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Eat, then sleep. I've got the rest."
+      },
+      {
+        "speaker": "chills",
+        "line": "I'm not used to being taken care of."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yeah, well, get used to it tonight."
+      },
+      {
+        "speaker": "chills",
+        "line": "Fair enough. Is the cat always that calm?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Mutu doesn't get scared. That's his whole thing."
+      },
+      {
+        "speaker": "chills",
+        "line": "So there's something in the dark we should know about."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You think it means us harm?"
+      },
+      {
+        "speaker": "chills",
+        "line": "No. I think it means Mutu knows something we don't."
+      }
+    ],
+    "timestamp": "2026-06-17T18:32:37.197560"
   }
 ]
