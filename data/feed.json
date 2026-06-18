@@ -5478,5 +5478,110 @@
       }
     ],
     "timestamp": "2026-06-18T22:32:51.254849"
+  },
+  {
+    "day": 12,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Wakes early and tends the fire, watching Mutu's calm attention toward the ferns where the panther waits.",
+    "thought": "The cat knows what I know. Safe.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-19T07:02:36.284180"
+  },
+  {
+    "day": 12,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Emerges from the Cayenne and stops, seeing Chills' unhurried movements and Mutu's unbothered posture.",
+    "thought": "Why am I the only one afraid?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-19T07:02:36.284180"
+  },
+  {
+    "day": 12,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stretches in the morning light, then settles between the two men by the fire, utterly unconcerned.",
+    "thought": "The dark one waits. I am calm.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-19T07:02:36.284180"
+  },
+  {
+    "day": 12,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Melts back deeper into the ferns as daylight grows, watching still but uncertain of the three gathered by the fire.",
+    "thought": "The orange one is safe. I can watch.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-19T07:02:36.284180"
+  },
+  {
+    "day": 12,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the morning fire, Mutu settles between them while a black shape watches from the ferns—Chills unworried, Wesley learning the panther stayed all night, and the cat utterly unconcerned.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Did it come back? The panther?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Sat by the fire most of the night. Just watching Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Just watching? It didn't try anything?"
+      },
+      {
+        "speaker": "chills",
+        "line": "The cat showed no fear. I took that as permission."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Permission? It's a predator with claws, Chills."
+      },
+      {
+        "speaker": "chills",
+        "line": "So's the jungle. So are we. But we're all here now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So what do we do? Just let it stay?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We watch. We stay awake. We see what happens next."
+      }
+    ],
+    "timestamp": "2026-06-19T07:02:36.284180"
   }
 ]

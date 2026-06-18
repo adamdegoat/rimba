@@ -1,33 +1,35 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-18",
+    "id": "2026-06-19",
     "closes": "tonight",
-    "question": "Wesley carries the night alone while Chills rests and Mutu keeps the panther at bay. Does this balance hold? Or does something shift tonight?",
+    "question": "Wesley's hands won't stop shaking. Should Chills move closer... or wait?",
     "options": [
       {
-        "id": "trust_balance",
-        "label": "Keep the balance",
-        "desc": "Wesley works, Chills rests, Mutu watches. It's working. Let it."
+        "id": "move_closer",
+        "label": "Move closer",
+        "desc": "Hold each other steady. Their bond is shelter."
       },
       {
-        "id": "rotate_watch",
-        "label": "Rotate the watch",
-        "desc": "Chills wakes. Wesley rests. You share the burden of night."
+        "id": "sit_still",
+        "label": "Sit still",
+        "desc": "Witness him. Let Wesley's tremor matter, become his anchor."
       },
       {
-        "id": "face_together",
-        "label": "Face it together",
-        "desc": "Pull Mutu in. Stay awake as three. The panther meets all of you."
+        "id": "follow_mutu",
+        "label": "Watch Mutu's way",
+        "desc": "The cat has no fear. What if stillness is gravity?"
       }
     ]
   },
   "in_play": {
-    "id": "hunker",
-    "label": "Hunker down",
-    "desc": "The fire's your anchor. Fortify it. Rest and recover here.",
-    "decided": "2026-06-18",
-    "votes": 0,
-    "tally": {}
+    "id": "face_together",
+    "label": "Face it together",
+    "desc": "Pull Mutu in. Stay awake as three. The panther meets all of you.",
+    "decided": "2026-06-19",
+    "votes": 1,
+    "tally": {
+      "face_together": 1
+    }
   }
 }
