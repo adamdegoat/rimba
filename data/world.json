@@ -1,16 +1,16 @@
 {
   "day": 11,
-  "cycle": "afternoon",
-  "weather": "humid",
+  "cycle": "evening",
+  "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-18",
-  "pulse": "Wesley learns to sit still for Chills' calm, while the panther finally risks the light for Mutu's steady presence.",
-  "scene": "The black panther stepped into the firelight for the first time, eyes on Mutu; Chills and Wesley sat by the fire, and one man tensed while the other stayed perfectly still.",
+  "pulse": "Wesley's fear of the panther meets Chills' curiosity; the two men find themselves allies again, watching the wild edge closer to their fire.",
+  "scene": "The panther emerged fully at dusk, a lean black shape drawn to Mutu's stillness. By the fire, Chills and Wesley sat close—one calm, the other breathing hard.",
   "resources_prev": {
-    "food": 68,
+    "food": 54,
     "water": 90,
-    "wood": 36,
+    "wood": 34,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 8,
+      "condition": 4,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -27,18 +27,18 @@
     }
   ],
   "resources": {
-    "food": 54,
+    "food": 63,
     "water": 90,
-    "wood": 34,
+    "wood": 33,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 14
+    "fuel": 18
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-18:afternoon",
+  "last_cycle_key": "2026-06-18:evening",
   "cayenne": {
     "stripped": []
   },

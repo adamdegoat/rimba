@@ -5260,5 +5260,110 @@
       }
     ],
     "timestamp": "2026-06-18T15:03:31.398576"
+  },
+  {
+    "day": 11,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Tends the fire with steady hands, watching the panther's slow approach with curiosity and respect, occasionally glancing at Wesley to gauge his fear.",
+    "thought": "The jungle shows itself when you stop running.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "content",
+    "timestamp": "2026-06-18T18:32:21.138676"
+  },
+  {
+    "day": 11,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Sits stiff on the log, breath shallow, eyes fixed on the dark shape at the clearing's edge, hands gripping the edge of his seat.",
+    "thought": "My hands won't stop shaking but I stay.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-18T18:32:21.138676"
+  },
+  {
+    "day": 11,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Dozes near the fire's edge, unbothered by the panther's presence at the clearing boundary, a living calm in the amber light.",
+    "thought": "The dark one is less afraid each night.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T18:32:21.138676"
+  },
+  {
+    "day": 11,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "Lingers at the forest's boundary, drawn closer by Mutu's stillness, golden eyes reflecting the firelight as it edges into the clearing's glow.",
+    "thought": "The still orange one draws me toward light.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-18T18:32:21.138676"
+  },
+  {
+    "day": 11,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "The panther emerged fully at dusk, a lean black shape drawn to Mutu's stillness; by the fire, Chills and Wesley sat close, Chills calm and Wesley breathing hard.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "That was a panther. A black panther. It was watching us."
+      },
+      {
+        "speaker": "chills",
+        "line": "A young one. Drawn to Mutu, not to us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How are you so unfazed? That's a predator."
+      },
+      {
+        "speaker": "chills",
+        "line": "And Mutu's unfazed. That tells us something."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What does it tell us?"
+      },
+      {
+        "speaker": "chills",
+        "line": "That the jungle has its own rules. We're learning them."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'm not learning anything except terror."
+      },
+      {
+        "speaker": "chills",
+        "line": "Terror's just the first step."
+      }
+    ],
+    "timestamp": "2026-06-18T18:32:21.138676"
   }
 ]

@@ -6,14 +6,14 @@
     "color": "#6a994e",
     "scores": {
       "trust": 100,
-      "openness": 97,
+      "openness": 98,
       "ambition": 48,
       "loneliness": 0,
       "resilience": 99,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 55
+      "energy": 48
     },
     "mood": "content",
     "location": {
@@ -24,12 +24,12 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 91,
-        "tension": 55,
+        "closeness": 93,
+        "tension": 54,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 90,
+        "closeness": 91,
         "tension": 0,
         "attraction": 0
       }
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -141,11 +141,11 @@
       "openness": 84,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 72,
+      "resilience": 73,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79
+      "energy": 72
     },
     "mood": "anxious",
     "location": {
@@ -156,8 +156,8 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 87,
-        "tension": 57,
+        "closeness": 89,
+        "tension": 56,
         "attraction": 0
       },
       "mutu": {
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -270,23 +270,23 @@
       "trust": 72,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 82,
+      "loneliness": 85,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79,
+      "energy": 72,
       "health": 100
     },
     "mood": "calm",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "campfire_front",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 69,
+        "closeness": 70,
         "tension": 91,
         "attraction": 0
       },
@@ -296,7 +296,7 @@
         "attraction": 0
       },
       "panther": {
-        "closeness": 82,
+        "closeness": 83,
         "tension": 0,
         "attraction": 0
       }
@@ -318,18 +318,18 @@
     "color": "#1b1b22",
     "scores": {
       "trust": 29,
-      "openness": 32,
+      "openness": 34,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 76,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79,
+      "energy": 72,
       "health": 100
     },
     "mood": "wary",
     "location": {
-      "waypoint": "fern_hollow",
+      "waypoint": "forest_edge",
       "x": 50,
       "y": 38
     },
@@ -342,11 +342,11 @@
       },
       "wesley": {
         "closeness": 4,
-        "tension": 98,
+        "tension": 99,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 82,
+        "closeness": 83,
         "tension": 0,
         "attraction": 0
       }
