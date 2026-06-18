@@ -5050,5 +5050,110 @@
       }
     ],
     "timestamp": "2026-06-18T07:02:48.231857"
+  },
+  {
+    "day": 11,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "He sat by the rebuilt fire with a cup of hot water, watching Wesley collapse onto the log across from him with the satisfaction of a man who'd done real work.",
+    "thought": "He actually held it. All night.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "content",
+    "timestamp": "2026-06-18T11:32:09.101157"
+  },
+  {
+    "day": 11,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "He eased onto the log across from Chills, every muscle announcing itself; he'd boiled two pots of fish scraps into broth and soaked down the fire-wood pit against the afternoon heat.",
+    "thought": "I'm so tired I could sleep standing.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "satisfied",
+    "timestamp": "2026-06-18T11:32:09.101157"
+  },
+  {
+    "day": 11,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "The ginger cat stretched across the Cayenne hood in the noon sun, utterly content; one ear twitched toward the forest edge where two yellow eyes had begun to surface between the fern fronds.",
+    "thought": "The hidden one watches. Still afraid.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T11:32:09.101157"
+  },
+  {
+    "day": 11,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "It lay in the dense fern hollow, close enough now to catch Mutu's scent on the wind; in full daylight it felt exposed, but the cat's stillness was hypnotic, and it inched forward into the shadow of the bamboo fringe.",
+    "thought": "The orange one is still. No fear.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "watchful",
+    "timestamp": "2026-06-18T11:32:09.101157"
+  },
+  {
+    "day": 11,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At the midday fire, Chills rests easy while Wesley collapses on the log across from him—the shift is quiet and real. Mutu dozes on the Cayenne hood; from the ferns, two yellow eyes track the cat's stillness.",
+    "dialogue": [
+      {
+        "speaker": "chills",
+        "line": "You actually slept?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "No. But the fire didn't die, so that's winning."
+      },
+      {
+        "speaker": "chills",
+        "line": "You held the whole camp alone, Wesley. That matters."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Only because you rested. We both needed to stop falling apart."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. And I notice."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The wood pit is soaked. Fire's stable until the rain."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Today you rest. That's an order."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'll sleep better knowing you're actually watching."
+      }
+    ],
+    "timestamp": "2026-06-18T11:32:09.101157"
   }
 ]

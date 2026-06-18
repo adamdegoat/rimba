@@ -6,16 +6,16 @@
     "color": "#6a994e",
     "scores": {
       "trust": 100,
-      "openness": 95,
+      "openness": 96,
       "ambition": 48,
       "loneliness": 0,
-      "resilience": 98,
+      "resilience": 99,
       "health": 100,
-      "hunger": 56,
+      "hunger": 48,
       "thirst": 53,
-      "energy": 69
+      "energy": 62
     },
-    "mood": "peaceful",
+    "mood": "content",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 88,
-        "tension": 57,
+        "closeness": 90,
+        "tension": 56,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -76,11 +76,6 @@
       {
         "day": 8,
         "text": "Wesley's terrified but he's going. That's what real strength looks like out here.",
-        "weight": 2
-      },
-      {
-        "day": 8,
-        "text": "Wesley sat by the fire and chose to follow me. Really chose.",
         "weight": 2
       },
       {
@@ -127,6 +122,11 @@
         "day": 11,
         "text": "Wesley held the fire all night alone without breaking. I finally rested.",
         "weight": 3
+      },
+      {
+        "day": 11,
+        "text": "Wesley held the whole camp alone without breaking. He actually could do it.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -138,16 +138,16 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 84,
-      "ambition": 85,
+      "openness": 85,
+      "ambition": 86,
       "loneliness": 0,
-      "resilience": 69,
+      "resilience": 71,
       "health": 100,
-      "hunger": 56,
+      "hunger": 48,
       "thirst": 53,
-      "energy": 93
+      "energy": 86
     },
-    "mood": "exhausted",
+    "mood": "satisfied",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -156,12 +156,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 84,
-        "tension": 59,
+        "closeness": 86,
+        "tension": 58,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 37,
+        "closeness": 38,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -228,11 +228,6 @@
         "weight": 2
       },
       {
-        "day": 9,
-        "text": "He didn't fight me taking over. Just let me have it.",
-        "weight": 2
-      },
-      {
         "day": 10,
         "text": "I kept the fire, water, shelter. I actually could do this.",
         "weight": 3
@@ -256,6 +251,11 @@
         "day": 11,
         "text": "I held everything alone last night. Chills finally trusted me with rest.",
         "weight": 3
+      },
+      {
+        "day": 11,
+        "text": "Chills finally said he saw what I did. Finally believed I could.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -270,11 +270,11 @@
       "trust": 71,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 77,
+      "loneliness": 79,
       "resilience": 86,
-      "hunger": 56,
+      "hunger": 48,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "calm",
@@ -291,12 +291,12 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 12,
+        "closeness": 13,
         "tension": 89,
         "attraction": 0
       },
       "panther": {
-        "closeness": 78,
+        "closeness": 79,
         "tension": 0,
         "attraction": 0
       }
@@ -317,19 +317,19 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 28,
+      "trust": 29,
       "openness": 31,
       "ambition": 0,
-      "loneliness": 98,
+      "loneliness": 100,
       "resilience": 76,
-      "hunger": 56,
+      "hunger": 48,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "watchful",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
@@ -346,7 +346,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 78,
+        "closeness": 79,
         "tension": 0,
         "attraction": 0
       }

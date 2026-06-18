@@ -1,24 +1,24 @@
 {
   "day": 11,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-18",
-  "pulse": "Wesley has proven he can hold the camp alone; Chills is learning to let him carry what matters.",
-  "scene": "Chills woke fever-free and found Wesley had held the fire all night alone, exhausted by dawn. They sat together by the flames, and the weight of that care was finally spoken.",
+  "pulse": "Wesley proved he could hold the camp alone; Chills finally acknowledged the gift. Now the easy work is rest and watching the fire hold—but the panther is edging closer in daylight.",
+  "scene": "At the midday fire, Wesley collapsed beside Chills after soaking down the wood pit; the camp was stable, the broth warm, and for the first time in days the two men sat without pressure between them. Mutu dozed on the Cayenne hood. From the ferns beyond, two yellow eyes watched the cat's stillness.",
   "resources_prev": {
-    "food": 64,
-    "water": 76,
-    "wood": 43,
-    "medicine": 13
+    "food": 71,
+    "water": 100,
+    "wood": 42,
+    "medicine": 12
   },
   "structures": [
     {
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 16,
+      "condition": 12,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -27,18 +27,18 @@
     }
   ],
   "resources": {
-    "food": 71,
-    "water": 100,
-    "wood": 42,
+    "food": 68,
+    "water": 90,
+    "wood": 36,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-18:morning",
+  "last_cycle_key": "2026-06-18:midday",
   "cayenne": {
     "stripped": []
   },
