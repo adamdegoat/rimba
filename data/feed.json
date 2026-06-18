@@ -5365,5 +5365,118 @@
       }
     ],
     "timestamp": "2026-06-18T18:32:21.138676"
+  },
+  {
+    "day": 11,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Sits by the fire through the evening, tending the flames with calm patience, watching the forest edge while speaking with Wesley.",
+    "thought": "The cat never fears. That matters.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-18T22:32:51.254849"
+  },
+  {
+    "day": 11,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Settles across the fire from Chills, adrenaline still high, speaking in clipped sentences about the panther and what it means.",
+    "thought": "He's calm. I'm not. How is he so calm?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-18T22:32:51.254849"
+  },
+  {
+    "day": 11,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Rests by the fire, purring softly, occasionally glancing toward the forest where the panther watches.",
+    "thought": "The dark one is close now. No fear.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T22:32:51.254849"
+  },
+  {
+    "day": 11,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Moves to the forest edge as night deepens, drawn by Mutu's warmth and stillness, watching the cat from just beyond the firelight.",
+    "thought": "The orange one is safe. I can stay.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T22:32:51.254849"
+  },
+  {
+    "day": 11,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Sitting by the fire at night, Wesley struggles with fear while Chills speaks calm reason; Mutu rests utterly unbothered as a young panther watches from the ferns—drawn only to the cat.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "That thing was meters from the fire. A leopard."
+      },
+      {
+        "speaker": "chills",
+        "line": "Came for the cat, not for us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's still dangerous. We should do something."
+      },
+      {
+        "speaker": "chills",
+        "line": "We are doing something. Look at Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Mutu's fearless. That doesn't make the cat safe."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. It makes the leopard safe."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How does that logic even work?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Fear makes predators kill. Calm makes them curious."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we just... sit here?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We sit here. We hold the fire."
+      }
+    ],
+    "timestamp": "2026-06-18T22:32:51.254849"
   }
 ]
