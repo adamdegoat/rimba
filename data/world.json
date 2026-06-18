@@ -1,16 +1,16 @@
 {
   "day": 11,
-  "cycle": "midday",
-  "weather": "clear",
+  "cycle": "afternoon",
+  "weather": "humid",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-18",
-  "pulse": "Wesley proved he could hold the camp alone; Chills finally acknowledged the gift. Now the easy work is rest and watching the fire hold—but the panther is edging closer in daylight.",
-  "scene": "At the midday fire, Wesley collapsed beside Chills after soaking down the wood pit; the camp was stable, the broth warm, and for the first time in days the two men sat without pressure between them. Mutu dozed on the Cayenne hood. From the ferns beyond, two yellow eyes watched the cat's stillness.",
+  "pulse": "Wesley learns to sit still for Chills' calm, while the panther finally risks the light for Mutu's steady presence.",
+  "scene": "The black panther stepped into the firelight for the first time, eyes on Mutu; Chills and Wesley sat by the fire, and one man tensed while the other stayed perfectly still.",
   "resources_prev": {
-    "food": 71,
-    "water": 100,
-    "wood": 42,
+    "food": 68,
+    "water": 90,
+    "wood": 36,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire_rebuilt",
       "type": "campfire",
       "level": 1,
-      "condition": 12,
+      "condition": 8,
       "x": 50,
       "y": 55,
       "builder": "",
@@ -27,18 +27,18 @@
     }
   ],
   "resources": {
-    "food": 68,
+    "food": 54,
     "water": 90,
-    "wood": 36,
+    "wood": 34,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 14
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-18:midday",
+  "last_cycle_key": "2026-06-18:afternoon",
   "cayenne": {
     "stripped": []
   },

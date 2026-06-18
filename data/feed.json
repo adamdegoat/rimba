@@ -5155,5 +5155,110 @@
       }
     ],
     "timestamp": "2026-06-18T11:32:09.101157"
+  },
+  {
+    "day": 11,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "He tends the fire with steady hands, feeding dry wood into the embers while keeping watch on the camp's edges.",
+    "thought": "The cat knows something I don't. Yet.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "content",
+    "timestamp": "2026-06-18T15:03:31.398576"
+  },
+  {
+    "day": 11,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "He sits across from Chills, exhaustion finally catching up to him, eyes tracking the ferns beyond the firelight.",
+    "thought": "That shape. That moving shape. Is it...",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-18T15:03:31.398576"
+  },
+  {
+    "day": 11,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "The cat lies unmoving on the Cayenne hood, ears relaxed, watching the ferns with absolute calm.",
+    "thought": "It comes. Safe. Still.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-18T15:03:31.398576"
+  },
+  {
+    "day": 11,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "The young leopard emerges from the ferns into the clearing's edge, body low but moving steadily toward Mutu's stillness.",
+    "thought": "The orange one waits. I am not afraid.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-18T15:03:31.398576"
+  },
+  {
+    "day": 11,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the fire, Chills tends the embers as a black shape emerges from the ferns—the panther, drawn to Mutu at last, and Wesley's breath catches while Chills stays calm.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Chills. There. In the ferns—is that—"
+      },
+      {
+        "speaker": "chills",
+        "line": "Panther. Young one. Been coming back for days."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's a PREDATOR. We should do something."
+      },
+      {
+        "speaker": "chills",
+        "line": "Sit still. Don't look at it directly."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How is that a plan?"
+      },
+      {
+        "speaker": "chills",
+        "line": "The cat isn't afraid. That tells me something."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's getting closer. God, it's getting closer."
+      },
+      {
+        "speaker": "chills",
+        "line": "To Mutu. Not to us."
+      }
+    ],
+    "timestamp": "2026-06-18T15:03:31.398576"
   }
 ]
