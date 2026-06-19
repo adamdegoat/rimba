@@ -1,15 +1,15 @@
 {
   "day": 12,
-  "cycle": "midday",
+  "cycle": "afternoon",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-19",
-  "pulse": "Wesley sees that Chills was right about Mutu — but peace with the panther doesn't come easy.",
-  "scene": "At the midday fire, Wesley still wrestled with the panther from the night before; Chills ate calmly while Mutu rested unbothered between them, the black shape closer at the ferns now.",
+  "pulse": "Wesley stops running. Chills stays calm. The panther—lonely and wild—finds something it didn't know it was searching for.",
+  "scene": "At the afternoon fire, Wesley tracked the dark shape circling the clearing's rim while Chills breathed easy beside him and Mutu purred, utterly unbothered. The panther had crept closer than ever, wary but drawn.",
   "resources_prev": {
-    "food": 52,
-    "water": 83,
+    "food": 39,
+    "water": 90,
     "wood": 34,
     "medicine": 12
   },
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 92,
+      "condition": 88,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 39,
+    "food": 52,
     "water": 90,
-    "wood": 34,
+    "wood": 33,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 2
+    "fuel": 6
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-19:midday",
+  "last_cycle_key": "2026-06-19:afternoon",
   "cayenne": {
     "stripped": []
   },

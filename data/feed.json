@@ -5688,5 +5688,124 @@
       }
     ],
     "timestamp": "2026-06-19T11:31:51.992173"
+  },
+  {
+    "day": 12,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Sits steady at the fire's left edge, arms loose, watching Wesley track the panther's approach without flinching.",
+    "thought": "He'll face it if I don't move.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-19T15:02:10.007795"
+  },
+  {
+    "day": 12,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Tenses by the fire, eyes locked on the black shape edging from the ferns, hands gripping the log's rough edge.",
+    "thought": "It's closer now. Why isn't Chills reacting?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-19T15:02:10.007795"
+  },
+  {
+    "day": 12,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Rests between the two men at the fire's center, ears alert, utterly unbothered as the panther's eyes find her across the clearing.",
+    "thought": "The dark one fears. The orange one is safe.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-19T15:02:10.007795"
+  },
+  {
+    "day": 12,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Creeps from the ferns in slow, careful steps, belly low, eyes locked only on the orange cat—not the men, never the men.",
+    "thought": "Dark ones stay. Orange one draws me.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-19T15:02:10.007795"
+  },
+  {
+    "day": 12,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills",
+      "mutu",
+      "panther"
+    ],
+    "description": "Wesley finally faces the panther instead of running—Chills steady at his side, Mutu unbothered between them, the wild thing edging closer with eyes only for the cat.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's been watching for an hour. Why doesn't it leave?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It won't. Look where its eyes are."
+      },
+      {
+        "speaker": "mutu",
+        "line": "Shifts, ears flick, resting calm between them."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's a predator, Chills. We can't ignore it."
+      },
+      {
+        "speaker": "chills",
+        "line": "We're not. We're sitting with it, like you're afraid to do."
+      },
+      {
+        "speaker": "panther",
+        "line": "Inches two feet closer, eyes only on the orange cat, never the men."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What if it lunges?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It came for the cat, not us. It's just not alone anymore."
+      },
+      {
+        "speaker": "mutu",
+        "line": "Tail curls around the panther's shoulder as it settles."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're terrifyingly calm about this."
+      },
+      {
+        "speaker": "chills",
+        "line": "One of us had to be."
+      }
+    ],
+    "timestamp": "2026-06-19T15:02:10.007795"
   }
 ]

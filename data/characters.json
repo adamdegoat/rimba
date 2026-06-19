@@ -7,13 +7,13 @@
     "scores": {
       "trust": 100,
       "openness": 99,
-      "ambition": 48,
+      "ambition": 49,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 68
+      "energy": 61
     },
     "mood": "calm",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 50,
+        "tension": 48,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -66,11 +66,6 @@
       {
         "day": 8,
         "text": "Wesley pushed to move, but listened when I said no.",
-        "weight": 2
-      },
-      {
-        "day": 8,
-        "text": "Wesley chose to move deeper despite the fear. Trusts my call.",
         "weight": 2
       },
       {
@@ -127,6 +122,11 @@
         "day": 11,
         "text": "The panther came for the cat. Mutu showed no fear. That changes everything.",
         "weight": 2
+      },
+      {
+        "day": 12,
+        "text": "Wesley faced it. Shaking, but he sat. Didn't run.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -138,14 +138,14 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 86,
+      "openness": 88,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 76,
+      "resilience": 78,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86
+      "energy": 79
     },
     "mood": "anxious",
     "location": {
@@ -156,12 +156,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 96,
-        "tension": 52,
+        "closeness": 97,
+        "tension": 50,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 40,
+        "closeness": 41,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -233,11 +233,6 @@
         "weight": 3
       },
       {
-        "day": 10,
-        "text": "Chills believes I can do this. I won't let him down.",
-        "weight": 2
-      },
-      {
         "day": 11,
         "text": "I held everything alone last night. Chills finally trusted me with rest.",
         "weight": 3
@@ -256,6 +251,11 @@
         "day": 12,
         "text": "Chills keeps pointing to Mutu when I'm afraid. The cat is the actual guide.",
         "weight": 2
+      },
+      {
+        "day": 12,
+        "text": "Chills held the line while I fell apart. He just waited.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -267,14 +267,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 74,
+      "trust": 75,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 91,
+      "loneliness": 87,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
     "mood": "calm",
@@ -291,12 +291,12 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 17,
-        "tension": 87,
+        "closeness": 18,
+        "tension": 86,
         "attraction": 0
       },
       "panther": {
-        "closeness": 87,
+        "closeness": 90,
         "tension": 0,
         "attraction": 0
       }
@@ -317,14 +317,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 33,
-      "openness": 37,
+      "trust": 34,
+      "openness": 39,
       "ambition": 0,
-      "loneliness": 100,
-      "resilience": 77,
-      "hunger": 53,
+      "loneliness": 98,
+      "resilience": 78,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
     "mood": "wary",
@@ -337,16 +337,16 @@
     "relationships": {
       "chills": {
         "closeness": 8,
-        "tension": 93,
+        "tension": 91,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 6,
-        "tension": 96,
+        "closeness": 8,
+        "tension": 92,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 87,
+        "closeness": 90,
         "tension": 0,
         "attraction": 0
       }
@@ -388,6 +388,11 @@
       {
         "day": 11,
         "text": "The orange one let me closer. The dark ones stayed still. Safe now.",
+        "weight": 2
+      },
+      {
+        "day": 12,
+        "text": "The dark ones stayed still. I crept closer. Safe now.",
         "weight": 2
       }
     ]
