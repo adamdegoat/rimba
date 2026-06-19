@@ -1,35 +1,28 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-19",
+    "id": "2026-06-20",
     "closes": "tonight",
-    "question": "Wesley's hands won't stop shaking. Should Chills move closer... or wait?",
+    "question": "The panther's resting ten feet from Mutu. Wesley's breathing finally slowed. Does Chills trust this peace enough to sleep—or stay awake, holding the line until dawn?",
     "options": [
       {
-        "id": "move_closer",
-        "label": "Move closer",
-        "desc": "Hold each other steady. Their bond is shelter."
+        "id": "sleep_trust",
+        "label": "Sleep in shifts",
+        "desc": "Mutu held the dark still. That's enough. Rest now."
       },
       {
-        "id": "sit_still",
-        "label": "Sit still",
-        "desc": "Witness him. Let Wesley's tremor matter, become his anchor."
-      },
-      {
-        "id": "follow_mutu",
-        "label": "Watch Mutu's way",
-        "desc": "The cat has no fear. What if stillness is gravity?"
+        "id": "stay_watch",
+        "label": "One stays awake",
+        "desc": "Vigilance is the boundary. Someone has to hold it through the night."
       }
     ]
   },
   "in_play": {
-    "id": "face_together",
-    "label": "Face it together",
-    "desc": "Pull Mutu in. Stay awake as three. The panther meets all of you.",
-    "decided": "2026-06-19",
-    "votes": 1,
-    "tally": {
-      "face_together": 1
-    }
+    "id": "move_closer",
+    "label": "Move closer",
+    "desc": "Hold each other steady. Their bond is shelter.",
+    "decided": "2026-06-20",
+    "votes": 0,
+    "tally": {}
   }
 }

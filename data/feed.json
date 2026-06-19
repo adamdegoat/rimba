@@ -6017,5 +6017,110 @@
       }
     ],
     "timestamp": "2026-06-19T22:33:39.167800"
+  },
+  {
+    "day": 13,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Feeds the fire steady at dawn, watching the forest calm now, exhausted but unshaken",
+    "thought": "We didn't break. That matters.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-20T07:02:29.453059"
+  },
+  {
+    "day": 13,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Sits stiff beside the fire, muscles aching from tension, watching Chills work and the ferns",
+    "thought": "I stood still. That actually mattered.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "exhausted",
+    "timestamp": "2026-06-20T07:02:29.453059"
+  },
+  {
+    "day": 13,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stretches and pads between the two men, utterly unbothered, then pauses to gaze at the ferns",
+    "thought": "Dark one close. Safe now.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-20T07:02:29.453059"
+  },
+  {
+    "day": 13,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Emerges slightly from the ferns, closer than before, watching only Mutu while the men watch back",
+    "thought": "Orange still. Dark ones still. Close now.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-20T07:02:29.453059"
+  },
+  {
+    "day": 13,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "They held all night while the panther circled the fire; at dawn Chills feeds the flames while Wesley sits close beside him, both finally understanding what holding together means.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You sleep?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Some. You?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Barely. Kept thinking it would—"
+      },
+      {
+        "speaker": "chills",
+        "line": "But it didn't. We held."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I wasn't sure I could."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's why it matters now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "We held together."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. We did."
+      }
+    ],
+    "timestamp": "2026-06-20T07:02:29.453059"
   }
 ]

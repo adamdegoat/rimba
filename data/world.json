@@ -1,16 +1,16 @@
 {
-  "day": 12,
-  "cycle": "night",
+  "day": 13,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-19",
-  "pulse": "Wesley holds his ground as the panther creeps closer — and discovers that staying still is its own kind of courage.",
-  "scene": "The panther crept toward the fire as Wesley held his ground and Chills kept the flames steady, Mutu between them. By night's end, all three sat watch while the wild thing watched from the ferns.",
+  "last_run_date": "2026-06-20",
+  "pulse": "They held all night without breaking, and now the bond feels like shelter.",
+  "scene": "They held all night while the panther circled the fire; at dawn Chills feeds the flames while Wesley sits close beside him, both finally understanding what holding together means.",
   "resources_prev": {
-    "food": 39,
-    "water": 90,
-    "wood": 31,
+    "food": 55,
+    "water": 100,
+    "wood": 30,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 80,
+      "condition": 76,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 55,
-    "water": 100,
-    "wood": 30,
+    "food": 43,
+    "water": 83,
+    "wood": 24,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 14
+    "fuel": 18
   },
-  "camp_climate": "steady",
+  "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-19:night",
+  "last_cycle_key": "2026-06-20:morning",
   "cayenne": {
     "stripped": []
   },
@@ -61,8 +61,8 @@
     "12": "Day 12: the panther crept close enough to touch firelight as Wesley stopped running and Chills held ground with Mutu between them. The wild thing was terrified of the men but drawn to the cat. By nightfall they understood the answer to fear: stay still and let it come."
   },
   "lean": {
-    "id": "face_together",
-    "label": "Face it together",
-    "desc": "Pull Mutu in. Stay awake as three. The panther meets all of you."
+    "id": "move_closer",
+    "label": "Move closer",
+    "desc": "Hold each other steady. Their bond is shelter."
   }
 }
