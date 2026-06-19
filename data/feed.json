@@ -5912,5 +5912,110 @@
       }
     ],
     "timestamp": "2026-06-19T18:32:17.756611"
+  },
+  {
+    "day": 12,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Feeds the fire steadily with practiced hands, eyes tracking the dark shape at the ferns, utterly still otherwise.",
+    "thought": "Testing. Needs to know we won't run.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-19T22:33:39.167800"
+  },
+  {
+    "day": 12,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Sits rigid by the fire, hands clenched against his thighs, watching the panther with every muscle coiled.",
+    "thought": "It moves any second now and I—",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "tense",
+    "timestamp": "2026-06-19T22:33:39.167800"
+  },
+  {
+    "day": 12,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Lies between them at the fire's edge, utterly unbothered, occasionally glancing at the dark shape without a flicker of alarm.",
+    "thought": "The dark one's breath is slower now. Good.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-19T22:33:39.167800"
+  },
+  {
+    "day": 12,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Creeps from the ferns' edge with belly low, eyes only for the orange cat, muscles coiled but no aggression—just presence, testing.",
+    "thought": "Orange still. Dark ones still. I can stay.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-19T22:33:39.167800"
+  },
+  {
+    "day": 12,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "The panther crept closer to Mutu's stillness as Wesley forced himself not to flinch and Chills kept the fire steady—neither man moving, finally understanding that staying is its own answer.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's going to do something. Why aren't you moving?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Because moving is what it fears. Watch how it's looking at Mutu, not us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not reassuring. It's a predator."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. And we're not prey. We're just... here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Mutu doesn't understand that's dangerous."
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu understands more than you think. See how calm he is?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "He's a cat. He doesn't have a choice."
+      },
+      {
+        "speaker": "chills",
+        "line": "Neither do we now. Might as well do it without flinching."
+      }
+    ],
+    "timestamp": "2026-06-19T22:33:39.167800"
   }
 ]

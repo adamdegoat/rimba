@@ -1,16 +1,16 @@
 {
   "day": 12,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-19",
-  "pulse": "Wesley is learning to sit with fear instead of running; Chills holds steady, and Mutu is the bridge they all need.",
-  "scene": "Wesley sat by the fire facing the panther's eyes from the ferns instead of fleeing — Chills kept the flames steady, Mutu rested between them utterly unconcerned, and the black shape crept closer with each breath.",
+  "pulse": "Wesley holds his ground as the panther creeps closer — and discovers that staying still is its own kind of courage.",
+  "scene": "The panther crept toward the fire as Wesley held his ground and Chills kept the flames steady, Mutu between them. By night's end, all three sat watch while the wild thing watched from the ferns.",
   "resources_prev": {
-    "food": 52,
+    "food": 39,
     "water": 90,
-    "wood": 33,
+    "wood": 31,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 84,
+      "condition": 80,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 39,
-    "water": 90,
-    "wood": 31,
+    "food": 55,
+    "water": 100,
+    "wood": 30,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 14
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-19:evening",
+  "last_cycle_key": "2026-06-19:night",
   "cayenne": {
     "stripped": []
   },
@@ -57,7 +57,8 @@
     "8": "Day 8 was the breaking point: Chills' fever broke, but hunger and exhaustion pushed them both to their limits. By afternoon Wesley wanted to flee that night, but Chills held firm on dawn. As evening fell and the panther drew closer to Mutu, both men accepted the dawn departure—terrified but committed.",
     "9": "Day 9 cracked Chills' composure — fever hit hard, and by midday he couldn't walk. Wesley stepped up alone for the first time, carrying the fire, water, and weight of the camp. By nightfall his fever broke, and they sat together in a quiet that tasted like respect.",
     "10": "Day 10 marked the moment Wesley truly believed he could do this—he caught three fish, kept the fire steady, and by nightfall Chills finally surrendered to complete rest, fever broken, trusting him fully. The panther edged closer too, drawn wordlessly to Mutu's unshakeable calm, finding its own strange peace at the clearing's edge.",
-    "11": "The panther emerged fully on Day 11, young and drawn to Mutu alone, and Wesley's fear collided with Chills' calm by the fire. By nightfall, they understood: the leopard wasn't hunting them, but seeking companionship with the cat—and in that truth, Wesley's panic began to settle."
+    "11": "The panther emerged fully on Day 11, young and drawn to Mutu alone, and Wesley's fear collided with Chills' calm by the fire. By nightfall, they understood: the leopard wasn't hunting them, but seeking companionship with the cat—and in that truth, Wesley's panic began to settle.",
+    "12": "Day 12: the panther crept close enough to touch firelight as Wesley stopped running and Chills held ground with Mutu between them. The wild thing was terrified of the men but drawn to the cat. By nightfall they understood the answer to fear: stay still and let it come."
   },
   "lean": {
     "id": "face_together",
