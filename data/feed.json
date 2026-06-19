@@ -5807,5 +5807,110 @@
       }
     ],
     "timestamp": "2026-06-19T15:02:10.007795"
+  },
+  {
+    "day": 12,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Feeds the fire with dry wood, eyes tracking the panther's shape in the ferns, steady and unsurprised.",
+    "thought": "He's finally sitting. That's all he needed.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-19T18:32:17.756611"
+  },
+  {
+    "day": 12,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Sits across the fire, watching the panther's dark eyes from the ferns, no longer looking away.",
+    "thought": "It's here for Mutu. Not because of me.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "determined",
+    "timestamp": "2026-06-19T18:32:17.756611"
+  },
+  {
+    "day": 12,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Settles between the two men at the fire, purring softly, utterly at ease.",
+    "thought": "They're both calm now. Finally.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-19T18:32:17.756611"
+  },
+  {
+    "day": 12,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "Creeps from the ferns' edge toward the firelight, black fur barely visible, eyes fixed on the orange cat.",
+    "thought": "Safe here now. With the orange one.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-19T18:32:17.756611"
+  },
+  {
+    "day": 12,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "As dusk falls, Wesley faces the panther from the fire instead of running — Chills holding the flames steady, Mutu calm between them, the dark shape creeping from the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's closer now. You see it?"
+      },
+      {
+        "speaker": "chills",
+        "line": "I see it. It's just watching."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Watching what?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu. Always Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we just... sit?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We sit. We stay quiet. Don't run."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'm not running. Not anymore."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. You're still here."
+      }
+    ],
+    "timestamp": "2026-06-19T18:32:17.756611"
   }
 ]

@@ -1,16 +1,16 @@
 {
   "day": 12,
-  "cycle": "afternoon",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-19",
-  "pulse": "Wesley stops running. Chills stays calm. The panther—lonely and wild—finds something it didn't know it was searching for.",
-  "scene": "At the afternoon fire, Wesley tracked the dark shape circling the clearing's rim while Chills breathed easy beside him and Mutu purred, utterly unbothered. The panther had crept closer than ever, wary but drawn.",
+  "pulse": "Wesley is learning to sit with fear instead of running; Chills holds steady, and Mutu is the bridge they all need.",
+  "scene": "Wesley sat by the fire facing the panther's eyes from the ferns instead of fleeing — Chills kept the flames steady, Mutu rested between them utterly unconcerned, and the black shape crept closer with each breath.",
   "resources_prev": {
-    "food": 39,
+    "food": 52,
     "water": 90,
-    "wood": 34,
+    "wood": 33,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 88,
+      "condition": 84,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 52,
+    "food": 39,
     "water": 90,
-    "wood": 33,
+    "wood": 31,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-19:afternoon",
+  "last_cycle_key": "2026-06-19:evening",
   "cayenne": {
     "stripped": []
   },
