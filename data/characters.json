@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 75
+      "energy": 68
     },
     "mood": "calm",
     "location": {
@@ -24,8 +24,8 @@
     "shelter": "lean_to",
     "relationships": {
       "wesley": {
-        "closeness": 98,
-        "tension": 51,
+        "closeness": 100,
+        "tension": 50,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -138,14 +138,14 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 85,
+      "openness": 86,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 75,
+      "resilience": 76,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 93
+      "energy": 86
     },
     "mood": "anxious",
     "location": {
@@ -156,12 +156,12 @@
     "shelter": "cayenne",
     "relationships": {
       "chills": {
-        "closeness": 94,
-        "tension": 53,
+        "closeness": 96,
+        "tension": 52,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 39,
+        "closeness": 40,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -238,11 +238,6 @@
         "weight": 2
       },
       {
-        "day": 10,
-        "text": "I held it all alone and kept us steady.",
-        "weight": 2
-      },
-      {
         "day": 11,
         "text": "I held everything alone last night. Chills finally trusted me with rest.",
         "weight": 3
@@ -255,6 +250,11 @@
       {
         "day": 11,
         "text": "I froze when the panther came. Chills held steady. I needed him to.",
+        "weight": 2
+      },
+      {
+        "day": 12,
+        "text": "Chills keeps pointing to Mutu when I'm afraid. The cat is the actual guide.",
         "weight": 2
       }
     ],
@@ -270,11 +270,11 @@
       "trust": 74,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 88,
+      "loneliness": 91,
       "resilience": 86,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "calm",
@@ -291,12 +291,12 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 16,
-        "tension": 88,
+        "closeness": 17,
+        "tension": 87,
         "attraction": 0
       },
       "panther": {
-        "closeness": 86,
+        "closeness": 87,
         "tension": 0,
         "attraction": 0
       }
@@ -317,14 +317,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 32,
-      "openness": 36,
+      "trust": 33,
+      "openness": 37,
       "ambition": 0,
       "loneliness": 100,
-      "resilience": 76,
-      "hunger": 45,
+      "resilience": 77,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "wary",
@@ -337,16 +337,16 @@
     "relationships": {
       "chills": {
         "closeness": 8,
-        "tension": 94,
+        "tension": 93,
         "attraction": 0
       },
       "wesley": {
         "closeness": 6,
-        "tension": 98,
+        "tension": 96,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 86,
+        "closeness": 87,
         "tension": 0,
         "attraction": 0
       }

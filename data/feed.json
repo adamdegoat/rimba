@@ -5583,5 +5583,110 @@
       }
     ],
     "timestamp": "2026-06-19T07:02:36.284180"
+  },
+  {
+    "day": 12,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Sits by the fire with a piece of cooked fish in hand, eating steadily and watching the green margins of the camp with an easy gaze.",
+    "thought": "Mutu's calm is the compass here.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-19T11:31:51.992173"
+  },
+  {
+    "day": 12,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Crouches at the fire's edge, turning a piece of cooked fish over in his hands, unable to eat while his eyes keep returning to the ferns beyond the clearing.",
+    "thought": "Why am I the only one afraid?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-19T11:31:51.992173"
+  },
+  {
+    "day": 12,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Lies stretched in a patch of sun at the fire's edge, one eye cracked open with feline indifference, utterly unbothered by the tension in the air.",
+    "thought": "The dark one stays close. All safe.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-19T11:31:51.992173"
+  },
+  {
+    "day": 12,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Watches from the deeper ferns at the clearing's edge, closer than the night before, drawn by the small cat's presence and the scent of cooked fish.",
+    "thought": "Closer now. The orange one does not fear.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-19T11:31:51.992173"
+  },
+  {
+    "day": 12,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the midday fire, Wesley still wrestled with the panther from the night before; Chills ate calmly while Mutu rested unbothered between them, the black shape closer at the ferns now.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It stayed all night just watching. Will it come back?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Probably. But look at Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The cat doesn't understand it's dangerous."
+      },
+      {
+        "speaker": "chills",
+        "line": "Or maybe Mutu understands we're not. He doesn't fear it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "This is crazy. We can't just accept a panther in camp."
+      },
+      {
+        "speaker": "chills",
+        "line": "Why not? The panther chose Mutu. That's all the answer we need."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'm still afraid. That has to mean something."
+      },
+      {
+        "speaker": "chills",
+        "line": "It means you're learning. Mutu learned faster, that's all."
+      }
+    ],
+    "timestamp": "2026-06-19T11:31:51.992173"
   }
 ]
