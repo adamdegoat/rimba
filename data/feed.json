@@ -6332,5 +6332,110 @@
       }
     ],
     "timestamp": "2026-06-20T18:32:07.528208"
+  },
+  {
+    "day": 13,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Feeds the fire one last time, then settles shoulder-to-shoulder with Wesley, Mutu warm between them.",
+    "thought": "We held each other. Now we rest.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-20T22:34:00.362508"
+  },
+  {
+    "day": 13,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Sits close beside Chills by the fire, his body finally at ease, Mutu purring between them.",
+    "thought": "I can finally rest without fear.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "peaceful",
+    "timestamp": "2026-06-20T22:34:00.362508"
+  },
+  {
+    "day": 13,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Purrs softly between Chills and Wesley, all the camp's fear finally dissolved into the warm night.",
+    "thought": "Safe now. Dark ones hold. I rest.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-20T22:34:00.362508"
+  },
+  {
+    "day": 13,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Settles in the ferns at the clearing's edge, watching the three by the fire, finally still instead of circling.",
+    "thought": "They held still. All safe now.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-20T22:34:00.362508"
+  },
+  {
+    "day": 13,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "With the panther finally still in the ferns, Chills and Wesley sit close by the fire, Mutu curled between them, and sleep comes easy for the first time.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I was going to run. When it circled."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know you were."
+      },
+      {
+        "speaker": "wesley",
+        "line": "But I didn't."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. You held steady."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Because you were holding the fire. I couldn't—"
+      },
+      {
+        "speaker": "chills",
+        "line": "We held each other. That's all."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Is that enough?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It's everything."
+      }
+    ],
+    "timestamp": "2026-06-20T22:34:00.362508"
   }
 ]

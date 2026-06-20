@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 67
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 100
     },
     "mood": "calm",
     "location": {
@@ -25,11 +25,11 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 40,
+        "tension": 37,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 92,
+        "closeness": 93,
         "tension": 0,
         "attraction": 0
       }
@@ -84,11 +84,6 @@
         "weight": 3
       },
       {
-        "day": 10,
-        "text": "Wesley goes out alone now. I trust him completely.",
-        "weight": 2
-      },
-      {
         "day": 11,
         "text": "Wesley held the fire all night alone without breaking. I finally rested.",
         "weight": 3
@@ -125,6 +120,11 @@
       },
       {
         "day": 13,
+        "text": "Wesley admitted his fear but held steady. I trust him completely now.",
+        "weight": 3
+      },
+      {
+        "day": 13,
         "text": "He sat close all evening without moving away.",
         "weight": 2
       }
@@ -138,16 +138,16 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 92,
+      "openness": 93,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 87,
+      "resilience": 89,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 79
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 100
     },
-    "mood": "steady",
+    "mood": "peaceful",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 42,
+        "tension": 39,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 44,
+        "closeness": 46,
         "tension": 0,
         "attraction": 0
       }
@@ -243,13 +243,13 @@
         "weight": 2
       },
       {
-        "day": 12,
-        "text": "Chills held the line while I fell apart. He just waited.",
-        "weight": 2
+        "day": 13,
+        "text": "I held still while it circled. My fear didn't break me.",
+        "weight": 3
       },
       {
         "day": 13,
-        "text": "I held still while it circled. My fear didn't break me.",
+        "text": "I told him I wanted to run. He sat close, held line with me.",
         "weight": 3
       },
       {
@@ -272,9 +272,9 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 79,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 100,
       "health": 100
     },
     "mood": "content",
@@ -286,13 +286,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 75,
-        "tension": 88,
+        "closeness": 78,
+        "tension": 85,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 23,
-        "tension": 82,
+        "closeness": 27,
+        "tension": 79,
         "attraction": 0
       },
       "panther": {
@@ -308,7 +308,8 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null
+    "interaction": null,
+    "memories": []
   },
   "panther": {
     "name": "",
@@ -317,17 +318,17 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 41,
-      "openness": 44,
+      "trust": 43,
+      "openness": 45,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 79,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 100,
       "health": 100
     },
-    "mood": "watchful",
+    "mood": "calm",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -336,13 +337,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 13,
-        "tension": 86,
+        "closeness": 15,
+        "tension": 84,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 12,
-        "tension": 85,
+        "closeness": 14,
+        "tension": 82,
         "attraction": 0
       },
       "mutu": {
@@ -403,6 +404,11 @@
       {
         "day": 13,
         "text": "Dark ones stayed still all night. Orange one is safety.",
+        "weight": 2
+      },
+      {
+        "day": 13,
+        "text": "They held still all night. The orange one and dark ones. Safe now.",
         "weight": 2
       }
     ]
