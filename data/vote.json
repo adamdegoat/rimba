@@ -1,27 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-20",
+    "id": "2026-06-21",
     "closes": "tonight",
-    "question": "The panther's resting ten feet from Mutu. Wesley's breathing finally slowed. Does Chills trust this peace enough to sleep—or stay awake, holding the line until dawn?",
+    "question": "Chills and Wesley sit close with Mutu between them, finally safe. Day 14. The panther watches from the ferns. **Should they risk the river crossing now, or rest here whil",
     "options": [
       {
-        "id": "sleep_trust",
-        "label": "Sleep in shifts",
-        "desc": "Mutu held the dark still. That's enough. Rest now."
+        "id": "cross_now",
+        "label": "Cross the river",
+        "desc": "Move toward rescue. The panther is calm. Their bond holds strong."
       },
       {
-        "id": "stay_watch",
-        "label": "One stays awake",
-        "desc": "Vigilance is the boundary. Someone has to hold it through the night."
+        "id": "rest_camp",
+        "label": "Rest here",
+        "desc": "One more day of safety. Let them recover fully."
+      },
+      {
+        "id": "scout_decide",
+        "label": "Scout today, move tomorrow",
+        "desc": "Gather strength. Make the crossing by dawn."
       }
     ]
   },
   "in_play": {
-    "id": "move_closer",
-    "label": "Move closer",
-    "desc": "Hold each other steady. Their bond is shelter.",
-    "decided": "2026-06-20",
+    "id": "sleep_trust",
+    "label": "Sleep in shifts",
+    "desc": "Mutu held the dark still. That's enough. Rest now.",
+    "decided": "2026-06-21",
     "votes": 0,
     "tally": {}
   }

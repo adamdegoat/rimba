@@ -1,96 +1,6 @@
 [
   {
     "day": 1,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "Emerges from the lean-to into humid morning heat and walks toward the Cayenne when he hears Wesley's distressed voice.",
-    "thought": "Panic costs water. Now we adapt.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "alert",
-    "timestamp": "2026-06-08T11:35:01.438405"
-  },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "Crouches by the Cayenne's cracked radiator, seeing the pooled coolant and engine oil, and realizes the water jug sits in the contamination.",
-    "thought": "Just wasted our water on day one.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "panicked",
-    "timestamp": "2026-06-08T11:35:01.438405"
-  },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "Sits on the Cayenne's roof, tail curled, watching the two humans move below with cool feline assessment.",
-    "thought": "They worry over water. I hunt.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-08T11:35:01.438405"
-  },
-  {
-    "day": 1,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the Cayenne's hood, Wesley explains the cracked radiator and fouled water as Chills arrives to assess the damage.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "The radiator's cracked. Oil everywhere. I knocked the water in—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Into the pooled oil?"
-      },
-      {
-        "speaker": "wesley",
-        "line": "Yeah. I was checking the crankshaft, I—I wasn't thinking—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Okay. We gather from the river. Fresh water. You come."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I fouled our water on day one. This is bad."
-      },
-      {
-        "speaker": "chills",
-        "line": "Which is why we filter and boil. This teaches us both."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Not what I wanted to learn."
-      },
-      {
-        "speaker": "chills",
-        "line": "Come on. Let's move."
-      }
-    ],
-    "timestamp": "2026-06-08T11:35:01.438405"
-  },
-  {
-    "day": 1,
     "cycle": "midday",
     "character": "chills",
     "action": "Knelt at the dead campfire, running his hands over the sodden wood and looking toward the river, jaw set.",
@@ -6437,5 +6347,110 @@
       }
     ],
     "timestamp": "2026-06-20T22:34:00.362508"
+  },
+  {
+    "day": 14,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "He stirs first, checks the fire, and scans the tree line with the easy assurance of someone who has survived the night.",
+    "thought": "We held still. Now we finally rest.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "peaceful",
+    "timestamp": "2026-06-21T07:04:11.016140"
+  },
+  {
+    "day": 14,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "He wakes slowly, stiff but not panicked, and listens for the sound that haunted three nights — finding only jungle quiet and Mutu's steady warmth.",
+    "thought": "It's gone. We're actually safe now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-21T07:04:11.016140"
+  },
+  {
+    "day": 14,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "The ginger cat stretches between them, uncurling from his vigil, and pads over to the fire's edge to watch the morning smoke rise.",
+    "thought": "Dark ones safe. Rest now. Good.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-21T07:04:11.016140"
+  },
+  {
+    "day": 14,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Deep in the ferns at the forest's edge, the young black leopard lies curled and finally still, its ribs no longer heaving with tension, breathing the morning air with the first real peace it has known in months.",
+    "thought": "Dark ones still. Safe. Sleep now.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-21T07:04:11.016140"
+  },
+  {
+    "day": 14,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "They woke after the first true sleep in days, Mutu warm between them by the fire; the panther had retreated to the forest edge, giving them space.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I don't hear it anymore."
+      },
+      {
+        "speaker": "chills",
+        "line": "Because it's not hunting us. It understood."
+      },
+      {
+        "speaker": "wesley",
+        "line": "How are you so sure?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu's calm. And we're still here. That's the proof."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Should we go look for it?"
+      },
+      {
+        "speaker": "chills",
+        "line": "No. Leave it be. Give it space to trust us back."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Trust a panther. Right."
+      },
+      {
+        "speaker": "chills",
+        "line": "We just did. And we're both here to tell it."
+      }
+    ],
+    "timestamp": "2026-06-21T07:04:11.016140"
   }
 ]

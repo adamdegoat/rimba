@@ -1,16 +1,16 @@
 {
-  "day": 13,
-  "cycle": "night",
+  "day": 14,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-20",
-  "pulse": "After the long night, Chills and Wesley are no longer separate—they are each other's shelter now.",
-  "scene": "By nightfall, Chills and Wesley sat close by the fire with Mutu between them; the panther rested at the fern's edge, no longer circling. They slept without fear for the first time.",
+  "last_run_date": "2026-06-21",
+  "pulse": "They held the line and survived; now the panther's retreat leaves them in an unfamiliar stillness neither fully trusts.",
+  "scene": "They woke after the first true sleep in days, Mutu warm between them by the fire; the panther had retreated to the forest edge, giving them space.",
   "resources_prev": {
-    "food": 41,
-    "water": 90,
-    "wood": 23,
+    "food": 56,
+    "water": 100,
+    "wood": 22,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 64,
+      "condition": 60,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 56,
-    "water": 100,
-    "wood": 22,
+    "food": 40,
+    "water": 83,
+    "wood": 19,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 12
+    "fuel": 16
   },
   "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-20:night",
+  "last_cycle_key": "2026-06-21:morning",
   "cayenne": {
     "stripped": []
   },
@@ -62,8 +62,8 @@
     "13": "Day 13 was the breaking point—a panther circled the fire all night while Chills and Wesley held still, neither breaking. By dawn they understood they are each other's shelter. By nightfall they slept together by the fire, and the wild cat watched from the ferns, finally calm."
   },
   "lean": {
-    "id": "move_closer",
-    "label": "Move closer",
-    "desc": "Hold each other steady. Their bond is shelter."
+    "id": "sleep_trust",
+    "label": "Sleep in shifts",
+    "desc": "Mutu held the dark still. That's enough. Rest now."
   }
 }
