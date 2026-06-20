@@ -1,16 +1,16 @@
 {
   "day": 13,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-20",
-  "pulse": "They held all night without breaking, and now the bond feels like shelter.",
-  "scene": "They held all night while the panther circled the fire; at dawn Chills feeds the flames while Wesley sits close beside him, both finally understanding what holding together means.",
+  "pulse": "The night broke something loose between them — a quiet understanding that holding together is the only answer that works.",
+  "scene": "The panther circled them all night and they held still; by midday they remain close at the fire, hands trembling, food untouched.",
   "resources_prev": {
-    "food": 55,
-    "water": 100,
-    "wood": 30,
+    "food": 43,
+    "water": 83,
+    "wood": 24,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 76,
+      "condition": 72,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 43,
-    "water": 83,
-    "wood": 24,
+    "food": 53,
+    "water": 90,
+    "wood": 27,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 18
+    "fuel": 4
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-20:morning",
+  "last_cycle_key": "2026-06-20:midday",
   "cayenne": {
     "stripped": []
   },

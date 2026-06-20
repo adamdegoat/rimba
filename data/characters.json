@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 81
+      "energy": 74
     },
     "mood": "calm",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 44,
+        "tension": 42,
         "attraction": 0
       },
       "mutu": {
@@ -72,11 +72,6 @@
         "day": 9,
         "text": "He carried everything when I fell apart. Fever broke me. He held it.",
         "weight": 3
-      },
-      {
-        "day": 9,
-        "text": "Wesley held firm about staying. Didn't force me onward.",
-        "weight": 2
       },
       {
         "day": 10,
@@ -127,6 +122,11 @@
         "day": 12,
         "text": "Wesley finally stood firm. That's the real strength.",
         "weight": 2
+      },
+      {
+        "day": 13,
+        "text": "Wesley didn't run when terror tried to drag him. He stayed and held.",
+        "weight": 3
       }
     ],
     "condition": "healthy"
@@ -141,13 +141,13 @@
       "openness": 91,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 85,
+      "resilience": 86,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 93
+      "energy": 86
     },
-    "mood": "exhausted",
+    "mood": "thoughtful",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 46,
+        "tension": 44,
         "attraction": 0
       },
       "mutu": {
@@ -253,9 +253,9 @@
         "weight": 2
       },
       {
-        "day": 12,
-        "text": "Held my ground when it came close — didn't run this time.",
-        "weight": 2
+        "day": 13,
+        "text": "I held still while it circled. My fear didn't break me.",
+        "weight": 3
       }
     ],
     "condition": "healthy"
@@ -270,11 +270,11 @@
       "trust": 75,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 96,
+      "loneliness": 99,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "calm",
@@ -322,9 +322,9 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 93,
+      "energy": 86,
       "health": 100
     },
     "mood": "calm",

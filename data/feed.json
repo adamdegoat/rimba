@@ -6122,5 +6122,110 @@
       }
     ],
     "timestamp": "2026-06-20T07:02:29.453059"
+  },
+  {
+    "day": 13,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Chills tends the fire and checks the lean-to for damage, his movements deliberate and quiet.",
+    "thought": "He didn't break. Neither did I.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-20T11:31:40.254361"
+  },
+  {
+    "day": 13,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Wesley sits by the fire with water, his eyes distant, replaying the night over and over.",
+    "thought": "I almost ran. But I didn't.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-20T11:31:40.254361"
+  },
+  {
+    "day": 13,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Mutu sits near Chills by the fire, purring softly, sensing the tension has eased.",
+    "thought": "Dark ones held still. Safe now.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-20T11:31:40.254361"
+  },
+  {
+    "day": 13,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "The panther sleeps in the cool ferns beyond the camp, exhausted from the night's vigil.",
+    "thought": "They held still. I can rest now.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-20T11:31:40.254361"
+  },
+  {
+    "day": 13,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Chills and Wesley sit shoulder-to-shoulder at the fire by midday, neither quite able to break apart after holding still all night while the panther circled.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "My hands are still shaking."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Mine too."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Did we actually survive that, or did it just decide not to kill us?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Same thing, isn't it?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Not really."
+      },
+      {
+        "speaker": "chills",
+        "line": "In the jungle, it is."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not very comforting."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. But it's honest."
+      }
+    ],
+    "timestamp": "2026-06-20T11:31:40.254361"
   }
 ]
