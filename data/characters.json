@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 74
+      "energy": 67
     },
     "mood": "calm",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 42,
+        "tension": 40,
         "attraction": 0
       },
       "mutu": {
@@ -89,11 +89,6 @@
         "weight": 2
       },
       {
-        "day": 10,
-        "text": "Wesley didn't push me to move. Just accepted I need rest.",
-        "weight": 2
-      },
-      {
         "day": 11,
         "text": "Wesley held the fire all night alone without breaking. I finally rested.",
         "weight": 3
@@ -127,6 +122,11 @@
         "day": 13,
         "text": "Wesley didn't run when terror tried to drag him. He stayed and held.",
         "weight": 3
+      },
+      {
+        "day": 13,
+        "text": "He sat close all evening without moving away.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -138,16 +138,16 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 91,
+      "openness": 92,
       "ambition": 86,
       "loneliness": 0,
-      "resilience": 86,
+      "resilience": 87,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 86
+      "energy": 79
     },
-    "mood": "thoughtful",
+    "mood": "steady",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 44,
+        "tension": 42,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 43,
+        "closeness": 44,
         "tension": 0,
         "attraction": 0
       }
@@ -248,14 +248,14 @@
         "weight": 2
       },
       {
-        "day": 12,
-        "text": "I sat by the fire facing it while Chills held the flames. Didn't run.",
-        "weight": 2
-      },
-      {
         "day": 13,
         "text": "I held still while it circled. My fear didn't break me.",
         "weight": 3
+      },
+      {
+        "day": 13,
+        "text": "He said I'm stronger than I think. I almost believe him now.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -270,14 +270,14 @@
       "trust": 75,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 99,
+      "loneliness": 100,
       "resilience": 86,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
-    "mood": "calm",
+    "mood": "content",
     "location": {
       "waypoint": "camp_mid",
       "x": 80,
@@ -291,12 +291,12 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 22,
-        "tension": 83,
+        "closeness": 23,
+        "tension": 82,
         "attraction": 0
       },
       "panther": {
-        "closeness": 94,
+        "closeness": 95,
         "tension": 0,
         "attraction": 0
       }
@@ -317,17 +317,17 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 39,
-      "openness": 43,
+      "trust": 41,
+      "openness": 44,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
-    "mood": "calm",
+    "mood": "watchful",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -336,17 +336,17 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 12,
-        "tension": 87,
+        "closeness": 13,
+        "tension": 86,
         "attraction": 0
       },
       "wesley": {
         "closeness": 12,
-        "tension": 86,
+        "tension": 85,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 94,
+        "closeness": 95,
         "tension": 0,
         "attraction": 0
       }
@@ -399,6 +399,11 @@
         "day": 12,
         "text": "Dark ones held still. Orange one makes it safe.",
         "weight": 1
+      },
+      {
+        "day": 13,
+        "text": "Dark ones stayed still all night. Orange one is safety.",
+        "weight": 2
       }
     ]
   }

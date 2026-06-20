@@ -6227,5 +6227,110 @@
       }
     ],
     "timestamp": "2026-06-20T11:31:40.254361"
+  },
+  {
+    "day": 13,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "He tends the fire methodically as dusk settles, feeding it dry wood with practiced ease, then sits back beside Wesley without flinching.",
+    "thought": "He's stronger than he thinks he is.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-20T18:32:07.528208"
+  },
+  {
+    "day": 13,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "He watches Chills work the fire, then stays close when Chills settles beside him, no longer needing to pull distance between them.",
+    "thought": "I can sit here without falling apart now.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "steady",
+    "timestamp": "2026-06-20T18:32:07.528208"
+  },
+  {
+    "day": 13,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "The cat lounges in the warmth between them, occasionally flicking its tail toward Wesley without the old edge of wariness.",
+    "thought": "They sit close now. The dark one stays.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-20T18:32:07.528208"
+  },
+  {
+    "day": 13,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "From the ferns at the forest edge, the black leopard watches the firelight — motionless, learning that the warm circle means safety.",
+    "thought": "Orange one still. Dark ones still. Safe now.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "watchful",
+    "timestamp": "2026-06-20T18:32:07.528208"
+  },
+  {
+    "day": 13,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "They sit close now where they couldn't yesterday; Mutu rests between them, and the panther watches from the ferns, understanding that stillness means safety.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Fire held all day. Wood's getting short though."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Few days if we're lucky."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And if we're not?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We eat cold. We've managed worse."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Last night, I wanted to run so badly."
+      },
+      {
+        "speaker": "chills",
+        "line": "But you didn't."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Because you were here. That mattered."
+      },
+      {
+        "speaker": "chills",
+        "line": "You would've held it alone. You're stronger than you think."
+      }
+    ],
+    "timestamp": "2026-06-20T18:32:07.528208"
   }
 ]

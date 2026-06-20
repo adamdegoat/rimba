@@ -1,16 +1,16 @@
 {
   "day": 13,
-  "cycle": "midday",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-20",
-  "pulse": "The night broke something loose between them — a quiet understanding that holding together is the only answer that works.",
-  "scene": "The panther circled them all night and they held still; by midday they remain close at the fire, hands trembling, food untouched.",
+  "pulse": "The panic has broken; they're sitting close now, and for the first time, holding together feels like strength instead of fear.",
+  "scene": "Chills and Wesley sat close at the fire as evening settled; Mutu curled between them, and the panther watched from the forest edge, no longer fleeing the light.",
   "resources_prev": {
-    "food": 43,
-    "water": 83,
-    "wood": 24,
+    "food": 53,
+    "water": 90,
+    "wood": 27,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 72,
+      "condition": 68,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 53,
+    "food": 41,
     "water": 90,
-    "wood": 27,
+    "wood": 23,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 4
+    "fuel": 8
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-20:midday",
+  "last_cycle_key": "2026-06-20:evening",
   "cayenne": {
     "stripped": []
   },
