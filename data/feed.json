@@ -1,111 +1,6 @@
 [
   {
     "day": 1,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "Slumped on a log near the dead fire, watching Chills work, legs aching and chest tight with the weight of having failed.",
-    "thought": "I couldn't even keep a fire alive. He should be furious.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-08T18:01:27.408542"
-  },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "Prowling the darkening camp edge in that alert, deliberate way cats hunt at dusk, then returning to settle on the Cayenne hood, watching Chills work.",
-    "thought": "He's focused. The dark won't take us tonight.",
-    "location": {
-      "waypoint": "cayenne_rear",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-08T18:01:27.408542"
-  },
-  {
-    "day": 1,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the cold fire pit in the fading dusk, Chills gathers heartwood while Wesley sits nearby, defeated. The cat watches from the Cayenne hood as the light fades.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I couldn't restart it. The wood's too wet."
-      },
-      {
-        "speaker": "chills",
-        "line": "The surface is. The hearts stay dry underneath — come see."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I tried twice. I'm just going to fail again."
-      },
-      {
-        "speaker": "chills",
-        "line": "You tried. That's not failure yet. Show me where you gathered from."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Why aren't you angry with me?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Day one, Wesley. You're alive. You asked for help. That's enough."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That doesn't feel like enough."
-      },
-      {
-        "speaker": "chills",
-        "line": "Not yet. But it will be."
-      }
-    ],
-    "timestamp": "2026-06-08T18:01:27.408542"
-  },
-  {
-    "day": 1,
-    "cycle": "night",
-    "character": "chills",
-    "action": "Kneels at the fire pit, arranging dry heartwood with steady hands and patient breath until a spark catches and blooms into flame.",
-    "thought": "This will hold. We'll warm tonight.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-08T23:02:16.432258"
-  },
-  {
-    "day": 1,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "Huddles near the pit, shivering, watching Chills with fear and shame and desperate hope.",
-    "thought": "Let this work. Please let him be right.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-08T23:02:16.432258"
-  },
-  {
-    "day": 1,
     "cycle": "night",
     "character": "mutu",
     "action": "Sits on the Cayenne hood, eyes fixed on Chills, tail curled, watching the warmth come.",
@@ -6452,5 +6347,102 @@
       }
     ],
     "timestamp": "2026-06-21T11:31:36.806140"
+  },
+  {
+    "day": 14,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Sits by the fire with Wesley, watching Mutu trace the forest edge, finally able to rest.",
+    "thought": "Mutu held the dark at bay.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "peaceful",
+    "timestamp": "2026-06-21T15:02:08.174942"
+  },
+  {
+    "day": 14,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Watches the panther rest in the ferns, the terror of last night becoming understanding.",
+    "thought": "It was never hunting us. Just lost.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-21T15:02:08.174942"
+  },
+  {
+    "day": 14,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Paces between the fire and the forest edge, checking on the panther with quiet familiarity.",
+    "thought": "All here now. All finally safe.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-21T15:02:08.174942"
+  },
+  {
+    "day": 14,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Rests in the ferns near Mutu, no longer circling, fully calm and at peace.",
+    "thought": "Orange one here. Dark ones still.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-21T15:02:08.174942"
+  },
+  {
+    "day": 14,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "By the fire in the warm afternoon, Chills and Wesley sit at ease, watching Mutu and the panther's quiet bond while the night's terror finally breaks into understanding.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's watching her like she's the whole world."
+      },
+      {
+        "speaker": "chills",
+        "line": "That cat's the only thing it trusts. Has to be."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So it stays. We're stuck with a leopard."
+      },
+      {
+        "speaker": "chills",
+        "line": "Consider the alternative. It brought us nothing but peace last night."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I know. I just... didn't expect this."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's the jungle for you. Never what you expect."
+      }
+    ],
+    "timestamp": "2026-06-21T15:02:08.174942"
   }
 ]
