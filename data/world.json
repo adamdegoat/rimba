@@ -1,16 +1,16 @@
 {
   "day": 14,
-  "cycle": "afternoon",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-21",
-  "pulse": "Wesley moves from fear to understanding; Mutu and the panther have already made their peace.",
-  "scene": "After sleeping through, they woke to the panther calm in the ferns — Mutu's companion now. By afternoon, Chills and Wesley rested by the fire at last, while the leopard watched quietly from the forest edge near Mutu.",
+  "pulse": "They survived the night together and trust is real — but splitting the watch and truly sleeping apart, that's the next test.",
+  "scene": "After the first real sleep in days, the night's fear has lifted. Chills and Wesley sit by the fire with Mutu between them, the panther calm at the forest edge.",
   "resources_prev": {
-    "food": 51,
+    "food": 39,
     "water": 90,
-    "wood": 20,
+    "wood": 16,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 52,
+      "condition": 48,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 39,
+    "food": 52,
     "water": 90,
-    "wood": 16,
+    "wood": 15,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-21:afternoon",
+  "last_cycle_key": "2026-06-21:evening",
   "cayenne": {
     "stripped": []
   },

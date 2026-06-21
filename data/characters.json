@@ -7,13 +7,13 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 50,
+      "ambition": 51,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79
+      "energy": 72
     },
     "mood": "peaceful",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 33,
+        "tension": 32,
         "attraction": 0
       },
       "mutu": {
@@ -89,11 +89,6 @@
         "weight": 3
       },
       {
-        "day": 11,
-        "text": "Wesley held the whole camp alone without breaking. He actually could do it.",
-        "weight": 2
-      },
-      {
         "day": 12,
         "text": "Wesley faced it. Shaking, but he sat. Didn't run.",
         "weight": 2
@@ -125,6 +120,11 @@
       },
       {
         "day": 14,
+        "text": "He was afraid too but held steady. We're bonded now.",
+        "weight": 3
+      },
+      {
+        "day": 14,
         "text": "Wesley heard me. Finally believed it. That shifts everything between us.",
         "weight": 2
       }
@@ -138,14 +138,14 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 95,
-      "ambition": 85,
+      "openness": 96,
+      "ambition": 86,
       "loneliness": 0,
-      "resilience": 90,
+      "resilience": 92,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79
+      "energy": 72
     },
     "mood": "thoughtful",
     "location": {
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 35,
+        "tension": 34,
         "attraction": 0
       },
       "mutu": {
@@ -248,9 +248,9 @@
         "weight": 3
       },
       {
-        "day": 13,
-        "text": "He said I'm stronger than I think. I almost believe him now.",
-        "weight": 2
+        "day": 14,
+        "text": "He was terrified like me and didn't run. Neither did I.",
+        "weight": 3
       },
       {
         "day": 14,
@@ -272,14 +272,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79,
+      "energy": 72,
       "health": 100
     },
     "mood": "content",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
@@ -318,14 +318,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 47,
-      "openness": 48,
+      "trust": 48,
+      "openness": 49,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 79,
+      "energy": 72,
       "health": 100
     },
     "mood": "calm",
@@ -337,13 +337,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 21,
-        "tension": 76,
+        "closeness": 22,
+        "tension": 75,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 20,
-        "tension": 71,
+        "closeness": 21,
+        "tension": 69,
         "attraction": 0
       },
       "mutu": {

@@ -1,102 +1,5 @@
 [
   {
-    "day": 1,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "Sits on the Cayenne hood, eyes fixed on Chills, tail curled, watching the warmth come.",
-    "thought": "Fire means safe. Fire means Chills is steady.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-08T23:02:16.432258"
-  },
-  {
-    "day": 1,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the fire pit in full dark, Chills arranges dry heartwood while Wesley huddles nearby, cold and ashamed, with Mutu watching from the Cayenne hood.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I'll ruin this too. Like the water."
-      },
-      {
-        "speaker": "chills",
-        "line": "No. This wood is dry. Watch it work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "How can you be sure?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Because I've done this a hundred times."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I've done nothing."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're learning. That's the only way."
-      }
-    ],
-    "timestamp": "2026-06-08T23:02:16.432258"
-  },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "He tends the fire in the early light, watching the day break, then looks toward Wesley approaching the campfire.",
-    "thought": "He's steadier today. Ready for real work.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "He emerges from the Cayenne shelter, stiff and uncertain, then walks toward Chills at the fire.",
-    "thought": "I need to do something right today.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
-    "day": 2,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "The cat stretches on the Cayenne hood, ears alert, watching Chills and Wesley at the fire below.",
-    "thought": "They're moving. Something's lighter today.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
     "day": 2,
     "cycle": "morning",
     "type": "interaction",
@@ -6444,5 +6347,110 @@
       }
     ],
     "timestamp": "2026-06-21T15:02:08.174942"
+  },
+  {
+    "day": 14,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Chills settles by the dimming fire, feeding it a handful of dry wood to see them through the early night.",
+    "thought": "Hold was enough. Now we rest.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "peaceful",
+    "timestamp": "2026-06-21T18:33:35.637707"
+  },
+  {
+    "day": 14,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Wesley sits by the fire watching Mutu doze, feeling the first real ease since the Cayenne broke.",
+    "thought": "He held when I couldn't. Trust that.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-21T18:33:35.637707"
+  },
+  {
+    "day": 14,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Mutu stretches between them, tail arching slow, then settles with a quiet purr.",
+    "thought": "All warm. All safe. Sleep now.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-21T18:33:35.637707"
+  },
+  {
+    "day": 14,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "The panther rests in the ferns at the forest edge, watching the firelight but staying back, breathing steady and calm.",
+    "thought": "Orange one stays. Dark ones still.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-21T18:33:35.637707"
+  },
+  {
+    "day": 14,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Evening brings quiet to the camp; Chills and Wesley sit by the fire with Mutu between them, the panther calm at the forest edge.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I didn't think we'd hold."
+      },
+      {
+        "speaker": "chills",
+        "line": "You held. I watched you hold."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Because you stayed. I was terrified."
+      },
+      {
+        "speaker": "chills",
+        "line": "I was terrified too. But we didn't break."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I can't do another night like that without rest."
+      },
+      {
+        "speaker": "chills",
+        "line": "You won't have to. We'll trade watches from tomorrow."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You haven't slept in two days."
+      },
+      {
+        "speaker": "chills",
+        "line": "And now I will. That's how we move forward."
+      }
+    ],
+    "timestamp": "2026-06-21T18:33:35.637707"
   }
 ]
