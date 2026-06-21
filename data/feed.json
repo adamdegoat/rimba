@@ -1,133 +1,6 @@
 [
   {
     "day": 2,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the campfire in the early morning light, Wesley approaches Chills and for the first time offers to work.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I want to help fix the Cayenne."
-      },
-      {
-        "speaker": "chills",
-        "line": "Let's go. Battery first."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I don't know engines."
-      },
-      {
-        "speaker": "chills",
-        "line": "You know how to think. Start there."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Really?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Yeah."
-      }
-    ],
-    "timestamp": "2026-06-09T07:03:01.046401"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "He steadies the alternator connector while Wesley works the bolts, watching his focus build with quiet approval.",
-    "thought": "He's finally stepping up. Really stepping up.",
-    "location": {
-      "waypoint": "cayenne_door",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "focused",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "He kneels in the mud beneath the Cayenne's open hood, carefully working each bolt free under Chills' patient direction, trying not to overthink every movement.",
-    "thought": "Slow. Careful. I can actually do this.",
-    "location": {
-      "waypoint": "cayenne_door",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "determined",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "From a low perch on the roof, the cat watches the two men bent over the engine bay, ears swiveling to track the sounds of work.",
-    "thought": "They're quiet together. Both steady now.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "watchful",
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the bogged Cayenne's engine bay in the midday glare, Chills guides Wesley through salvaging usable parts—the first real work Wesley has done without flinching.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "What are we actually looking for?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Battery, wiring, alternator. Everything we strip stays useful."
-      },
-      {
-        "speaker": "wesley",
-        "line": "But... we need water, food. Does this even matter?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Right now, no. Later, yes. You learn to keep your options open."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay. What do I do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "These bolts. Slow, don't strip them. I'll steady the connector."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Like this?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Exactly like that."
-      }
-    ],
-    "timestamp": "2026-06-09T12:31:18.039657"
-  },
-  {
-    "day": 2,
     "cycle": "evening",
     "character": "chills",
     "action": "He secures the lean-to's corner ties with practiced knots, then heads toward the fire where Wesley is sitting, the engine parts they salvaged scattered nearby.",
@@ -6452,5 +6325,110 @@
       }
     ],
     "timestamp": "2026-06-21T18:33:35.637707"
+  },
+  {
+    "day": 14,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Sits by the fire through the night, carefully feeding the last of the dry wood to keep flames alive, watching the forest edge where the panther rests calm.",
+    "thought": "Three hours. I can hold this.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "watchful",
+    "timestamp": "2026-06-21T22:32:12.129917"
+  },
+  {
+    "day": 14,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Lies in the lean-to trying to settle his body into rest, ears attuned to Chills' movements by the fire, sleep still distant but no longer impossible.",
+    "thought": "He's got this. Finally I can rest.",
+    "location": {
+      "waypoint": "shelter_inside",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "exhausted",
+    "timestamp": "2026-06-21T22:32:12.129917"
+  },
+  {
+    "day": 14,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Curls into a tight spiral on a dry patch near the fire's warmth, purring softly as the night settles around the camp, the panther's presence no longer a source of tension.",
+    "thought": "Safe. All safe. Warm now.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-21T22:32:12.129917"
+  },
+  {
+    "day": 14,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Lies flat in the ferns ten yards from the fire, ears forward, dark eyes reflecting flame, body relaxed for the first time since arriving at the camp's edge, drawn by Mutu's fearlessness rather than fear.",
+    "thought": "Small one is here. Safe.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-21T22:32:12.129917"
+  },
+  {
+    "day": 14,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "After the terror fades, night brings stillness: Chills and Wesley settle their watch by coals, Mutu curled warm, the panther resting calm in the ferns—no longer a threat but strange company.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "I won't sleep. Not after yesterday."
+      },
+      {
+        "speaker": "chills",
+        "line": "Neither will I. We'll do shifts."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You take the fire?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Three hours each. You rest first."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And the panther?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Mutu's not scared anymore. Neither should we be."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The wood's almost gone."
+      },
+      {
+        "speaker": "chills",
+        "line": "I'll stretch it. We'll be fine."
+      }
+    ],
+    "timestamp": "2026-06-21T22:32:12.129917"
   }
 ]
