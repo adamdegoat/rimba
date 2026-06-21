@@ -1,16 +1,16 @@
 {
-  "day": 14,
-  "cycle": "night",
+  "day": 15,
+  "cycle": "morning",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-21",
-  "pulse": "After the terror, they can finally rest—but wood is scarce, the fire needs watching, and neither will truly sleep alone.",
-  "scene": "Chills and Wesley settled the watch by a dying fire; now Wesley lies in the lean-to trying to sleep while Chills keeps vigil, with Mutu warm by the coals and the panther calm in the ferns.",
+  "last_run_date": "2026-06-22",
+  "pulse": "Wesley woke without fear; Chills sees the shift and knows they're ready for the river.",
+  "scene": "Morning brought Chills and Wesley to the fire at ease, talking quietly about the river — the next step — while Mutu prowls the camp edge and the black panther rests calm in the ferns.",
   "resources_prev": {
-    "food": 52,
-    "water": 90,
-    "wood": 15,
+    "food": 45,
+    "water": 100,
+    "wood": 12,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 44,
+      "condition": 40,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 45,
-    "water": 100,
-    "wood": 12,
+    "food": 56,
+    "water": 83,
+    "wood": 11,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 14
+    "fuel": 18
   },
   "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-21:night",
+  "last_cycle_key": "2026-06-22:morning",
   "cayenne": {
     "stripped": []
   },
@@ -63,8 +63,8 @@
     "14": "Day 14 broke the terror: the panther was not hunting, just lost and drawn to Mutu. By morning Chills and Wesley understood; by afternoon the animal had calmed. Now they sit by a dying fire, taking shifts to rest and keep watch—exhausted, changed, and bonded deeper than fear alone could forge."
   },
   "lean": {
-    "id": "sleep_trust",
-    "label": "Sleep in shifts",
-    "desc": "Mutu held the dark still. That's enough. Rest now."
+    "id": "cross_now",
+    "label": "Cross the river",
+    "desc": "Move toward rescue. The panther is calm. Their bond holds strong."
   }
 }

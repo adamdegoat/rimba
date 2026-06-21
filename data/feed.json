@@ -1,111 +1,6 @@
 [
   {
     "day": 2,
-    "cycle": "evening",
-    "character": "chills",
-    "action": "He secures the lean-to's corner ties with practiced knots, then heads toward the fire where Wesley is sitting, the engine parts they salvaged scattered nearby.",
-    "thought": "He's not running anymore. That's real.",
-    "location": {
-      "waypoint": "shelter_mouth",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "satisfied",
-    "timestamp": "2026-06-09T18:02:25.359464"
-  },
-  {
-    "day": 2,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "He sits heavily by the fire, flexing his torn and blistered palms, watching the raw meat Mutu brought cool on a leaf.",
-    "thought": "Hands torn up but I made it through.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-09T18:02:25.359464"
-  },
-  {
-    "day": 2,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "He settles against Chills on the log, tail curled, ears tracking the forest's evening shift as darkness gathers in the canopy.",
-    "thought": "They're steady now. Both of them.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "content",
-    "timestamp": "2026-06-09T18:02:25.359464"
-  },
-  {
-    "day": 2,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "As the light fades at their campfire, Mutu's fresh kill lies on a leaf between them while Wesley flexes his raw hands and Chills tends the flames—a day's work that neither expected Wesley to finish.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "That's the second time this week he's brought something. How does he know?"
-      },
-      {
-        "speaker": "chills",
-        "line": "He knows. Always has. Eat—it's fresh."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Raw? I thought we boiled everything."
-      },
-      {
-        "speaker": "chills",
-        "line": "Your hands couldn't handle the fire anyway. This is safe."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Yeah. Fair. I'm starving and I'm... sore everywhere."
-      },
-      {
-        "speaker": "chills",
-        "line": "You worked hard. Tomorrow will be worse before it gets better."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I don't care. I made it through the day. I didn't panic."
-      },
-      {
-        "speaker": "chills",
-        "line": "No. You just worked. That's everything."
-      }
-    ],
-    "timestamp": "2026-06-09T18:02:25.359464"
-  },
-  {
-    "day": 2,
-    "cycle": "night",
-    "character": "chills",
-    "action": "He tends the fire and watches Wesley flex his torn hands, the first real calm night in the camp.",
-    "thought": "He stepped up. He's stronger than I knew.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "satisfied",
-    "timestamp": "2026-06-09T23:03:03.222941"
-  },
-  {
-    "day": 2,
     "cycle": "night",
     "character": "wesley",
     "action": "He rests by the fire, examining his shredded hands while Mutu leans against his leg for the first time.",
@@ -6430,5 +6325,110 @@
       }
     ],
     "timestamp": "2026-06-21T22:32:12.129917"
+  },
+  {
+    "day": 15,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "He woke clear and steady, checked the fire, and sat down by the coals to plan with Wesley.",
+    "thought": "River next. We're ready now.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "purposeful",
+    "timestamp": "2026-06-22T07:02:24.049426"
+  },
+  {
+    "day": 15,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "He woke rested for the first time since the Cayenne broke, felt the difference in himself, and joined Chills by the fire.",
+    "thought": "No fear this morning. Finally.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolute",
+    "timestamp": "2026-06-22T07:02:24.049426"
+  },
+  {
+    "day": 15,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "He stretched long and paced toward the forest edge with quick, alert steps, nose working the morning air.",
+    "thought": "All safe. Time to hunt.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-22T07:02:24.049426"
+  },
+  {
+    "day": 15,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "It rested deeper in the ferns as Mutu approached, not fleeing, and settled close enough that their warmth mingled.",
+    "thought": "Orange one comes. Safe here.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-22T07:02:24.049426"
+  },
+  {
+    "day": 15,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Morning light finds Chills and Wesley at the fire, talking quietly about the river — the next real test — while Mutu hunts and the panther rests calm at the forest edge.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How far is it, really? To the main road?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Three, maybe four days. If the river lets us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And if it doesn't?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Then we've got food, fire, and time. We figure it out."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I slept through the entire night without waking."
+      },
+      {
+        "speaker": "chills",
+        "line": "I know. First time you've let yourself rest here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So yeah. I think we try the river."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. We'll prep today and move tomorrow."
+      }
+    ],
+    "timestamp": "2026-06-22T07:02:24.049426"
   }
 ]
