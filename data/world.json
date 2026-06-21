@@ -1,16 +1,16 @@
 {
   "day": 14,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-21",
-  "pulse": "They held the line and survived; now the panther's retreat leaves them in an unfamiliar stillness neither fully trusts.",
-  "scene": "They woke after the first true sleep in days, Mutu warm between them by the fire; the panther had retreated to the forest edge, giving them space.",
+  "pulse": "The terror has dissolved into trust; they rest easy now, and even the panther watching from the ferns understands that stillness means safety.",
+  "scene": "By midday, the terror of last night has fully lifted — Chills and Wesley sit by the fire with Mutu between them, the panther resting calm in the ferns, no longer a threat.",
   "resources_prev": {
-    "food": 56,
-    "water": 100,
-    "wood": 22,
+    "food": 40,
+    "water": 83,
+    "wood": 19,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 60,
+      "condition": 56,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 40,
-    "water": 83,
-    "wood": 19,
+    "food": 51,
+    "water": 90,
+    "wood": 20,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-21:morning",
+  "last_cycle_key": "2026-06-21:midday",
   "cayenne": {
     "stripped": []
   },
