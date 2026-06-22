@@ -1,110 +1,5 @@
 [
   {
-    "day": 2,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "He rests by the fire, examining his shredded hands while Mutu leans against his leg for the first time.",
-    "thought": "Hands torn but I finished the day.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-09T23:03:03.222941"
-  },
-  {
-    "day": 2,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "He presses his entire body against Wesley's leg, purring softly, a rare gesture of acceptance after a day of watching him work.",
-    "thought": "He belongs here now. He's safe.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-09T23:03:03.222941"
-  },
-  {
-    "day": 2,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the fire's edge, Wesley rests his shredded hands while Mutu—for the first time—presses hard against him, and Chills watches a city scholar becoming a survivor.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Hands are absolutely destroyed."
-      },
-      {
-        "speaker": "chills",
-        "line": "Let me wrap them."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Why waste the medicine on this?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Because you stayed."
-      },
-      {
-        "speaker": "wesley",
-        "line": "He's leaning on me. Mutu never does that."
-      },
-      {
-        "speaker": "chills",
-        "line": "He knows."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Knows what?"
-      },
-      {
-        "speaker": "chills",
-        "line": "That you didn't run."
-      }
-    ],
-    "timestamp": "2026-06-09T23:03:03.222941"
-  },
-  {
-    "day": 3,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "Wakes before first light and stirs the fire into steadier flames, moving with easy purpose.",
-    "thought": "Today teaches patience, not speed.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-10T07:02:57.371654"
-  },
-  {
-    "day": 3,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "Emerges from the Cayenne and unwraps his torn hands, flexing them with a sharp wince.",
-    "thought": "Shredded and swollen. What can I do today?",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-10T07:02:57.371654"
-  },
-  {
     "day": 3,
     "cycle": "morning",
     "character": "mutu",
@@ -6430,5 +6325,122 @@
       }
     ],
     "timestamp": "2026-06-22T07:02:24.049426"
+  },
+  {
+    "day": 15,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Traces the river route on the map with a steady finger while Mutu dozes in his lap, speaking quietly about currents and safe crossing points.",
+    "thought": "Tomorrow we cross. He won't break.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "purposeful",
+    "timestamp": "2026-06-22T11:32:45.931640"
+  },
+  {
+    "day": 15,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Sits across the fire, asking careful questions about the river and listening to Chills' steady voice, his earlier panic settling into focus and plan.",
+    "thought": "Fear fades when he speaks so steady.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-22T11:32:45.931640"
+  },
+  {
+    "day": 15,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Curled warm in Chills' lap, one ear twitching toward the forest as the panther shifts in the ferns, the cat utterly unbothered.",
+    "thought": "Safe. All safe here.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-22T11:32:45.931640"
+  },
+  {
+    "day": 15,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Rests low in the ferns at the clearing edge, watching the two humans and the orange cat with calm, steady eyes, neither fleeing nor advancing.",
+    "thought": "Small one is safe. Dark ones hold still.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-22T11:32:45.931640"
+  },
+  {
+    "day": 15,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Wesley and Chills spend midday mapping the river crossing while Mutu dozes and the panther watches calmly from the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How high will the water be after yesterday?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Depends on the rain upriver. Should be passable by tomorrow."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Passable is not safe. What if we misjudge the current?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We scout it first. Wade shallow, read the rocks. No rush."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You make it sound simple."
+      },
+      {
+        "speaker": "chills",
+        "line": "It's not. But panic doesn't help."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You've done this before, at least."
+      },
+      {
+        "speaker": "chills",
+        "line": "First time for me too, with you at my shoulder."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not reassuring."
+      },
+      {
+        "speaker": "chills",
+        "line": "Neither of us drowning is reassuring enough?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Fair point."
+      }
+    ],
+    "timestamp": "2026-06-22T11:32:45.931640"
   }
 ]
