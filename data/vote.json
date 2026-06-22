@@ -1,32 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-22",
+    "id": "2026-06-23",
     "closes": "tonight",
-    "question": "Wesley wants to hike the river gorge at dawn—cross while they're rested and strong. Chills says stay, hold the fire, wait for rescue. Who reads day 15 right?",
+    "question": "Wesley's rope is ready—cross tomorrow. Chills hesitates. Go with Wesley, wait one more day, or send Mutu to scout ahead?",
     "options": [
       {
-        "id": "cross_river",
-        "label": "Cross at dawn",
-        "desc": "Move now. The river's there. They're ready. Wesley's instinct is sound."
+        "id": "trust_wesley",
+        "label": "Cross tomorrow",
+        "desc": "Trust Wesley's knots and your bond"
       },
       {
-        "id": "hold_camp",
-        "label": "Hold the fire",
-        "desc": "Rescue comes to those who stay put. They've earned this peace. Keep it."
+        "id": "wait_safe",
+        "label": "Wait one more day",
+        "desc": "Chills's caution might save you"
       },
       {
-        "id": "follow_panther",
-        "label": "Follow the panther",
-        "desc": "It found its way in. It knows where it's going. Let it lead."
+        "id": "mutu_ahead",
+        "label": "Send Mutu ahead",
+        "desc": "Scout the far bank while you prep"
       }
     ]
   },
   "in_play": {
-    "id": "cross_now",
-    "label": "Cross the river",
-    "desc": "Move toward rescue. The panther is calm. Their bond holds strong.",
-    "decided": "2026-06-22",
+    "id": "cross_river",
+    "label": "Cross at dawn",
+    "desc": "Move now. The river's there. They're ready. Wesley's instinct is sound.",
+    "decided": "2026-06-23",
     "votes": 0,
     "tally": {}
   }

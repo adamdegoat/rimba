@@ -1,118 +1,5 @@
 [
   {
-    "day": 3,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "Sits with his raw, swollen hands elevated across his knees, wincing at the pain as heat and adrenaline wear off, watching Chills work the fire.",
-    "thought": "Can't work tomorrow. Can't do anything.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "resigned",
-    "timestamp": "2026-06-10T22:32:30.661133"
-  },
-  {
-    "day": 3,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "Presses against Wesley's leg at the fire, kneading gently and purring, as if anchoring him to something steady.",
-    "thought": "He hurts but I'm staying close.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-10T22:32:30.661133"
-  },
-  {
-    "day": 3,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "Wesley finally stops fighting his limits—swollen hands elevated at the fire while Chills tends the fish and Mutu anchors him close as night settles dark around them.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "My hands are finished. Can't work tomorrow at all."
-      },
-      {
-        "speaker": "chills",
-        "line": "They will heal. Fire, rest, clean water—that's the medicine."
-      },
-      {
-        "speaker": "wesley",
-        "line": "But there's the shelter, the wood, the—"
-      },
-      {
-        "speaker": "chills",
-        "line": "They'll wait. Your hands matter more than any of that."
-      },
-      {
-        "speaker": "wesley",
-        "line": "So I'm useless to you now."
-      },
-      {
-        "speaker": "chills",
-        "line": "Resting is work. The real work, right now."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I hate this. Needing help."
-      },
-      {
-        "speaker": "chills",
-        "line": "That's not weakness. That's survival."
-      },
-      {
-        "speaker": "wesley",
-        "line": "At least he believes in me."
-      },
-      {
-        "speaker": "chills",
-        "line": "So do I."
-      }
-    ],
-    "timestamp": "2026-06-10T22:32:30.661133"
-  },
-  {
-    "day": 4,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "Chills rises early and tends the fire, then walks the perimeter checking the wood pile and assessing what needs doing today.",
-    "thought": "Wood's running thin. Need to focus.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "attentive",
-    "timestamp": "2026-06-11T07:02:34.306848"
-  },
-  {
-    "day": 4,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "Wesley wakes slowly and inches toward the fire, carefully testing his swollen hands, wincing at the tightness.",
-    "thought": "Still can't grip anything. Useless.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "resigned",
-    "timestamp": "2026-06-11T07:02:34.306848"
-  },
-  {
     "day": 4,
     "cycle": "morning",
     "character": "mutu",
@@ -6411,5 +6298,118 @@
       }
     ],
     "timestamp": "2026-06-22T22:32:41.050976"
+  },
+  {
+    "day": 16,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "He wakes before dawn, washes in the river's shallows, and returns to check the rope one final time by firelight.",
+    "thought": "Today. Steady. We've trained for this.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "focused",
+    "timestamp": "2026-06-23T07:02:59.657569"
+  },
+  {
+    "day": 16,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "He wakes before dawn with a hollow feeling in his chest, mentally traces the route one more time, then joins Chills at the fire.",
+    "thought": "I can do this. He has me.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-23T07:02:59.657569"
+  },
+  {
+    "day": 16,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "He circles the camp once, hunting-restless in the early light, then settles on the Cayenne hood to watch.",
+    "thought": "They move today. Something shifts.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-23T07:02:59.657569"
+  },
+  {
+    "day": 16,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "It rests just inside the fern line, watching Mutu on the hood, and does not move as the two men prepare.",
+    "thought": "Orange one here. Dark ones stay.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-23T07:02:59.657569"
+  },
+  {
+    "day": 16,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the fire as morning light breaks through the canopy, Chills and Wesley coil the rope together one final time, hands steady, the day of the crossing finally here.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Rope's good. I've checked it twice since yesterday."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Now let it go and trust the knots."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's still moving fast. The rain hit the flow hard."
+      },
+      {
+        "speaker": "chills",
+        "line": "We picked the right rocks. The rope is solid. You are solid."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I just need to hear that once more, I think."
+      },
+      {
+        "speaker": "chills",
+        "line": "Once more, then: you've got this. I'm with you all the way through."
+      },
+      {
+        "speaker": "wesley",
+        "line": "After we cross, we can't come back to the Cayenne."
+      },
+      {
+        "speaker": "chills",
+        "line": "We don't go back. We go forward. That's been the plan all along."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I know. But saying it out loud makes it real."
+      },
+      {
+        "speaker": "chills",
+        "line": "It's been real. We've just been getting ready to meet it."
+      }
+    ],
+    "timestamp": "2026-06-23T07:02:59.657569"
   }
 ]

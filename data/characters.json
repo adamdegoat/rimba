@@ -7,15 +7,15 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 52,
+      "ambition": 53,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
-      "thirst": 45,
-      "energy": 99
+      "hunger": 53,
+      "thirst": 53,
+      "energy": 92
     },
-    "mood": "calm",
+    "mood": "focused",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 22,
+        "tension": 19,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -87,11 +87,6 @@
         "day": 11,
         "text": "Wesley held the fire all night alone without breaking. I finally rested.",
         "weight": 3
-      },
-      {
-        "day": 12,
-        "text": "Wesley faced it. Shaking, but he sat. Didn't run.",
-        "weight": 2
       },
       {
         "day": 13,
@@ -127,6 +122,11 @@
         "day": 15,
         "text": "Wesley tested every knot carefully, quiet and sure. He's ready.",
         "weight": 2
+      },
+      {
+        "day": 16,
+        "text": "Wesley needed to hear me say it plain: I'm with him all the way through.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -138,14 +138,14 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 96,
+      "openness": 97,
       "ambition": 87,
       "loneliness": 0,
-      "resilience": 97,
+      "resilience": 99,
       "health": 100,
-      "hunger": 45,
-      "thirst": 45,
-      "energy": 99
+      "hunger": 53,
+      "thirst": 53,
+      "energy": 92
     },
     "mood": "anxious",
     "location": {
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 24,
+        "tension": 21,
         "attraction": 0
       },
       "mutu": {
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -253,8 +253,8 @@
         "weight": 3
       },
       {
-        "day": 15,
-        "text": "Woke without terror in my chest. First time since the river broke.",
+        "day": 16,
+        "text": "Chills promised me steady: he has my back through the crossing and beyond it.",
         "weight": 2
       }
     ],
@@ -270,29 +270,29 @@
       "trust": 77,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 97,
+      "loneliness": 100,
       "resilience": 86,
-      "hunger": 45,
-      "thirst": 45,
-      "energy": 99,
+      "hunger": 53,
+      "thirst": 53,
+      "energy": 92,
       "health": 100
     },
-    "mood": "protective",
+    "mood": "alert",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "cayenne_hood",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 89,
-        "tension": 79,
+        "closeness": 91,
+        "tension": 78,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 39,
-        "tension": 73,
+        "closeness": 41,
+        "tension": 72,
         "attraction": 0
       },
       "panther": {
@@ -308,10 +308,7 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "chills",
-      "state": "sitting_together"
-    },
+    "interaction": null,
     "memories": []
   },
   "panther": {
@@ -326,9 +323,9 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 45,
-      "thirst": 45,
-      "energy": 99,
+      "hunger": 53,
+      "thirst": 53,
+      "energy": 92,
       "health": 100
     },
     "mood": "calm",
@@ -340,13 +337,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 30,
-        "tension": 70,
+        "closeness": 32,
+        "tension": 69,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 29,
-        "tension": 61,
+        "closeness": 31,
+        "tension": 60,
         "attraction": 0
       },
       "mutu": {
