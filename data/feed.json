@@ -1,119 +1,6 @@
 [
   {
     "day": 3,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "Follows Wesley from the Cayenne and settles against his leg at the fire's warmth.",
-    "thought": "Safe when I'm close to him.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-10T07:02:57.371654"
-  },
-  {
-    "day": 3,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the fire's edge in the grey dawn, Wesley flexes his shredded hands while Chills tends the embers, and Mutu presses against Wesley's leg—a moment of pause before the day moves forward.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "My hands are shredded. I can't do much today."
-      },
-      {
-        "speaker": "chills",
-        "line": "That's yesterday talking. You did good work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "But we're out of food. We need to move."
-      },
-      {
-        "speaker": "chills",
-        "line": "We do. But slow. The jungle rewards patience, not panic."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That's philosophy, not a plan."
-      },
-      {
-        "speaker": "chills",
-        "line": "Sometimes that's all we've got out here."
-      },
-      {
-        "speaker": "wesley",
-        "line": "So what do I do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Rest this morning. Walk the forest edge this afternoon—light work, eyes and ears."
-      },
-      {
-        "speaker": "wesley",
-        "line": "And if we come up short on food?"
-      },
-      {
-        "speaker": "chills",
-        "line": "We won't. Trust the jungle."
-      }
-    ],
-    "timestamp": "2026-06-10T07:02:57.371654"
-  },
-  {
-    "day": 3,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "Wesley sits at the river's edge, flexing his bandaged hands and watching the water for any movement he could help with.",
-    "thought": "Stillness is how the jungle works.",
-    "location": {
-      "waypoint": "river_bank",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-10T11:32:25.841481"
-  },
-  {
-    "day": 3,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "Chills kneels in the shallows, laying a thin fishing line across a pool with patient, practiced movements.",
-    "thought": "This is the real teaching right now.",
-    "location": {
-      "waypoint": "river_bank",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-10T11:32:25.841481"
-  },
-  {
-    "day": 3,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "Mutu emerges from the forest edge with a small sparrow dangling from its mouth, wet and limp.",
-    "thought": "He trusts me more each day.",
-    "location": {
-      "waypoint": "river_bank",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-10T11:32:25.841481"
-  },
-  {
-    "day": 3,
     "cycle": "midday",
     "type": "interaction",
     "characters": [
@@ -6442,5 +6329,110 @@
       }
     ],
     "timestamp": "2026-06-22T11:32:45.931640"
+  },
+  {
+    "day": 15,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Stands on the river rocks midway across, scanning the water depth and current with a rope coiled at his side, checking the line he's laid for tomorrow's crossing.",
+    "thought": "Water's good. He'll make it through.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "purposeful",
+    "timestamp": "2026-06-22T15:05:47.475739"
+  },
+  {
+    "day": 15,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Steps carefully from rock to rock beside Chills, gripping his arm once to steady himself, eyes tracking the water's pace and reading the map in his hand.",
+    "thought": "Current's fast but the depth— I can calculate this.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-22T15:05:47.475739"
+  },
+  {
+    "day": 15,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Picks carefully through the shallows at the riverbank, paws quick and precise, nose down for small fish or crayfish in the deeper pools.",
+    "thought": "Hunt is good here. Safe here.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-22T15:05:47.475739"
+  },
+  {
+    "day": 15,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Rests low in the ferns at the forest edge just above the river, watching Mutu hunt with steady eyes while the men work the crossing line upstream.",
+    "thought": "Orange one is safe. I stay close.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-22T15:05:47.475739"
+  },
+  {
+    "day": 15,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Afternoon light settles on the river as Chills and Wesley stand on the crossing rocks, rope in hand and fear in check — tomorrow's crossing mapped out between them while Mutu hunts below and the panther rests silent in the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Water's high. How do we know it won't rise in the night?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Sky's clear. Rain brings it up. Tonight stays calm."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And if we get caught mid-crossing and the current—"
+      },
+      {
+        "speaker": "chills",
+        "line": "We won't. I've done this before. You've held it together these past days."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That was different. This is water we can drown in."
+      },
+      {
+        "speaker": "chills",
+        "line": "Water you've already beaten in your head. Twice over, probably."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So tomorrow, then."
+      },
+      {
+        "speaker": "chills",
+        "line": "Tomorrow."
+      }
+    ],
+    "timestamp": "2026-06-22T15:05:47.475739"
   }
 ]

@@ -1,16 +1,16 @@
 {
   "day": 15,
-  "cycle": "midday",
+  "cycle": "afternoon",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-22",
-  "pulse": "Wesley's fear of the river is real, but Chills' steady voice turns panic into quiet determination.",
-  "scene": "By midday at the fire, Wesley and Chills map the crossing: Wesley points to the rapids while Chills traces shallow routes, Mutu dozing between them, the panther resting calm at the ferns.",
+  "pulse": "Wesley faces the river without flinching now — and Chills knows exactly who will hold the line beside him tomorrow.",
+  "scene": "They scout the crossing point on the river rocks, rope laid and water read. Below them Mutu hunts; at the forest edge the panther rests calm, closer than ever before.",
   "resources_prev": {
-    "food": 56,
-    "water": 83,
-    "wood": 11,
+    "food": 44,
+    "water": 90,
+    "wood": 14,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 36,
+      "condition": 32,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 44,
+    "food": 57,
     "water": 90,
-    "wood": 14,
+    "wood": 13,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 4
+    "fuel": 8
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-22:midday",
+  "last_cycle_key": "2026-06-22:afternoon",
   "cayenne": {
     "stripped": []
   },
