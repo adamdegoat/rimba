@@ -7,17 +7,17 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 51,
+      "ambition": 52,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99
     },
-    "mood": "steady",
+    "mood": "calm",
     "location": {
-      "waypoint": "camp_mid",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
@@ -25,11 +25,11 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 24,
+        "tension": 22,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 93,
+        "closeness": 94,
         "tension": 0,
         "attraction": 0
       }
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "working_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -139,15 +139,15 @@
     "scores": {
       "trust": 100,
       "openness": 96,
-      "ambition": 86,
+      "ambition": 87,
       "loneliness": 0,
-      "resilience": 96,
+      "resilience": 97,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99
     },
-    "mood": "focused",
+    "mood": "anxious",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 26,
+        "tension": 24,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 47,
+        "closeness": 48,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "working_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -267,36 +267,36 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 76,
+      "trust": 77,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 100,
+      "loneliness": 97,
       "resilience": 86,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99,
       "health": 100
     },
     "mood": "protective",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "camp_mid",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 86,
-        "tension": 80,
+        "closeness": 89,
+        "tension": 79,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 36,
-        "tension": 74,
+        "closeness": 39,
+        "tension": 73,
         "attraction": 0
       },
       "panther": {
-        "closeness": 98,
+        "closeness": 99,
         "tension": 0,
         "attraction": 0
       }
@@ -308,7 +308,10 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null,
+    "interaction": {
+      "with": "chills",
+      "state": "sitting_together"
+    },
     "memories": []
   },
   "panther": {
@@ -318,14 +321,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 51,
+      "trust": 52,
       "openness": 49,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99,
       "health": 100
     },
     "mood": "calm",
@@ -337,17 +340,17 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 28,
-        "tension": 71,
+        "closeness": 30,
+        "tension": 70,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 27,
-        "tension": 63,
+        "closeness": 29,
+        "tension": 61,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 98,
+        "closeness": 99,
         "tension": 0,
         "attraction": 0
       }

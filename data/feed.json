@@ -1,112 +1,6 @@
 [
   {
     "day": 3,
-    "cycle": "evening",
-    "character": "chills",
-    "action": "Feeds dry heartwood to the fire, keeping it steady as the dusk darkens around the clearing.",
-    "thought": "Keep the rhythm. Let him rest now.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-10T18:31:26.035124"
-  },
-  {
-    "day": 3,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "Sits at the fire's edge with his raw hands resting limp on his thighs, watching Chills work.",
-    "thought": "My hands are broken. What about tomorrow?",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "exhausted",
-    "timestamp": "2026-06-10T18:31:26.035124"
-  },
-  {
-    "day": 3,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "Presses against Wesley's leg and watches the fire with steady golden eyes, purring quietly.",
-    "thought": "He's hurting. I'll stay close.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-10T18:31:26.035124"
-  },
-  {
-    "day": 3,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills",
-      "mutu"
-    ],
-    "description": "At the fire's edge as dusk thickens, Wesley's hands hang useless while Chills feeds the fire and Mutu presses against Wesley's leg—a quiet collapse and acceptance.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "My hands are finished. I can't work tomorrow."
-      },
-      {
-        "speaker": "chills",
-        "line": "Then you rest. You did good work today."
-      },
-      {
-        "speaker": "wesley",
-        "line": "So I'm useless now."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're tired, not useless. There's a difference."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I wanted to do more."
-      },
-      {
-        "speaker": "chills",
-        "line": "You will. Tomorrow your hands heal, next day they work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "How are you always so calm?"
-      },
-      {
-        "speaker": "chills",
-        "line": "One day at a time. That's all we have."
-      }
-    ],
-    "timestamp": "2026-06-10T18:31:26.035124"
-  },
-  {
-    "day": 3,
-    "cycle": "night",
-    "character": "chills",
-    "action": "Tends the smoked fish at the fire's edge, glancing over at Wesley's swollen hands resting on his lap, then back to the flames.",
-    "thought": "He's learning what really matters now.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "attentive",
-    "timestamp": "2026-06-10T22:32:30.661133"
-  },
-  {
-    "day": 3,
     "cycle": "night",
     "character": "wesley",
     "action": "Sits with his raw, swollen hands elevated across his knees, wincing at the pain as heat and adrenaline wear off, watching Chills work the fire.",
@@ -6396,5 +6290,126 @@
       }
     ],
     "timestamp": "2026-06-22T18:37:43.672195"
+  },
+  {
+    "day": 15,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Chills tends the fire and runs his hand along the rope, checking every knot with steady certainty.",
+    "thought": "Tomorrow we cross the water. I'm ready.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-22T22:32:41.050976"
+  },
+  {
+    "day": 15,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Wesley checks the rope obsessively, mind racing through drowning scenarios until he forces himself to breathe and trust.",
+    "thought": "His steadiness makes this all possible.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-22T22:32:41.050976"
+  },
+  {
+    "day": 15,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Mutu brings a fresh kill and settles between them at the fire, purring close to Chills.",
+    "thought": "They worry tomorrow. Food settles them.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "protective",
+    "timestamp": "2026-06-22T22:32:41.050976"
+  },
+  {
+    "day": 15,
+    "cycle": "night",
+    "character": "panther",
+    "action": "The panther rests deeper in the ferns, utterly still, eyes reflecting the firelight in perfect calm.",
+    "thought": "Orange one safe. Dark ones rest.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-22T22:32:41.050976"
+  },
+  {
+    "day": 15,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the firelight on the eve of the crossing, Wesley checks the rope one last time while Chills steadies the fire; Mutu brings a fresh kill and settles close, and the panther watches calmly from the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "The knots are right, but the current—"
+      },
+      {
+        "speaker": "chills",
+        "line": "Current's fast. I've seen worse."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Not where I'm from. Nothing like this."
+      },
+      {
+        "speaker": "chills",
+        "line": "That's why you trust me now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I do. That's what scares me."
+      },
+      {
+        "speaker": "chills",
+        "line": "Being afraid doesn't make you weak."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What if the rope fails?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It won't. You checked it twice."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I keep thinking about drowning."
+      },
+      {
+        "speaker": "chills",
+        "line": "Stop. That's not helpful."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Tomorrow then."
+      },
+      {
+        "speaker": "chills",
+        "line": "We move together. That's the plan."
+      }
+    ],
+    "timestamp": "2026-06-22T22:32:41.050976"
   }
 ]

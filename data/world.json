@@ -1,16 +1,16 @@
 {
   "day": 15,
-  "cycle": "evening",
+  "cycle": "night",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-22",
-  "pulse": "Tomorrow they cross the river — not fearless, but steady. Wesley's anxiety hasn't vanished; it's folded into trust.",
-  "scene": "By firelight on the eve of crossing, Chills checks their rope and gear while Wesley traces tomorrow's knots; Mutu brings a small catch to settle close, and the panther watches calmly from the ferns.",
+  "pulse": "Wesley's fear is real, but his trust in Chills is absolute — and Chills has never wavered.",
+  "scene": "By the fire, Wesley checks the rope while Chills tends the flames; Mutu has brought a kill and settles between them, and the panther rests calmly in the ferns beyond the light.",
   "resources_prev": {
-    "food": 57,
+    "food": 43,
     "water": 90,
-    "wood": 13,
+    "wood": 11,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 28,
+      "condition": 24,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 43,
-    "water": 90,
-    "wood": 11,
+    "food": 59,
+    "water": 100,
+    "wood": 10,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 12
+    "fuel": 16
   },
-  "camp_climate": "steady",
+  "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-22:evening",
+  "last_cycle_key": "2026-06-22:night",
   "cayenne": {
     "stripped": []
   },
@@ -60,7 +60,8 @@
     "11": "The panther emerged fully on Day 11, young and drawn to Mutu alone, and Wesley's fear collided with Chills' calm by the fire. By nightfall, they understood: the leopard wasn't hunting them, but seeking companionship with the cat—and in that truth, Wesley's panic began to settle.",
     "12": "Day 12: the panther crept close enough to touch firelight as Wesley stopped running and Chills held ground with Mutu between them. The wild thing was terrified of the men but drawn to the cat. By nightfall they understood the answer to fear: stay still and let it come.",
     "13": "Day 13 was the breaking point—a panther circled the fire all night while Chills and Wesley held still, neither breaking. By dawn they understood they are each other's shelter. By nightfall they slept together by the fire, and the wild cat watched from the ferns, finally calm.",
-    "14": "Day 14 broke the terror: the panther was not hunting, just lost and drawn to Mutu. By morning Chills and Wesley understood; by afternoon the animal had calmed. Now they sit by a dying fire, taking shifts to rest and keep watch—exhausted, changed, and bonded deeper than fear alone could forge."
+    "14": "Day 14 broke the terror: the panther was not hunting, just lost and drawn to Mutu. By morning Chills and Wesley understood; by afternoon the animal had calmed. Now they sit by a dying fire, taking shifts to rest and keep watch—exhausted, changed, and bonded deeper than fear alone could forge.",
+    "15": "Day 15 saw the crossing take shape — Chills and Wesley measured and planned on the rocks while Mutu hunted and the panther watched calmly from the ferns. By nightfall they had checked the rope and eaten, settling into quiet certainty that tomorrow they would move. The jungle held them steady."
   },
   "lean": {
     "id": "cross_now",
