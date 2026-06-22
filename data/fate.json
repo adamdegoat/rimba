@@ -1,10 +1,10 @@
 {
-  "day": 14,
-  "text": "A strange silence falls over the island — something is coming",
-  "flavor": "unknown",
-  "cycle": "morning",
-  "happens_at": "7am",
+  "day": 15,
+  "text": "Wesley discovers Chills has spent hours waterproofing his clothes in silence.",
+  "flavor": "a quiet mercy",
+  "cycle": "night",
+  "happens_at": "11pm",
   "status": "upcoming",
-  "revealed_at": "2026-06-22T00:01:00.199456",
+  "revealed_at": "2026-06-23T00:00:52.829292",
   "activated_at": null
 }
