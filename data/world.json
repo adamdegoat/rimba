@@ -1,16 +1,16 @@
 {
   "day": 15,
-  "cycle": "afternoon",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-22",
-  "pulse": "Wesley faces the river without flinching now — and Chills knows exactly who will hold the line beside him tomorrow.",
-  "scene": "They scout the crossing point on the river rocks, rope laid and water read. Below them Mutu hunts; at the forest edge the panther rests calm, closer than ever before.",
+  "pulse": "Tomorrow they cross the river — not fearless, but steady. Wesley's anxiety hasn't vanished; it's folded into trust.",
+  "scene": "By firelight on the eve of crossing, Chills checks their rope and gear while Wesley traces tomorrow's knots; Mutu brings a small catch to settle close, and the panther watches calmly from the ferns.",
   "resources_prev": {
-    "food": 44,
+    "food": 57,
     "water": 90,
-    "wood": 14,
+    "wood": 13,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 32,
+      "condition": 28,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 57,
+    "food": 43,
     "water": 90,
-    "wood": 13,
+    "wood": 11,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 8
+    "fuel": 12
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-22:afternoon",
+  "last_cycle_key": "2026-06-22:evening",
   "cayenne": {
     "stripped": []
   },

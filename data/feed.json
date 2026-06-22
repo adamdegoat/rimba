@@ -1,149 +1,6 @@
 [
   {
     "day": 3,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "Mutu returns with a sparrow as Wesley rests his raw hands at the river's edge and Chills sets a fishing line in the shallows, the three finally moving together at the jungle's pace.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "My hands are useless. What am I supposed to do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Rest. Let them heal. We're not in a race."
-      },
-      {
-        "speaker": "wesley",
-        "line": "We have no food stored. That feels like a race."
-      },
-      {
-        "speaker": "chills",
-        "line": "Which is exactly why we don't burn out chasing it."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I don't follow that logic at all."
-      },
-      {
-        "speaker": "chills",
-        "line": "You will. Give it time."
-      },
-      {
-        "speaker": "wesley",
-        "line": "...Mutu?"
-      },
-      {
-        "speaker": "chills",
-        "line": "That cat doesn't panic. Neither should you."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay. Message received."
-      },
-      {
-        "speaker": "chills",
-        "line": "Good. Rest now. You're still learning."
-      }
-    ],
-    "timestamp": "2026-06-10T11:32:25.841481"
-  },
-  {
-    "day": 3,
-    "cycle": "afternoon",
-    "character": "chills",
-    "action": "Setting a fishing line in the shallows with practiced, deliberate movements, unbothered by the hunger.",
-    "thought": "Let the river give. Don't force it.",
-    "location": {
-      "waypoint": "shallows",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-10T15:02:09.053371"
-  },
-  {
-    "day": 3,
-    "cycle": "afternoon",
-    "character": "wesley",
-    "action": "Sitting on a river rock with his swollen hands resting in his lap, watching Chills work with an edge of frustration.",
-    "thought": "I should be doing this, not sitting here.",
-    "location": {
-      "waypoint": "river_rocks",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "restless",
-    "timestamp": "2026-06-10T15:02:09.053371"
-  },
-  {
-    "day": 3,
-    "cycle": "afternoon",
-    "character": "mutu",
-    "action": "Pressing against Wesley's leg, purring steadily and watching the water with amber eyes.",
-    "thought": "He's hurting. I'll stay close.",
-    "location": {
-      "waypoint": "river_rocks",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "affectionate",
-    "timestamp": "2026-06-10T15:02:09.053371"
-  },
-  {
-    "day": 3,
-    "cycle": "afternoon",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "At the shallows in the hot afternoon, Chills works a fishing line with patient precision while Wesley sits nearby with his raw, swollen hands resting; Mutu presses against Wesley's leg, steady.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "How long until these are usable again?"
-      },
-      {
-        "speaker": "chills",
-        "line": "A couple days if you let them rest."
-      },
-      {
-        "speaker": "wesley",
-        "line": "We have no food. I should be helping."
-      },
-      {
-        "speaker": "chills",
-        "line": "You are helping. Healing is work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That's not how rationing works."
-      },
-      {
-        "speaker": "chills",
-        "line": "It is. The jungle teaches you to pace yourself."
-      },
-      {
-        "speaker": "wesley",
-        "line": "And if the river doesn't give?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Then we forage. We adapt. We don't panic."
-      }
-    ],
-    "timestamp": "2026-06-10T15:02:09.053371"
-  },
-  {
-    "day": 3,
     "cycle": "evening",
     "character": "chills",
     "action": "Feeds dry heartwood to the fire, keeping it steady as the dusk darkens around the clearing.",
@@ -6434,5 +6291,110 @@
       }
     ],
     "timestamp": "2026-06-22T15:05:47.475739"
+  },
+  {
+    "day": 15,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Checks the rope and crossing gear by firelight, knotting and testing each piece with methodical calm.",
+    "thought": "Tomorrow. We go. We're ready.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "steady",
+    "timestamp": "2026-06-22T18:37:43.672195"
+  },
+  {
+    "day": 15,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Sits by the fire tracing the rope knots they'll use tomorrow, hands steady and focused, fear folded into concentration.",
+    "thought": "He's calm. That makes it possible.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-22T18:37:43.672195"
+  },
+  {
+    "day": 15,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Slinks back from the forest with a small bird, drops it by the fire at Chills' feet, then curls close beside him.",
+    "thought": "He worries tomorrow. I bring food.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "protective",
+    "timestamp": "2026-06-22T18:37:43.672195"
+  },
+  {
+    "day": 15,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "Rests in the fern hollow at the forest's edge, watching the firelight and Mutu, utterly still and at ease.",
+    "thought": "Safe here. Orange one is safe.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-22T18:37:43.672195"
+  },
+  {
+    "day": 15,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By firelight on the eve of the river crossing, Chills checks their rope and gear while Wesley traces tomorrow's knots; Mutu brings a small catch to settle close, and the panther watches calmly from the ferns.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Current looked faster today than this morning."
+      },
+      {
+        "speaker": "chills",
+        "line": "Light plays tricks. We measured it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I know. I'm just nervous."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Fear keeps you sharp."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're not afraid."
+      },
+      {
+        "speaker": "chills",
+        "line": "Always am. Just don't show it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That doesn't help."
+      },
+      {
+        "speaker": "chills",
+        "line": "But you're not afraid alone. That's the point."
+      }
+    ],
+    "timestamp": "2026-06-22T18:37:43.672195"
   }
 ]

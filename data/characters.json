@@ -11,13 +11,13 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 72
+      "energy": 65
     },
-    "mood": "purposeful",
+    "mood": "steady",
     "location": {
-      "waypoint": "river_rocks",
+      "waypoint": "camp_mid",
       "x": 42,
       "y": 50
     },
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -94,11 +94,6 @@
         "weight": 2
       },
       {
-        "day": 12,
-        "text": "Wesley finally stayed. Sat with me and Mutu while the panther circled. That's strength.",
-        "weight": 2
-      },
-      {
         "day": 13,
         "text": "Wesley didn't run when terror tried to drag him. He stayed and held.",
         "weight": 3
@@ -127,6 +122,11 @@
         "day": 15,
         "text": "Wesley woke clear this morning. The fear finally broke in him.",
         "weight": 2
+      },
+      {
+        "day": 15,
+        "text": "Wesley tested every knot carefully, quiet and sure. He's ready.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -143,13 +143,13 @@
       "loneliness": 0,
       "resilience": 96,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 72
+      "energy": 65
     },
-    "mood": "thoughtful",
+    "mood": "focused",
     "location": {
-      "waypoint": "river_rocks",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -272,14 +272,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 72,
+      "energy": 65,
       "health": 100
     },
-    "mood": "content",
+    "mood": "protective",
     "location": {
-      "waypoint": "shallows",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
@@ -323,9 +323,9 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 72,
+      "energy": 65,
       "health": 100
     },
     "mood": "calm",
