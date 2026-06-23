@@ -1,111 +1,6 @@
 [
   {
     "day": 4,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "Sits by the fire counting the dwindling wood pile, calculating how long it will sustain them if carefully rationed.",
-    "thought": "Six days, maybe seven if we're careful.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "steady",
-    "timestamp": "2026-06-11T17:15:03.149932"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "Flexes his swollen hands against the warmth of the fire, testing whether anything has improved since morning.",
-    "thought": "Still useless. Still completely useless.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "resigned",
-    "timestamp": "2026-06-11T17:15:03.149932"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "Rests in the smoke-shade beside Wesley, eyes half-closed and alert, occasionally glancing toward the forest rim.",
-    "thought": "The scared one's out there. Getting closer now.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-11T17:15:03.149932"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "panther",
-    "action": "Edges closer through the ferns at the camp's rim, drawn by Mutu's fearless presence and the ghost-scent of morning kill.",
-    "thought": "Small one holds still. The tall ones bolt.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "curious",
-    "timestamp": "2026-06-11T17:15:03.149932"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "By the fire at midday, Chills counts the depleting wood while Wesley tests his swollen hands; from the forest edge, the black panther edges closer, drawn by Mutu's fearless calm.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Still swollen. Can't grip anything."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're doing rest-work. It matters."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Doesn't help the wood shortage though."
-      },
-      {
-        "speaker": "chills",
-        "line": "Gathering tomorrow, first light. You can scout."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Scout for what? I don't know what's good."
-      },
-      {
-        "speaker": "chills",
-        "line": "You're faster spotting. Trust your eyes."
-      },
-      {
-        "speaker": "wesley",
-        "line": "My eyes can spot. Nothing else works."
-      },
-      {
-        "speaker": "chills",
-        "line": "That's enough. Scout, point, I'll cut."
-      }
-    ],
-    "timestamp": "2026-06-11T17:15:03.149932"
-  },
-  {
-    "day": 4,
     "cycle": "evening",
     "character": "chills",
     "action": "He fed the fire dry wood and began preparing the small bird Mutu brought, moving with the easy patience of evening routine.",
@@ -6374,5 +6269,110 @@
       }
     ],
     "timestamp": "2026-06-23T15:02:22.370047"
+  },
+  {
+    "day": 16,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "He sits by the fire as dusk thickens, the coiled rope at his side, watching the darkness settle through the trees with the calm of a man who has made his peace with what comes next.",
+    "thought": "Tomorrow we go. We're ready.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-23T18:31:57.367277"
+  },
+  {
+    "day": 16,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "He checks the rope harness one last time, fingers tracing each knot with the precision of someone who has learned that details matter, then settles across the fire from Chills, watching the flames.",
+    "thought": "I can do this. I actually know how.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "focused",
+    "timestamp": "2026-06-23T18:31:57.367277"
+  },
+  {
+    "day": 16,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "The cat curls at the fire's edge near Chills, alert but settled, watching the forest where something moves just beyond the light.",
+    "thought": "Something out there. Safe tonight, though.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-23T18:31:57.367277"
+  },
+  {
+    "day": 16,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "The black leopard presses deeper into the fern hollow, close enough to catch the smell of cooked fish and smoke, its young eyes fixed on the orange cat by the fire.",
+    "thought": "Orange one brings me back. I move closer.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-23T18:31:57.367277"
+  },
+  {
+    "day": 16,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the fire as full dark settles, Chills and Wesley sit across the flames in a quiet that holds no fear — the rope coiled between them, tomorrow just hours away.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "You think it'll be worse tomorrow?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Maybe a bit. Nothing we haven't handled."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Right. What happens after we get across?"
+      },
+      {
+        "speaker": "chills",
+        "line": "One thing at a time. River first."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I trust the river now. It's after that scares me."
+      },
+      {
+        "speaker": "chills",
+        "line": "Then trust me for after. You know how to do this."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Okay."
+      },
+      {
+        "speaker": "chills",
+        "line": "Okay."
+      }
+    ],
+    "timestamp": "2026-06-23T18:31:57.367277"
   }
 ]
