@@ -11,13 +11,13 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85
+      "energy": 78
     },
     "mood": "focused",
     "location": {
-      "waypoint": "river_rocks",
+      "waypoint": "campfire_left",
       "x": 42,
       "y": 50
     },
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 19,
+        "tension": 18,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "working_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -99,11 +99,6 @@
         "weight": 3
       },
       {
-        "day": 13,
-        "text": "He sat close all evening without moving away.",
-        "weight": 2
-      },
-      {
         "day": 14,
         "text": "He was afraid too but held steady. We're bonded now.",
         "weight": 3
@@ -127,6 +122,11 @@
         "day": 16,
         "text": "Wesley needed to hear me say it plain: I'm with him all the way through.",
         "weight": 2
+      },
+      {
+        "day": 16,
+        "text": "Wesley asked if I was scared. I said yes. He stayed steady.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -141,15 +141,15 @@
       "openness": 97,
       "ambition": 87,
       "loneliness": 0,
-      "resilience": 99,
+      "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85
+      "energy": 78
     },
     "mood": "anxious",
     "location": {
-      "waypoint": "shallows",
+      "waypoint": "campfire_right",
       "x": 70,
       "y": 40
     },
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 21,
+        "tension": 20,
         "attraction": 0
       },
       "mutu": {
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "working_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -272,14 +272,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85,
+      "energy": 78,
       "health": 100
     },
     "mood": "alert",
     "location": {
-      "waypoint": "river_bank",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
@@ -296,7 +296,7 @@
         "attraction": 0
       },
       "panther": {
-        "closeness": 99,
+        "closeness": 100,
         "tension": 0,
         "attraction": 0
       }
@@ -323,14 +323,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85,
+      "energy": 78,
       "health": 100
     },
     "mood": "calm",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
@@ -347,7 +347,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 99,
+        "closeness": 100,
         "tension": 0,
         "attraction": 0
       }

@@ -1,16 +1,16 @@
 {
   "day": 16,
-  "cycle": "midday",
+  "cycle": "afternoon",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-23",
-  "pulse": "Wesley's anxiety spikes with each check; Chills' quiet assurance holds steady. Tomorrow the river will test everything they've built.",
-  "scene": "At the shallows, Wesley re-checks the rope knots and water level while Chills watches the current calmly from a rock; by midday both are ready, though Wesley's hands still tremble as they trace the crossing point.",
+  "pulse": "Tomorrow they cross. Tonight, they sit with honest fear and the knowledge that they're ready, and they trust each other.",
+  "scene": "By late afternoon, Chills made one final rope check at the shallows before returning to the fire; Wesley sat on the opposite side, both quiet and ready, staring at the river until dawn.",
   "resources_prev": {
-    "food": 44,
-    "water": 83,
-    "wood": 13,
+    "food": 55,
+    "water": 90,
+    "wood": 12,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 16,
+      "condition": 12,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 55,
+    "food": 41,
     "water": 90,
-    "wood": 12,
+    "wood": 10,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 6
+    "fuel": 10
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-23:midday",
+  "last_cycle_key": "2026-06-23:afternoon",
   "cayenne": {
     "stripped": []
   },

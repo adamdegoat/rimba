@@ -2,147 +2,6 @@
   {
     "day": 4,
     "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley",
-      "mutu"
-    ],
-    "description": "By the fire at midday, Chills counts the gathered wood while Wesley wrestles with the weight of rest—whether it truly counts as work.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "How much did you get?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Three armloads. Mutu found a solid deadfall."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That's not much."
-      },
-      {
-        "speaker": "chills",
-        "line": "No. But it's what we've got."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I should be helping. These hands—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Your hands are healing. This is your work."
-      },
-      {
-        "speaker": "mutu",
-        "line": "Presses against Chills' leg, purring softly."
-      },
-      {
-        "speaker": "chills",
-        "line": "Even Mutu knows. Stay close, keep the fire. That's the job."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay."
-      }
-    ],
-    "timestamp": "2026-06-11T11:32:21.758706"
-  },
-  {
-    "day": 4,
-    "cycle": "afternoon",
-    "character": "chills",
-    "action": "Gathering dry wood from the forest edge, moving steady between dark trunks and camp fire, hands sure and practiced with each piece selected and carried back.",
-    "thought": "He's learning to be still now.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "steady",
-    "timestamp": "2026-06-11T15:02:19.503994"
-  },
-  {
-    "day": 4,
-    "cycle": "afternoon",
-    "character": "wesley",
-    "action": "Resting on his back near the fire, palms up on a broad leaf, letting the heat ease the deep ache spreading through his swollen hands.",
-    "thought": "Resting might be my only work here.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "resigned",
-    "timestamp": "2026-06-11T15:02:19.503994"
-  },
-  {
-    "day": 4,
-    "cycle": "afternoon",
-    "character": "mutu",
-    "action": "Padding between Chills and Wesley, threading past ankles, sometimes curling close to Wesley's side as if to anchor him to the quiet afternoon.",
-    "thought": "Wesley hurts still. I stay close.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "satisfied",
-    "timestamp": "2026-06-11T15:02:19.503994"
-  },
-  {
-    "day": 4,
-    "cycle": "afternoon",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley",
-      "mutu"
-    ],
-    "description": "Wesley finally accepted his exhaustion and rested by the fire; Chills gathered dry wood while Mutu moved quietly between them, holding the space together.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Still can't use my hands."
-      },
-      {
-        "speaker": "chills",
-        "line": "So you rest. That's your work today."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Doesn't feel like work."
-      },
-      {
-        "speaker": "chills",
-        "line": "Because you haven't learned to sit yet."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Sit how?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Just like this. Present. Not moving."
-      },
-      {
-        "speaker": "wesley",
-        "line": "And that's... survival?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Sometimes it's the whole thing."
-      }
-    ],
-    "timestamp": "2026-06-11T15:02:19.503994"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
     "character": "chills",
     "action": "Sits by the fire counting the dwindling wood pile, calculating how long it will sustain them if carefully rationed.",
     "thought": "Six days, maybe seven if we're careful.",
@@ -6410,5 +6269,110 @@
       }
     ],
     "timestamp": "2026-06-23T11:31:34.364395"
+  },
+  {
+    "day": 16,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "In the late afternoon, Chills walks out to the shallows one final time to check the rope's lashing against the river rocks, tugging hard and nodding to himself before heading back to the fire.",
+    "thought": "It holds. We hold. Tomorrow we go.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "focused",
+    "timestamp": "2026-06-23T15:02:22.370047"
+  },
+  {
+    "day": 16,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Wesley sits on the opposite side of the fire, staring at the water and running through the crossing one more time in his head, fingers unconsciously tracing the rope knot at his waist.",
+    "thought": "Current's faster. But we've done harder.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-23T15:02:22.370047"
+  },
+  {
+    "day": 16,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Mutu drapes across Chills' lap, chin resting on his knee, utterly still and watching the water with the same focused intensity as the men.",
+    "thought": "They worry. I stay close.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-23T15:02:22.370047"
+  },
+  {
+    "day": 16,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "From the ferns at the forest's edge, the panther watches the firelight flicker across the men's faces, utterly calm and patient, inching closer to the camp's edge than it ever has before.",
+    "thought": "Orange one is safe. I move nearer.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-23T15:02:22.370047"
+  },
+  {
+    "day": 16,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By late afternoon, Chills finishes a final rope check while Wesley watches from the opposite side of the fire; both quiet and ready, the river's roar a constant reminder of what waits at dawn.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Current's even stronger than this morning."
+      },
+      {
+        "speaker": "chills",
+        "line": "Good. Less chance of drifting downstream."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's one way to look at it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Only way that helps."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You're not scared at all, then?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Terrified. Just not useful to say it aloud."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yeah. Okay."
+      },
+      {
+        "speaker": "chills",
+        "line": "Sleep well tonight. You'll need the strength."
+      }
+    ],
+    "timestamp": "2026-06-23T15:02:22.370047"
   }
 ]
