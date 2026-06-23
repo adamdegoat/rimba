@@ -1,112 +1,6 @@
 [
   {
     "day": 4,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "Mutu drops a small lizard at the camp edge and slinks up to the Cayenne hood to rest—morning's work done.",
-    "thought": "Good hunt, rest now.",
-    "location": {
-      "waypoint": "cayenne_hood",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "satisfied",
-    "timestamp": "2026-06-11T07:02:34.306848"
-  },
-  {
-    "day": 4,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills",
-      "mutu"
-    ],
-    "description": "Wesley tests his swollen hands at the fire while Chills checks the depleted wood pile; Mutu has left a small lizard at the camp edge, a quiet scout's gift before harder work.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Morning. How bad are they?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Still swollen. Another day healing."
-      },
-      {
-        "speaker": "wesley",
-        "line": "So what do I do today?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Rest. Help where you can without using your hands."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Look what Mutu brought us."
-      },
-      {
-        "speaker": "chills",
-        "line": "Yeah. She's earning her keep."
-      },
-      {
-        "speaker": "wesley",
-        "line": "At least one of us is doing something."
-      },
-      {
-        "speaker": "chills",
-        "line": "You are. Just differently. We'll manage."
-      }
-    ],
-    "timestamp": "2026-06-11T07:02:34.306848"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "Chills makes two trips to the river bend to gather the deadwood Mutu found, stacking each armload by the fire with practiced efficiency.",
-    "thought": "Wood's still not enough, but it buys time.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "attentive",
-    "timestamp": "2026-06-11T11:32:21.758706"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "Wesley sits by the fire with his swollen hands resting in his lap, tending the small lizard Mutu brought until it's cooked through.",
-    "thought": "Keep the fire steady. That's enough.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "resigned",
-    "timestamp": "2026-06-11T11:32:21.758706"
-  },
-  {
-    "day": 4,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "Mutu prowls the camp edges in the heat, then presses close to Chills' leg as he stacks the gathered wood, purring softly.",
-    "thought": "He's working hard. I'm staying close.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "satisfied",
-    "timestamp": "2026-06-11T11:32:21.758706"
-  },
-  {
-    "day": 4,
     "cycle": "midday",
     "type": "interaction",
     "characters": [
@@ -6411,5 +6305,110 @@
       }
     ],
     "timestamp": "2026-06-23T07:02:59.657569"
+  },
+  {
+    "day": 16,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Sits steady on a riverside rock, watching the current and Wesley's careful work below, breath even and ready.",
+    "thought": "The river knows. So do we.",
+    "location": {
+      "waypoint": "river_rocks",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "focused",
+    "timestamp": "2026-06-23T11:31:34.364395"
+  },
+  {
+    "day": 16,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Wades into the shallows to check the rope tension and water depth one more time, hands moving with new precision.",
+    "thought": "Stronger current. But we've trained for it.",
+    "location": {
+      "waypoint": "shallows",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "anxious",
+    "timestamp": "2026-06-23T11:31:34.364395"
+  },
+  {
+    "day": 16,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Brings a small freshly-killed fish to the riverbank and settles on a sun-warmed rock, watching the water with alert green eyes.",
+    "thought": "They worry. I can eat.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-23T11:31:34.364395"
+  },
+  {
+    "day": 16,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Watches from the forest edge across the water, body still, eyes following Mutu's small form on the rock below the ferns.",
+    "thought": "Orange one safe in sun. I wait.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-23T11:31:34.364395"
+  },
+  {
+    "day": 16,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the shallows in bright midday heat, Wesley checks the rope and water depth one final time while Chills watches from a nearby rock, both steadying themselves for tomorrow's crossing.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How deep at the crossing point?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Waist-high. We tested it yesterday."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The current's faster than yesterday."
+      },
+      {
+        "speaker": "chills",
+        "line": "Monsoon season. The rope will hold."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What if something breaks tomorrow?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We improvise. We're ready for it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "You make it sound simple."
+      },
+      {
+        "speaker": "chills",
+        "line": "It is simple. Just not easy."
+      }
+    ],
+    "timestamp": "2026-06-23T11:31:34.364395"
   }
 ]

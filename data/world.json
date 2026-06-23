@@ -1,16 +1,16 @@
 {
   "day": 16,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-23",
-  "pulse": "Wesley's fear is real, but Chills' steady hand is holding him — today they cross, together, past the point of return.",
-  "scene": "At the fire by dawn, Chills and Wesley coil the rope together; within the hour they stand on the first rocks at the river crossing, Mutu watching from the bank, the panther resting at the forest edge.",
+  "pulse": "Wesley's anxiety spikes with each check; Chills' quiet assurance holds steady. Tomorrow the river will test everything they've built.",
+  "scene": "At the shallows, Wesley re-checks the rope knots and water level while Chills watches the current calmly from a rock; by midday both are ready, though Wesley's hands still tremble as they trace the crossing point.",
   "resources_prev": {
-    "food": 59,
-    "water": 100,
-    "wood": 10,
+    "food": 44,
+    "water": 83,
+    "wood": 13,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 20,
+      "condition": 16,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 44,
-    "water": 83,
-    "wood": 13,
+    "food": 55,
+    "water": 90,
+    "wood": 12,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 2
+    "fuel": 6
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-23:morning",
+  "last_cycle_key": "2026-06-23:midday",
   "cayenne": {
     "stripped": []
   },

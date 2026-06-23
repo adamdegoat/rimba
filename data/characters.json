@@ -11,13 +11,13 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 92
+      "energy": 85
     },
     "mood": "focused",
     "location": {
-      "waypoint": "campfire_left",
+      "waypoint": "river_rocks",
       "x": 42,
       "y": 50
     },
@@ -143,13 +143,13 @@
       "loneliness": 0,
       "resilience": 99,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 92
+      "energy": 85
     },
     "mood": "anxious",
     "location": {
-      "waypoint": "campfire_right",
+      "waypoint": "shallows",
       "x": 70,
       "y": 40
     },
@@ -272,14 +272,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 92,
+      "energy": 85,
       "health": 100
     },
     "mood": "alert",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "river_bank",
       "x": 80,
       "y": 30
     },
@@ -323,14 +323,14 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 92,
+      "energy": 85,
       "health": 100
     },
     "mood": "calm",
     "location": {
-      "waypoint": "fern_hollow",
+      "waypoint": "forest_edge",
       "x": 50,
       "y": 38
     },
