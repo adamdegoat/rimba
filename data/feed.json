@@ -1,111 +1,6 @@
 [
   {
     "day": 4,
-    "cycle": "evening",
-    "character": "chills",
-    "action": "He fed the fire dry wood and began preparing the small bird Mutu brought, moving with the easy patience of evening routine.",
-    "thought": "This holds. Feed the fire, eat what comes.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "steady",
-    "timestamp": "2026-06-11T18:32:13.110496"
-  },
-  {
-    "day": 4,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "He sat across from Chills at the fire, watching the meat cook and glancing toward the dark forest edge where something moved.",
-    "thought": "The dark. Always something watching.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "wary",
-    "timestamp": "2026-06-11T18:32:13.110496"
-  },
-  {
-    "day": 4,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "After delivering the kill, the ginger tabby settled near Chills' feet, tail curled, eyes following the panther's distant shadow at the forest line.",
-    "thought": "The scared one. Still hungry. Still alone.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-11T18:32:13.110496"
-  },
-  {
-    "day": 4,
-    "cycle": "evening",
-    "character": "panther",
-    "action": "The young leopard hung back in the fern hollow, thin ribs visible even in the dimming light, drawn by the smell of roasting meat and held by the sight of the unbothered cat.",
-    "thought": "Warm thing. Small fierce one. Safe.",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "wary",
-    "timestamp": "2026-06-11T18:32:13.110496"
-  },
-  {
-    "day": 4,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "By the fire's glow, Mutu's small kill roasts while Wesley watches the panther in the ferns and voices his hunger; Chills speaks his steady faith that tomorrow will provide.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "There's something out there. Watching from the ferns."
-      },
-      {
-        "speaker": "chills",
-        "line": "The young leopard. He's learning we're not the threat."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Great. Now we starve and feed cats with nothing."
-      },
-      {
-        "speaker": "chills",
-        "line": "Mutu hunts. We eat. The river gives tomorrow."
-      },
-      {
-        "speaker": "wesley",
-        "line": "How are you sure about tomorrow?"
-      },
-      {
-        "speaker": "chills",
-        "line": "I'm not. But anger won't catch anything. Work does."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Right. Work."
-      },
-      {
-        "speaker": "chills",
-        "line": "You ate today. You'll eat tonight. That's the win."
-      }
-    ],
-    "timestamp": "2026-06-11T18:32:13.110496"
-  },
-  {
-    "day": 4,
     "cycle": "night",
     "character": "chills",
     "action": "Feeds dry wood to the fire slowly, watching the panther edge from the ferns with steady curiosity, unafraid.",
@@ -6374,5 +6269,110 @@
       }
     ],
     "timestamp": "2026-06-23T18:31:57.367277"
+  },
+  {
+    "day": 16,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Banks the fire low, settles Mutu against his chest in the lean-to, and closes his eyes",
+    "thought": "Tomorrow will tell us what we are.",
+    "location": {
+      "waypoint": "shelter_inside",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "lean_to",
+    "mood": "calm",
+    "timestamp": "2026-06-23T22:31:59.199220"
+  },
+  {
+    "day": 16,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Lies on the Cayenne hood with the rope coiled beside him, staring at the stars until sleep comes",
+    "thought": "I'm ready. I know I am.",
+    "location": {
+      "waypoint": "cayenne_hood",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "cayenne",
+    "mood": "resolved",
+    "timestamp": "2026-06-23T22:31:59.199220"
+  },
+  {
+    "day": 16,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Curls into Chills' chest, purring softly as the fire dims to embers",
+    "thought": "Safe here. He is safe.",
+    "location": {
+      "waypoint": "shelter_inside",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-23T22:31:59.199220"
+  },
+  {
+    "day": 16,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Watches from the fern hollow, one eye on the dimming fire, one eye on Mutu's shape in the lean-to",
+    "thought": "Orange one sleeps. They sleep. All safe.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-23T22:31:59.199220"
+  },
+  {
+    "day": 16,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "By the dimming fire, Chills and Wesley share a brief word about tomorrow — faith steady in both, the rope coiled between them.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "What if the rope frays?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It won't. We've done this right."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And the current picks up?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We've trained for that. You know the technique."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I practiced all day."
+      },
+      {
+        "speaker": "chills",
+        "line": "You did well. Sleep now."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Goodnight."
+      },
+      {
+        "speaker": "chills",
+        "line": "Goodnight."
+      }
+    ],
+    "timestamp": "2026-06-23T22:31:59.199220"
   }
 ]
