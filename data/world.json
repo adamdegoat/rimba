@@ -1,16 +1,18 @@
 {
-  "day": 16,
-  "cycle": "night",
+  "day": 17,
+  "cycle": "morning",
   "weather": "clear",
-  "pending_events": [],
+  "pending_events": [
+    "Campfire collapsed from neglect/weather."
+  ],
   "started": "2026-06-08",
-  "last_run_date": "2026-06-23",
-  "pulse": "They rest unafraid tonight, the fear that nearly broke them now burned into quiet readiness.",
-  "scene": "The fire dims; Chills settles into the lean-to with Mutu against his chest, while Wesley rests on the Cayenne hood watching stars — both steady, both waiting.",
+  "last_run_date": "2026-06-24",
+  "pulse": "Wesley trusts his own knots; Chills trusts Wesley; together they face the water.",
+  "scene": "Wesley confirmed his rope anchor at the river's edge while Chills assessed the water's current. Both men stand ready for the crossing ahead.",
   "resources_prev": {
-    "food": 53,
-    "water": 90,
-    "wood": 7,
+    "food": 46,
+    "water": 100,
+    "wood": 6,
     "medicine": 12
   },
   "structures": [
@@ -18,28 +20,28 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 4,
+      "condition": 100,
       "x": 50,
       "y": 55,
       "builder": null,
-      "day": 11,
+      "day": 17,
       "label": "Campfire",
       "baked": true
     }
   ],
   "resources": {
-    "food": 46,
-    "water": 100,
-    "wood": 6,
+    "food": 57,
+    "water": 83,
+    "wood": 9,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 18
+    "fuel": 30
   },
   "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-23:night",
+  "last_cycle_key": "2026-06-24:morning",
   "cayenne": {
     "stripped": []
   },
@@ -65,8 +67,8 @@
     "16": "Day 16 was pure preparation: rope checked and rechecked, technique drilled, fear steadily giving way to quiet readiness. By nightfall both men lay calm and ready for dawn's crossing, the panther watching safely from the jungle edge."
   },
   "lean": {
-    "id": "cross_river",
-    "label": "Cross at dawn",
-    "desc": "Move now. The river's there. They're ready. Wesley's instinct is sound."
+    "id": "trust_wesley",
+    "label": "Cross tomorrow",
+    "desc": "Trust Wesley's knots and your bond"
   }
 }

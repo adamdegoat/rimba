@@ -1,32 +1,27 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-23",
+    "id": "2026-06-24",
     "closes": "tonight",
-    "question": "Wesley's rope is ready—cross tomorrow. Chills hesitates. Go with Wesley, wait one more day, or send Mutu to scout ahead?",
+    "question": "At dawn: Do all three cross the rope together, or do Chills and Wesley scout first while you wait in camp?",
     "options": [
       {
-        "id": "trust_wesley",
-        "label": "Cross tomorrow",
-        "desc": "Trust Wesley's knots and your bond"
+        "id": "cross_all_together",
+        "label": "Cross all together",
+        "desc": "One family, one crossing. Stay whole."
       },
       {
-        "id": "wait_safe",
-        "label": "Wait one more day",
-        "desc": "Chills's caution might save you"
-      },
-      {
-        "id": "mutu_ahead",
-        "label": "Send Mutu ahead",
-        "desc": "Scout the far bank while you prep"
+        "id": "they_scout_first",
+        "label": "They scout first",
+        "desc": "Let them test the rope. You're safe here. Trust them."
       }
     ]
   },
   "in_play": {
-    "id": "cross_river",
-    "label": "Cross at dawn",
-    "desc": "Move now. The river's there. They're ready. Wesley's instinct is sound.",
-    "decided": "2026-06-23",
+    "id": "trust_wesley",
+    "label": "Cross tomorrow",
+    "desc": "Trust Wesley's knots and your bond",
+    "decided": "2026-06-24",
     "votes": 0,
     "tally": {}
   }

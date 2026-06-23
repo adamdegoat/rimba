@@ -11,13 +11,13 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93
     },
-    "mood": "calm",
+    "mood": "resolved",
     "location": {
-      "waypoint": "shelter_inside",
+      "waypoint": "river_bank",
       "x": 42,
       "y": 50
     },
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 16,
+        "tension": 15,
         "attraction": 0
       },
       "mutu": {
@@ -53,7 +53,10 @@
       ],
       "beard": true
     },
-    "interaction": null,
+    "interaction": {
+      "with": "wesley",
+      "state": "talking"
+    },
     "memories": [
       {
         "day": 7,
@@ -101,11 +104,6 @@
         "weight": 3
       },
       {
-        "day": 14,
-        "text": "Wesley heard me. Finally believed it. That shifts everything between us.",
-        "weight": 2
-      },
-      {
         "day": 15,
         "text": "Wesley woke clear this morning. The fear finally broke in him.",
         "weight": 2
@@ -124,6 +122,11 @@
         "day": 16,
         "text": "Wesley asked if I was scared. I said yes. He stayed steady.",
         "weight": 2
+      },
+      {
+        "day": 17,
+        "text": "Wesley's calm at the water. He knows his work is solid.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -140,13 +143,13 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93
     },
     "mood": "resolved",
     "location": {
-      "waypoint": "cayenne_hood",
+      "waypoint": "river_rocks",
       "x": 70,
       "y": 40
     },
@@ -154,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 18,
+        "tension": 17,
         "attraction": 0
       },
       "mutu": {
@@ -179,7 +182,10 @@
       ],
       "beard": true
     },
-    "interaction": null,
+    "interaction": {
+      "with": "chills",
+      "state": "talking"
+    },
     "memories": [
       {
         "day": 2,
@@ -247,8 +253,8 @@
         "weight": 3
       },
       {
-        "day": 16,
-        "text": "Chills promised me steady: he has my back through the crossing and beyond it.",
+        "day": 17,
+        "text": "Chills trusts my knots completely. That's everything right now.",
         "weight": 2
       }
     ],
@@ -266,27 +272,27 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100,
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93,
       "health": 100
     },
-    "mood": "content",
+    "mood": "attentive",
     "location": {
-      "waypoint": "shelter_inside",
+      "waypoint": "shelter_mouth",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 93,
-        "tension": 77,
+        "closeness": 95,
+        "tension": 76,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 43,
-        "tension": 71,
+        "closeness": 45,
+        "tension": 70,
         "attraction": 0
       },
       "panther": {
@@ -317,12 +323,12 @@
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100,
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93,
       "health": 100
     },
-    "mood": "calm",
+    "mood": "wary",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -331,13 +337,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 34,
-        "tension": 68,
+        "closeness": 36,
+        "tension": 67,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 33,
-        "tension": 59,
+        "closeness": 35,
+        "tension": 58,
         "attraction": 0
       },
       "mutu": {
