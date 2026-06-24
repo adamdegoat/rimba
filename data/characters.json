@@ -11,11 +11,11 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99
     },
-    "mood": "calm",
+    "mood": "content",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 10,
+        "tension": 8,
         "attraction": 0
       },
       "mutu": {
@@ -109,11 +109,6 @@
         "weight": 2
       },
       {
-        "day": 16,
-        "text": "Wesley asked if I was scared. I said yes. He stayed steady.",
-        "weight": 2
-      },
-      {
         "day": 17,
         "text": "Wesley's knots and mind carried us across the river. That's real.",
         "weight": 3
@@ -127,6 +122,11 @@
         "day": 17,
         "text": "Wesley's calm at the water. He knows his work is solid.",
         "weight": 2
+      },
+      {
+        "day": 17,
+        "text": "He's not just learning. He's becoming himself here.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -139,15 +139,15 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 91,
+      "ambition": 92,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99
     },
-    "mood": "wary",
+    "mood": "calm",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 12,
+        "tension": 10,
         "attraction": 0
       },
       "mutu": {
@@ -270,29 +270,29 @@
       "trust": 79,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 98,
+      "loneliness": 95,
       "resilience": 86,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99,
       "health": 100
     },
-    "mood": "calm",
+    "mood": "content",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "campfire_left",
       "x": 80,
       "y": 30
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 97,
-        "tension": 75,
+        "closeness": 99,
+        "tension": 73,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 49,
-        "tension": 69,
+        "closeness": 51,
+        "tension": 68,
         "attraction": 0
       },
       "panther": {
@@ -308,7 +308,10 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null,
+    "interaction": {
+      "with": "chills",
+      "state": "sitting_together"
+    },
     "memories": []
   },
   "panther": {
@@ -318,32 +321,32 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 55,
-      "openness": 50,
+      "trust": 56,
+      "openness": 51,
       "ambition": 0,
-      "loneliness": 98,
+      "loneliness": 99,
       "resilience": 80,
-      "hunger": 53,
-      "thirst": 53,
-      "energy": 65,
+      "hunger": 45,
+      "thirst": 45,
+      "energy": 99,
       "health": 100
     },
     "mood": "wary",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 39,
-        "tension": 67,
+        "closeness": 42,
+        "tension": 65,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 37,
-        "tension": 58,
+        "closeness": 39,
+        "tension": 57,
         "attraction": 0
       },
       "mutu": {
@@ -359,10 +362,7 @@
       "stripe": "#3b3b46",
       "eye": "#e0a83a"
     },
-    "interaction": {
-      "with": "mutu",
-      "state": null
-    },
+    "interaction": null,
     "memories": [
       {
         "day": 6,
@@ -412,6 +412,11 @@
       {
         "day": 13,
         "text": "They held still all night. The orange one and dark ones. Safe now.",
+        "weight": 2
+      },
+      {
+        "day": 17,
+        "text": "The orange one calls me closer. I follow.",
         "weight": 2
       }
     ]
