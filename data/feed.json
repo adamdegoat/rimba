@@ -1,111 +1,6 @@
 [
   {
     "day": 5,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "Tends the fire at dawn, feeding dry branches while measuring the wood pile's dwindling height.",
-    "thought": "Fire holds. Wesley's learning. We have time.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-12T07:02:18.658680"
-  },
-  {
-    "day": 5,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "Wakes stiff and careful, moving to the fire with swollen hands that won't quite flex.",
-    "thought": "Another day. At least I can breathe.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-12T07:02:18.658680"
-  },
-  {
-    "day": 5,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "Pads through the camp perimeter with tail high, drawn toward the forest edge by something watching.",
-    "thought": "Not afraid. The dark one follows.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-12T07:02:18.658680"
-  },
-  {
-    "day": 5,
-    "cycle": "morning",
-    "character": "panther",
-    "action": "Edges closer from the ferns, pulled by Mutu's fearless movement, then bolts back into shadow at Wesley's glance.",
-    "thought": "Small fierce one. Safe. Others... no.",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "restless",
-    "timestamp": "2026-06-12T07:02:18.658680"
-  },
-  {
-    "day": 5,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "Wesley wakes stiff as Chills tends the fire at dawn; beyond the camp, Mutu's fearlessness draws the watching panther closer still.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "My hands still won't flex properly."
-      },
-      {
-        "speaker": "chills",
-        "line": "Swelling means healing. Rest's the work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "We burning through the wood okay?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Steady. We're good for days if we're smart."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That thing came to the fire again last night."
-      },
-      {
-        "speaker": "chills",
-        "line": "Mutu wasn't afraid. That's all the safety we need."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I still don't feel safe around it."
-      },
-      {
-        "speaker": "chills",
-        "line": "Eat, rest, don't watch the shadows. That's enough."
-      }
-    ],
-    "timestamp": "2026-06-12T07:02:18.658680"
-  },
-  {
-    "day": 5,
     "cycle": "midday",
     "character": "chills",
     "action": "He shoulders his fishing line and heads down-trail toward the river shallows, moving steady and unbothered.",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-24T07:02:38.968645"
+  },
+  {
+    "day": 17,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "He steadies Mutu against his chest and wades through the high river's current with calm strength, emerging onto the far bank to stand beside Wesley, both men breathing hard.",
+    "thought": "Wesley's knots held. I trusted them.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "resolved",
+    "timestamp": "2026-06-24T11:31:56.865936"
+  },
+  {
+    "day": 17,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "From the far bank he watches Chills emerge from the shallows with Mutu, his face a mix of relief and quiet pride as the rope holds steady and both men stand together.",
+    "thought": "That rope did not fail. Neither did I.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "resolved",
+    "timestamp": "2026-06-24T11:31:56.865936"
+  },
+  {
+    "day": 17,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Cradled secure against Chills' chest through the river crossing, it rides out the rush and sway of the current without struggle, emerging onto the far bank dry and safe.",
+    "thought": "Safe with him. Always safe.",
+    "location": {
+      "waypoint": "river_bank",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-24T11:31:56.865936"
+  },
+  {
+    "day": 17,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "It watches from the far forest edge across the river, drawn by the distant scent of Mutu but wary of the rushing water and splashing chaos of the men, staying hidden.",
+    "thought": "The orange one moves far. Safe.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-24T11:31:56.865936"
+  },
+  {
+    "day": 17,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "At the river's high midday crossing, Wesley coaches steady from the far bank as Chills wades through with Mutu cradled against his chest, the rope taut and true — both men now stand together on the far side, breathing hard, the jungle deeper ahead.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "Your turn now. Rope is good."
+      },
+      {
+        "speaker": "chills",
+        "line": "I can feel your work in this."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Don't think too hard about it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Not planning to."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Current's strong but you're steady."
+      },
+      {
+        "speaker": "chills",
+        "line": "Because I know what I'm holding."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not how you usually talk."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah, well. We made it."
+      }
+    ],
+    "timestamp": "2026-06-24T11:31:56.865936"
   }
 ]

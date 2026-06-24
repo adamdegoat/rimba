@@ -1,18 +1,16 @@
 {
   "day": 17,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
-  "pending_events": [
-    "Campfire collapsed from neglect/weather."
-  ],
+  "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-24",
-  "pulse": "Wesley trusts his own knots; Chills trusts Wesley; together they face the water.",
-  "scene": "Wesley confirmed his rope anchor at the river's edge while Chills assessed the water's current. Both men stand ready for the crossing ahead.",
+  "pulse": "Wesley's knots proved their worth, and both men stand on the far bank knowing his mind and Chills' strength made it real.",
+  "scene": "At the river's high midday water, Chills and Mutu crossed on Wesley's rope while Wesley coached; all three now stand on the far bank breathing hard, the camp distant and the jungle deeper ahead.",
   "resources_prev": {
-    "food": 46,
-    "water": 100,
-    "wood": 6,
+    "food": 57,
+    "water": 83,
+    "wood": 9,
     "medicine": 12
   },
   "structures": [
@@ -30,9 +28,9 @@
     }
   ],
   "resources": {
-    "food": 57,
-    "water": 83,
-    "wood": 9,
+    "food": 30,
+    "water": 90,
+    "wood": 12,
     "medicine": 12
   },
   "fire": {
@@ -41,7 +39,7 @@
   },
   "camp_climate": "content",
   "discoveries": [],
-  "last_cycle_key": "2026-06-24:morning",
+  "last_cycle_key": "2026-06-24:midday",
   "cayenne": {
     "stripped": []
   },
