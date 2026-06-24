@@ -1,111 +1,6 @@
 [
   {
     "day": 5,
-    "cycle": "afternoon",
-    "character": "chills",
-    "action": "He returns from the shallows with a few finger-length fish, setting them by the fire just as Wesley's face goes pale.",
-    "thought": "Just a cub. More scared than he is.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "steady",
-    "timestamp": "2026-06-12T15:03:09.008925"
-  },
-  {
-    "day": 5,
-    "cycle": "afternoon",
-    "character": "wesley",
-    "action": "He sits rigid by the fire, suddenly seeing the panther at the forest edge, and his breath catches in his throat.",
-    "thought": "That's a predator. We have nowhere to run.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "afraid",
-    "timestamp": "2026-06-12T15:03:09.008925"
-  },
-  {
-    "day": 5,
-    "cycle": "afternoon",
-    "character": "mutu",
-    "action": "He slinks back from the forest with a rat in his teeth and settles by the fire to eat, unbothered by the watching panther.",
-    "thought": "Small prey. Warm place. All is well.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-12T15:03:09.008925"
-  },
-  {
-    "day": 5,
-    "cycle": "afternoon",
-    "character": "panther",
-    "action": "It watches from the forest edge, ears back at the larger shapes, but eyes fixed on the small warm one eating by the fire.",
-    "thought": "Small fierce one. Others still no. Not yet.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "restless",
-    "timestamp": "2026-06-12T15:03:09.008925"
-  },
-  {
-    "day": 5,
-    "cycle": "afternoon",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "As afternoon heat settles, Wesley spots the panther watching from the forest edge and spirals; Chills steadies him toward a calmer truth.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "There's something at the tree line. Is that—"
-      },
-      {
-        "speaker": "chills",
-        "line": "Just watching. Don't move."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That's a leopard. That's a predator right there."
-      },
-      {
-        "speaker": "chills",
-        "line": "Yeah. But it's more scared of you than you are of it."
-      },
-      {
-        "speaker": "wesley",
-        "line": "It keeps staring at Mutu. How are you not panicking?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Because Mutu's not afraid. That's what matters."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I don't understand this jungle at all."
-      },
-      {
-        "speaker": "chills",
-        "line": "Not yet. But you're learning."
-      }
-    ],
-    "timestamp": "2026-06-12T15:03:09.008925"
-  },
-  {
-    "day": 5,
     "cycle": "evening",
     "character": "chills",
     "action": "Returns from the shallows with four shiners, cooks them by the fire, and portions them out as evening settles.",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-24T15:02:26.432941"
+  },
+  {
+    "day": 17,
+    "cycle": "evening",
+    "character": "chills",
+    "action": "Chills feeds the fire dry wood while his eyes trace the panther's silhouette at the forest edge, unbothered and observing.",
+    "thought": "It's lonely too. That's why it stays.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-24T18:33:10.555083"
+  },
+  {
+    "day": 17,
+    "cycle": "evening",
+    "character": "wesley",
+    "action": "Wesley sits tense at the fire's edge, watching the forest margin where the panther watches back, his eyes never leaving Mutu.",
+    "thought": "I don't trust it, even if she does.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-24T18:33:10.555083"
+  },
+  {
+    "day": 17,
+    "cycle": "evening",
+    "character": "mutu",
+    "action": "Mutu sits at the fern margin, green eyes half-closed, utterly indifferent to the panther's nervous circling a few feet away.",
+    "thought": "He's alone like I was alone.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-24T18:33:10.555083"
+  },
+  {
+    "day": 17,
+    "cycle": "evening",
+    "character": "panther",
+    "action": "The black panther shifts incrementally closer through the darkening ferns, eyes locked on the ginger cat, the men's fire and voices a distant, tolerable thing.",
+    "thought": "The orange one keeps me from running.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-24T18:33:10.555083"
+  },
+  {
+    "day": 17,
+    "cycle": "evening",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "Evening finds Chills and Wesley settling by the fire, warm and whole after the crossing, as the black panther's silhouette glints at the fern margin, drawn deeper into the camp's edge by Mutu.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "How close is it going to get?"
+      },
+      {
+        "speaker": "chills",
+        "line": "As close as your cat lets it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Exactly. That's what worries me."
+      },
+      {
+        "speaker": "chills",
+        "line": "She's not worried. So neither am I."
+      },
+      {
+        "speaker": "wesley",
+        "line": "The leopard could kill her in a second."
+      },
+      {
+        "speaker": "chills",
+        "line": "It won't. She knows the difference."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Between what? Hunger and friendliness?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Between a creature that's alone and one that's found family."
+      }
+    ],
+    "timestamp": "2026-06-24T18:33:10.555083"
   }
 ]

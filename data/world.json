@@ -1,16 +1,16 @@
 {
   "day": 17,
-  "cycle": "afternoon",
+  "cycle": "evening",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-24",
-  "pulse": "Wesley proved himself; Chills sees him as equal — but they're deep in jungle, wood is low, safety is far away.",
-  "scene": "They crossed the river at dawn; by afternoon Chills scouted bamboo north while Wesley gathered deadfall and Mutu prowled ahead, the panther watching from the fern line.",
+  "pulse": "The crossing proved them to each other — but the jungle keeps testing what that trust can hold as something wild edges closer.",
+  "scene": "After the river, Chills and Wesley rest at the fire, warm and whole; Mutu sits unbothered at the forest edge while the black panther circles closer in the dark.",
   "resources_prev": {
-    "food": 30,
+    "food": 46,
     "water": 90,
-    "wood": 12,
+    "wood": 19,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 96,
+      "condition": 92,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 46,
+    "food": 35,
     "water": 90,
     "wood": 19,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
   "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-24:afternoon",
+  "last_cycle_key": "2026-06-24:evening",
   "cayenne": {
     "stripped": []
   },
