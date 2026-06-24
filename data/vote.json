@@ -1,27 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-24",
+    "id": "2026-06-25",
     "closes": "tonight",
-    "question": "At dawn: Do all three cross the rope together, or do Chills and Wesley scout first while you wait in camp?",
+    "question": "The panther crouches at the fern margin each night, drawn by Mutu. Tomorrow, should Chills and Wesley welcome it in—or turn it back to the wild?",
     "options": [
       {
-        "id": "cross_all_together",
-        "label": "Cross all together",
-        "desc": "One family, one crossing. Stay whole."
+        "id": "welcome",
+        "label": "Welcome the panther",
+        "desc": "Mutu brought it here. Loneliness found them both."
       },
       {
-        "id": "they_scout_first",
-        "label": "They scout first",
-        "desc": "Let them test the rope. You're safe here. Trust them."
+        "id": "send_away",
+        "label": "Send it back wild",
+        "desc": "Safety is three. Maybe four with the cat. Not five."
+      },
+      {
+        "id": "let_mutu_lead",
+        "label": "Follow Mutu's lead",
+        "desc": "The cat decides who belongs in the camp. Trust her instinct."
       }
     ]
   },
   "in_play": {
-    "id": "trust_wesley",
-    "label": "Cross tomorrow",
-    "desc": "Trust Wesley's knots and your bond",
-    "decided": "2026-06-24",
+    "id": "cross_all_together",
+    "label": "Cross all together",
+    "desc": "One family, one crossing. Stay whole.",
+    "decided": "2026-06-25",
     "votes": 0,
     "tally": {}
   }

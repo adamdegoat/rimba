@@ -1,110 +1,5 @@
 [
   {
-    "day": 5,
-    "cycle": "night",
-    "character": "chills",
-    "action": "Chills tends the fire as darkness deepens, catching the panther's amber eyes in the ferns, inching closer to where Mutu sleeps unbothered.",
-    "thought": "He's scared. Mutu trusts him. That matters.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "steady",
-    "timestamp": "2026-06-12T22:31:37.720815"
-  },
-  {
-    "day": 5,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "Wesley stiffens as movement flickers in the ferns, and the realization hits—those glowing eyes belong to the panther, far too close now.",
-    "thought": "It's here. Too close. I can't breathe.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "anxious",
-    "timestamp": "2026-06-12T22:31:37.720815"
-  },
-  {
-    "day": 5,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "Mutu sleeps curled in the fire's warmth, her breathing steady and slow, utterly indifferent to the eyes tracking her from the jungle darkness.",
-    "thought": "Fire warm. All is still and good.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-12T22:31:37.720815"
-  },
-  {
-    "day": 5,
-    "cycle": "night",
-    "character": "panther",
-    "action": "The young panther moves one slow paw forward from the fern line, then freezes, torn between hunger and an older fear as the humans remain stone-still.",
-    "thought": "She sleeps fearless. I cannot stay away now.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "restless",
-    "timestamp": "2026-06-12T22:31:37.720815"
-  },
-  {
-    "day": 5,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "panther"
-    ],
-    "description": "Night deepens and the panther's eyes glow in the ferns creeping closer to Mutu's sleeping form; Wesley spots it and his breath catches in terror, but Chills' steady presence at the fire becomes his anchor.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Chills. Eyes. There, in the ferns."
-      },
-      {
-        "speaker": "chills",
-        "line": "I see him. Young panther. Scared like we are."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Scared? It's a predator a few meters from us."
-      },
-      {
-        "speaker": "chills",
-        "line": "It is. And so is everything here. Watch Mutu."
-      },
-      {
-        "speaker": "wesley",
-        "line": "She's... sleeping. Right there."
-      },
-      {
-        "speaker": "chills",
-        "line": "She trusts it more than we do. That means something."
-      },
-      {
-        "speaker": "wesley",
-        "line": "What do we do?"
-      },
-      {
-        "speaker": "chills",
-        "line": "We don't move. We let him choose."
-      }
-    ],
-    "timestamp": "2026-06-12T22:31:37.720815"
-  },
-  {
     "day": 6,
     "cycle": "morning",
     "character": "chills",
@@ -6366,5 +6261,118 @@
       }
     ],
     "timestamp": "2026-06-24T22:32:06.161348"
+  },
+  {
+    "day": 18,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Sits calm at the fire, watching the panther and Mutu without fear.",
+    "thought": "This one is teaching us both something real.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-25T07:06:55.948321"
+  },
+  {
+    "day": 18,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Wakes to find the panther at the edge and sits with Chills to talk it through.",
+    "thought": "It's dangerous, but... it's not what I thought.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-25T07:06:55.948321"
+  },
+  {
+    "day": 18,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stretches at the fire and moves toward the forest edge, drawing the panther closer with quiet calm.",
+    "thought": "The black one follows. I don't mind.",
+    "location": {
+      "waypoint": "campfire_front",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-25T07:06:55.948321"
+  },
+  {
+    "day": 18,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Ventures to the fern margin in daylight, drawn by Mutu, watching the camp with wary curiosity.",
+    "thought": "The orange one calls. The dark ones stay still.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-25T07:06:55.948321"
+  },
+  {
+    "day": 18,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "The black panther crouches at the forest edge in full daylight—closer than ever before, drawn by Mutu's calm presence; Chills and Wesley watch from the fire.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's closer today. In broad daylight."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Mutu's drawing it in. See how calm it stays?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "It's still a predator."
+      },
+      {
+        "speaker": "chills",
+        "line": "So are we. So is nature. The question is—will it hunt us?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "I don't know. How do you know it won't?"
+      },
+      {
+        "speaker": "chills",
+        "line": "I don't. But I can see it's scared. As scared as we were."
+      },
+      {
+        "speaker": "wesley",
+        "line": "That's not... that doesn't make it safe."
+      },
+      {
+        "speaker": "chills",
+        "line": "No. But it makes it understandable."
+      },
+      {
+        "speaker": "wesley",
+        "line": "And that's supposed to make me less afraid?"
+      },
+      {
+        "speaker": "chills",
+        "line": "It's supposed to make you see something other than teeth."
+      }
+    ],
+    "timestamp": "2026-06-25T07:06:55.948321"
   }
 ]
