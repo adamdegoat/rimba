@@ -1,111 +1,6 @@
 [
   {
     "day": 5,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "He shoulders his fishing line and heads down-trail toward the river shallows, moving steady and unbothered.",
-    "thought": "I can take this. He needs the rest.",
-    "location": {
-      "waypoint": "campfire_front",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "calm",
-    "timestamp": "2026-06-12T11:32:08.311228"
-  },
-  {
-    "day": 5,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "He slumps against the Cayenne's side, watching Chills disappear into the green, his legs too heavy to follow.",
-    "thought": "I should be helping. But I can't move.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-12T11:32:08.311228"
-  },
-  {
-    "day": 5,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "He slips into the ferns where the underbrush grows thick, ears sharp for the smallest movement.",
-    "thought": "Warm smell, small thing. Hunt now.",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-12T11:32:08.311228"
-  },
-  {
-    "day": 5,
-    "cycle": "midday",
-    "character": "panther",
-    "action": "It edges closer from the forest fringe, drawn by Mutu's movements, a shadow among shadows.",
-    "thought": "Small fierce one. Watching from here.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "restless",
-    "timestamp": "2026-06-12T11:32:08.311228"
-  },
-  {
-    "day": 5,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "wesley",
-      "chills"
-    ],
-    "description": "Wesley's legs have given out; Chills shoulders the fishing line for the shallows while Wesley keeps the fire, and Mutu slips into the ferns hunting with the panther watching.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I can't... I need to help. But I can't feel my legs."
-      },
-      {
-        "speaker": "chills",
-        "line": "Then don't. I'll fish the shallows. You stay here."
-      },
-      {
-        "speaker": "wesley",
-        "line": "That's not fair to you."
-      },
-      {
-        "speaker": "chills",
-        "line": "Fair isn't the equation. Survival is."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I've become a burden."
-      },
-      {
-        "speaker": "chills",
-        "line": "You've become someone who rests when he needs to. That's not burden. That's learning."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Okay."
-      },
-      {
-        "speaker": "chills",
-        "line": "Keep the fire alive. That's your job today."
-      }
-    ],
-    "timestamp": "2026-06-12T11:32:08.311228"
-  },
-  {
-    "day": 5,
     "cycle": "afternoon",
     "character": "chills",
     "action": "He returns from the shallows with a few finger-length fish, setting them by the fire just as Wesley's face goes pale.",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-24T11:31:56.865936"
+  },
+  {
+    "day": 17,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Chills scales a tall fig tree to scout the bamboo stands northward, mapping water sources and open ground.",
+    "thought": "He's holding his own. I was right.",
+    "location": {
+      "waypoint": "bamboo_stand",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "focused",
+    "timestamp": "2026-06-24T15:02:26.432941"
+  },
+  {
+    "day": 17,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Wesley gathers fallen branches and tests the ground for dry patches, building a mental map for tomorrow's shelter.",
+    "thought": "My hands and mind work here. That counts.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "resolved",
+    "timestamp": "2026-06-24T15:02:26.432941"
+  },
+  {
+    "day": 17,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Mutu prowls through the ferns ahead, pounces at something in the leaf litter, and brings a fresh kill back to Wesley.",
+    "thought": "New jungle. Orange one is safe here.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-24T15:02:26.432941"
+  },
+  {
+    "day": 17,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "The panther edges from the deep forest to the fern line, crouching low, eyes fixed on the ginger cat moving below.",
+    "thought": "Orange one is close. I move closer too.",
+    "location": {
+      "waypoint": "forest_edge",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-24T15:02:26.432941"
+  },
+  {
+    "day": 17,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "In the fern hollow, Chills and Wesley plan shelter while Mutu brings a fresh kill and the panther watches from the forest margin, drawn by the ginger cat.",
+    "dialogue": [
+      {
+        "speaker": "chills",
+        "line": "Bamboo north of here. Good stand for poles."
+      },
+      {
+        "speaker": "wesley",
+        "line": "I'll gather what's here. We can build something."
+      },
+      {
+        "speaker": "chills",
+        "line": "Your knots held me across the river, Wesley."
+      },
+      {
+        "speaker": "wesley",
+        "line": "They held because I knew you'd trust them."
+      },
+      {
+        "speaker": "chills",
+        "line": "I did. I do. That changes things."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What does it change?"
+      },
+      {
+        "speaker": "chills",
+        "line": "You're not a liability now. You're a partner."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Then let's build shelter before the rain comes."
+      }
+    ],
+    "timestamp": "2026-06-24T15:02:26.432941"
   }
 ]

@@ -7,17 +7,17 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 55,
+      "ambition": 56,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86
+      "energy": 72
     },
-    "mood": "resolved",
+    "mood": "focused",
     "location": {
-      "waypoint": "river_bank",
+      "waypoint": "bamboo_stand",
       "x": 42,
       "y": 50
     },
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 12,
+        "tension": 11,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -104,11 +104,6 @@
         "weight": 3
       },
       {
-        "day": 15,
-        "text": "Wesley woke clear this morning. The fear finally broke in him.",
-        "weight": 2
-      },
-      {
         "day": 16,
         "text": "Wesley needed to hear me say it plain: I'm with him all the way through.",
         "weight": 2
@@ -121,6 +116,11 @@
       {
         "day": 17,
         "text": "Wesley's knots and mind carried us across the river. That's real.",
+        "weight": 3
+      },
+      {
+        "day": 17,
+        "text": "His knots held me across. He's capable, not just useful.",
         "weight": 3
       },
       {
@@ -138,18 +138,18 @@
     "color": "#6ba3e0",
     "scores": {
       "trust": 100,
-      "openness": 98,
-      "ambition": 89,
+      "openness": 99,
+      "ambition": 90,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86
+      "energy": 72
     },
     "mood": "resolved",
     "location": {
-      "waypoint": "river_bank",
+      "waypoint": "fern_hollow",
       "x": 70,
       "y": 40
     },
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 14,
+        "tension": 13,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 49,
+        "closeness": 50,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "sitting_together"
+      "state": "working_together"
     },
     "memories": [
       {
@@ -195,11 +195,6 @@
       {
         "day": 7,
         "text": "I had to carry everything. Realized I actually could.",
-        "weight": 3
-      },
-      {
-        "day": 7,
-        "text": "Chills let me see him broken. Trusted me to hold it.",
         "weight": 3
       },
       {
@@ -256,6 +251,11 @@
         "day": 17,
         "text": "My mind matters here. It matters as much as his strength.",
         "weight": 3
+      },
+      {
+        "day": 17,
+        "text": "I built something that held. My hands matter here.",
+        "weight": 3
       }
     ],
     "condition": "healthy"
@@ -267,19 +267,19 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 78,
+      "trust": 79,
       "openness": 42,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 72,
       "health": 100
     },
     "mood": "content",
     "location": {
-      "waypoint": "river_bank",
+      "waypoint": "fern_hollow",
       "x": 80,
       "y": 30
     },
@@ -291,7 +291,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 48,
+        "closeness": 49,
         "tension": 69,
         "attraction": 0
       },
@@ -318,14 +318,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 53,
-      "openness": 49,
+      "trust": 54,
+      "openness": 50,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 72,
       "health": 100
     },
     "mood": "wary",
