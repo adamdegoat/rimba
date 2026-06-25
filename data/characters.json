@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
-      "thirst": 53,
-      "energy": 71
+      "hunger": 53,
+      "thirst": 45,
+      "energy": 100
     },
     "mood": "calm",
     "location": {
@@ -25,11 +25,11 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 5,
+        "tension": 4,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 95,
+        "closeness": 96,
         "tension": 0,
         "attraction": 0
       }
@@ -119,13 +119,13 @@
         "weight": 2
       },
       {
-        "day": 17,
-        "text": "He's not just learning. He's becoming himself here.",
+        "day": 18,
+        "text": "The panther entered the clearing. The wild is learning to trust us.",
         "weight": 2
       },
       {
         "day": 18,
-        "text": "The panther entered the clearing. The wild is learning to trust us.",
+        "text": "Wesley chose trust over fear tonight. That's what changes things here.",
         "weight": 2
       }
     ],
@@ -143,9 +143,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
-      "thirst": 53,
-      "energy": 71
+      "hunger": 53,
+      "thirst": 45,
+      "energy": 100
     },
     "mood": "alert",
     "location": {
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 7,
+        "tension": 6,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 53,
+        "closeness": 54,
         "tension": 0,
         "attraction": 0
       }
@@ -267,14 +267,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 79,
+      "trust": 80,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 100,
+      "loneliness": 97,
       "resilience": 86,
-      "hunger": 45,
-      "thirst": 53,
-      "energy": 71,
+      "hunger": 53,
+      "thirst": 45,
+      "energy": 100,
       "health": 100
     },
     "mood": "content",
@@ -287,12 +287,12 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 72,
+        "tension": 71,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 56,
-        "tension": 66,
+        "closeness": 59,
+        "tension": 65,
         "attraction": 0
       },
       "panther": {
@@ -309,7 +309,13 @@
       "eye": "#5fa86b"
     },
     "interaction": null,
-    "memories": []
+    "memories": [
+      {
+        "day": 18,
+        "text": "Both of them near. Wild one watching, and I was completely at peace.",
+        "weight": 2
+      }
+    ]
   },
   "panther": {
     "name": "",
@@ -318,31 +324,31 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 58,
+      "trust": 59,
       "openness": 54,
       "ambition": 0,
-      "loneliness": 96,
-      "resilience": 80,
-      "hunger": 45,
-      "thirst": 53,
-      "energy": 71,
+      "loneliness": 93,
+      "resilience": 81,
+      "hunger": 53,
+      "thirst": 45,
+      "energy": 100,
       "health": 100
     },
     "mood": "wary",
     "location": {
-      "waypoint": "forest_edge",
+      "waypoint": "fern_hollow",
       "x": 50,
       "y": 38
     },
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 45,
-        "tension": 63,
+        "closeness": 48,
+        "tension": 61,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 42,
+        "closeness": 44,
         "tension": 53,
         "attraction": 0
       },
@@ -359,7 +365,10 @@
       "stripe": "#3b3b46",
       "eye": "#e0a83a"
     },
-    "interaction": null,
+    "interaction": {
+      "with": "mutu",
+      "state": null
+    },
     "memories": [
       {
         "day": 6,
@@ -424,6 +433,11 @@
       {
         "day": 18,
         "text": "The orange one's stillness is my home now. I am safe.",
+        "weight": 2
+      },
+      {
+        "day": 18,
+        "text": "Orange one lets me watch. Dark ones don't run. Safe. Not alone.",
         "weight": 2
       }
     ]

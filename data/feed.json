@@ -1,111 +1,6 @@
 [
   {
     "day": 6,
-    "cycle": "evening",
-    "character": "chills",
-    "action": "He ate slowly at the fire, fever burning through his body, shoulders heavy with the day's effort.",
-    "thought": "Fever burns but the work holds.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "determined",
-    "timestamp": "2026-06-13T18:32:14.238464"
-  },
-  {
-    "day": 6,
-    "cycle": "evening",
-    "character": "wesley",
-    "action": "He sat at the fire's edge with the small fish warming his hands, too tired to think past the next breath.",
-    "thought": "I held on. That has to count.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "weary",
-    "timestamp": "2026-06-13T18:32:14.238464"
-  },
-  {
-    "day": 6,
-    "cycle": "evening",
-    "character": "mutu",
-    "action": "She lay on the warm stones near the fire, utterly at ease, her green eyes calm as she watched the dark forest margin.",
-    "thought": "They hold on. The dark knows I'm here.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-13T18:32:14.238464"
-  },
-  {
-    "day": 6,
-    "cycle": "evening",
-    "character": "panther",
-    "action": "The young panther crept from the ferns' edge, drawn by the golden cat's presence, its hunger and fear easier to carry when she was near.",
-    "thought": "The orange one doesn't flee. Why stay?",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "wary",
-    "timestamp": "2026-06-13T18:32:14.238464"
-  },
-  {
-    "day": 6,
-    "cycle": "evening",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the fire after hours of fishing in fever and pain, Chills and Wesley eat the day's small catch in near-silence while Mutu rests calm nearby and the panther watches her from the ferns, closer than any previous night.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "I'm not sure I can do that again."
-      },
-      {
-        "speaker": "chills",
-        "line": "You did it today. That's the only day that counts."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Today I could barely feel my legs."
-      },
-      {
-        "speaker": "chills",
-        "line": "Today I couldn't feel anything but fire. Still here."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Yeah. Still here."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Is the panther always this close at night?"
-      },
-      {
-        "speaker": "chills",
-        "line": "She brings him calm. The rest we leave alone."
-      },
-      {
-        "speaker": "chills",
-        "line": "Rest now. Tomorrow's its own day."
-      }
-    ],
-    "timestamp": "2026-06-13T18:32:14.238464"
-  },
-  {
-    "day": 6,
     "cycle": "night",
     "character": "chills",
     "action": "After hours of fishing in burning fever, Chills settles at the fire and feeds dry wood into the flames, his movements careful and measured.",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-25T18:33:29.172729"
+  },
+  {
+    "day": 18,
+    "cycle": "night",
+    "character": "chills",
+    "action": "Sits by the fire, unmoved and unhurried, watching the panther's dark shape at the fern edge while Mutu sleeps against his ribs.",
+    "thought": "The wild's fear is fading. Just patience now.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-25T22:32:16.732409"
+  },
+  {
+    "day": 18,
+    "cycle": "night",
+    "character": "wesley",
+    "action": "Keeps Mutu close against his chest, one hand resting on the cat's spine, eyes fixed on the panther's outline in the firelight.",
+    "thought": "That could kill us. Why is he unmoved?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-25T22:32:16.732409"
+  },
+  {
+    "day": 18,
+    "cycle": "night",
+    "character": "mutu",
+    "action": "Sleeps curled between the two men at the fire's heart, utterly unbothered by the panther's presence at the margin.",
+    "thought": "Safe between them. Wild one close, and I'm at peace.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-25T22:32:16.732409"
+  },
+  {
+    "day": 18,
+    "cycle": "night",
+    "character": "panther",
+    "action": "Crouches in the fern hollow, yellow eyes fixed on the sleeping cat, breathing shallow and still, no longer fleeing but not approaching either.",
+    "thought": "Orange one draws me close. Dark ones stay still here.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-25T22:32:16.732409"
+  },
+  {
+    "day": 18,
+    "cycle": "night",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Wesley held Mutu as the panther crouched at the fern edge, watching only the cat, and Chills sat unmoved by the fire—the choice between them, unspoken: let it stay, or drive it away.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's still there."
+      },
+      {
+        "speaker": "chills",
+        "line": "Watching Mutu."
+      },
+      {
+        "speaker": "wesley",
+        "line": "It could kill him in seconds."
+      },
+      {
+        "speaker": "chills",
+        "line": "Could have already. This isn't hunger—something else."
+      },
+      {
+        "speaker": "wesley",
+        "line": "What else looks like that?"
+      },
+      {
+        "speaker": "chills",
+        "line": "Loneliness. Same as us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Don't make it into something it's not."
+      },
+      {
+        "speaker": "chills",
+        "line": "I'm not. But Mutu isn't scared, so I'm trusting his read."
+      }
+    ],
+    "timestamp": "2026-06-25T22:32:16.732409"
   }
 ]
