@@ -7,13 +7,13 @@
     "scores": {
       "trust": 100,
       "openness": 100,
-      "ambition": 57,
+      "ambition": 58,
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93
     },
     "mood": "calm",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 4,
+        "tension": 2,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -143,9 +143,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93
     },
     "mood": "alert",
     "location": {
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 6,
+        "tension": 4,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 54,
+        "closeness": 55,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "sitting_together"
+      "state": "talking"
     },
     "memories": [
       {
@@ -267,14 +267,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 80,
+      "trust": 81,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 97,
+      "loneliness": 99,
       "resilience": 86,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100,
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93,
       "health": 100
     },
     "mood": "content",
@@ -287,12 +287,12 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 71,
+        "tension": 70,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 59,
-        "tension": 65,
+        "closeness": 62,
+        "tension": 64,
         "attraction": 0
       },
       "panther": {
@@ -314,6 +314,16 @@
         "day": 18,
         "text": "Both of them near. Wild one watching, and I was completely at peace.",
         "weight": 2
+      },
+      {
+        "day": 19,
+        "text": "Panther slept beside me all night without fear. We are bound now.",
+        "weight": 2
+      },
+      {
+        "day": 19,
+        "text": "Both of them here. Wild one close. Not alone anymore.",
+        "weight": 2
       }
     ]
   },
@@ -324,17 +334,17 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 59,
-      "openness": 54,
+      "trust": 61,
+      "openness": 55,
       "ambition": 0,
-      "loneliness": 93,
+      "loneliness": 95,
       "resilience": 81,
-      "hunger": 53,
-      "thirst": 45,
-      "energy": 100,
+      "hunger": 45,
+      "thirst": 53,
+      "energy": 93,
       "health": 100
     },
-    "mood": "wary",
+    "mood": "calm",
     "location": {
       "waypoint": "fern_hollow",
       "x": 50,
@@ -343,12 +353,12 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 48,
-        "tension": 61,
+        "closeness": 51,
+        "tension": 59,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 44,
+        "closeness": 46,
         "tension": 53,
         "attraction": 0
       },
@@ -365,16 +375,8 @@
       "stripe": "#3b3b46",
       "eye": "#e0a83a"
     },
-    "interaction": {
-      "with": "mutu",
-      "state": null
-    },
+    "interaction": null,
     "memories": [
-      {
-        "day": 6,
-        "text": "The orange one's stillness quiets what burns in me.",
-        "weight": 1
-      },
       {
         "day": 6,
         "text": "Orange one's stillness draws me closer each night. I am not alone.",
@@ -439,6 +441,11 @@
         "day": 18,
         "text": "Orange one lets me watch. Dark ones don't run. Safe. Not alone.",
         "weight": 2
+      },
+      {
+        "day": 19,
+        "text": "Orange one beside me all night. Dark ones stayed still. I'm safe.",
+        "weight": 3
       }
     ]
   }

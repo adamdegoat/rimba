@@ -1,110 +1,5 @@
 [
   {
-    "day": 6,
-    "cycle": "night",
-    "character": "chills",
-    "action": "After hours of fishing in burning fever, Chills settles at the fire and feeds dry wood into the flames, his movements careful and measured.",
-    "thought": "Fever burns but the work holds.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "weary",
-    "timestamp": "2026-06-13T22:32:44.752276"
-  },
-  {
-    "day": 6,
-    "cycle": "night",
-    "character": "wesley",
-    "action": "Wesley limps back to the fire and sinks onto a log, every muscle burning with exhaustion after a day spent wading and working through pain.",
-    "thought": "I held on. That has to count.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "exhausted",
-    "timestamp": "2026-06-13T22:32:44.752276"
-  },
-  {
-    "day": 6,
-    "cycle": "night",
-    "character": "mutu",
-    "action": "Mutu settles on a rock near the fire, utterly calm and unbothered, her green eyes tracking the panther in the ferns.",
-    "thought": "The dark one circles still.",
-    "location": {
-      "waypoint": "camp_mid",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-13T22:32:44.752276"
-  },
-  {
-    "day": 6,
-    "cycle": "night",
-    "character": "panther",
-    "action": "The young panther edges closer to the camp's edge than any previous night, watching Mutu's stillness from the ferns, drawn and wary.",
-    "thought": "The orange one doesn't flee.",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "curious",
-    "timestamp": "2026-06-13T22:32:44.752276"
-  },
-  {
-    "day": 6,
-    "cycle": "night",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "Night has found them exhausted at the fire after hours of fishing in fever and pain; the panther watches from the ferns, closer than any previous night, drawn to Mutu's stillness.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "That's the panther. Right there at the edge."
-      },
-      {
-        "speaker": "chills",
-        "line": "Yeah. He's been trailing us since the river."
-      },
-      {
-        "speaker": "wesley",
-        "line": "We should drive it off. Too close now."
-      },
-      {
-        "speaker": "chills",
-        "line": "No. He's just watching. Mutu calms him."
-      },
-      {
-        "speaker": "wesley",
-        "line": "This isn't about Mutu. It's a predator."
-      },
-      {
-        "speaker": "chills",
-        "line": "So are we. And Mutu trusts him, it seems."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Trust doesn't mean he won't kill us."
-      },
-      {
-        "speaker": "chills",
-        "line": "True. But it means he hasn't yet."
-      }
-    ],
-    "timestamp": "2026-06-13T22:32:44.752276"
-  },
-  {
     "day": 7,
     "cycle": "morning",
     "character": "chills",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-25T22:32:16.732409"
+  },
+  {
+    "day": 19,
+    "cycle": "morning",
+    "character": "chills",
+    "action": "Woke to find the panther still at the forest edge, watching Mutu sleep, and made no move to drive it away.",
+    "thought": "Night held steady. No one panicked. Good.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-26T07:03:01.452918"
+  },
+  {
+    "day": 19,
+    "cycle": "morning",
+    "character": "wesley",
+    "action": "Woke to see the panther had never left, and tensed with the realization that they'd slept with a predator circling.",
+    "thought": "It stayed all night. It didn't kill us.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-26T07:03:01.452918"
+  },
+  {
+    "day": 19,
+    "cycle": "morning",
+    "character": "mutu",
+    "action": "Stirred at dawn and padded through the smoke toward the fern edge where the panther watched from the shadows.",
+    "thought": "Wild one here. Still here. I'm safe.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-26T07:03:01.452918"
+  },
+  {
+    "day": 19,
+    "cycle": "morning",
+    "character": "panther",
+    "action": "Remained motionless at the fern edge through the entire night, eyes never leaving Mutu, the fire dying to embers below.",
+    "thought": "Orange one near. Dark ones still. Safe.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-26T07:03:01.452918"
+  },
+  {
+    "day": 19,
+    "cycle": "morning",
+    "type": "interaction",
+    "characters": [
+      "chills",
+      "wesley"
+    ],
+    "description": "At dawn the panther was still at the fern edge, watching from the shadows as Mutu stirred between Chills and Wesley by the fire.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's still here."
+      },
+      {
+        "speaker": "chills",
+        "line": "All night. Didn't move."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we just—what, accept it?"
+      },
+      {
+        "speaker": "chills",
+        "line": "What's the alternative? Kill it?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Honestly? Yes. It's a panther."
+      },
+      {
+        "speaker": "chills",
+        "line": "The river could drown us just as easily. This one's choosing not to."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Because of Mutu."
+      },
+      {
+        "speaker": "chills",
+        "line": "Exactly. Because of Mutu."
+      }
+    ],
+    "timestamp": "2026-06-26T07:03:01.452918"
   }
 ]

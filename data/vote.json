@@ -1,32 +1,32 @@
 {
   "world": "rimba",
   "poll": {
-    "id": "2026-06-25",
+    "id": "2026-06-26",
     "closes": "tonight",
-    "question": "The panther crouches at the fern margin each night, drawn by Mutu. Tomorrow, should Chills and Wesley welcome it in—or turn it back to the wild?",
+    "question": "The panther at the fern edge watches Mutu sleep. Wesley holds tight. Chills waits unmoved. Does the wild one stay?",
     "options": [
       {
-        "id": "welcome",
-        "label": "Welcome the panther",
-        "desc": "Mutu brought it here. Loneliness found them both."
+        "id": "with_mutu",
+        "label": "Let it stay",
+        "desc": "Mutu called it here. The wild one's fear is fading. Trust what the cat knows."
       },
       {
-        "id": "send_away",
-        "label": "Send it back wild",
-        "desc": "Safety is three. Maybe four with the cat. Not five."
+        "id": "defend_camp",
+        "label": "Drive it away",
+        "desc": "Wesley's right. One wrong move ends everything. The boundary holds at dawn."
       },
       {
-        "id": "let_mutu_lead",
-        "label": "Follow Mutu's lead",
-        "desc": "The cat decides who belongs in the camp. Trust her instinct."
+        "id": "set_terms",
+        "label": "Set the boundary",
+        "desc": "Chills and Wesley agree: fern edge, not fire. The circle stays safe. The wild stays close."
       }
     ]
   },
   "in_play": {
-    "id": "cross_all_together",
-    "label": "Cross all together",
-    "desc": "One family, one crossing. Stay whole.",
-    "decided": "2026-06-25",
+    "id": "welcome",
+    "label": "Welcome the panther",
+    "desc": "Mutu brought it here. Loneliness found them both.",
+    "decided": "2026-06-26",
     "votes": 0,
     "tally": {}
   }
