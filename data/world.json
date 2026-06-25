@@ -1,16 +1,16 @@
 {
   "day": 18,
-  "cycle": "morning",
+  "cycle": "midday",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-25",
-  "pulse": "The panther's loneliness mirrors the men's, and Wesley begins to see fear differently.",
-  "scene": "The panther ventured to the clearing edge in daylight for the first time; Chills and Wesley sat talking at the fire with Mutu, beginning to see past fear.",
+  "pulse": "The panther edges closer daily, Wesley's stopped fearing it — Chills wonders if the jungle is adopting them now.",
+  "scene": "By the midday fire, Chills and Wesley discussed the panther creeping closer while Mutu dozed between them. In the ferns beyond, the leopard crouched near, drawn toward the cat that showed it no fear.",
   "resources_prev": {
-    "food": 51,
-    "water": 100,
-    "wood": 18,
+    "food": 38,
+    "water": 83,
+    "wood": 16,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 84,
+      "condition": 80,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 38,
-    "water": 83,
-    "wood": 16,
+    "food": 51,
+    "water": 90,
+    "wood": 15,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 10
+    "fuel": 14
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-25:morning",
+  "last_cycle_key": "2026-06-25:midday",
   "cayenne": {
     "stripped": []
   },

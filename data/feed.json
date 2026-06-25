@@ -1,111 +1,6 @@
 [
   {
     "day": 6,
-    "cycle": "morning",
-    "character": "chills",
-    "action": "He limps from the lean-to to the fire, fever-aching, and confronts the empty food stores.",
-    "thought": "Food gone. We fish or starve.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "determined",
-    "timestamp": "2026-06-13T07:03:54.998249"
-  },
-  {
-    "day": 6,
-    "cycle": "morning",
-    "character": "wesley",
-    "action": "He wakes in the Cayenne and drags himself out to the fire, leg throbbing with each movement.",
-    "thought": "I can't even move without pain.",
-    "location": {
-      "waypoint": "campfire_right",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "worried",
-    "timestamp": "2026-06-13T07:03:54.998249"
-  },
-  {
-    "day": 6,
-    "cycle": "morning",
-    "character": "mutu",
-    "action": "She stretches in the Cayenne's warmth, then slips out and prowls toward the ferns, hunting.",
-    "thought": "The fear-one is far. I hunt.",
-    "location": {
-      "waypoint": "fern_hollow",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "cayenne",
-    "mood": "calm",
-    "timestamp": "2026-06-13T07:03:54.998249"
-  },
-  {
-    "day": 6,
-    "cycle": "morning",
-    "character": "panther",
-    "action": "The young panther emerges at the fern's edge as daylight strengthens, watching the camp from a wary distance.",
-    "thought": "The fearless one hunts alone now.",
-    "location": {
-      "waypoint": "forest_edge",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "wary",
-    "timestamp": "2026-06-13T07:03:54.998249"
-  },
-  {
-    "day": 6,
-    "cycle": "morning",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "Food stores are empty and the day is now — Chills and Wesley stand at the fire and decide to fish, fever and injury be damned.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "Food's completely gone."
-      },
-      {
-        "speaker": "chills",
-        "line": "Then we fish. You able to help?"
-      },
-      {
-        "speaker": "wesley",
-        "line": "My leg's still bad."
-      },
-      {
-        "speaker": "chills",
-        "line": "You don't wade. You hold the net. That's the work."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Just... standing there?"
-      },
-      {
-        "speaker": "chills",
-        "line": "Watching the water, steadying the line. Your mind does it."
-      },
-      {
-        "speaker": "wesley",
-        "line": "Mutu's not scared of it at all."
-      },
-      {
-        "speaker": "chills",
-        "line": "She knows what matters. We could learn that from her."
-      }
-    ],
-    "timestamp": "2026-06-13T07:03:54.998249"
-  },
-  {
-    "day": 6,
     "cycle": "midday",
     "character": "chills",
     "action": "Wades into the shallows despite his fever burning through him, moving with practiced rhythm to find fish in the deep pools.",
@@ -6374,5 +6269,110 @@
       }
     ],
     "timestamp": "2026-06-25T07:06:55.948321"
+  },
+  {
+    "day": 18,
+    "cycle": "midday",
+    "character": "chills",
+    "action": "Sits by the fire tending water containers while resting in the midday heat, body easy and settled.",
+    "thought": "He's learning to see this place clearly.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-25T11:31:54.000124"
+  },
+  {
+    "day": 18,
+    "cycle": "midday",
+    "character": "wesley",
+    "action": "Rests on a log beside Chills, gaze drifting toward the fern margin where the panther's dark shape moves.",
+    "thought": "It's wild. It's watching. But Mutu doesn't care.",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "thoughtful",
+    "timestamp": "2026-06-25T11:31:54.000124"
+  },
+  {
+    "day": 18,
+    "cycle": "midday",
+    "character": "mutu",
+    "action": "Lies draped across Chills' lap, purring softly in the humid heat, entirely unbothered by the black shape watching from the jungle edge.",
+    "thought": "Warmth and rest and close. Safe.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-25T11:31:54.000124"
+  },
+  {
+    "day": 18,
+    "cycle": "midday",
+    "character": "panther",
+    "action": "Crouches in the fern hollow with ears forward, eyes locked on Mutu while the men's quiet voices drift from the fire, creeping closer.",
+    "thought": "The orange one draws me. I step closer.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "wary",
+    "timestamp": "2026-06-25T11:31:54.000124"
+  },
+  {
+    "day": 18,
+    "cycle": "midday",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "Midday by the fire: Wesley and Chills rest in the humid heat while Mutu sleeps between them, as the black panther crouches in the fern margin just beyond the clearing, drawn closer by the cat's unbothered calm.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's closer every day. That cat's going to get it killed."
+      },
+      {
+        "speaker": "chills",
+        "line": "Or the cat knows something we don't. You see how Mutu is?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Unbothered. Which doesn't mean it's harmless."
+      },
+      {
+        "speaker": "chills",
+        "line": "True. But fear isn't truth. Not out here."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we're just living with a leopard now?"
+      },
+      {
+        "speaker": "chills",
+        "line": "We were always living with one. Now it's just honest about it."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Accepting that is different from understanding it."
+      },
+      {
+        "speaker": "chills",
+        "line": "Yeah. Watch and learn. Mutu's already teaching it."
+      }
+    ],
+    "timestamp": "2026-06-25T11:31:54.000124"
   }
 ]
