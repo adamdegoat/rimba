@@ -11,11 +11,11 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85
+      "energy": 78
     },
-    "mood": "content",
+    "mood": "calm",
     "location": {
       "waypoint": "campfire_left",
       "x": 42,
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -104,11 +104,6 @@
         "weight": 3
       },
       {
-        "day": 16,
-        "text": "Wesley needed to hear me say it plain: I'm with him all the way through.",
-        "weight": 2
-      },
-      {
         "day": 17,
         "text": "Wesley's knots and mind carried us across the river. That's real.",
         "weight": 3
@@ -127,6 +122,11 @@
         "day": 17,
         "text": "He's not just learning. He's becoming himself here.",
         "weight": 2
+      },
+      {
+        "day": 18,
+        "text": "The panther entered the clearing. The wild is learning to trust us.",
+        "weight": 2
       }
     ],
     "condition": "healthy"
@@ -143,11 +143,11 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85
+      "energy": 78
     },
-    "mood": "thoughtful",
+    "mood": "tense",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -161,7 +161,7 @@
         "attraction": 0
       },
       "mutu": {
-        "closeness": 51,
+        "closeness": 52,
         "tension": 0,
         "attraction": 0
       }
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -270,11 +270,11 @@
       "trust": 79,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 100,
+      "loneliness": 98,
       "resilience": 86,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85,
+      "energy": 78,
       "health": 100
     },
     "mood": "content",
@@ -291,8 +291,8 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 54,
-        "tension": 67,
+        "closeness": 55,
+        "tension": 66,
         "attraction": 0
       },
       "panther": {
@@ -308,7 +308,10 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": null,
+    "interaction": {
+      "with": "chills",
+      "state": "sitting_together"
+    },
     "memories": []
   },
   "panther": {
@@ -318,19 +321,19 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 57,
-      "openness": 52,
+      "trust": 58,
+      "openness": 53,
       "ambition": 0,
       "loneliness": 100,
       "resilience": 80,
-      "hunger": 45,
+      "hunger": 53,
       "thirst": 53,
-      "energy": 85,
+      "energy": 78,
       "health": 100
     },
     "mood": "wary",
     "location": {
-      "waypoint": "fern_hollow",
+      "waypoint": "forest_edge",
       "x": 50,
       "y": 38
     },
@@ -414,6 +417,11 @@
       {
         "day": 17,
         "text": "The orange one calls me closer. I follow.",
+        "weight": 2
+      },
+      {
+        "day": 18,
+        "text": "The orange one lets me closer. I step further into the light.",
         "weight": 2
       }
     ]
