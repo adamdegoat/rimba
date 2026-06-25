@@ -1,10 +1,10 @@
 {
-  "day": 17,
-  "text": "Eyes reflect firelight beyond camp; Chills pulls Wesley against his side, watching.",
-  "flavor": "the wild at night",
-  "cycle": "midday",
-  "happens_at": "12:30pm",
+  "day": 18,
+  "text": "Chills takes Wesley's night watch, the exhausted scholar finally sleeps through till dawn.",
+  "flavor": "a quiet mercy",
+  "cycle": "evening",
+  "happens_at": "6pm",
   "status": "upcoming",
-  "revealed_at": "2026-06-25T00:00:42.689303",
+  "revealed_at": "2026-06-26T00:00:34.714338",
   "activated_at": null
 }
