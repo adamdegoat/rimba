@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 78
+      "energy": 71
     },
     "mood": "calm",
     "location": {
@@ -25,11 +25,11 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 6,
+        "tension": 5,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 94,
+        "closeness": 95,
         "tension": 0,
         "attraction": 0
       }
@@ -143,11 +143,11 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 78
+      "energy": 71
     },
-    "mood": "tense",
+    "mood": "alert",
     "location": {
       "waypoint": "campfire_right",
       "x": 70,
@@ -157,11 +157,11 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 8,
+        "tension": 7,
         "attraction": 0
       },
       "mutu": {
-        "closeness": 52,
+        "closeness": 53,
         "tension": 0,
         "attraction": 0
       }
@@ -270,11 +270,11 @@
       "trust": 79,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 98,
+      "loneliness": 100,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 78,
+      "energy": 71,
       "health": 100
     },
     "mood": "content",
@@ -291,7 +291,7 @@
         "attraction": 0
       },
       "wesley": {
-        "closeness": 55,
+        "closeness": 56,
         "tension": 66,
         "attraction": 0
       },
@@ -308,10 +308,7 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "chills",
-      "state": "sitting_together"
-    },
+    "interaction": null,
     "memories": []
   },
   "panther": {
@@ -322,13 +319,13 @@
     "color": "#1b1b22",
     "scores": {
       "trust": 58,
-      "openness": 53,
+      "openness": 54,
       "ambition": 0,
-      "loneliness": 100,
+      "loneliness": 96,
       "resilience": 80,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 78,
+      "energy": 71,
       "health": 100
     },
     "mood": "wary",
@@ -341,12 +338,12 @@
     "relationships": {
       "chills": {
         "closeness": 45,
-        "tension": 64,
+        "tension": 63,
         "attraction": 0
       },
       "wesley": {
         "closeness": 42,
-        "tension": 54,
+        "tension": 53,
         "attraction": 0
       },
       "mutu": {
@@ -422,6 +419,11 @@
       {
         "day": 18,
         "text": "The orange one lets me closer. I step further into the light.",
+        "weight": 2
+      },
+      {
+        "day": 18,
+        "text": "The orange one's stillness is my home now. I am safe.",
         "weight": 2
       }
     ]
