@@ -1,111 +1,6 @@
 [
   {
     "day": 7,
-    "cycle": "midday",
-    "character": "chills",
-    "action": "He wades knee-deep at the river's edge, spear held low, moving with careful deliberation; his right shoulder throbs from yesterday's fever, but his focus is steady on the water.",
-    "thought": "Pain doesn't stop the work. Just changes how.",
-    "location": {
-      "waypoint": "river_rocks",
-      "x": 42,
-      "y": 50
-    },
-    "shelter": "lean_to",
-    "mood": "determined",
-    "timestamp": "2026-06-14T11:31:58.383007"
-  },
-  {
-    "day": 7,
-    "cycle": "midday",
-    "character": "wesley",
-    "action": "He crouches on the rocks upstream, eyes sharp on the shallows, calling out depth and current; for the first time, he's guiding instead of following, and it steadies him.",
-    "thought": "He's listening to me. This is real.",
-    "location": {
-      "waypoint": "river_bank",
-      "x": 70,
-      "y": 40
-    },
-    "shelter": "cayenne",
-    "mood": "focused",
-    "timestamp": "2026-06-14T11:31:58.383007"
-  },
-  {
-    "day": 7,
-    "cycle": "midday",
-    "character": "mutu",
-    "action": "The cat dozes at the fire's edge, one ear cocked toward the forest; he's calm but watchful, sensing something drawing closer through the heat.",
-    "thought": "The dark one moves near. Still learning.",
-    "location": {
-      "waypoint": "campfire_left",
-      "x": 80,
-      "y": 30
-    },
-    "shelter": "none",
-    "mood": "calm",
-    "timestamp": "2026-06-14T11:31:58.383007"
-  },
-  {
-    "day": 7,
-    "cycle": "midday",
-    "character": "panther",
-    "action": "It lingers at the bamboo stand's edge, belly low in the long grass, yellow eyes tracking Mutu across the camp; for the first time it ventures close in daylight, drawn by something it doesn't understand.",
-    "thought": "Orange one near. I come closer too.",
-    "location": {
-      "waypoint": "bamboo_stand",
-      "x": 50,
-      "y": 38
-    },
-    "shelter": "none",
-    "mood": "curious",
-    "timestamp": "2026-06-14T11:31:58.383007"
-  },
-  {
-    "day": 7,
-    "cycle": "midday",
-    "type": "interaction",
-    "characters": [
-      "chills",
-      "wesley"
-    ],
-    "description": "At the river's midday shallows, Chills wades behind Wesley, moving carefully; Wesley reads the water and calls directions, and for the first time Chills simply trusts him—no negotiation, just need.",
-    "dialogue": [
-      {
-        "speaker": "wesley",
-        "line": "You're taking smaller steps."
-      },
-      {
-        "speaker": "chills",
-        "line": "Shoulder's still sore. Your eyes are better upstream."
-      },
-      {
-        "speaker": "wesley",
-        "line": "I can handle the deeper water if—"
-      },
-      {
-        "speaker": "chills",
-        "line": "No. Stay where you are. Tell me what you see."
-      },
-      {
-        "speaker": "wesley",
-        "line": "There's a school moving under those rocks. Left side."
-      },
-      {
-        "speaker": "chills",
-        "line": "Good. I'm moving there now."
-      },
-      {
-        "speaker": "wesley",
-        "line": "You're actually trusting my read."
-      },
-      {
-        "speaker": "chills",
-        "line": "You've been right every time. Why wouldn't I?"
-      }
-    ],
-    "timestamp": "2026-06-14T11:31:58.383007"
-  },
-  {
-    "day": 7,
     "cycle": "afternoon",
     "character": "chills",
     "action": "Sits at the fire's edge, feeding it bark and small wood with a tremor in his hands, trying not to show how the morning's fever-work has hollowed him.",
@@ -6366,5 +6261,110 @@
       }
     ],
     "timestamp": "2026-06-26T11:32:05.098518"
+  },
+  {
+    "day": 19,
+    "cycle": "afternoon",
+    "character": "chills",
+    "action": "Sat still by the fire, watching the panther edge closer to the fern line, his focus steady on what the wild thing might teach if they just waited.",
+    "thought": "Mutu brought it. I just stay still.",
+    "location": {
+      "waypoint": "campfire_left",
+      "x": 42,
+      "y": 50
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-26T15:02:15.120015"
+  },
+  {
+    "day": 19,
+    "cycle": "afternoon",
+    "character": "wesley",
+    "action": "Sat tense beside Chills, eyes tracking the panther's smallest movements, every muscle ready to bolt even as he forced himself to stay put.",
+    "thought": "What if it moves right now?",
+    "location": {
+      "waypoint": "campfire_right",
+      "x": 70,
+      "y": 40
+    },
+    "shelter": "none",
+    "mood": "alert",
+    "timestamp": "2026-06-26T15:02:15.120015"
+  },
+  {
+    "day": 19,
+    "cycle": "afternoon",
+    "character": "mutu",
+    "action": "Sprawled between the fire and the panther with total calm, ears relaxed, watching the wild one with a steady gaze that seemed to say: you are safe here.",
+    "thought": "Both dark ones near. Wild one close. Safe.",
+    "location": {
+      "waypoint": "camp_mid",
+      "x": 80,
+      "y": 30
+    },
+    "shelter": "none",
+    "mood": "content",
+    "timestamp": "2026-06-26T15:02:15.120015"
+  },
+  {
+    "day": 19,
+    "cycle": "afternoon",
+    "character": "panther",
+    "action": "Crouched at the fern edge, never taking its eyes from Mutu, inching imperceptibly closer to the fire's glow with each breath, pulled by something that finally felt like sanctuary.",
+    "thought": "Orange one lets me be here.",
+    "location": {
+      "waypoint": "fern_hollow",
+      "x": 50,
+      "y": 38
+    },
+    "shelter": "none",
+    "mood": "calm",
+    "timestamp": "2026-06-26T15:02:15.120015"
+  },
+  {
+    "day": 19,
+    "cycle": "afternoon",
+    "type": "interaction",
+    "characters": [
+      "wesley",
+      "chills"
+    ],
+    "description": "By afternoon the panther has crept nearly to the ferns at camp's edge, watching Mutu with absolute focus while Wesley and Chills sit quietly by the fire, neither flinching nor beckoning — just allowing.",
+    "dialogue": [
+      {
+        "speaker": "wesley",
+        "line": "It's only watching Mutu."
+      },
+      {
+        "speaker": "chills",
+        "line": "Because Mutu's not afraid."
+      },
+      {
+        "speaker": "wesley",
+        "line": "So we just sit here?"
+      },
+      {
+        "speaker": "chills",
+        "line": "What else would you do?"
+      },
+      {
+        "speaker": "wesley",
+        "line": "Drive it off. Something."
+      },
+      {
+        "speaker": "chills",
+        "line": "From what? It hasn't hurt us."
+      },
+      {
+        "speaker": "wesley",
+        "line": "Yet."
+      },
+      {
+        "speaker": "chills",
+        "line": "Or it's hungry like us, just scared."
+      }
+    ],
+    "timestamp": "2026-06-26T15:02:15.120015"
   }
 ]

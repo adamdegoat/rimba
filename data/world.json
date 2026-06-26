@@ -1,16 +1,16 @@
 {
   "day": 19,
-  "cycle": "midday",
+  "cycle": "afternoon",
   "weather": "clear",
   "pending_events": [],
   "started": "2026-06-08",
   "last_run_date": "2026-06-26",
-  "pulse": "Wesley survived a night with death at the edge and is slowly learning what Mutu already knows: the wild can be lived with.",
-  "scene": "The panther stayed through the night. By midday it crouches at the fern edge, watching Mutu sprawl by the fire while Chills feeds kindling and Wesley sits nearby, caught between old dread and new recognition.",
+  "pulse": "The panther inches closer because Mutu invited it — and Wesley's fear quiets enough to let Chills hold the moment.",
+  "scene": "The panther inched closer each hour, drawn by Mutu's fearlessness and the men's restraint. By late afternoon Wesley and Chills sat watching side by side at the fire — Chills unmoved, Wesley tense, but neither giving ground.",
   "resources_prev": {
-    "food": 52,
-    "water": 83,
-    "wood": 9,
+    "food": 41,
+    "water": 90,
+    "wood": 6,
     "medicine": 12
   },
   "structures": [
@@ -18,7 +18,7 @@
       "id": "campfire",
       "type": "campfire",
       "level": 1,
-      "condition": 60,
+      "condition": 56,
       "x": 50,
       "y": 55,
       "builder": null,
@@ -28,18 +28,18 @@
     }
   ],
   "resources": {
-    "food": 41,
+    "food": 53,
     "water": 90,
-    "wood": 6,
+    "wood": 9,
     "medicine": 12
   },
   "fire": {
     "lit": true,
-    "fuel": 16
+    "fuel": 2
   },
-  "camp_climate": "content",
+  "camp_climate": "steady",
   "discoveries": [],
-  "last_cycle_key": "2026-06-26:midday",
+  "last_cycle_key": "2026-06-26:afternoon",
   "cayenne": {
     "stripped": []
   },

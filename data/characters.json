@@ -11,9 +11,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86
+      "energy": 79
     },
     "mood": "calm",
     "location": {
@@ -25,7 +25,7 @@
     "relationships": {
       "wesley": {
         "closeness": 100,
-        "tension": 1,
+        "tension": 0,
         "attraction": 0
       },
       "mutu": {
@@ -55,7 +55,7 @@
     },
     "interaction": {
       "with": "wesley",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -143,9 +143,9 @@
       "loneliness": 0,
       "resilience": 100,
       "health": 100,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86
+      "energy": 79
     },
     "mood": "alert",
     "location": {
@@ -157,7 +157,7 @@
     "relationships": {
       "chills": {
         "closeness": 100,
-        "tension": 3,
+        "tension": 2,
         "attraction": 0
       },
       "mutu": {
@@ -184,7 +184,7 @@
     },
     "interaction": {
       "with": "chills",
-      "state": "talking"
+      "state": "sitting_together"
     },
     "memories": [
       {
@@ -267,14 +267,14 @@
     "archetype": "road cat",
     "color": "#d98a4a",
     "scores": {
-      "trust": 81,
+      "trust": 82,
       "openness": 42,
       "ambition": 0,
-      "loneliness": 95,
+      "loneliness": 96,
       "resilience": 86,
-      "hunger": 53,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
     "mood": "content",
@@ -308,10 +308,7 @@
       "stripe": "#a8612a",
       "eye": "#5fa86b"
     },
-    "interaction": {
-      "with": "panther",
-      "state": "sitting_together"
-    },
+    "interaction": null,
     "memories": [
       {
         "day": 18,
@@ -337,14 +334,14 @@
     "archetype": "wary stray",
     "color": "#1b1b22",
     "scores": {
-      "trust": 63,
-      "openness": 56,
+      "trust": 65,
+      "openness": 57,
       "ambition": 0,
       "loneliness": 91,
-      "resilience": 81,
-      "hunger": 53,
+      "resilience": 82,
+      "hunger": 45,
       "thirst": 53,
-      "energy": 86,
+      "energy": 79,
       "health": 100
     },
     "mood": "calm",
@@ -356,13 +353,13 @@
     "shelter": "none",
     "relationships": {
       "chills": {
-        "closeness": 54,
-        "tension": 58,
+        "closeness": 55,
+        "tension": 57,
         "attraction": 0
       },
       "wesley": {
-        "closeness": 50,
-        "tension": 50,
+        "closeness": 51,
+        "tension": 49,
         "attraction": 0
       },
       "mutu": {
@@ -378,10 +375,7 @@
       "stripe": "#3b3b46",
       "eye": "#e0a83a"
     },
-    "interaction": {
-      "with": "mutu",
-      "state": "sitting_together"
-    },
+    "interaction": null,
     "memories": [
       {
         "day": 6,
@@ -412,11 +406,6 @@
         "day": 12,
         "text": "The dark ones stayed still. I crept closer. Safe now.",
         "weight": 2
-      },
-      {
-        "day": 12,
-        "text": "Dark ones held still. Orange one makes it safe.",
-        "weight": 1
       },
       {
         "day": 13,
@@ -452,6 +441,11 @@
         "day": 19,
         "text": "Orange one beside me all night. Dark ones stayed still. I'm safe.",
         "weight": 3
+      },
+      {
+        "day": 19,
+        "text": "Closer each breath. Orange one keeps me in light.",
+        "weight": 2
       }
     ]
   }
